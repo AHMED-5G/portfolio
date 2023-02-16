@@ -20,6 +20,7 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
+  HotelDetails: Hotel
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
@@ -41,8 +42,8 @@ export interface Hotel {
   id: ID;
   name: string;
   favorite: boolean;
-  location: string;
   images: string[];
-  description: string;
+  description?: string;
   rate: "1" | "2" | "3" | "4" | "5";
+  address: string;
 }

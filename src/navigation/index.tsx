@@ -17,6 +17,7 @@ import LinkingConfiguration from "./LinkingConfiguration";
 import { myColors } from "../constants/Colors";
 import { Home } from "../screens/Home";
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from "../types";
+import HotelDetails from "../screens/HotelDetails";
 
 export default function Navigation({
   colorScheme,
@@ -61,11 +62,11 @@ function RootNavigator() {
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
-      {/* <Stack.Screen
-        name="RoomDetails"
-        component={RoomDetails}
+      <Stack.Screen
+        name="HotelDetails"
+        component={HotelDetails}
         options={{ headerShown: false }}
-      /> */}
+      />
     </Stack.Navigator>
   );
 }

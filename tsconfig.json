@@ -3,5 +3,10 @@
   "compilerOptions": {
     "jsx": "react",
     "strict": true
-  }
+  },
+  "typeRoots": [
+    "../node_modules/@types",
+    "../@types"
+  ]
+  
 }
