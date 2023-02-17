@@ -1,3 +1,25 @@
+export type ID = string | number;
+
+ interface DataType { img: ImageSourcePropType }
+
+export interface Hotel {
+  id: ID;
+  name: string;
+  favorite: boolean;
+  images: string[];
+  // images: ImageURISource["uri"][] ;
+  description?: string;
+  rate: number;
+  address: string;
+}
+
+export interface User {
+  id: ID;
+  name: string;
+  email: string;
+  image: string;
+}
+
 /**
  * Learn more about using TypeScript with React Navigation:
  * https://reactnavigation.org/docs/typescript/
@@ -9,6 +31,7 @@ import {
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { ImageSourcePropType, ImageURISource } from "react-native";
 
 declare global {
   namespace ReactNavigation {
@@ -20,7 +43,7 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
-  HotelDetails: Hotel
+  HotelDetails: Hotel;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
@@ -35,15 +58,3 @@ export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
     BottomTabScreenProps<RootTabParamList, Screen>,
     NativeStackScreenProps<RootStackParamList>
   >;
-
-export type ID = string | number;
-
-export interface Hotel {
-  id: ID;
-  name: string;
-  favorite: boolean;
-  images: string[];
-  description?: string;
-  rate: "1" | "2" | "3" | "4" | "5";
-  address: string;
-}

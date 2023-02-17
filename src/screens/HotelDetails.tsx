@@ -1,62 +1,96 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  ImageSourcePropType,
+  ImageURISource,
+} from "react-native";
+import React, { useState } from "react";
 import { RootStackParamList } from "../types";
 import { height, width } from "../constants/Layout";
 import { myColors } from "../constants/Colors";
-import { Entypo } from "@expo/vector-icons";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Rating } from "react-native-ratings";
 import MedButton from "../components/mini/MedButton";
+import { ImageSlider } from "../components/mini/CustomImageSlider";
+import { DataType } from "react-native-image-slider-banner/src";
+import Stars from "react-native-stars";
 
 type Props = StackScreenProps<RootStackParamList, "HotelDetails">;
 
 function HotelDetails({ navigation, route }: Props) {
   const hotel = route.params;
+  console.log(hotel.rate);
+  let imagesForSlider: DataType[] = hotel.images.map((item) => {
+    return { img: item as ImageURISource };
+  });
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [requestedIndex, setRequestedIndex] = useState(0);
 
   return (
     <View>
-      <Image
-        source={{ uri: hotel.images[0] }}
+      <View
         style={{
           zIndex: 0,
-          position: "absolute",
+          // position: "absolute",
           width,
           height: height / 2,
         }}
-      />
-      <View
-        style={{
-          position: "absolute",
-          top: height / 2 - 50,
-          width: 316,
-          height: 326,
-          left: (width - 316) / 2,
-          borderRadius: 20,
-          backgroundColor: "#FAFAFA",
-          zIndex: 1,
-        }}
       >
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            marginTop: 21,
+        <ImageSlider
+          data={imagesForSlider}
+          requestedIndex={requestedIndex}
+          onItemChangedWithIndex={(_, index) => {
+            setCurrentImageIndex(index);
           }}
-        >
-          <Image
-            source={{ uri: hotel.images[1] }}
-            style={styles.miniImageStyle}
-          />
-          <Image
-            source={{ uri: hotel.images[2] }}
-            style={styles.miniImageStyle}
-          />
-          <Image
-            source={{ uri: hotel.images[3] }}
-            style={styles.miniImageStyle}
+          caroselImageStyle={{
+            height: height / 2,
+            borderBottomLeftRadius: 40,
+            borderBottomRightRadius: 40,
+          }}
+          closeIconColor="#fff"
+        />
+      </View>
+      <View style={styles.meddleCard}>
+        <View style={{ margin: 15, maxWidth: 300, height: 120 }}>
+          <FlatList
+            horizontal={true}
+            data={hotel.images}
+            renderItem={({ item, index }) => (
+              <View style={{ width: 100 }}>
+                {index == currentImageIndex ? (
+                  <View style={[styles.miniImageContainerStyle, { margin: 5 }]}>
+                    <Image
+                      source={{ uri: item as string }}
+                      style={styles.miniImageStyle}
+                    />
+                  </View>
+                ) : (
+                  <TouchableOpacity
+                    onPress={() => {
+                      setCurrentImageIndex(index);
+                      setRequestedIndex(index);
+                    }}
+                    style={{ margin: 5 }}
+                  >
+                    <Image
+                      source={{ uri: item as string }}
+                      style={styles.miniImageStyle}
+                    />
+                  </TouchableOpacity>
+                )}
+              </View>
+            )}
+            keyExtractor={(_: string, index: number) => index.toString()}
+            showsHorizontalScrollIndicator={false}
           />
         </View>
+
         <View style={{ marginTop: 15, marginLeft: 15 }}>
           <TouchableOpacity>
             <Text style={styles.secondlyTitle}>Address</Text>
@@ -88,15 +122,23 @@ function HotelDetails({ navigation, route }: Props) {
             <Text>
               <FontAwesome5 name="smile" size={24} color="black" />{" "}
             </Text>
-            <Rating
-              type="custom"
-              ratingCount={+hotel.rate}
-              imageSize={30}
-              ratingColor="#94C7D2"
-              tintColor="#FAFAFA"
+            <Stars
+              default={hotel.rate}
+              count={5}
+              starSize={50}
+              fullStar={
+                <AntDesign name={"star"} style={[styles.myStarStyle]} />
+              }
+              emptyStar={
+                <AntDesign
+                  name={"staro"}
+                  style={[styles.myStarStyle, styles.myEmptyStarStyle]}
+                />
+              }
             />
             <View
               style={{
+                marginLeft: 7,
                 borderRadius: 5,
                 backgroundColor: "#94C7D2",
                 width: 28,
@@ -136,12 +178,16 @@ const styles = StyleSheet.create({
     width: 91,
     height: 91,
     borderRadius: 10,
-    borderWidth: 3,
-    borderStartColor: "#94C7D2",
+    borderWidth: 5,
+    borderColor: "#94C7D2",
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
   },
   miniImageStyle: {
     width: 86,
     height: 86,
+    borderRadius: 10,
   },
   title: {
     fontSize: 30,
@@ -159,14 +205,27 @@ const styles = StyleSheet.create({
     textShadowColor: "black",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
+    fontSize: 22,
   },
   myEmptyStarStyle: {
     color: "white",
+    fontSize: 22,
   },
   smallText: {
     fontSize: 14,
     lineHeight: 17,
     fontWeight: "700",
     color: "#505050",
+  },
+  meddleCard: {
+    position: "absolute",
+    top: height / 2 - 40,
+    width: 316,
+    height: 326,
+    left: (width - 316) / 2,
+    borderRadius: 20,
+    backgroundColor: "#FAFAFA",
+    zIndex: 999,
+    overflow: "hidden",
   },
 });

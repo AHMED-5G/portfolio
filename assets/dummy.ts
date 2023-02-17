@@ -10,7 +10,7 @@ export const hotels: Hotel[] = [
       "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=874&q=80",
     ],
     address: "Evripidou Str, Athens, 10553, Greece",
-    rate: "5",
+    rate: 4,
     favorite: false,
   },
   {
@@ -23,7 +23,7 @@ export const hotels: Hotel[] = [
       "https://images.unsplash.com/photo-1562790351-d273a961e0e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80",
     ],
     address: "18786 SW Boones Ferry Rd",
-    rate: "4",
+    rate: 4,
     favorite: false,
   },
   {
@@ -36,7 +36,7 @@ export const hotels: Hotel[] = [
       "https://plus.unsplash.com/premium_photo-1670360414531-aaf6c4b48b8d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     ],
     address: "7939 Black Mountain Dr",
-    rate: "4",
+    rate: 4,
     favorite: false,
   },
 ];

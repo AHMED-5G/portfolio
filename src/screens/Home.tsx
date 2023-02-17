@@ -13,7 +13,7 @@ import { height, width } from "../constants/Layout";
 
 function Home({ navigation }: RootTabScreenProps<"Home">) {
   const HotelCard = ({ hotel }: { hotel: Hotel }) => {
-    console.log(hotel);
+
     return (
       <TouchableOpacity
         onPress={() => {
@@ -22,7 +22,7 @@ function Home({ navigation }: RootTabScreenProps<"Home">) {
         style={{ width: width / 2, height: height / 3 }}
       >
         <Image
-          source={{ uri: hotel.images[0] }}
+          source={{ uri: hotel.images[0] as string}}
           style={{ width: width / 3, height: 300 }}
         />
       </TouchableOpacity>
@@ -31,7 +31,6 @@ function Home({ navigation }: RootTabScreenProps<"Home">) {
 
   return (
     <View>
-      <Text>home</Text>
       <FlatList
         data={hotels}
         horizontal
