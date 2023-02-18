@@ -12,7 +12,25 @@ Improve UI and UX and test all app in all stages
 
 - repeat v 0.1
 
-- add acceptability
-
+- add accessibility
 
 # app in [Trello](https://trello.com/b/LCgVV444/portfolio)
+
+
+
+# Need Contributes
+## contribute in this portfolio as :
+
+- User Experience Developer
+- User Interface Developer
+- Graphic Designer
+...
+
+
+or suggest any idea to improve any phase.
+
+ <a href="https://www.facebook.com/profile.php?id=100086148849098" target="_blank">
+<img src=https://img.shields.io/badge/facebook-%232E87FB.svg?&style=for-the-badge&logo=facebook&logoColor=white alt=facebook style="margin-bottom: 5px;" />
+</a>  
+
+AHMED_5G@YAHOO.COM
