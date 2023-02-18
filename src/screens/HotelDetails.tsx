@@ -48,7 +48,6 @@ function HotelDetails({ navigation, route }: Props) {
   };
   return (
     <SafeAreaView style={{ height }}>
-
       <BackArrow color={"#94C7D2"} />
       <View
         style={{
@@ -71,7 +70,7 @@ function HotelDetails({ navigation, route }: Props) {
         />
       </View>
       <View style={styles.meddleCard}>
-        <View style={{ margin: 15, maxWidth: 300, height: 120 }}>
+        <View style={{ margin: 15, maxWidth: 300, height: 105 }}>
           <FlatList
             horizontal={true}
             data={hotel.images}
@@ -104,8 +103,7 @@ function HotelDetails({ navigation, route }: Props) {
             showsHorizontalScrollIndicator={false}
           />
         </View>
-
-        <View style={{ marginTop: 15, marginLeft: 15 }}>
+        <View style={{ marginTop: 2, marginLeft: 15 }}>
           <TouchableOpacity>
             <Text style={styles.secondlyTitle}>Address</Text>
           </TouchableOpacity>
@@ -168,7 +166,7 @@ function HotelDetails({ navigation, route }: Props) {
           </View>
         </View>
       </View>
-      <View style={{ position: "absolute", top: height - 130, left: 20 }}>
+      <View style={{ left: 20, marginTop: height / 2 - 140 }}>
         <Text style={styles.title}>{hotel.name}</Text>
         <View>
           <MedButton
@@ -239,7 +237,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: height / 2 - 40,
     width: 316,
-    height: 326,
+    height: 300,
     left: (width - 316) / 2,
     borderRadius: 20,
     backgroundColor: "#FAFAFA",
