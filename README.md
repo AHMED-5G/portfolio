@@ -1,7 +1,4 @@
 
-<img src="./src/screenshots/v0point1.jpg" alt="MarineGEO circle logo" />
-
-
 # Rood map
 
 Improve UI and UX and test all app in all stages
