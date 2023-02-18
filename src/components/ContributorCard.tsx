@@ -14,7 +14,7 @@ const ContributorCard = ({ contributor }: Props) => {
       style={{
         margin: 10,
         width: 240,
-        height: 350,
+        height: 320,
         borderRadius: 20,
         marginBottom: 90,
       }}
@@ -26,6 +26,7 @@ const ContributorCard = ({ contributor }: Props) => {
           justifyContent: "center",
           alignItems: "center",
           borderRadius: 10,
+          height: 320
         }}
       >
         <View

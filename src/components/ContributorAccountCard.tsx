@@ -1,7 +1,14 @@
-import { OpaqueColorValue, StyleSheet, Text, View } from "react-native";
+import {
+  OpaqueColorValue,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React from "react";
 import { AccountTypes, Contributor, ContributorAccount } from "../types";
 import { AntDesign } from "@expo/vector-icons";
+import * as Linking from "expo-linking";
 
 type Props = {
   account: ContributorAccount;
@@ -40,9 +47,14 @@ const getIconByAccountType = (
 };
 const ContributorAccountCard = ({ account }: Props) => {
   return (
-    <View style={{ margin: 5 }}>
+    <TouchableOpacity
+      style={{ margin: 5 }}
+      onPress={() => {
+        Linking.openURL(account.url);
+      }}
+    >
       <Text>{getIconByAccountType(account.type)}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

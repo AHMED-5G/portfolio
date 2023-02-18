@@ -10,7 +10,7 @@ export const hotels: Hotel[] = [
       "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=874&q=80",
     ],
     address: "Evripidou Str, Athens, 10553, Greece",
-    rate: 4,
+    rate: 5,
     favorite: false,
   },
   {
@@ -36,7 +36,7 @@ export const hotels: Hotel[] = [
       "https://plus.unsplash.com/premium_photo-1670360414531-aaf6c4b48b8d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     ],
     address: "7939 Black Mountain Dr",
-    rate: 4,
+    rate: 3,
     favorite: false,
   },
 ];
@@ -50,7 +50,7 @@ export const contributors: Contributor[] = [
     accounts: [
       {
         type: AccountTypes.Twitter,
-        url: "https://twitter.com",
+        url: "http://twitter.com/",
       },
       {
         type: AccountTypes.Behance,
@@ -85,5 +85,23 @@ export const contributors: Contributor[] = [
     ],
     image:
       "https://images.unsplash.com/photo-1618979251882-0b40ef3617f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+  },
+  {
+    id: "3",
+    name: "AA",
+    email: "khaled@zahoo.com",
+    title: "full stack developer",
+    accounts: [
+      {
+        type: AccountTypes.Facebook,
+        url: "https://www.facebook.com/profile.php?id=100086148849098",
+      },
+      {
+        type: AccountTypes.Github,
+        url: "https://github.com/AHMED-5G",
+      },
+    ],
+    image:
+      "https://scontent.fcai20-6.fna.fbcdn.net/v/t39.30808-1/331078260_1853351431696567_4991456740459488817_n.jpg?stp=dst-jpg_p200x200&_nc_cat=106&ccb=1-7&_nc_sid=7206a8&_nc_ohc=1v7QmwJsXl8AX90xiqw&_nc_ht=scontent.fcai20-6.fna&oh=00_AfDGdTxrm5-YoEdfF4V2yjM5USN6oH0Y5dyJxVuduw5I6A&oe=63F5A060",
   },
 ];

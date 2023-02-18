@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import { RootStackParamList } from "../types";
 import { height, width } from "../constants/Layout";
 import { myColors } from "../constants/Colors";
-import { AntDesign, Entypo } from "@expo/vector-icons";
+import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FontAwesome5 } from "@expo/vector-icons";
 
@@ -21,6 +21,9 @@ import { ImageSlider } from "../components/mini/CustomImageSlider";
 import { DataType } from "react-native-image-slider-banner/src";
 //@ts-ignore
 import Stars from "react-native-stars";
+import { flash } from "../utils/helperFunctions";
+import { SafeAreaView } from "react-native-safe-area-context";
+import BackArrow from "../components/mini/BackArrow";
 
 type Props = StackScreenProps<RootStackParamList, "HotelDetails">;
 
@@ -31,9 +34,22 @@ function HotelDetails({ navigation, route }: Props) {
   });
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [requestedIndex, setRequestedIndex] = useState(0);
-
+  const [loading, setLoading] = useState(false);
+  const [requestResult, setRequestResult] = useState(false);
+  const sendFakeRequest = () => {
+    setTimeout(() => {
+      setLoading(false);
+      flash(
+        requestResult ? "Success" : "Something went wrong",
+        requestResult ? "success" : "Something went wrong"
+      );
+      setRequestResult(!requestResult);
+    }, 3000);
+  };
   return (
-    <View>
+    <SafeAreaView style={{ height }}>
+
+      <BackArrow color={"#94C7D2"} />
       <View
         style={{
           width,
@@ -152,20 +168,24 @@ function HotelDetails({ navigation, route }: Props) {
           </View>
         </View>
       </View>
-      <View style={{ position: "absolute", top: height - 100, left: 20 }}>
+      <View style={{ position: "absolute", top: height - 130, left: 20 }}>
         <Text style={styles.title}>{hotel.name}</Text>
         <View>
           <MedButton
+            loading={loading}
             textStyle={{ color: "#FFF" }}
             style={{ width: 149, height: 43 }}
             borderRadius={11}
-            onPress={() => {}}
+            onPress={() => {
+              setLoading(true);
+              sendFakeRequest();
+            }}
             title="Book now"
             color={"#94C7D2"}
           />
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -188,7 +208,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   title: {
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: "700",
     lineHeight: 36,
   },

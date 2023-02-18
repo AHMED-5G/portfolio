@@ -101,7 +101,6 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     borderColor: 'white',
     flexDirection: 'row',
-    marginTop: 20,
   },
   titleText: {
     color: 'white',
