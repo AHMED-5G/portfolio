@@ -172,7 +172,7 @@ function HotelDetails({ navigation, route }: Props) {
           <MedButton
             loading={loading}
             textStyle={{ color: "#FFF" }}
-            style={{ width: 149, height: 43 }}
+            style={{ width: 149, height: 43, marginTop: 10 }}
             borderRadius={11}
             onPress={() => {
               setLoading(true);
