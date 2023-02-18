@@ -29,8 +29,11 @@ Improve UI and UX and test all app in all stages
 
 or suggest any idea to improve any phase.
 
+### And add your profile to home screen as contributor and get full access for all app code to share it for your business,
+
  <a href="https://www.facebook.com/profile.php?id=100086148849098" target="_blank">
 <img src=https://img.shields.io/badge/facebook-%232E87FB.svg?&style=for-the-badge&logo=facebook&logoColor=white alt=facebook style="margin-bottom: 5px;" />
 </a>  
 
 AHMED_5G@YAHOO.COM
+
