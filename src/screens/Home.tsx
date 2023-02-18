@@ -3,42 +3,43 @@ import {
   StyleSheet,
   View,
   Text,
-  Image,
-  TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import React from "react";
-import { Hotel, RootTabScreenProps } from "../types";
-import { hotels } from "../../assets/dummy";
-import { height, width } from "../constants/Layout";
+import { Contributor, Hotel, RootTabScreenProps } from "../types";
+import { contributors, hotels } from "../../assets/dummy";
+import HotelCard from "../components/HotelCard";
+import ContributorCard from "../components/ContributorCard";
 
 function Home({ navigation }: RootTabScreenProps<"Home">) {
-  const HotelCard = ({ hotel }: { hotel: Hotel }) => {
-
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("HotelDetails", hotel);
-        }}
-        style={{ width: width / 2, height: height / 3 }}
-      >
-        <Image
-          source={{ uri: hotel.images[0] as string}}
-          style={{ width: width / 3, height: 300 }}
-        />
-      </TouchableOpacity>
-    );
-  };
-
   return (
-    <View>
-      <FlatList
-        data={hotels}
-        horizontal
-        renderItem={({ item }) => <HotelCard hotel={item} />}
-        keyExtractor={(item: Hotel) => item.id.toString()}
-        showsVerticalScrollIndicator={false}
-      />
-    </View>
+    <ScrollView>
+      <View style={{ marginTop: 100 }}>
+        <View style={{ marginTop: 10, marginLeft: 20 }}>
+          <Text style={styles.sectionTitleText}>Hotels</Text>
+        </View>
+        <FlatList
+          data={hotels}
+          horizontal
+          renderItem={({ item }) => <HotelCard hotel={item} />}
+          keyExtractor={(item: Hotel) => item.id.toString()}
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+      <View style={{ marginTop: 10, marginLeft: 20 }}>
+        <Text style={styles.sectionTitleText}>Contributes</Text>
+      </View>
+
+        <View style={{ marginTop: 20 }}>
+          <FlatList
+            data={contributors}
+            horizontal
+            renderItem={({ item }) => <ContributorCard contributor={item} />}
+            keyExtractor={(item: Contributor) => item.id.toString()}
+            showsHorizontalScrollIndicator={false}
+          />
+      </View>
+    </ScrollView>
   );
 }
 export { Home };
@@ -50,4 +51,18 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
   },
+  title: {
+    fontSize: 27,
+    fontWeight: "700",
+    lineHeight: 36,
+    color: "white",
+  },
+  secondlyTitle: {
+    fontSize: 12,
+    fontWeight: "bold",
+    color: "white",
+  },
+  sectionTitleText:{
+    fontSize: 27, fontWeight: "bold" 
+  }
 });

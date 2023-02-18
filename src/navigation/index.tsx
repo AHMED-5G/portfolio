@@ -11,12 +11,15 @@ import * as React from "react";
 import { ColorSchemeName, View } from "react-native";
 import useColorScheme from "../hooks/useColorScheme";
 
-
 import LinkingConfiguration from "./LinkingConfiguration";
 
 import { myColors } from "../constants/Colors";
 import { Home } from "../screens/Home";
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from "../types";
+import {
+  RootStackParamList,
+  RootTabParamList,
+  RootTabScreenProps,
+} from "../types";
 import HotelDetails from "../screens/HotelDetails";
 
 export default function Navigation({
@@ -25,28 +28,14 @@ export default function Navigation({
   colorScheme: ColorSchemeName;
 }) {
 
-  // if there is active user in global
-  //state navigation will redirect user to Home screen
-
-  //if no active user it will redirect to login screen
   return (
-    <NavigationContainer linking={LinkingConfiguration}>
+    <NavigationContainer>
+      {/* <NavigationContainer linking={LinkingConfiguration}> */}
       <RootNavigator />
     </NavigationContainer>
   );
 }
 
-function AuthNavigator() {
-  return (
-    <View></View>
-    // <Stack.Navigator initialRouteName="Login">
-    //   <Stack.Group screenOptions={{ headerShown: false }}>
-    //     <Stack.Screen name="SignUp" component={SignUp} />
-    //     <Stack.Screen name="Login" component={Login} />
-    //   </Stack.Group>
-    // </Stack.Navigator>
-  );
-}
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.

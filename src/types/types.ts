@@ -1,6 +1,8 @@
 export type ID = string | number;
 
- interface DataType { img: ImageSourcePropType }
+interface DataType {
+  img: ImageSourcePropType;
+}
 
 export interface Hotel {
   id: ID;
@@ -17,7 +19,24 @@ export interface User {
   id: ID;
   name: string;
   email: string;
-  image: string;
+  image?: string;
+}
+export enum AccountTypes {
+  Facebook,
+  Twitter,
+  Github,
+  Dribbble,
+  Behance,
+  LinkedIn,
+}
+
+export interface ContributorAccount {
+  type: AccountTypes;
+  url: string;
+}
+export interface Contributor extends User {
+  accounts: ContributorAccount[];
+  title: string;
 }
 
 /**

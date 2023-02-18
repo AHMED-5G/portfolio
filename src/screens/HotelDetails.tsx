@@ -15,17 +15,17 @@ import { myColors } from "../constants/Colors";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { Rating } from "react-native-ratings";
+
 import MedButton from "../components/mini/MedButton";
 import { ImageSlider } from "../components/mini/CustomImageSlider";
 import { DataType } from "react-native-image-slider-banner/src";
+//@ts-ignore
 import Stars from "react-native-stars";
 
 type Props = StackScreenProps<RootStackParamList, "HotelDetails">;
 
 function HotelDetails({ navigation, route }: Props) {
   const hotel = route.params;
-  console.log(hotel.rate);
   let imagesForSlider: DataType[] = hotel.images.map((item) => {
     return { img: item as ImageURISource };
   });
@@ -36,8 +36,6 @@ function HotelDetails({ navigation, route }: Props) {
     <View>
       <View
         style={{
-          zIndex: 0,
-          // position: "absolute",
           width,
           height: height / 2,
         }}

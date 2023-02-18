@@ -1,4 +1,4 @@
-import { Hotel } from "../src/types";
+import { AccountTypes, Contributor, Hotel } from "../src/types";
 export const hotels: Hotel[] = [
   {
     id: "1",
@@ -38,5 +38,52 @@ export const hotels: Hotel[] = [
     address: "7939 Black Mountain Dr",
     rate: 4,
     favorite: false,
+  },
+];
+
+export const contributors: Contributor[] = [
+  {
+    id: "2",
+    name: "Sara",
+    email: "Sara@omail.com",
+    title: "UX Developer",
+    accounts: [
+      {
+        type: AccountTypes.Twitter,
+        url: "https://twitter.com",
+      },
+      {
+        type: AccountTypes.Behance,
+        url: "https://www.behance.net/",
+      },
+      {
+        type: AccountTypes.LinkedIn,
+        url: "https://www.LinkedIn.com/",
+      },
+    ],
+    image:
+      "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+  },
+  {
+    id: "1",
+    name: "Khalid",
+    email: "khaled@zahoo.com",
+    title: "Creative Logo & Graphics Designer",
+    accounts: [
+      {
+        type: AccountTypes.Facebook,
+        url: "https://www.facebook.com/profile.php?id=100086148849098",
+      },
+      {
+        type: AccountTypes.Behance,
+        url: "https://github.com/AHMED-5G",
+      },
+      {
+        type: AccountTypes.Dribbble,
+        url: "https://github.com/AHMED-5G",
+      },
+    ],
+    image:
+      "https://images.unsplash.com/photo-1618979251882-0b40ef3617f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
   },
 ];
