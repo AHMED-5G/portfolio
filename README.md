@@ -7,7 +7,7 @@ Improve UI and UX and test all app in all stages
 
 - Create 1 main bottom Tab like Home, Notification, Profile, Cart, and Posts , ...
 
-- Create details screen with some features like :Animations, Image slide ,Payment simulation , and Chat
+- Create details screen with some features like :Animations, Image slide ,Payment simulation, Chat.
 
 ## V 0.2
 

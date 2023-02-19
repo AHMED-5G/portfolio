@@ -1,4 +1,4 @@
-import { AccountTypes, Contributor, Hotel } from "../src/types";
+import { AccountTypes, Contributor, Hotel } from "./src/types";
 export const hotels: Hotel[] = [
   {
     id: "1",
