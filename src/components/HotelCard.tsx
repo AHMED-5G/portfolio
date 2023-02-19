@@ -7,15 +7,12 @@ import {
 } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
-import navigation from "../navigation";
-import { Hotel, RootStackParamList, RootTabParamList } from "../types";
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { Hotel,  } from "../types";
 import { useNavigation } from "@react-navigation/native";
+import { myColors } from "../constants/Colors";
 
 type Props = {
   hotel: Hotel;
-  //   navigation: StackNavigationProp<RootStackParamList>;
 };
 
 const HotelCard = ({ hotel }: Props) => {
@@ -29,12 +26,11 @@ const HotelCard = ({ hotel }: Props) => {
     >
       <ImageBackground
         source={{ uri: hotel.images[0] as string }}
-        style={{ height: 300 }}
+        style={{ height: 300, justifyContent: "space-between" }}
         imageStyle={{ borderRadius: 12 }}
       >
         <View
           style={{
-            flex: 1,
             margin: 15,
             alignItems: "flex-end",
           }}
@@ -51,17 +47,23 @@ const HotelCard = ({ hotel }: Props) => {
               flexDirection: "row",
             }}
           >
-            <Text style={{ fontSize: 12, color: "white", fontWeight: "900" }}>
+            <Text style={{ fontSize: 12, color: "black", fontWeight: "900" }}>
               {hotel.rate}
             </Text>
-            <AntDesign name={"star"} color="white" style={{ marginLeft: 4 }} />
+            <AntDesign name={"star"} color="black" style={{ marginLeft: 4 }} />
           </View>
         </View>
-        <View style={{ flex: 1 }}>
+        <View
+          style={{
+            alignContent: "flex-end",
+            justifyContent: "flex-end",
+
+            opacity: 0.8,
+            backgroundColor: myColors.grey4,
+          }}
+        >
           <View
             style={{
-              flex: 1,
-              justifyContent: "flex-end",
               marginLeft: 20,
               marginBottom: 15,
             }}
@@ -82,11 +84,11 @@ const styles = StyleSheet.create({
     fontSize: 27,
     fontWeight: "700",
     lineHeight: 36,
-    color: "white",
+    color: "black",
   },
   secondlyTitle: {
     fontSize: 12,
     fontWeight: "bold",
-    color: "white",
+    color: "black",
   },
 });

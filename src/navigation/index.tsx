@@ -13,7 +13,7 @@ import useColorScheme from "../hooks/useColorScheme";
 
 import LinkingConfiguration from "./LinkingConfiguration";
 
-import { myColors } from "../constants/Colors";
+import Colors, { myColors } from "../constants/Colors";
 import { Home } from "../screens/Home";
 import {
   RootStackParamList,
@@ -21,13 +21,13 @@ import {
   RootTabScreenProps,
 } from "../types";
 import HotelDetails from "../screens/HotelDetails";
+import MyTabBar from "./MyTabBar";
 
 export default function Navigation({
   colorScheme,
 }: {
   colorScheme: ColorSchemeName;
 }) {
-
   return (
     <NavigationContainer>
       {/* <NavigationContainer linking={LinkingConfiguration}> */}
@@ -35,7 +35,6 @@ export default function Navigation({
     </NavigationContainer>
   );
 }
-
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -72,20 +71,27 @@ function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      screenOptions={{
-        tabBarStyle: { position: "absolute" },
-        tabBarBackground: () => (
-          <View
-            style={{
-              backgroundColor: myColors.main,
-              height: 100,
-              borderRadius: 10,
-            }}
-          />
-        ),
+      // screenOptions={{
+      //   tabBarStyle: { position: "absolute" , height: 40 },
+      //   // tabBarBackground: () => (
+      //   //   <View
+      //   //     style={{
+      //   //       backgroundColor: myColors.main,
+      //   //       height: 100,
+      //   //       borderRadius: 10,
+      //   //     }}
+      //   //   />
+      //   // ),
 
-        tabBarActiveTintColor: "white",
+      //   tabBarActiveTintColor: "white",
+      //   headerShown: false,
+      // }}
+      screenOptions={{
+        tabBarActiveTintColor: Colors[colorScheme].tint,
         headerShown: false,
+      }}
+      tabBar={(props) => {
+        return <MyTabBar {...props} />;
       }}
     >
       <BottomTab.Screen

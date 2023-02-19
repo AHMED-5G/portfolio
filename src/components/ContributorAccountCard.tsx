@@ -12,33 +12,83 @@ import * as Linking from "expo-linking";
 
 type Props = {
   account: ContributorAccount;
+  color?: string | OpaqueColorValue;
+  size?: number | undefined;
 };
 
-const getIconByAccountType = (
-  accountType: AccountTypes,
-  color: string | OpaqueColorValue = "black",
-  size: number | undefined = 34
-) => {
-  switch (accountType) {
+const getIconByAccountType = ({
+  account,
+  color = "black",
+  size = 48,
+}: Props) => {
+  switch (account.type) {
     case AccountTypes.Facebook:
-      return <AntDesign name="facebook-square" size={size} color="#4267B2" />;
+      return (
+        <AntDesign
+          accessibilityRole="button"
+          accessibilityLabel={"facebook" + account.name}
+          name="facebook-square"
+          size={size}
+          color="#4267B2"
+        />
+      );
       break;
 
     case AccountTypes.Behance:
-      return <AntDesign name="behance" size={size} color="#053eff" />;
+      return (
+        <AntDesign
+          accessibilityRole="button"
+          accessibilityLabel={"behance" + account.name}
+          name="behance"
+          size={size}
+          color="#053eff"
+        />
+      );
       break;
 
     case AccountTypes.Dribbble:
-      return <AntDesign name="dribbble" size={size} color="#ea4c89" />;
+      return (
+        <AntDesign
+          accessibilityRole="button"
+          accessibilityLabel={"dribbble" + account.name}
+          name="dribbble"
+          size={size}
+          color="#ea4c89"
+        />
+      );
       break;
     case AccountTypes.Github:
-      return <AntDesign name="github" size={size} color="#171515" />;
+      return (
+        <AntDesign
+          accessibilityRole="button"
+          accessibilityLabel={"github" + account.name}
+          name="github"
+          size={size}
+          color="#171515"
+        />
+      );
       break;
     case AccountTypes.LinkedIn:
-      return <AntDesign name="linkedin-square" size={size} color="#0A66C2" />;
+      return (
+        <AntDesign
+          accessibilityRole="button"
+          accessibilityLabel={"linkedin" + account.name}
+          name="linkedin-square"
+          size={size}
+          color="#0A66C2"
+        />
+      );
       break;
     case AccountTypes.Twitter:
-      return <AntDesign name="twitter" size={size} color="#1DA1F2" />;
+      return (
+        <AntDesign
+          accessibilityRole="button"
+          accessibilityLabel={"twitter" + account.name}
+          name="twitter"
+          size={size}
+          color="#1DA1F2"
+        />
+      );
       break;
 
     default:
@@ -53,7 +103,7 @@ const ContributorAccountCard = ({ account }: Props) => {
         Linking.openURL(account.url);
       }}
     >
-      <Text>{getIconByAccountType(account.type)}</Text>
+      <Text>{getIconByAccountType({ account })}</Text>
     </TouchableOpacity>
   );
 };

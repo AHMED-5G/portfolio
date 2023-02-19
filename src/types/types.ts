@@ -31,6 +31,7 @@ export enum AccountTypes {
 }
 
 export interface ContributorAccount {
+  name: string;
   type: AccountTypes;
   url: string;
 }
@@ -60,7 +61,6 @@ declare global {
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  Modal: undefined;
   NotFound: undefined;
   HotelDetails: Hotel;
 };

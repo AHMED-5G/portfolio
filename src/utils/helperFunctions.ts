@@ -1,5 +1,5 @@
 import Toast from "react-native-root-toast";
-export const showToast = (message: string , backgroundColor: string) => {
+export const showToast = (message: string, backgroundColor: string) => {
   Toast.show(message, {
     duration: Toast.durations.SHORT,
     position: Toast.positions.BOTTOM,
@@ -8,6 +8,8 @@ export const showToast = (message: string , backgroundColor: string) => {
     hideOnPress: true,
     delay: 0,
     backgroundColor,
+    textColor: "black",
+    containerStyle: { height: 48 },
     onShow: () => {
       // calls on toast\`s appear animation start
     },

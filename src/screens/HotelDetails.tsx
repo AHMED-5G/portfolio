@@ -5,22 +5,18 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
-  ImageSourcePropType,
   ImageURISource,
-  ToastAndroid,
 } from "react-native";
 import React, { useState } from "react";
 import { RootStackParamList } from "../types";
 import { height, width } from "../constants/Layout";
 import { myColors } from "../constants/Colors";
-import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FontAwesome5 } from "@expo/vector-icons";
-
 import MedButton from "../components/mini/MedButton";
 import { ImageSlider } from "../components/mini/CustomImageSlider";
 import { DataType } from "react-native-image-slider-banner/src";
-
 //@ts-ignore
 import Stars from "react-native-stars";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -164,7 +160,7 @@ function HotelDetails({ navigation, route }: Props) {
                 alignItems: "center",
               }}
             >
-              <Text style={{ fontSize: 12, color: "white", fontWeight: "300" }}>
+              <Text style={{ fontSize: 12, color: "black", fontWeight: "300" }}>
                 {hotel.rate}
               </Text>
             </View>
@@ -176,7 +172,7 @@ function HotelDetails({ navigation, route }: Props) {
         <View>
           <MedButton
             loading={loading}
-            textStyle={{ color: "#FFF" }}
+            textStyle={{ color: "black" }}
             style={{ width: 149, height: 43, marginTop: 10 }}
             borderRadius={11}
             onPress={() => {
@@ -200,7 +196,7 @@ const styles = StyleSheet.create({
     height: 91,
     borderRadius: 10,
     borderWidth: 5,
-    borderColor: "#94C7D2",
+    borderColor: "black",
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

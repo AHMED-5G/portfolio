@@ -26,9 +26,11 @@ const BackArrow = ({ color, size }: Props) => {
         zIndex: 1,
         top: 0.051 * height,
         left: 12,
+        backgroundColor: "white",
+        borderRadius: 12,
       }}
     >
-      <Ionicons name="arrow-back" size={size ?? 34} color={color} />
+      <Ionicons name="arrow-back" size={size ?? 48} color={color} />
     </TouchableOpacity>
   );
 };

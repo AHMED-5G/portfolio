@@ -26,7 +26,7 @@ const ContributorCard = ({ contributor }: Props) => {
           justifyContent: "center",
           alignItems: "center",
           borderRadius: 10,
-          height: 320
+          height: 320,
         }}
       >
         <View
@@ -63,8 +63,9 @@ const ContributorCard = ({ contributor }: Props) => {
                 color: "black",
                 fontWeight: "bold",
               }}
+              accessibilityHint={"for " + contributor.name}
             >
-              Get In Touch At
+              Get in touch at
             </Text>
           </View>
           <View>
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
   socialContainer: {
     width: 190,
     height: 100,
-    backgroundColor: "#EEE",
+    backgroundColor: "white",
     borderColor: "white",
     justifyContent: "center",
     alignContent: "center",
