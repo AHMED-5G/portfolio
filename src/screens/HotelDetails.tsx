@@ -7,6 +7,7 @@ import {
   FlatList,
   ImageSourcePropType,
   ImageURISource,
+  ToastAndroid,
 } from "react-native";
 import React, { useState } from "react";
 import { RootStackParamList } from "../types";
@@ -19,11 +20,12 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import MedButton from "../components/mini/MedButton";
 import { ImageSlider } from "../components/mini/CustomImageSlider";
 import { DataType } from "react-native-image-slider-banner/src";
+
 //@ts-ignore
 import Stars from "react-native-stars";
-import { flash } from "../utils/helperFunctions";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BackArrow from "../components/mini/BackArrow";
+import { showToast } from "../utils/helperFunctions";
 
 type Props = StackScreenProps<RootStackParamList, "HotelDetails">;
 
@@ -36,12 +38,15 @@ function HotelDetails({ navigation, route }: Props) {
   const [requestedIndex, setRequestedIndex] = useState(0);
   const [loading, setLoading] = useState(false);
   const [requestResult, setRequestResult] = useState(false);
+
   const sendFakeRequest = () => {
     setTimeout(() => {
       setLoading(false);
-      flash(
-        requestResult ? "Success" : "Something went wrong",
-        requestResult ? "success" : "Something went wrong"
+      showToast(
+        requestResult
+          ? "Request sent successfully!"
+          : "Request failed to send.",
+        requestResult ? myColors.Baltic : myColors.redFavorite
       );
       setRequestResult(!requestResult);
     }, 3000);

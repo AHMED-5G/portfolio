@@ -1,23 +1,27 @@
-import { showMessage } from "react-native-flash-message";
-import { myColors } from "../constants/Colors";
-import { width } from "../constants/Layout";
-
-export function flash(message = "", type = "info") {
-  showMessage({
-    message: message,
-    backgroundColor: type == "success" ? myColors.Baltic : "orange",
-    position: "bottom",
-    style: {
-      // position: "absolute",
-
-      width: width,
-      marginBottom: 30,
-      borderRadius: 12,
-      padding: 10,
+import Toast from "react-native-root-toast";
+export const showToast = (message: string , backgroundColor: string) => {
+  Toast.show(message, {
+    duration: Toast.durations.SHORT,
+    position: Toast.positions.BOTTOM,
+    shadow: true,
+    animation: true,
+    hideOnPress: true,
+    delay: 0,
+    backgroundColor,
+    onShow: () => {
+      // calls on toast\`s appear animation start
     },
-    textStyle: { fontSize: 14 },
+    onShown: () => {
+      // calls on toast\`s appear animation end.
+    },
+    onHide: () => {
+      // calls on toast\`s hide animation start.
+    },
+    onHidden: () => {
+      // calls on toast\`s hide animation end.
+    },
   });
-}
+};
 
 export function isInstanceBySomeKeys<T extends object>(
   object: object,
