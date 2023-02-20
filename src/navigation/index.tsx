@@ -22,6 +22,7 @@ import {
 } from "../types";
 import HotelDetails from "../screens/HotelDetails";
 import MyTabBar from "./MyTabBar";
+import { FeedScreen } from "../screens/FeedScreen";
 
 export default function Navigation({
   colorScheme,
@@ -71,21 +72,6 @@ function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Home"
-      // screenOptions={{
-      //   tabBarStyle: { position: "absolute" , height: 40 },
-      //   // tabBarBackground: () => (
-      //   //   <View
-      //   //     style={{
-      //   //       backgroundColor: myColors.main,
-      //   //       height: 100,
-      //   //       borderRadius: 10,
-      //   //     }}
-      //   //   />
-      //   // ),
-
-      //   tabBarActiveTintColor: "white",
-      //   headerShown: false,
-      // }}
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
         headerShown: false,
@@ -102,16 +88,16 @@ function BottomTabNavigator() {
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         })}
       />
-      {/* <BottomTab.Screen
-        name="Profile"
-        component={ProfileScreen}
+      <BottomTab.Screen
+        name="Feed"
+        component={FeedScreen}
         options={{
           title: "Profile",
           tabBarIcon: ({ color }) => (
             <Ionicons name="person" size={24} color={color} />
           ),
         }}
-      /> */}
+      />
     </BottomTab.Navigator>
   );
 }

@@ -1,15 +1,10 @@
 export type ID = string | number;
 
-interface DataType {
-  img: ImageSourcePropType;
-}
-
 export interface Hotel {
   id: ID;
   name: string;
   favorite: boolean;
   images: string[];
-  // images: ImageURISource["uri"][] ;
   description?: string;
   rate: number;
   address: string;
@@ -21,6 +16,7 @@ export interface User {
   email: string;
   image?: string;
 }
+
 export enum AccountTypes {
   Facebook,
   Twitter,
@@ -35,10 +31,40 @@ export interface ContributorAccount {
   type: AccountTypes;
   url: string;
 }
+
 export interface Contributor extends User {
   accounts: ContributorAccount[];
   title: string;
 }
+
+export enum PostTypes {
+  Text,
+  Image,
+  Video,
+}
+
+type TimeStamp = string;
+
+interface PostComment {
+  body: string;
+  by: User;
+  timeStamp: TimeStamp;
+}
+
+export interface Post {
+  type: PostTypes;
+  text?: string;
+  image?: string;
+  Video?: string;
+  timeStamp: TimeStamp;
+  by: User;
+  comments?: PostComment[];
+  likes?: User[];
+
+  
+}
+
+
 
 /**
  * Learn more about using TypeScript with React Navigation:
@@ -51,7 +77,6 @@ import {
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { ImageSourcePropType, ImageURISource } from "react-native";
 
 declare global {
   namespace ReactNavigation {
@@ -70,6 +95,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
 
 export type RootTabParamList = {
   Home: undefined;
+  Feed: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
