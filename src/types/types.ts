@@ -60,7 +60,11 @@ export interface Post {
   by: User;
   comments?: PostComment[];
   likes?: User[];
+
+  
 }
+
+
 
 /**
  * Learn more about using TypeScript with React Navigation:
