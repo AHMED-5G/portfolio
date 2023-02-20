@@ -20,6 +20,7 @@ const BackArrow = ({ color, size }: Props) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
+    accessibilityHint="back"
       onPress={() => navigation.goBack()}
       style={{
         position: "absolute",

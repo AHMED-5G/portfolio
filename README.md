@@ -5,7 +5,7 @@ Improve UI and UX and test all app in all stages
 
 ## V 0.1 "FIND THE PARTNERS"
 
-- Create 1 main bottom Tab like Home, Notification, Profile, Cart, and Posts , ...
+- Create 1 main bottom Tab like Home, Notification, Profile, Cart, or Posts , ...
 
 - Create details screen with some features like :Animations, Image slide ,Payment simulation, Chat.
 
@@ -25,7 +25,7 @@ Improve UI and UX and test all app in all stages
 
 # Need Contributors
 
-## contribute in this portfolio as :
+## contribute in this application as :
 
 - User Experience Developer
 - User Interface Developer

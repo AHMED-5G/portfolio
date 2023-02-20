@@ -140,11 +140,16 @@ function HotelDetails({ navigation, route }: Props) {
               count={5}
               starSize={50}
               fullStar={
-                <AntDesign name={"star"} style={[styles.myStarStyle]} />
+                <AntDesign
+                  accessibilityHint="1 filled star from 5"
+                  name={"star"}
+                  style={[styles.myStarStyle]}
+                />
               }
               emptyStar={
                 <AntDesign
                   name={"staro"}
+                  accessibilityHint="1 empty star from 5"
                   style={[styles.myStarStyle, styles.myEmptyStarStyle]}
                 />
               }
@@ -160,7 +165,10 @@ function HotelDetails({ navigation, route }: Props) {
                 alignItems: "center",
               }}
             >
-              <Text style={{ fontSize: 12, color: "black", fontWeight: "300" }}>
+              <Text
+                style={{ fontSize: 12, color: "black", fontWeight: "300" }}
+                accessibilityHint={hotel.rate +   "stars"}
+              >
                 {hotel.rate}
               </Text>
             </View>

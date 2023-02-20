@@ -50,7 +50,9 @@ const HotelCard = ({ hotel }: Props) => {
             <Text style={{ fontSize: 12, color: "black", fontWeight: "900" }}>
               {hotel.rate}
             </Text>
-            <AntDesign name={"star"} color="black" style={{ marginLeft: 4 }} />
+            <AntDesign 
+            accessibilityHint="stars"
+            name={"star"} color="black" style={{ marginLeft: 4 }} />
           </View>
         </View>
         <View

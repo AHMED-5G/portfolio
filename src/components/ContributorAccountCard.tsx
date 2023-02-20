@@ -9,6 +9,7 @@ import React from "react";
 import { AccountTypes, Contributor, ContributorAccount } from "../types";
 import { AntDesign } from "@expo/vector-icons";
 import * as Linking from "expo-linking";
+import { getContributorAccountName } from "../utils/helperFunctions";
 
 type Props = {
   account: ContributorAccount;
@@ -96,12 +97,15 @@ const getIconByAccountType = ({
   }
 };
 const ContributorAccountCard = ({ account }: Props) => {
+  console.log(getContributorAccountName(account.type))
   return (
     <TouchableOpacity
       style={{ margin: 5 }}
       onPress={() => {
         Linking.openURL(account.url);
       }}
+      accessibilityRole="button"
+      accessibilityHint={getContributorAccountName(account.type)}
     >
       <Text>{getIconByAccountType({ account })}</Text>
     </TouchableOpacity>

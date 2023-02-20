@@ -1,4 +1,6 @@
+import { AccessibilityInfo } from "react-native";
 import Toast from "react-native-root-toast";
+import { AccountTypes } from "../types";
 export const showToast = (message: string, backgroundColor: string) => {
   Toast.show(message, {
     duration: Toast.durations.SHORT,
@@ -10,7 +12,9 @@ export const showToast = (message: string, backgroundColor: string) => {
     backgroundColor,
     textColor: "black",
     containerStyle: { height: 48 },
+    opacity: 1,
     onShow: () => {
+      AccessibilityInfo.announceForAccessibility(message);
       // calls on toast\`s appear animation start
     },
     onShown: () => {
@@ -40,3 +44,27 @@ export function isInstanceBySomeKeys<T extends object>(
 
   return true;
 }
+
+export const getContributorAccountName = (accountType: AccountTypes) => {
+  switch (accountType) {
+    case AccountTypes.Behance:
+      return "Behance";
+
+    case AccountTypes.Facebook:
+      return "Facebook";
+
+    case AccountTypes.Github:
+      return "Github";
+
+    case AccountTypes.Twitter:
+      return "Twitter";
+
+    case AccountTypes.LinkedIn:
+      return "LinkedIn";
+
+    case AccountTypes.Dribbble:
+      return "Dribbble";
+    default:
+      break;
+  }
+};

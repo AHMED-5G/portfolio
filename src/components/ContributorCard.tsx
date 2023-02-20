@@ -63,7 +63,7 @@ const ContributorCard = ({ contributor }: Props) => {
                 color: "black",
                 fontWeight: "bold",
               }}
-              accessibilityHint={"for " + contributor.name}
+              accessibilityHint={"Get in touch at  socials for " + contributor.name}
             >
               Get in touch at
             </Text>
