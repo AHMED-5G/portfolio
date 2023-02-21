@@ -1,4 +1,6 @@
-import { AccountTypes, Contributor, Hotel } from "./src/types";
+import { AccountTypes, Contributor, Hotel, User } from "../src/types";
+import { posts } from "./posts";
+
 export const hotels: Hotel[] = [
   {
     id: "1",
@@ -49,14 +51,17 @@ export const contributors: Contributor[] = [
     title: "UX Developer",
     accounts: [
       {
+        name: "Twitter",
         type: AccountTypes.Twitter,
         url: "http://twitter.com/",
       },
       {
+        name: "Behance",
         type: AccountTypes.Behance,
         url: "https://www.behance.net/",
       },
       {
+        name: "LinkedIn",
         type: AccountTypes.LinkedIn,
         url: "https://www.LinkedIn.com/",
       },
@@ -71,14 +76,17 @@ export const contributors: Contributor[] = [
     title: "Creative Logo & Graphics Designer",
     accounts: [
       {
+        name: "facebook",
         type: AccountTypes.Facebook,
         url: "https://www.facebook.com/profile.php?id=100086148849098",
       },
       {
+        name: "behance",
         type: AccountTypes.Behance,
         url: "https://github.com/AHMED-5G",
       },
       {
+        name: "dribbble",
         type: AccountTypes.Dribbble,
         url: "https://github.com/AHMED-5G",
       },
@@ -93,10 +101,12 @@ export const contributors: Contributor[] = [
     title: "full stack developer",
     accounts: [
       {
+        name: "facebook",
         type: AccountTypes.Facebook,
         url: "https://www.facebook.com/profile.php?id=100086148849098",
       },
       {
+        name: "Github",
         type: AccountTypes.Github,
         url: "https://github.com/AHMED-5G",
       },
@@ -105,3 +115,84 @@ export const contributors: Contributor[] = [
       "https://scontent.fcai20-6.fna.fbcdn.net/v/t39.30808-1/331078260_1853351431696567_4991456740459488817_n.jpg?stp=dst-jpg_p200x200&_nc_cat=106&ccb=1-7&_nc_sid=7206a8&_nc_ohc=1v7QmwJsXl8AX90xiqw&_nc_ht=scontent.fcai20-6.fna&oh=00_AfDGdTxrm5-YoEdfF4V2yjM5USN6oH0Y5dyJxVuduw5I6A&oe=63F5A060",
   },
 ];
+
+export const users: User[] = [
+  {
+    id: "78c4dd6a-c004-4033-ab9a-50757a404065",
+    name: "Abbye",
+    email: "agrollmann0@dailymail.co.uk",
+  },
+  {
+    id: "85e00a13-4274-42ba-87c9-89644512bbf2",
+    name: "Martica",
+    email: "mphipps1@hostgator.com",
+  },
+  {
+    id: "985da86a-7263-4c10-acc9-9ecf1b0a9398",
+    name: "Lulu",
+    email: "lcockland2@nationalgeographic.com",
+  },
+  {
+    id: "9cd4de35-7901-4200-84e1-1e542fd700a7",
+    name: "Biron",
+    email: "bverlander3@dropbox.com",
+  },
+  {
+    id: "b3f099b5-b1ea-4c66-a138-a49feb788e8e",
+    name: "Bernarr",
+    email: "bedlestone4@cafepress.com",
+  },
+  {
+    id: "dfc37095-5bba-4551-8511-04225c4b376f",
+    name: "Franny",
+    email: "fskellen5@indiatimes.com",
+  },
+  {
+    id: "c52bd2d6-d9e4-421c-9341-ef156035a7d1",
+    name: "Patrizius",
+    email: "pgudger6@oakley.com",
+  },
+  {
+    id: "fe2f4385-8d49-4c31-9bc1-2d7961a90af9",
+    name: "Mead",
+    email: "mgeddes7@typepad.com",
+  },
+  {
+    id: "3b77aeee-173e-4f6f-a67f-a3c0c70e6b92",
+    name: "Katuscha",
+    email: "kclandillon8@tinypic.com",
+  },
+  {
+    id: "a6ced6f7-b6b6-410f-a9d9-84a9fa9fc46e",
+    name: "Cale",
+    email: "ccastagnaro9@amazon.co.uk",
+  },
+];
+
+export const profileImages = [
+  "https://images.unsplash.com/photo-1676907540730-56869c01132e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0NXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+  "https://images.unsplash.com/photo-1676872873140-d8ce76b64e44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0Nnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+  "https://images.unsplash.com/photo-1676839560107-d15f4b15b766?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+  "https://images.unsplash.com/photo-1676806776569-317e55c2cfd0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNTF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+  "https://images.unsplash.com/photo-1676633418610-d3190ca3b9dd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzNDd8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+  "https://images.unsplash.com/photo-1676579242335-c37ae9416e9e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzNzJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+  "https://images.unsplash.com/photo-1676053923757-9bbd80b47264?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2NzZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+  "https://images.unsplash.com/photo-1614790871804-fe037bdc1214?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGRldmVsb3BlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+  "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTV8fGRldmVsb3BlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+  "https://images.unsplash.com/photo-1453928582365-b6ad33cbcf64?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzF8fGRldmVsb3BlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+  "https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+  "https://images.unsplash.com/photo-1517926967795-31943e805dae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+  "https://images.unsplash.com/photo-1499363536502-87642509e31b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTN8fHRyYXZlbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+];
+
+users.map((user) => {
+  user.image = profileImages[Math.floor(Math.random() * profileImages.length)];
+});
+
+export const usersWithImages: User[] = users;
+
+posts.map((post) => {
+  post.by = users[Math.floor(Math.random() * users.length)];
+});
+
+export const postsWithUsers = posts;

@@ -45,23 +45,20 @@ export enum PostTypes {
 
 type TimeStamp = string;
 
-interface PostComment {
+export interface PostComment {
   body: string;
-  by: User;
   timeStamp: TimeStamp;
 }
 
 export interface Post {
-  type: PostTypes;
+  type?: PostTypes;
   text?: string;
   image?: string;
   Video?: string;
   timeStamp: TimeStamp;
-  by: User;
+  by?: User;
   comments?: PostComment[];
   likes?: User[];
-
-  
 }
 
 
