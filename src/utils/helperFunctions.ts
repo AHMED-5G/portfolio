@@ -1,6 +1,7 @@
 import { AccessibilityInfo } from "react-native";
 import Toast from "react-native-root-toast";
-import { AccountTypes } from "../types";
+import { AccountTypes, User } from "../types";
+import { faker } from "@faker-js/faker";
 export const showToast = (message: string, backgroundColor: string) => {
   Toast.show(message, {
     duration: Toast.durations.SHORT,
@@ -68,3 +69,4 @@ export const getContributorAccountName = (accountType: AccountTypes) => {
       break;
   }
 };
+

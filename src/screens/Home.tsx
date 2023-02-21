@@ -1,7 +1,7 @@
 import { FlatList, StyleSheet, View, Text, ScrollView } from "react-native";
 import React from "react";
 import { Contributor, Hotel, RootTabScreenProps } from "../types";
-import { contributors, hotels } from "../../dummy";
+import { contributors, hotels } from "../../dummy/dummy";
 import HotelCard from "../components/HotelCard";
 import ContributorCard from "../components/ContributorCard";
 
