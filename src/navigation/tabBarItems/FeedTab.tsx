@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { tabContainerStyle, tabColor, tabTextStyle } from "./styles";
 
 type Props = {
@@ -8,11 +8,11 @@ type Props = {
   label: string;
 };
 
-const AccountTab = (props: Props) => {
+const FeedTab = (props: Props) => {
   return (
     <View style={tabContainerStyle}>
-      <Ionicons
-        name="person-outline"
+      <MaterialCommunityIcons
+        name="newspaper-variant"
         size={30}
         color={tabColor(props.isFocused)}
       />
@@ -21,6 +21,6 @@ const AccountTab = (props: Props) => {
   );
 };
 
-export { AccountTab };
+export { FeedTab };
 
 const styles = StyleSheet.create({});

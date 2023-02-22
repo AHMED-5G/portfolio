@@ -18,8 +18,9 @@ import {
 } from "react-native";
 
 import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
-import { AccountTab, HomeTab } from "./tabBarItems";
+import { FeedTab, HomeTab } from "./tabBarItems";
 import { myColors } from "../constants/Colors";
+import { FeedScreen } from "../screens/FeedScreen";
 
 interface TabBarProps {
   state: TabNavigationState<ParamListBase>;
@@ -43,6 +44,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
         height: 50,
         borderRadius: 10,
         backgroundColor: myColors.Baltic,
+        flexDirection: "row",
       }}
     >
       {state.routes.map((route, index) => {
@@ -86,13 +88,14 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             onPress={onPress}
             onLongPress={onLongPress}
             style={{ flex: 1 }}
+            key={label.toString()}
           >
             {/* <View style={styles.tabContainer}> */}
-              {label == "Home" ? (
-                <HomeTab {...{ label, isFocused }} />
-              ) : label == "Account" ? (
-                <AccountTab {...{ label, isFocused }} />
-              ) : null}
+            {label == "Home" ? (
+              <HomeTab key={label} {...{ label, isFocused }} />
+            ) : label == "Feed" ? (
+              <FeedTab key={label} {...{ label, isFocused }} />
+            ) : null}
             {/* </View> */}
           </TouchableOpacity>
         );

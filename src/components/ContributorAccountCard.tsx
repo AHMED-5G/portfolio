@@ -97,7 +97,6 @@ const getIconByAccountType = ({
   }
 };
 const ContributorAccountCard = ({ account }: Props) => {
-  console.log(getContributorAccountName(account.type))
   return (
     <TouchableOpacity
       style={{ margin: 5 }}

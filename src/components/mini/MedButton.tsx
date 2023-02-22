@@ -1,4 +1,4 @@
-import React, {FunctionComponent, ReactElement, ReactNode} from 'react';
+import React, { FunctionComponent, ReactElement, ReactNode } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,8 +10,8 @@ import {
   GestureResponderEvent,
   TextStyle,
   StyleProp,
-} from 'react-native';
-import LoadingIndicator from './LoadingIndicator';
+} from "react-native";
+import LoadingIndicator from "./LoadingIndicator";
 interface ButtonProps {
   onPress: (event: GestureResponderEvent) => void | undefined | Promise<void>;
   disabled?: boolean;
@@ -28,22 +28,27 @@ interface ButtonProps {
   icon?: ReactNode;
   leftIcon?: ReactNode;
   iconContainerStyle?: ViewStyle;
+  accessibilityHint?: string | undefined;
 }
 
 const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
   return (
     <View>
       {!props.loading ? (
-        <TouchableOpacity onPress={props.onPress} disabled={props.disabled}>
+        <TouchableOpacity
+          onPress={props.onPress}
+          disabled={props.disabled}
+          accessibilityHint={props.accessibilityHint}
+        >
           <View
             style={[
               styles.container,
               {
                 backgroundColor: props.disabled
-                  ? '#bdc6cf'
+                  ? "#bdc6cf"
                   : props.color
                   ? props.color
-                  : '#2CC3CD',
+                  : "#2CC3CD",
                 width: props.width ? props.width : props.circle ? 100 : 244,
                 height: props.height
                   ? props.height
@@ -65,8 +70,9 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
                   : 0,
               },
               props.style,
-            ]}>
-            <View style={[{marginRight: 4}, props.iconContainerStyle]}>
+            ]}
+          >
+            <View style={[{ marginRight: 4 }, props.iconContainerStyle]}>
               <Text>{props.leftIcon}</Text>
             </View>
             <View>
@@ -74,12 +80,12 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
                 {props.title}
               </Text>
             </View>
-            <View style={[{marginLeft: 4}, props.iconContainerStyle]}>
+            <View style={[{ marginLeft: 4 }, props.iconContainerStyle]}>
               <Text>{props.icon}</Text>
             </View>
           </View>
         </TouchableOpacity>
-      ) : typeof props.loading !== 'boolean' ? (
+      ) : typeof props.loading !== "boolean" ? (
         <View style={props.style}>{props.loading}</View>
       ) : (
         <LoadingIndicator
@@ -96,15 +102,15 @@ const styles = StyleSheet.create({
   container: {
     width: 244,
     height: 55,
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignContent: 'center',
-    borderColor: 'white',
-    flexDirection: 'row',
+    alignItems: "center",
+    justifyContent: "center",
+    alignContent: "center",
+    borderColor: "white",
+    flexDirection: "row",
   },
   titleText: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
     fontSize: 28,
   },
 });
