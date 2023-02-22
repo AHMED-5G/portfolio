@@ -1,7 +1,7 @@
 import { AccessibilityInfo } from "react-native";
 import Toast from "react-native-root-toast";
 import { AccountTypes, User } from "../types";
-import { faker } from "@faker-js/faker";
+
 export const showToast = (message: string, backgroundColor: string) => {
   Toast.show(message, {
     duration: Toast.durations.SHORT,
@@ -70,3 +70,30 @@ export const getContributorAccountName = (accountType: AccountTypes) => {
   }
 };
 
+export const getListRandomItem = (list: Array<any>) => {
+  return list[Math.floor(Math.random() * list.length)];
+};
+
+export function getRandomInt(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export function shuffleArray(array: any[]) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}

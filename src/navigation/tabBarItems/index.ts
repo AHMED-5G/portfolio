@@ -1,3 +1,3 @@
 
 export * from "./HomeTab";
-export * from "./AccountTab";
+export * from "./FeedTab";
