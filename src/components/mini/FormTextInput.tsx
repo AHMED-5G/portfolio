@@ -11,6 +11,9 @@ import {
   NativeSyntheticEvent,
   TextInputSubmitEditingEventData,
   TextStyle,
+  TextInputComponent,
+  TouchableOpacity,
+  ColorValue,
 } from "react-native";
 import React, {
   useState,
@@ -41,6 +44,10 @@ interface FormTextInputInterface {
   maxLength?: number | undefined;
   multiline?: boolean | undefined;
   setText?: (text: string) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  placeholderTextColor?: ColorValue 
+  
 }
 
 const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
@@ -64,7 +71,16 @@ const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
     ? +props.width - totalPadding
     : width / 2 - totalPadding;
   return (
-    <View style={props.mainContainerStyle}>
+    <View
+      style={[
+        {
+          alignItems: "center",
+          justifyContent: "center",
+          alignContent: "center",
+        },
+        props.mainContainerStyle,
+      ]}
+    >
       <View
         style={[
           {
@@ -91,17 +107,34 @@ const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
             alignContent: "space-between",
           }}
         >
-          <View>
+          <TouchableOpacity
+            style={{
+              height: 48,
+              justifyContent: "center",
+              alignContent: "center",
+              alignItems: "center",
+            }}
+          >
             <Text>{props.icon}</Text>
-          </View>
-          <View style={[{ marginLeft: 10 }, props.textInputContainer]}>
+          </TouchableOpacity>
+          <View
+            style={[
+              {
+                marginLeft: 10,
+                alignItems: "center",
+                alignContent: "center",
+                justifyContent: "center",
+              },
+              props.textInputContainer,
+            ]}
+          >
             <KeyboardAvoidingView behavior="height">
               <TextInput
                 placeholder={props.placeholder}
                 style={{
                   width: inputWidth,
                   maxWidth: inputWidth,
-                  height: 40
+                  height: 48,
                 }}
                 onChangeText={props.setText}
                 value={props.value}
@@ -111,6 +144,10 @@ const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
                 onSubmitEditing={props.onSubmitEditing}
                 maxLength={props.maxLength}
                 multiline={props.multiline}
+                onFocus={() => props.onFocus?.()}
+                onBlur={() => props.onBlur?.()}
+                placeholderTextColor={props.placeholderTextColor} 
+                
               />
             </KeyboardAvoidingView>
           </View>

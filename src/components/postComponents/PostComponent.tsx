@@ -13,18 +13,10 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import { myColors } from "../../constants/Colors";
+import PostOptions from "./PostOptions";
 type Props = { post: Post };
 
 const PostComponent = ({ post }: Props) => {
-  const [commentCounter, setCommentCounter] = useState(
-    Math.floor(Math.random() * 30) + 1
-  );
-  const [favoriteCounter, setFavoriteCounter] = useState(
-    Math.floor(Math.random() * 300) + 1
-  );
-  const [shareCounter, setShareCounter] = useState(
-    Math.floor(Math.random() * 130) + 1
-  );
   return (
     <View style={styles.postContainer}>
       {post.type == PostTypes.Text ? (
@@ -36,68 +28,7 @@ const PostComponent = ({ post }: Props) => {
       ) : (
         <View></View>
       )}
-      <View
-        style={{
-          width: "100%",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignContent: "space-between",
-          marginTop: 20,
-        }}
-      >
-        <TouchableOpacity
-          style={{
-            flexDirection: "row",
-            margin: 5,
-            justifyContent: "center",
-            alignContent: "center",
-            alignItems: "center",
-            height:48
-          }}
-        >
-          <Ionicons name="share-social" size={28} color={myColors.black} />
-          <Text>{shareCounter}</Text>
-        </TouchableOpacity>
-        <View
-          style={{
-            flexDirection: "row",
-            margin: 5,
-            justifyContent: "center",
-            alignContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <TouchableOpacity
-            style={{
-              flexDirection: "row",
-              marginRight: 10,
-              justifyContent: "center",
-              alignItems: "center",
-              height:48
-            }}
-          >
-            <MaterialIcons name="favorite-border" size={28} color="black" />
-            <Text>{favoriteCounter} </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              flexDirection: "row",
-              marginLeft: 5,
-              justifyContent: "center",
-              alignContent: "center",
-              alignItems: "center",
-              height:48
-            }}
-          >
-            <MaterialCommunityIcons
-              name="comment-outline"
-              size={28}
-              color="black"
-            />
-            <Text>{commentCounter} </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      <PostOptions post={post} />
     </View>
   );
 };

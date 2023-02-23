@@ -70,7 +70,7 @@ export const getContributorAccountName = (accountType: AccountTypes) => {
   }
 };
 
-export const getListRandomItem = (list: Array<any>) => {
+export const getRandomOneItemFromList = (list: Array<any>) => {
   return list[Math.floor(Math.random() * list.length)];
 };
 
@@ -96,4 +96,8 @@ export function shuffleArray(array: any[]) {
   }
 
   return array;
+}
+
+export function randomIntNumber(max: number) {
+  return Math.floor(Math.random() * max) + 1
 }

@@ -4,7 +4,6 @@ import { Post } from "../../types";
 import { PostAuthor } from "./PostAuthor";
 import { PostText } from "./PostText";
 import { PostImage } from "./PostImage";
-import DuringSevenDaysAgo from "./DuringSevenDaysAgo";
 
 type Props = { post: Post };
 
@@ -15,7 +14,15 @@ const ImagePostComponent = ({ post }: Props) => {
       <View style={{ marginTop: 10 }}>
         <PostText text={post.text} />
       </View>
-      <PostImage image={post.image} />
+      <View
+        style={{
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <PostImage image={post.image} />
+      </View>
     </View>
   );
 };

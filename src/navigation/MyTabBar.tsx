@@ -45,6 +45,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
         borderRadius: 10,
         backgroundColor: myColors.Baltic,
         flexDirection: "row",
+        display: !keyboardStatus ? "flex" : "none",
       }}
     >
       {state.routes.map((route, index) => {

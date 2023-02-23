@@ -41,6 +41,7 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
         }}
       >
         <FlatList
+          keyboardShouldPersistTaps='handled'
           initialNumToRender={5}
           data={posts}
           renderItem={({ item }) => <PostComponent post={item} />}
