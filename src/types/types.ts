@@ -48,6 +48,8 @@ type TimeStamp = string;
 export interface PostComment {
   body: string;
   timeStamp: TimeStamp;
+  by?: User
+  favoriteCounter?: number
 }
 
 export interface Post {
@@ -60,8 +62,6 @@ export interface Post {
   comments?: PostComment[];
   likes?: User[];
 }
-
-
 
 /**
  * Learn more about using TypeScript with React Navigation:

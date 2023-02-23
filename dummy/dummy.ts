@@ -1,29 +1,43 @@
-import { PostTypes, User } from "../src/types";
-import { getListRandomItem, shuffleArray } from "../src/utils/helperFunctions";
+import { PostTypes, User, PostComment } from "../src/types";
+import {
+  getRandomOneItemFromList,
+  getRandomInt,
+  shuffleArray,
+  randomIntNumber,
+} from "../src/utils/helperFunctions";
 import { images, profileImages } from "./images";
 import { posts } from "./posts";
 import { users } from "./Users";
+import { comments } from "./comments";
 
 users.map((user) => {
-  user.image = getListRandomItem(profileImages);
+  user.image = getRandomOneItemFromList(profileImages);
 });
 
 export const usersWithImages: User[] = users;
 
-posts.map((post) => {
-  post.by = getListRandomItem(users);
-  post.type = PostTypes.Text;
+export const generateRandomUser = (): User => {
+  return getRandomOneItemFromList(users);
+};
+
+comments.map((comment) => {
+  comment.by = getRandomOneItemFromList(users);
+  comment.favoriteCounter = randomIntNumber(300);
 });
 
-// export const postsWithText = Array.from(posts);
-const postsWithText = posts.map((post) => Object.assign({}, post));
+posts.map((post) => {
+  post.by = getRandomOneItemFromList(users);
+  post.type = PostTypes.Text;
+  post.comments = shuffleArray(comments).slice(getRandomInt(35, 48));
+});
 
-postsWithText.map((post) => {
-  post.image = getListRandomItem(images);
+const postsClone = posts.map((post) => Object.assign({}, post));
+
+postsClone.map((post) => {
+  post.image = getRandomOneItemFromList(images);
   post.type = PostTypes.Image;
 });
 
-// console.log(postsWithText == posts);
-export const postsWithImages = postsWithText;
+export const postsWithImages = postsClone;
 
-export const mergePosts = shuffleArray([...posts , ...postsWithText]);
+export const mergePosts = shuffleArray([...posts, ...postsWithImages]);
