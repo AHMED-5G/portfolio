@@ -200,11 +200,11 @@ export default HotelDetails;
 
 const styles = StyleSheet.create({
   miniImageContainerStyle: {
-    width: 91,
-    height: 91,
+    width: 94,
+    height: 94,
     borderRadius: 10,
-    borderWidth: 5,
-    borderColor: "black",
+    borderWidth: 7,
+    borderColor: "#009ACE",
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

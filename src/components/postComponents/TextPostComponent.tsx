@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Post } from "../../types";
 import { PostAuthor } from "./PostAuthor";
 import { PostText } from "./PostText";
-import DuringSevenDaysAgo from "./DuringSevenDaysAgo";
 
 type Props = { post: Post };
 

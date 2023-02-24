@@ -6,6 +6,7 @@ import HotelCard from "../components/HotelCard";
 import ContributorCard from "../components/ContributorCard";
 import { contributors } from "../../dummy/Contributors";
 import { hotels } from "../../dummy/hotels";
+import CommentIcon from "../../assets/icons/CommentIcon";
 
 function Home({ navigation }: RootTabScreenProps<"Home">) {
   return (

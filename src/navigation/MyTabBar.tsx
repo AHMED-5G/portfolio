@@ -88,7 +88,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{ flex: 1 }}
+            style={{ flex: 1, alignItems: "center" }}
             key={label.toString()}
           >
             {/* <View style={styles.tabContainer}> */}

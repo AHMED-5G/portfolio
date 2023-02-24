@@ -1,9 +1,9 @@
 import { PostTypes, User, PostComment } from "../src/types";
 import {
   getRandomOneItemFromList,
-  getRandomInt,
   shuffleArray,
   randomIntNumber,
+  getRandomIntBetweenTow,
 } from "../src/utils/helperFunctions";
 import { images, profileImages } from "./images";
 import { posts } from "./posts";
@@ -28,7 +28,7 @@ comments.map((comment) => {
 posts.map((post) => {
   post.by = getRandomOneItemFromList(users);
   post.type = PostTypes.Text;
-  post.comments = shuffleArray(comments).slice(getRandomInt(35, 48));
+  post.comments = shuffleArray(comments).slice(getRandomIntBetweenTow(35, 48));
 });
 
 const postsClone = posts.map((post) => Object.assign({}, post));

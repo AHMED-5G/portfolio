@@ -6,14 +6,9 @@ import { TextPostComponent } from "./TextPostComponent";
 import { ImagePostComponent } from "./ImagePostComponent";
 import { VideoPostComponent } from "./VideoPostComponent";
 import { width } from "../../constants/Layout";
-import {
-  Entypo,
-  Ionicons,
-  MaterialCommunityIcons,
-  MaterialIcons,
-} from "@expo/vector-icons";
-import { myColors } from "../../constants/Colors";
+
 import PostOptions from "./PostOptions";
+import BackArrow from "../mini/BackArrow";
 type Props = { post: Post };
 
 const PostComponent = ({ post }: Props) => {
@@ -37,7 +32,8 @@ export { PostComponent };
 
 const styles = StyleSheet.create({
   postContainer: {
-    backgroundColor: "#fffafa",
+    // backgroundColor: "#fffafa",
+    backgroundColor: "#fff",
     width: width - 10,
     justifyContent: "center",
     alignContent: "center",

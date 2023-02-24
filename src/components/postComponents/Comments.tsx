@@ -1,5 +1,5 @@
 import { StyleSheet, View, FlatList, Text } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { PostComment, User } from "../../types";
 import { width } from "../../constants/Layout";
 import { myColors } from "../../constants/Colors";
@@ -15,6 +15,7 @@ const Comments = ({ comments }: Props) => {
         <Text style={styles.commentTitleText}>Comments</Text>
       </View>
       <FlatList
+        initialNumToRender={3}
         style={{ flexGrow: 0, marginTop: 10 }}
         horizontal={true}
         data={comments}
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
+   
   },
   commentTitleContainer: {
     marginTop: 10,

@@ -4,11 +4,25 @@ import { User } from "../../types";
 import MedButton from "../mini/MedButton";
 import { myColors } from "../../constants/Colors";
 import DuringSevenDaysAgo from "./DuringSevenDaysAgo";
-
+import * as Notifications from "expo-notifications";
 type Props = { user: User };
 const PostAuthor = ({ user }: Props) => {
   const [followState, setFollowState] = useState(Math.random() < 0.5);
 
+  async function schedulePushNotification(user: User) {
+    try {
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: "You've got new follower",
+          body: user.name + " " + "started following you",
+          data: { data: "goes here" },
+        },
+        trigger: { seconds: 3 },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <View
       style={{
@@ -65,8 +79,11 @@ const PostAuthor = ({ user }: Props) => {
             {!followState ? (
               <MedButton
                 title="Follow"
-                onPress={() => {
+
+                onPress={async () => {
                   setFollowState(true);
+
+                  await schedulePushNotification(user);
                 }}
                 accessibilityHint={"Follow" + user.name}
                 width={100}

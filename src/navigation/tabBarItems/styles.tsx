@@ -15,7 +15,7 @@ export const tabContainerStyle: StyleProp<ViewStyle> = {
 
 export const tabColor = (isFocused: boolean) => {
   // return isFocused ? "#5184E5" : "white";
-  return isFocused ? "black" : "white";
+  return isFocused ? "white" : "#9E978E";
 };
 
 export const tabTextStyle = (isFocused: boolean) => {

@@ -14,7 +14,7 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
       <View style={{ marginTop: 40 }}>
         <Text
           style={{
-            marginLeft: 5,
+            marginLeft: 15,
             fontSize: 22,
             color: myColors.black,
             fontWeight: "800",
@@ -32,16 +32,9 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
           }}
         />
       </View>
-      <View
-        style={{
-          marginTop: 30,
-          justifyContent: "center",
-          alignContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <View style={styles.postsContainer}>
         <FlatList
-          keyboardShouldPersistTaps='handled'
+          keyboardShouldPersistTaps="handled"
           initialNumToRender={5}
           data={posts}
           renderItem={({ item }) => <PostComponent post={item} />}
@@ -54,4 +47,11 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
 }
 export { FeedScreen };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  postsContainer: {
+    marginTop: 30,
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+  },
+});

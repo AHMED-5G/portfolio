@@ -14,24 +14,31 @@ import { height } from "../../constants/Layout";
 type Props = {
   color?: string | OpaqueColorValue | undefined;
   size?: number;
+  position?: "relative" | undefined;
+  top?: string | number;
 };
 
-const BackArrow = ({ color, size }: Props) => {
+const BackArrow = ({ color, size, position, top }: Props) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
-    accessibilityHint="back"
+      accessibilityHint="back"
       onPress={() => navigation.goBack()}
       style={{
-        position: "absolute",
+        position: position ?? "absolute",
         zIndex: 1,
-        top: 0.051 * height,
+        top: top ?? 0.051 * height,
         left: 12,
         backgroundColor: "white",
         borderRadius: 12,
+        height: 48,
+        width: 48,
+        justifyContent: "center",
+        alignContent: "center",
+        alignItems: "center",
       }}
     >
-      <Ionicons name="arrow-back" size={size ?? 48} color={color} />
+      <Ionicons name="arrow-back" size={size ?? 42} color={color} />
     </TouchableOpacity>
   );
 };
