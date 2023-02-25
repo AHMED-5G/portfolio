@@ -1,0 +1,1570 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`home snapShot 1`] = `[Function]`;
+
+exports[`renders correctly 1`] = `
+<RCTScrollView
+  showsVerticalScrollIndicator={false}
+>
+  <View>
+    <View
+      style={
+        Object {
+          "marginTop": 100,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "marginLeft": 20,
+            "marginTop": 10,
+          }
+        }
+      >
+        <Text
+          accessibilityRole="header"
+          style={
+            Object {
+              "fontSize": 27,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Hotels
+        </Text>
+      </View>
+      <RCTScrollView
+        data={
+          Array [
+            Object {
+              "address": "Evripidou Str, Athens, 10553, Greece",
+              "favorite": false,
+              "id": "1",
+              "images": Array [
+                "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80",
+                "https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80",
+                "https://images.unsplash.com/photo-1522798514-97ceb8c4f1c8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
+                "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=874&q=80",
+              ],
+              "name": "Milano Grande",
+              "rate": 5,
+            },
+            Object {
+              "address": "18786 SW Boones Ferry Rd",
+              "favorite": false,
+              "id": "2",
+              "images": Array [
+                "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=449&q=80",
+                "https://plus.unsplash.com/premium_photo-1667199608149-cd24e523ee98?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80",
+                "https://images.unsplash.com/photo-1444201983204-c43cbd584d93?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+                "https://images.unsplash.com/photo-1562790351-d273a961e0e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80",
+              ],
+              "name": "Evripides Hotel",
+              "rate": 4,
+            },
+            Object {
+              "address": "7939 Black Mountain Dr",
+              "favorite": false,
+              "id": "3",
+              "images": Array [
+                "https://images.unsplash.com/photo-1568084680786-a84f91d1153c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+                "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+                "https://images.unsplash.com/photo-1518733057094-95b53143d2a7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=365&q=80",
+                "https://plus.unsplash.com/premium_photo-1670360414531-aaf6c4b48b8d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+              ],
+              "name": "LUX&EASY Acropolis Suites",
+              "rate": 3,
+            },
+          ]
+        }
+        getItem={[Function]}
+        getItemCount={[Function]}
+        horizontal={true}
+        keyExtractor={[Function]}
+        onContentSizeChange={[Function]}
+        onLayout={[Function]}
+        onMomentumScrollBegin={[Function]}
+        onMomentumScrollEnd={[Function]}
+        onScroll={[Function]}
+        onScrollBeginDrag={[Function]}
+        onScrollEndDrag={[Function]}
+        removeClippedSubviews={false}
+        renderItem={[Function]}
+        scrollEventThrottle={50}
+        showsHorizontalScrollIndicator={false}
+        stickyHeaderIndices={Array []}
+        viewabilityConfigCallbackPairs={Array []}
+      >
+        <View>
+          <View
+            onLayout={[Function]}
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                },
+                null,
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "height": 320,
+                  "margin": 20,
+                  "opacity": 1,
+                  "width": 270,
+                }
+              }
+            >
+              <View
+                accessibilityIgnoresInvertColors={true}
+                style={
+                  Object {
+                    "height": 300,
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                      Object {
+                        "height": 300,
+                        "width": undefined,
+                      },
+                      Object {
+                        "borderRadius": 12,
+                      },
+                    ]
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "flex-end",
+                      "margin": 15,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#94C7D2",
+                        "borderRadius": 5,
+                        "flexDirection": "row",
+                        "height": 22,
+                        "justifyContent": "center",
+                        "marginLeft": 7,
+                        "width": 32,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "black",
+                          "fontSize": 12,
+                          "fontWeight": "900",
+                        }
+                      }
+                    >
+                      5
+                    </Text>
+                    <Text />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignContent": "flex-end",
+                      "backgroundColor": "#bdc6cf",
+                      "justifyContent": "flex-end",
+                      "opacity": 0.8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "marginBottom": 15,
+                        "marginLeft": 20,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "black",
+                          "fontSize": 27,
+                          "fontWeight": "700",
+                          "lineHeight": 36,
+                        }
+                      }
+                    >
+                      Milano Grande
+                    </Text>
+                    <Text
+                      style={
+                        Object {
+                          "color": "black",
+                          "fontSize": 12,
+                          "fontWeight": "bold",
+                        }
+                      }
+                    >
+                      Evripidou Str, Athens, 10553, Greece
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                },
+                null,
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "height": 320,
+                  "margin": 20,
+                  "opacity": 1,
+                  "width": 270,
+                }
+              }
+            >
+              <View
+                accessibilityIgnoresInvertColors={true}
+                style={
+                  Object {
+                    "height": 300,
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=449&q=80",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                      Object {
+                        "height": 300,
+                        "width": undefined,
+                      },
+                      Object {
+                        "borderRadius": 12,
+                      },
+                    ]
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "flex-end",
+                      "margin": 15,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#94C7D2",
+                        "borderRadius": 5,
+                        "flexDirection": "row",
+                        "height": 22,
+                        "justifyContent": "center",
+                        "marginLeft": 7,
+                        "width": 32,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "black",
+                          "fontSize": 12,
+                          "fontWeight": "900",
+                        }
+                      }
+                    >
+                      4
+                    </Text>
+                    <Text />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignContent": "flex-end",
+                      "backgroundColor": "#bdc6cf",
+                      "justifyContent": "flex-end",
+                      "opacity": 0.8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "marginBottom": 15,
+                        "marginLeft": 20,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "black",
+                          "fontSize": 27,
+                          "fontWeight": "700",
+                          "lineHeight": 36,
+                        }
+                      }
+                    >
+                      Evripides Hotel
+                    </Text>
+                    <Text
+                      style={
+                        Object {
+                          "color": "black",
+                          "fontSize": 12,
+                          "fontWeight": "bold",
+                        }
+                      }
+                    >
+                      18786 SW Boones Ferry Rd
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                },
+                null,
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "height": 320,
+                  "margin": 20,
+                  "opacity": 1,
+                  "width": 270,
+                }
+              }
+            >
+              <View
+                accessibilityIgnoresInvertColors={true}
+                style={
+                  Object {
+                    "height": 300,
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://images.unsplash.com/photo-1568084680786-a84f91d1153c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                      Object {
+                        "height": 300,
+                        "width": undefined,
+                      },
+                      Object {
+                        "borderRadius": 12,
+                      },
+                    ]
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "flex-end",
+                      "margin": 15,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#94C7D2",
+                        "borderRadius": 5,
+                        "flexDirection": "row",
+                        "height": 22,
+                        "justifyContent": "center",
+                        "marginLeft": 7,
+                        "width": 32,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "black",
+                          "fontSize": 12,
+                          "fontWeight": "900",
+                        }
+                      }
+                    >
+                      3
+                    </Text>
+                    <Text />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignContent": "flex-end",
+                      "backgroundColor": "#bdc6cf",
+                      "justifyContent": "flex-end",
+                      "opacity": 0.8,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "marginBottom": 15,
+                        "marginLeft": 20,
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "color": "black",
+                          "fontSize": 27,
+                          "fontWeight": "700",
+                          "lineHeight": 36,
+                        }
+                      }
+                    >
+                      LUX&EASY Acropolis Suites
+                    </Text>
+                    <Text
+                      style={
+                        Object {
+                          "color": "black",
+                          "fontSize": 12,
+                          "fontWeight": "bold",
+                        }
+                      }
+                    >
+                      7939 Black Mountain Dr
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+    <View
+      style={
+        Object {
+          "marginLeft": 20,
+          "marginTop": 10,
+        }
+      }
+    >
+      <Text
+        accessibilityRole="header"
+        style={
+          Object {
+            "fontSize": 27,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Contributors
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "height": 330,
+          "marginTop": 20,
+        }
+      }
+    >
+      <RCTScrollView
+        data={
+          Array [
+            Object {
+              "accounts": Array [
+                Object {
+                  "name": "Twitter",
+                  "type": 1,
+                  "url": "http://twitter.com/",
+                },
+                Object {
+                  "name": "Behance",
+                  "type": 4,
+                  "url": "https://www.behance.net/",
+                },
+                Object {
+                  "name": "LinkedIn",
+                  "type": 5,
+                  "url": "https://www.LinkedIn.com/",
+                },
+              ],
+              "email": "Sara@omail.com",
+              "id": "2",
+              "image": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+              "name": "Sara",
+              "title": "UX Developer",
+            },
+            Object {
+              "accounts": Array [
+                Object {
+                  "name": "facebook",
+                  "type": 0,
+                  "url": "https://www.facebook.com/profile.php?id=100086148849098",
+                },
+                Object {
+                  "name": "behance",
+                  "type": 4,
+                  "url": "https://github.com/AHMED-5G",
+                },
+                Object {
+                  "name": "dribbble",
+                  "type": 3,
+                  "url": "https://github.com/AHMED-5G",
+                },
+              ],
+              "email": "khaled@zahoo.com",
+              "id": "1",
+              "image": "https://images.unsplash.com/photo-1618979251882-0b40ef3617f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+              "name": "Khalid",
+              "title": "Creative Logo & Graphics Designer",
+            },
+            Object {
+              "accounts": Array [
+                Object {
+                  "name": "facebook",
+                  "type": 0,
+                  "url": "https://www.facebook.com/profile.php?id=100086148849098",
+                },
+                Object {
+                  "name": "Github",
+                  "type": 2,
+                  "url": "https://github.com/AHMED-5G",
+                },
+              ],
+              "email": "khaled@zahoo.com",
+              "id": "3",
+              "image": "https://scontent.fcai20-6.fna.fbcdn.net/v/t39.30808-1/331078260_1853351431696567_4991456740459488817_n.jpg?stp=dst-jpg_p200x200&_nc_cat=106&ccb=1-7&_nc_sid=7206a8&_nc_ohc=1v7QmwJsXl8AX90xiqw&_nc_ht=scontent.fcai20-6.fna&oh=00_AfDGdTxrm5-YoEdfF4V2yjM5USN6oH0Y5dyJxVuduw5I6A&oe=63F5A060",
+              "name": "AA",
+              "title": "full stack developer",
+            },
+          ]
+        }
+        getItem={[Function]}
+        getItemCount={[Function]}
+        horizontal={true}
+        keyExtractor={[Function]}
+        onContentSizeChange={[Function]}
+        onLayout={[Function]}
+        onMomentumScrollBegin={[Function]}
+        onMomentumScrollEnd={[Function]}
+        onScroll={[Function]}
+        onScrollBeginDrag={[Function]}
+        onScrollEndDrag={[Function]}
+        removeClippedSubviews={false}
+        renderItem={[Function]}
+        scrollEventThrottle={50}
+        showsHorizontalScrollIndicator={false}
+        stickyHeaderIndices={Array []}
+        viewabilityConfigCallbackPairs={Array []}
+      >
+        <View>
+          <View
+            onLayout={[Function]}
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                },
+                null,
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderRadius": 20,
+                  "height": 320,
+                  "margin": 10,
+                  "marginBottom": 90,
+                  "width": 240,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                proxiedProperties={
+                  Object {
+                    "colors": Array [
+                      4278226849,
+                      4281327870,
+                      4281034973,
+                    ],
+                    "endPoint": undefined,
+                    "locations": undefined,
+                    "startPoint": undefined,
+                  }
+                }
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 10,
+                    "height": 320,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "marginTop": 20,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignContent": "center",
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "borderRadius": 100,
+                        "height": 110,
+                        "justifyContent": "center",
+                        "width": 110,
+                      }
+                    }
+                  >
+                    <Image
+                      resizeMode="center"
+                      source={
+                        Object {
+                          "uri": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+                        }
+                      }
+                      style={
+                        Object {
+                          "borderRadius": 100,
+                          "height": 99,
+                          "width": 99,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignContent": "center",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "marginTop": 10,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "black",
+                        "elevation": 21,
+                        "fontSize": 22,
+                        "fontWeight": "800",
+                        "shadowColor": "#000",
+                        "shadowOffset": Object {
+                          "height": 10,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 0.53,
+                        "shadowRadius": 13.97,
+                        "textTransform": "uppercase",
+                      }
+                    }
+                  >
+                    Sara
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "height": 30,
+                      "marginTop": 10,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "black",
+                        "fontSize": 12,
+                        "fontWeight": "700",
+                        "textTransform": "uppercase",
+                      }
+                    }
+                  >
+                    UX Developer
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignContent": "center",
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "borderColor": "white",
+                      "borderRadius": 12,
+                      "height": 100,
+                      "justifyContent": "center",
+                      "marginBottom": 5,
+                      "width": 190,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignContent": "center",
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "marginTop": 25,
+                      }
+                    }
+                  >
+                    <Text
+                      accessibilityHint="Get in touch at  socials for Sara"
+                      style={
+                        Object {
+                          "color": "black",
+                          "fontSize": 16,
+                          "fontWeight": "bold",
+                        }
+                      }
+                    >
+                      Get in touch at
+                    </Text>
+                  </View>
+                  <View>
+                    <RCTScrollView
+                      data={
+                        Array [
+                          Object {
+                            "name": "Twitter",
+                            "type": 1,
+                            "url": "http://twitter.com/",
+                          },
+                          Object {
+                            "name": "Behance",
+                            "type": 4,
+                            "url": "https://www.behance.net/",
+                          },
+                          Object {
+                            "name": "LinkedIn",
+                            "type": 5,
+                            "url": "https://www.LinkedIn.com/",
+                          },
+                        ]
+                      }
+                      getItem={[Function]}
+                      getItemCount={[Function]}
+                      keyExtractor={[Function]}
+                      onContentSizeChange={[Function]}
+                      onLayout={[Function]}
+                      onMomentumScrollBegin={[Function]}
+                      onMomentumScrollEnd={[Function]}
+                      onScroll={[Function]}
+                      onScrollBeginDrag={[Function]}
+                      onScrollEndDrag={[Function]}
+                      removeClippedSubviews={false}
+                      renderItem={[Function]}
+                      scrollEventThrottle={50}
+                      showsVerticalScrollIndicator={false}
+                      stickyHeaderIndices={Array []}
+                      viewabilityConfigCallbackPairs={Array []}
+                    >
+                      <View>
+                        <View
+                          onLayout={[Function]}
+                          style={null}
+                        >
+                          <View
+                            style={
+                              Object {
+                                "flexDirection": "row",
+                              }
+                            }
+                          >
+                            <View
+                              accessibilityHint="Twitter"
+                              accessibilityRole="button"
+                              accessible={true}
+                              collapsable={false}
+                              focusable={true}
+                              onClick={[Function]}
+                              onResponderGrant={[Function]}
+                              onResponderMove={[Function]}
+                              onResponderRelease={[Function]}
+                              onResponderTerminate={[Function]}
+                              onResponderTerminationRequest={[Function]}
+                              onStartShouldSetResponder={[Function]}
+                              style={
+                                Object {
+                                  "margin": 5,
+                                  "opacity": 1,
+                                }
+                              }
+                            >
+                              <Text>
+                                <Text />
+                              </Text>
+                            </View>
+                            <View
+                              accessibilityHint="Behance"
+                              accessibilityRole="button"
+                              accessible={true}
+                              collapsable={false}
+                              focusable={true}
+                              onClick={[Function]}
+                              onResponderGrant={[Function]}
+                              onResponderMove={[Function]}
+                              onResponderRelease={[Function]}
+                              onResponderTerminate={[Function]}
+                              onResponderTerminationRequest={[Function]}
+                              onStartShouldSetResponder={[Function]}
+                              style={
+                                Object {
+                                  "margin": 5,
+                                  "opacity": 1,
+                                }
+                              }
+                            >
+                              <Text>
+                                <Text />
+                              </Text>
+                            </View>
+                            <View
+                              accessibilityHint="LinkedIn"
+                              accessibilityRole="button"
+                              accessible={true}
+                              collapsable={false}
+                              focusable={true}
+                              onClick={[Function]}
+                              onResponderGrant={[Function]}
+                              onResponderMove={[Function]}
+                              onResponderRelease={[Function]}
+                              onResponderTerminate={[Function]}
+                              onResponderTerminationRequest={[Function]}
+                              onStartShouldSetResponder={[Function]}
+                              style={
+                                Object {
+                                  "margin": 5,
+                                  "opacity": 1,
+                                }
+                              }
+                            >
+                              <Text>
+                                <Text />
+                              </Text>
+                            </View>
+                          </View>
+                        </View>
+                      </View>
+                    </RCTScrollView>
+                  </View>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </View>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                },
+                null,
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderRadius": 20,
+                  "height": 320,
+                  "margin": 10,
+                  "marginBottom": 90,
+                  "width": 240,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                proxiedProperties={
+                  Object {
+                    "colors": Array [
+                      4278226849,
+                      4281327870,
+                      4281034973,
+                    ],
+                    "endPoint": undefined,
+                    "locations": undefined,
+                    "startPoint": undefined,
+                  }
+                }
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 10,
+                    "height": 320,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "marginTop": 20,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignContent": "center",
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "borderRadius": 100,
+                        "height": 110,
+                        "justifyContent": "center",
+                        "width": 110,
+                      }
+                    }
+                  >
+                    <Image
+                      resizeMode="center"
+                      source={
+                        Object {
+                          "uri": "https://images.unsplash.com/photo-1618979251882-0b40ef3617f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+                        }
+                      }
+                      style={
+                        Object {
+                          "borderRadius": 100,
+                          "height": 99,
+                          "width": 99,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignContent": "center",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "marginTop": 10,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "black",
+                        "elevation": 21,
+                        "fontSize": 22,
+                        "fontWeight": "800",
+                        "shadowColor": "#000",
+                        "shadowOffset": Object {
+                          "height": 10,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 0.53,
+                        "shadowRadius": 13.97,
+                        "textTransform": "uppercase",
+                      }
+                    }
+                  >
+                    Khalid
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "height": 30,
+                      "marginTop": 10,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "black",
+                        "fontSize": 12,
+                        "fontWeight": "700",
+                        "textTransform": "uppercase",
+                      }
+                    }
+                  >
+                    Creative Logo & Graphics Designer
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignContent": "center",
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "borderColor": "white",
+                      "borderRadius": 12,
+                      "height": 100,
+                      "justifyContent": "center",
+                      "marginBottom": 5,
+                      "width": 190,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignContent": "center",
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "marginTop": 25,
+                      }
+                    }
+                  >
+                    <Text
+                      accessibilityHint="Get in touch at  socials for Khalid"
+                      style={
+                        Object {
+                          "color": "black",
+                          "fontSize": 16,
+                          "fontWeight": "bold",
+                        }
+                      }
+                    >
+                      Get in touch at
+                    </Text>
+                  </View>
+                  <View>
+                    <RCTScrollView
+                      data={
+                        Array [
+                          Object {
+                            "name": "facebook",
+                            "type": 0,
+                            "url": "https://www.facebook.com/profile.php?id=100086148849098",
+                          },
+                          Object {
+                            "name": "behance",
+                            "type": 4,
+                            "url": "https://github.com/AHMED-5G",
+                          },
+                          Object {
+                            "name": "dribbble",
+                            "type": 3,
+                            "url": "https://github.com/AHMED-5G",
+                          },
+                        ]
+                      }
+                      getItem={[Function]}
+                      getItemCount={[Function]}
+                      keyExtractor={[Function]}
+                      onContentSizeChange={[Function]}
+                      onLayout={[Function]}
+                      onMomentumScrollBegin={[Function]}
+                      onMomentumScrollEnd={[Function]}
+                      onScroll={[Function]}
+                      onScrollBeginDrag={[Function]}
+                      onScrollEndDrag={[Function]}
+                      removeClippedSubviews={false}
+                      renderItem={[Function]}
+                      scrollEventThrottle={50}
+                      showsVerticalScrollIndicator={false}
+                      stickyHeaderIndices={Array []}
+                      viewabilityConfigCallbackPairs={Array []}
+                    >
+                      <View>
+                        <View
+                          onLayout={[Function]}
+                          style={null}
+                        >
+                          <View
+                            style={
+                              Object {
+                                "flexDirection": "row",
+                              }
+                            }
+                          >
+                            <View
+                              accessibilityHint="Facebook"
+                              accessibilityRole="button"
+                              accessible={true}
+                              collapsable={false}
+                              focusable={true}
+                              onClick={[Function]}
+                              onResponderGrant={[Function]}
+                              onResponderMove={[Function]}
+                              onResponderRelease={[Function]}
+                              onResponderTerminate={[Function]}
+                              onResponderTerminationRequest={[Function]}
+                              onStartShouldSetResponder={[Function]}
+                              style={
+                                Object {
+                                  "margin": 5,
+                                  "opacity": 1,
+                                }
+                              }
+                            >
+                              <Text>
+                                <Text />
+                              </Text>
+                            </View>
+                            <View
+                              accessibilityHint="Behance"
+                              accessibilityRole="button"
+                              accessible={true}
+                              collapsable={false}
+                              focusable={true}
+                              onClick={[Function]}
+                              onResponderGrant={[Function]}
+                              onResponderMove={[Function]}
+                              onResponderRelease={[Function]}
+                              onResponderTerminate={[Function]}
+                              onResponderTerminationRequest={[Function]}
+                              onStartShouldSetResponder={[Function]}
+                              style={
+                                Object {
+                                  "margin": 5,
+                                  "opacity": 1,
+                                }
+                              }
+                            >
+                              <Text>
+                                <Text />
+                              </Text>
+                            </View>
+                            <View
+                              accessibilityHint="Dribbble"
+                              accessibilityRole="button"
+                              accessible={true}
+                              collapsable={false}
+                              focusable={true}
+                              onClick={[Function]}
+                              onResponderGrant={[Function]}
+                              onResponderMove={[Function]}
+                              onResponderRelease={[Function]}
+                              onResponderTerminate={[Function]}
+                              onResponderTerminationRequest={[Function]}
+                              onStartShouldSetResponder={[Function]}
+                              style={
+                                Object {
+                                  "margin": 5,
+                                  "opacity": 1,
+                                }
+                              }
+                            >
+                              <Text>
+                                <Text />
+                              </Text>
+                            </View>
+                          </View>
+                        </View>
+                      </View>
+                    </RCTScrollView>
+                  </View>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </View>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                },
+                null,
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderRadius": 20,
+                  "height": 320,
+                  "margin": 10,
+                  "marginBottom": 90,
+                  "width": 240,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                proxiedProperties={
+                  Object {
+                    "colors": Array [
+                      4278226849,
+                      4281327870,
+                      4281034973,
+                    ],
+                    "endPoint": undefined,
+                    "locations": undefined,
+                    "startPoint": undefined,
+                  }
+                }
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 10,
+                    "height": 320,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "marginTop": 20,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignContent": "center",
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "borderRadius": 100,
+                        "height": 110,
+                        "justifyContent": "center",
+                        "width": 110,
+                      }
+                    }
+                  >
+                    <Image
+                      resizeMode="center"
+                      source={
+                        Object {
+                          "uri": "https://scontent.fcai20-6.fna.fbcdn.net/v/t39.30808-1/331078260_1853351431696567_4991456740459488817_n.jpg?stp=dst-jpg_p200x200&_nc_cat=106&ccb=1-7&_nc_sid=7206a8&_nc_ohc=1v7QmwJsXl8AX90xiqw&_nc_ht=scontent.fcai20-6.fna&oh=00_AfDGdTxrm5-YoEdfF4V2yjM5USN6oH0Y5dyJxVuduw5I6A&oe=63F5A060",
+                        }
+                      }
+                      style={
+                        Object {
+                          "borderRadius": 100,
+                          "height": 99,
+                          "width": 99,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignContent": "center",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "marginTop": 10,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "black",
+                        "elevation": 21,
+                        "fontSize": 22,
+                        "fontWeight": "800",
+                        "shadowColor": "#000",
+                        "shadowOffset": Object {
+                          "height": 10,
+                          "width": 0,
+                        },
+                        "shadowOpacity": 0.53,
+                        "shadowRadius": 13.97,
+                        "textTransform": "uppercase",
+                      }
+                    }
+                  >
+                    AA
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "height": 30,
+                      "marginTop": 10,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "black",
+                        "fontSize": 12,
+                        "fontWeight": "700",
+                        "textTransform": "uppercase",
+                      }
+                    }
+                  >
+                    full stack developer
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignContent": "center",
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "borderColor": "white",
+                      "borderRadius": 12,
+                      "height": 100,
+                      "justifyContent": "center",
+                      "marginBottom": 5,
+                      "width": 190,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignContent": "center",
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "marginTop": 25,
+                      }
+                    }
+                  >
+                    <Text
+                      accessibilityHint="Get in touch at  socials for AA"
+                      style={
+                        Object {
+                          "color": "black",
+                          "fontSize": 16,
+                          "fontWeight": "bold",
+                        }
+                      }
+                    >
+                      Get in touch at
+                    </Text>
+                  </View>
+                  <View>
+                    <RCTScrollView
+                      data={
+                        Array [
+                          Object {
+                            "name": "facebook",
+                            "type": 0,
+                            "url": "https://www.facebook.com/profile.php?id=100086148849098",
+                          },
+                          Object {
+                            "name": "Github",
+                            "type": 2,
+                            "url": "https://github.com/AHMED-5G",
+                          },
+                        ]
+                      }
+                      getItem={[Function]}
+                      getItemCount={[Function]}
+                      keyExtractor={[Function]}
+                      onContentSizeChange={[Function]}
+                      onLayout={[Function]}
+                      onMomentumScrollBegin={[Function]}
+                      onMomentumScrollEnd={[Function]}
+                      onScroll={[Function]}
+                      onScrollBeginDrag={[Function]}
+                      onScrollEndDrag={[Function]}
+                      removeClippedSubviews={false}
+                      renderItem={[Function]}
+                      scrollEventThrottle={50}
+                      showsVerticalScrollIndicator={false}
+                      stickyHeaderIndices={Array []}
+                      viewabilityConfigCallbackPairs={Array []}
+                    >
+                      <View>
+                        <View
+                          onLayout={[Function]}
+                          style={null}
+                        >
+                          <View
+                            style={
+                              Object {
+                                "flexDirection": "row",
+                              }
+                            }
+                          >
+                            <View
+                              accessibilityHint="Facebook"
+                              accessibilityRole="button"
+                              accessible={true}
+                              collapsable={false}
+                              focusable={true}
+                              onClick={[Function]}
+                              onResponderGrant={[Function]}
+                              onResponderMove={[Function]}
+                              onResponderRelease={[Function]}
+                              onResponderTerminate={[Function]}
+                              onResponderTerminationRequest={[Function]}
+                              onStartShouldSetResponder={[Function]}
+                              style={
+                                Object {
+                                  "margin": 5,
+                                  "opacity": 1,
+                                }
+                              }
+                            >
+                              <Text>
+                                <Text />
+                              </Text>
+                            </View>
+                            <View
+                              accessibilityHint="Github"
+                              accessibilityRole="button"
+                              accessible={true}
+                              collapsable={false}
+                              focusable={true}
+                              onClick={[Function]}
+                              onResponderGrant={[Function]}
+                              onResponderMove={[Function]}
+                              onResponderRelease={[Function]}
+                              onResponderTerminate={[Function]}
+                              onResponderTerminationRequest={[Function]}
+                              onStartShouldSetResponder={[Function]}
+                              style={
+                                Object {
+                                  "margin": 5,
+                                  "opacity": 1,
+                                }
+                              }
+                            >
+                              <Text>
+                                <Text />
+                              </Text>
+                            </View>
+                          </View>
+                        </View>
+                      </View>
+                    </RCTScrollView>
+                  </View>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+    <View
+      style={
+        Object {
+          "margin": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+            "fontWeight": "800",
+          }
+        }
+      >
+        V0.1
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "marginBottom": 80,
+        }
+      }
+    />
+  </View>
+</RCTScrollView>
+`;

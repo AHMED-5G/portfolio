@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 
 import { Post, PostTypes } from "../../types";
@@ -8,10 +8,11 @@ import { VideoPostComponent } from "./VideoPostComponent";
 import { width } from "../../constants/Layout";
 
 import PostOptions from "./PostOptions";
-import BackArrow from "../mini/BackArrow";
+import { Video } from "expo-av";
 type Props = { post: Post };
 
 const PostComponent = ({ post }: Props) => {
+  const [whoIsRunningIam, setWhoIsRunningIam] = useState<string | null>(null);
   return (
     <View style={styles.postContainer}>
       {post.type == PostTypes.Text ? (
@@ -19,7 +20,10 @@ const PostComponent = ({ post }: Props) => {
       ) : post.type == PostTypes.Image ? (
         <ImagePostComponent post={post} />
       ) : post.type == PostTypes.Video ? (
-        <VideoPostComponent post={post} />
+        <VideoPostComponent
+          post={post}
+          {...{ whoIsRunningIam, setWhoIsRunningIam }}
+        />
       ) : (
         <View></View>
       )}

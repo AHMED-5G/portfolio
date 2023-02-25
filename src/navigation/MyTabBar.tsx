@@ -19,7 +19,7 @@ import {
 
 import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
 import { FeedTab, HomeTab } from "./tabBarItems";
-import { myColors } from "../constants/Colors";
+import { myColors } from "../constants/myColors";
 import { FeedScreen } from "../screens/FeedScreen";
 
 interface TabBarProps {

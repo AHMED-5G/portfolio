@@ -2,9 +2,10 @@ import { StyleSheet, View, FlatList, Text } from "react-native";
 import React, { useEffect } from "react";
 import { PostComment, User } from "../../types";
 import { width } from "../../constants/Layout";
-import { myColors } from "../../constants/Colors";
+// import { myColors } from "../../constants/myColors";
 
 import CommentComponent from "./CommentComponent";
+import { myColors } from "../../constants/myColors";
 
 type Props = { comments: PostComment[] };
 
@@ -33,7 +34,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-   
   },
   commentTitleContainer: {
     marginTop: 10,

@@ -11,7 +11,7 @@ import LikeComponent from "./LikeComponent";
 import ShareComponent from "./ShareComponent";
 import WriteCommentSection from "./WriteCommentSection";
 import { users } from "../../../dummy/Users";
-
+import { Audio } from "expo-av";
 type Props = {
   post: Post;
 };
@@ -26,6 +26,23 @@ const PostOptions = ({ post }: Props) => {
   );
   const [showComments, setShowComments] = useState(false);
 
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../../assets/sounds/comment2.mp3")
+    );
+    setSound(sound);
+    await sound.playAsync();
+  }
+
+  React.useEffect(() => {
+    return sound
+      ? () => {
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
   const sendComment = () => {
     post.comments?.unshift({
       body: commentText,
@@ -34,6 +51,7 @@ const PostOptions = ({ post }: Props) => {
       favoriteCounter: 0,
     });
     setCommentText("");
+    playSound();
   };
   return (
     <View style={styles.container}>

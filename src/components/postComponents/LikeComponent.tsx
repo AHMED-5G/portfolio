@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useCallback, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
-import { myColors } from "../../constants/Colors";
+import { myColors } from "../../constants/myColors";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -9,6 +9,7 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import { Audio } from "expo-av";
+import { likeSound } from "../../../assets/sounds/index";
 type Props = {
   favoriteCounter: number;
   favoriteState: boolean;
@@ -24,15 +25,16 @@ const LikeComponent = ({
 
   async function playSound() {
     const { sound } = await Audio.Sound.createAsync(
-      require("../../../assets/sounds/like.wav")
+      // require("../../../assets/sounds/like.wav")
+      likeSound
     );
     setSound(sound);
     await sound.playAsync();
   }
-
+  
   React.useEffect(() => {
     return sound
-      ? () => {
+    ? () => {
           sound.unloadAsync();
         }
       : undefined;
@@ -58,7 +60,6 @@ const LikeComponent = ({
   }));
 
   return (
-    // <View></View>
     <TouchableOpacity
       style={{ height: 56, width: 56 }}
       onPress={() => {
@@ -72,21 +73,27 @@ const LikeComponent = ({
           setLocalFavoriteCounter((prev) => prev - 1);
         }
       }}
-      >
+    >
       <Animated.View
-  
         style={[styles.favoriteContainer, rStyle]}
         accessibilityRole="button"
-        accessibilityHint={favoriteCounter + "like"}
+        accessibilityHint={
+          !favoriteState
+            ? favoriteCounter + "likes " + "include You"
+            : favoriteCounter + "likes "
+        }
       >
         {localFavoriteCounter ? <Text>{localFavoriteCounter}</Text> : null}
         {favoriteState ? (
           <MaterialIcons
-          disabled
-          name="favorite-border" size={28} color="black" />
+            disabled
+            name="favorite-border"
+            size={28}
+            color="black"
+          />
         ) : (
           <MaterialIcons
-          disabled
+            disabled
             name="favorite"
             size={28}
             color={myColors.redFavorite}

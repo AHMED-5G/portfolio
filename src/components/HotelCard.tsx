@@ -7,16 +7,16 @@ import {
 } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
-import { Hotel,  } from "../types";
-import { useNavigation } from "@react-navigation/native";
-import { myColors } from "../constants/Colors";
+import { Hotel } from "../types";
+import { myColors } from "../constants/myColors";
+import { useNavigationContainerRef } from "@react-navigation/native";
 
 type Props = {
   hotel: Hotel;
 };
-
 const HotelCard = ({ hotel }: Props) => {
-  const navigation = useNavigation();
+  const navigation = useNavigationContainerRef<ReactNavigation.RootParamList>();
+
   return (
     <TouchableOpacity
       onPress={() => {
@@ -50,9 +50,12 @@ const HotelCard = ({ hotel }: Props) => {
             <Text style={{ fontSize: 12, color: "black", fontWeight: "900" }}>
               {hotel.rate}
             </Text>
-            <AntDesign 
-            accessibilityHint="stars"
-            name={"star"} color="black" style={{ marginLeft: 4 }} />
+            <AntDesign
+              accessibilityHint="stars"
+              name={"star"}
+              color="black"
+              style={{ marginLeft: 4 }}
+            />
           </View>
         </View>
         <View

@@ -2,16 +2,24 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useState } from "react";
 import { User } from "../../types";
 import MedButton from "../mini/MedButton";
-import { myColors } from "../../constants/Colors";
+import { myColors } from "../../constants/myColors";
 import DuringSevenDaysAgo from "./DuringSevenDaysAgo";
 import * as Notifications from "expo-notifications";
 type Props = { user: User };
 const PostAuthor = ({ user }: Props) => {
   const [followState, setFollowState] = useState(Math.random() < 0.5);
 
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: false,
+      shouldSetBadge: false,
+    }),
+  });
+  
   async function schedulePushNotification(user: User) {
     try {
-      await Notifications.scheduleNotificationAsync({
+      Notifications.scheduleNotificationAsync({
         content: {
           title: "You've got new follower",
           body: user.name + " " + "started following you",
@@ -67,7 +75,9 @@ const PostAuthor = ({ user }: Props) => {
               source={{ uri: user.image }}
               style={{ width: 50, height: 50, borderRadius: 50, margin: 10 }}
             />
-            <Text style={{ fontSize: 22, fontWeight: "700" }}>{user.name}</Text>
+            <Text
+            accessibilityRole="header"
+            style={{ fontSize: 22, fontWeight: "700" }}>{user.name}</Text>
           </View>
           <View
             style={{
@@ -79,7 +89,6 @@ const PostAuthor = ({ user }: Props) => {
             {!followState ? (
               <MedButton
                 title="Follow"
-
                 onPress={async () => {
                   setFollowState(true);
 

@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import TimeAgo from "react-native-timeago";
-import { getRandomInt } from "../../utils/helperFunctions";
+import { getRandomInt, getRandomIntBetweenTow } from "../../utils/helperFunctions";
 
 type Props = {};
 
 const DuringSevenDaysAgo = (props: Props) => {
   const [duringSevenDaysAgo, setDuringSevenDaysAgo] = useState(
-    Math.floor(+new Date() / 1000) - getRandomInt(1, 7) * 24 * 60 * 60
+    Math.floor(+new Date() / 1000) - getRandomIntBetweenTow(1, 7) * 24 * 60 * 60
   );
   return (
     <View

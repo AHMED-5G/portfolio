@@ -108,3 +108,7 @@ export function getRandomInt(max: number) {
 export function generateRandomBoolean() {
   return Math.random() < 0.5;
 }
+
+export function removeWhiteSpaceAtStart(text: string) {
+  return text.replace(/^\s+/g, "");
+}

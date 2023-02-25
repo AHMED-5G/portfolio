@@ -11,10 +11,11 @@ import {
   FontAwesome,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { myColors } from "../../constants/Colors";
+import { myColors } from "../../constants/myColors";
 import { width } from "../../constants/Layout";
 import FormTextInput from "../mini/FormTextInput";
 import { Post } from "../../types";
+import { removeWhiteSpaceAtStart } from "../../utils/helperFunctions";
 
 type Props = {
   post: Post;
@@ -42,7 +43,9 @@ const WriteCommentSection = ({
       <FormTextInput
         placeholder="Write comment ..."
         value={commentText}
-        setText={(text: string) => setCommentText(text)}
+        setText={(text: string) => {
+          setCommentText(removeWhiteSpaceAtStart(text));
+        }}
         onFocus={() => setWriteCommentState(true)}
         width={writeCommentState ? 0.67 * width : undefined}
         multiline
@@ -68,7 +71,7 @@ const WriteCommentSection = ({
           ) : null
         }
         onBlur={() => setWriteCommentState(false)}
-        placeholderTextColor={myColors.black}
+        placeholderTextColor={myColors.grey1}
       />
       {commentText && (
         <TouchableOpacity
@@ -92,7 +95,7 @@ const WriteCommentSection = ({
       >
         {!showComments ? (
           <MaterialCommunityIcons
-          disabled
+            disabled
             name="comment-eye-outline"
             size={28}
             color="black"
@@ -100,13 +103,18 @@ const WriteCommentSection = ({
           />
         ) : (
           <MaterialCommunityIcons
-          disabled
+            disabled
             name="comment-off-outline"
             size={28}
             accessibilityHint={"hide comments"}
           />
         )}
-        <Text>{post.comments?.length}</Text>
+        <Text
+          accessibilityElementsHidden={true}
+          importantForAccessibility="no-hide-descendants"
+        >
+          {post.comments?.length}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -137,6 +145,6 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     height: 48,
-    width: 48
+    width: 48,
   },
 });

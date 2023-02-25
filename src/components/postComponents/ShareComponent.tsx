@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { myColors } from "../../constants/Colors";
+import { myColors } from "../../constants/myColors";
 import { Audio } from "expo-av";
 import { showToast } from "../../utils/helperFunctions";
 type Props = {

@@ -1,11 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React, { useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
-import { myColors } from "../../constants/Colors";
+;
 import { width } from "../../constants/Layout";
 import { PostComment } from "../../types";
 import LikeComponent from "./LikeComponent";
 import { generateRandomBoolean } from "../../utils/helperFunctions";
+import { myColors } from "../../constants/myColors";
 
 type Props = { comment: PostComment };
 
