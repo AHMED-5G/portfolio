@@ -60,7 +60,7 @@ export const contributors: Contributor[] = [
       {
         name: "facebook",
         type: AccountTypes.Facebook,
-        url: "https://scontent.fcai20-6.fna.fbcdn.net/v/t39.30808-6/331078260_1853351431696567_4991456740459488817_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=FKNZ9U91otMAX-G9ZBC&_nc_ht=scontent.fcai20-6.fna&oh=00_AfCvMz_mDi9y-mkZ3TwI42r23sTz4ohVk0gTUbkhS-6bUA&oe=6400055E",
+        url: "https://www.facebook.com/people/Ahmed-Ali/pfbid0ApxqC6JK6Y5bQewcykPmR1dzxpPsL9m28uERD7ixvN1sxFMugj9SsA1wKqZit8kLl/",
       },
       {
         name: "Github",

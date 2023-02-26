@@ -12,11 +12,11 @@ const PostAuthor = ({ user }: Props) => {
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
-      shouldPlaySound: true,
+      shouldPlaySound: false,
       shouldSetBadge: false,
     }),
   });
-  
+
   async function schedulePushNotification(user: User) {
     try {
       Notifications.scheduleNotificationAsync({
@@ -76,8 +76,11 @@ const PostAuthor = ({ user }: Props) => {
               style={{ width: 50, height: 50, borderRadius: 50, margin: 10 }}
             />
             <Text
-            accessibilityRole="header"
-            style={{ fontSize: 22, fontWeight: "700" }}>{user.name}</Text>
+              accessibilityRole="header"
+              style={{ fontSize: 22, fontWeight: "700" }}
+            >
+              {user.name}
+            </Text>
           </View>
           <View
             style={{
