@@ -85,6 +85,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
+            accessibilityHint={label.toString()}
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}

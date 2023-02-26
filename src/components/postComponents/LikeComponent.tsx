@@ -9,7 +9,7 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import { Audio } from "expo-av";
-import { likeSound } from "../../../assets/sounds/index";
+import { like2Sound, likeSound } from "../../../assets/sounds/index";
 type Props = {
   favoriteCounter: number;
   favoriteState: boolean;
@@ -25,8 +25,7 @@ const LikeComponent = ({
 
   async function playSound() {
     const { sound } = await Audio.Sound.createAsync(
-      // require("../../../assets/sounds/like.wav")
-      likeSound
+      like2Sound
     );
     setSound(sound);
     await sound.playAsync();

@@ -9,14 +9,16 @@ import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { Hotel } from "../types";
 import { myColors } from "../constants/myColors";
-import { useNavigationContainerRef } from "@react-navigation/native";
+import {
+  useNavigation,
+  useNavigationContainerRef,
+} from "@react-navigation/native";
 
 type Props = {
   hotel: Hotel;
 };
 const HotelCard = ({ hotel }: Props) => {
-  const navigation = useNavigationContainerRef<ReactNavigation.RootParamList>();
-
+  const navigation = useNavigation();
   return (
     <TouchableOpacity
       onPress={() => {

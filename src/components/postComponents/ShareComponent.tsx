@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { myColors } from "../../constants/myColors";
 import { Audio } from "expo-av";
 import { showToast } from "../../utils/helperFunctions";
+import { noSound } from "../../../assets/sounds";
 type Props = {
   shareCounter: number;
 };
@@ -12,9 +13,7 @@ const ShareComponent = ({ shareCounter }: Props) => {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
   async function playSound() {
-    const { sound } = await Audio.Sound.createAsync(
-      require("../../../assets/sounds/no.wav")
-    );
+    const { sound } = await Audio.Sound.createAsync(noSound);
     setSound(sound);
     await sound.playAsync();
   }

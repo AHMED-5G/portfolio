@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import React, { useMemo, useState } from "react";
 import Comments from "./Comments";
-import { Post, PostComment } from "../../types";
+import { Post } from "../../types";
 import {
   generateRandomBoolean,
   getRandomOneItemFromList,
@@ -12,6 +12,7 @@ import ShareComponent from "./ShareComponent";
 import WriteCommentSection from "./WriteCommentSection";
 import { users } from "../../../dummy/Users";
 import { Audio } from "expo-av";
+import { comment2Sound } from "../../../assets/sounds";
 type Props = {
   post: Post;
 };
@@ -29,9 +30,7 @@ const PostOptions = ({ post }: Props) => {
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
   async function playSound() {
-    const { sound } = await Audio.Sound.createAsync(
-      require("../../../assets/sounds/comment2.mp3")
-    );
+    const { sound } = await Audio.Sound.createAsync(comment2Sound);
     setSound(sound);
     await sound.playAsync();
   }

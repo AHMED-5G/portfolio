@@ -47,7 +47,11 @@ postsCloneForVideos.map((post) => {
 export const postsWithImages = postsCloneForImages;
 export const postsWithVideos = postsCloneForVideos;
 
+let firsPost =  posts[0]
+posts.shift()
+
 export const mergePosts = shuffleArray([
+  firsPost,
   ...posts,
   ...postsWithImages,
   ...postsWithVideos,

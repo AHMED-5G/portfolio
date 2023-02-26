@@ -9,9 +9,14 @@ import { width } from "../../constants/Layout";
 
 import PostOptions from "./PostOptions";
 import { Video } from "expo-av";
-type Props = { post: Post };
+type Props = {
+  post: Post;
+  isViewable: boolean;
+  index: number;
 
-const PostComponent = ({ post }: Props) => {
+};
+
+const PostComponent = ({ post, isViewable, index }: Props) => {
   const [whoIsRunningIam, setWhoIsRunningIam] = useState<string | null>(null);
   return (
     <View style={styles.postContainer}>
@@ -20,10 +25,7 @@ const PostComponent = ({ post }: Props) => {
       ) : post.type == PostTypes.Image ? (
         <ImagePostComponent post={post} />
       ) : post.type == PostTypes.Video ? (
-        <VideoPostComponent
-          post={post}
-          {...{ whoIsRunningIam, setWhoIsRunningIam }}
-        />
+        <VideoPostComponent post={post} {...{ isViewable, index }} />
       ) : (
         <View></View>
       )}
@@ -36,6 +38,7 @@ export { PostComponent };
 
 const styles = StyleSheet.create({
   postContainer: {
+    // flex: 1,
     // backgroundColor: "#fffafa",
     backgroundColor: "#fff",
     width: width - 10,

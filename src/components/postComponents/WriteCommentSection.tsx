@@ -75,6 +75,7 @@ const WriteCommentSection = ({
       />
       {commentText && (
         <TouchableOpacity
+          accessibilityHint="send comment"
           style={styles.sendIconContainer}
           onPress={() => {
             sendComment();

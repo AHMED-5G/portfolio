@@ -42,7 +42,7 @@ function Home({ navigation }: RootTabScreenProps<"Home">) {
         />
       </View>
       <View style={{ margin: 10 }}>
-        <Text style={{ fontSize: 18, fontWeight: "800" }}>V0.1</Text>
+        <Text style={{ fontSize: 18, fontWeight: "800" }}>V0.2</Text>
       </View>
       <View style={{ marginBottom: 80 }}>
         {/* //this view for bottom tab height  */}
