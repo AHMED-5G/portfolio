@@ -13,7 +13,7 @@ import useColorScheme from "../hooks/useColorScheme";
 
 import LinkingConfiguration from "./LinkingConfiguration";
 
-import Colors, { myColors } from "../constants/Colors";
+import Colors from "../constants/Colors";
 import { Home } from "../screens/Home";
 import {
   RootStackParamList,
@@ -23,7 +23,7 @@ import {
 import HotelDetails from "../screens/HotelDetails";
 import MyTabBar from "./MyTabBar";
 import { FeedScreen } from "../screens/FeedScreen";
-
+import { NavigationContainerRef } from "@react-navigation/native";
 export default function Navigation({
   colorScheme,
 }: {

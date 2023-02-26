@@ -6,24 +6,31 @@ import HotelCard from "../components/HotelCard";
 import ContributorCard from "../components/ContributorCard";
 import { contributors } from "../../dummy/Contributors";
 import { hotels } from "../../dummy/hotels";
+import CommentIcon from "../../assets/icons/CommentIcon";
 
 function Home({ navigation }: RootTabScreenProps<"Home">) {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={{ marginTop: 100 }}>
         <View style={{ marginTop: 10, marginLeft: 20 }}>
-          <Text style={styles.sectionTitleText}>Hotels</Text>
+          <Text accessibilityRole="header" style={styles.sectionTitleText}>
+            Hotels
+          </Text>
         </View>
         <FlatList
           data={hotels}
           horizontal
-          renderItem={({ item }) => <HotelCard hotel={item} />}
+          renderItem={({ item }) => (
+            <HotelCard hotel={item}  />
+          )}
           keyExtractor={(item: Hotel) => item.id.toString()}
           showsHorizontalScrollIndicator={false}
         />
       </View>
       <View style={{ marginTop: 10, marginLeft: 20 }}>
-        <Text style={styles.sectionTitleText}>Contributors</Text>
+        <Text accessibilityRole="header" style={styles.sectionTitleText}>
+          Contributors
+        </Text>
       </View>
       <View style={{ marginTop: 20, height: 330 }}>
         <FlatList
@@ -35,7 +42,7 @@ function Home({ navigation }: RootTabScreenProps<"Home">) {
         />
       </View>
       <View style={{ margin: 10 }}>
-        <Text style={{ fontSize: 18, fontWeight: "800" }}>V0.1</Text>
+        <Text style={{ fontSize: 18, fontWeight: "800" }}>V0.2</Text>
       </View>
       <View style={{ marginBottom: 80 }}>
         {/* //this view for bottom tab height  */}

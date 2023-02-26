@@ -74,7 +74,7 @@ export const getRandomOneItemFromList = (list: Array<any>) => {
   return list[Math.floor(Math.random() * list.length)];
 };
 
-export function getRandomInt(min: number, max: number) {
+export function getRandomIntBetweenTow(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -99,5 +99,16 @@ export function shuffleArray(array: any[]) {
 }
 
 export function randomIntNumber(max: number) {
-  return Math.floor(Math.random() * max) + 1
+  return Math.floor(Math.random() * max) + 1;
+}
+export function getRandomInt(max: number) {
+  return Math.floor(Math.random() * max) + 1;
+}
+
+export function generateRandomBoolean() {
+  return Math.random() < 0.5;
+}
+
+export function removeWhiteSpaceAtStart(text: string) {
+  return text.replace(/^\s+/g, "");
 }

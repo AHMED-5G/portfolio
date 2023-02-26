@@ -1,9 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React, { useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
-import { myColors } from "../../constants/Colors";
+;
 import { width } from "../../constants/Layout";
 import { PostComment } from "../../types";
+import LikeComponent from "./LikeComponent";
+import { generateRandomBoolean } from "../../utils/helperFunctions";
+import { myColors } from "../../constants/myColors";
 
 type Props = { comment: PostComment };
 
@@ -11,14 +14,13 @@ const CommentComponent = ({ comment }: Props) => {
   const [readMore, setReadMore] = useState(false);
   const [lengthOfLiens, setLengthOfLiens] = useState(0);
   const NumberOfLiensToShow = 4;
-
+  const [favoriteState, setFavoriteState] = useState<boolean>(!false);
   return (
     <View style={styles.commentContainer}>
       <View style={styles.commentAuthorContainer}>
         <Image source={{ uri: comment.by?.image }} style={styles.authorImage} />
         <Text style={styles.authorNameText}>{comment.by?.name}</Text>
       </View>
-
       <View
         style={{
           justifyContent: "center",
@@ -53,14 +55,11 @@ const CommentComponent = ({ comment }: Props) => {
           </TouchableOpacity>
         )}
       </View>
-      <TouchableOpacity
-        style={styles.favoriteContainer}
-        accessibilityRole="button"
-        accessibilityHint="Like"
-      >
-        <MaterialIcons name="favorite-border" size={28} color="black" />
-        <Text>{comment.favoriteCounter}</Text>
-      </TouchableOpacity>
+      <LikeComponent
+        favoriteCounter={comment.favoriteCounter ?? 0}
+        favoriteState={favoriteState}
+        setFavoriteState={setFavoriteState}
+      />
     </View>
   );
 };
@@ -69,6 +68,7 @@ export default CommentComponent;
 
 const styles = StyleSheet.create({
   commentContainer: {
+    justifyContent: "space-between",
     alignItems: "center",
     width: width - 40,
     borderWidth: 0.7,

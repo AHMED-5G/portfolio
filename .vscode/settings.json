@@ -4,6 +4,7 @@
         "carosel",
         "Datetime",
         "Dribbble",
-        "timeago"
+        "timeago",
+        "viewability"
     ]
 }

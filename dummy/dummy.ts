@@ -1,14 +1,15 @@
 import { PostTypes, User, PostComment } from "../src/types";
 import {
   getRandomOneItemFromList,
-  getRandomInt,
   shuffleArray,
   randomIntNumber,
+  getRandomIntBetweenTow,
 } from "../src/utils/helperFunctions";
 import { images, profileImages } from "./images";
 import { posts } from "./posts";
 import { users } from "./Users";
 import { comments } from "./comments";
+import { videos } from "./video";
 
 users.map((user) => {
   user.image = getRandomOneItemFromList(profileImages);
@@ -28,16 +29,30 @@ comments.map((comment) => {
 posts.map((post) => {
   post.by = getRandomOneItemFromList(users);
   post.type = PostTypes.Text;
-  post.comments = shuffleArray(comments).slice(getRandomInt(35, 48));
+  post.comments = shuffleArray(comments).slice(getRandomIntBetweenTow(35, 48));
 });
 
-const postsClone = posts.map((post) => Object.assign({}, post));
+const postsCloneForImages = posts.map((post) => Object.assign({}, post));
+const postsCloneForVideos = posts.map((post) => Object.assign({}, post));
 
-postsClone.map((post) => {
+postsCloneForImages.map((post) => {
   post.image = getRandomOneItemFromList(images);
   post.type = PostTypes.Image;
 });
+postsCloneForVideos.map((post) => {
+  post.video = getRandomOneItemFromList(videos);
+  post.type = PostTypes.Video;
+});
 
-export const postsWithImages = postsClone;
+export const postsWithImages = postsCloneForImages;
+export const postsWithVideos = postsCloneForVideos;
 
-export const mergePosts = shuffleArray([...posts, ...postsWithImages]);
+let firsPost =  posts[0]
+posts.shift()
+
+export const mergePosts = shuffleArray([
+  firsPost,
+  ...posts,
+  ...postsWithImages,
+  ...postsWithVideos,
+]);

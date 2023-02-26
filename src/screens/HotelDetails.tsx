@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { RootStackParamList } from "../types";
 import { height, width } from "../constants/Layout";
-import { myColors } from "../constants/Colors";
+import { myColors } from "../constants/myColors";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -200,11 +200,11 @@ export default HotelDetails;
 
 const styles = StyleSheet.create({
   miniImageContainerStyle: {
-    width: 91,
-    height: 91,
+    width: 94,
+    height: 94,
     borderRadius: 10,
-    borderWidth: 5,
-    borderColor: "black",
+    borderWidth: 7,
+    borderColor: "#009ACE",
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

@@ -56,7 +56,7 @@ export interface Post {
   type?: PostTypes;
   text?: string;
   image?: string;
-  Video?: string;
+  video?: string;
   timeStamp: TimeStamp;
   by?: User;
   comments?: PostComment[];

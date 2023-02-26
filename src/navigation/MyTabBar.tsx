@@ -19,7 +19,7 @@ import {
 
 import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
 import { FeedTab, HomeTab } from "./tabBarItems";
-import { myColors } from "../constants/Colors";
+import { myColors } from "../constants/myColors";
 import { FeedScreen } from "../screens/FeedScreen";
 
 interface TabBarProps {
@@ -85,10 +85,11 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
+            accessibilityHint={label.toString()}
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{ flex: 1 }}
+            style={{ flex: 1, alignItems: "center" }}
             key={label.toString()}
           >
             {/* <View style={styles.tabContainer}> */}

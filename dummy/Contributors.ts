@@ -60,7 +60,7 @@ export const contributors: Contributor[] = [
       {
         name: "facebook",
         type: AccountTypes.Facebook,
-        url: "https://www.facebook.com/profile.php?id=100086148849098",
+        url: "https://scontent.fcai20-6.fna.fbcdn.net/v/t39.30808-6/331078260_1853351431696567_4991456740459488817_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=FKNZ9U91otMAX-G9ZBC&_nc_ht=scontent.fcai20-6.fna&oh=00_AfCvMz_mDi9y-mkZ3TwI42r23sTz4ohVk0gTUbkhS-6bUA&oe=6400055E",
       },
       {
         name: "Github",
@@ -68,7 +68,6 @@ export const contributors: Contributor[] = [
         url: "https://github.com/AHMED-5G",
       },
     ],
-    image:
-      "https://scontent.fcai20-6.fna.fbcdn.net/v/t39.30808-1/331078260_1853351431696567_4991456740459488817_n.jpg?stp=dst-jpg_p200x200&_nc_cat=106&ccb=1-7&_nc_sid=7206a8&_nc_ohc=1v7QmwJsXl8AX90xiqw&_nc_ht=scontent.fcai20-6.fna&oh=00_AfDGdTxrm5-YoEdfF4V2yjM5USN6oH0Y5dyJxVuduw5I6A&oe=63F5A060",
+    image: "https://i.stack.imgur.com/RWR5C.jpg?s=256&g=1",
   },
 ];
