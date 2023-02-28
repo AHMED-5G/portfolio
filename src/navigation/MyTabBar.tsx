@@ -18,7 +18,7 @@ import {
 } from "react-native";
 
 import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
-import { FeedTab, HomeTab } from "./tabBarItems";
+import { FeedTab, HomeTab, SettingsTab } from "./tabBarItems";
 import { myColors } from "../constants/myColors";
 import { FeedScreen } from "../screens/FeedScreen";
 
@@ -92,13 +92,13 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             style={{ flex: 1, alignItems: "center" }}
             key={label.toString()}
           >
-            {/* <View style={styles.tabContainer}> */}
             {label == "Home" ? (
               <HomeTab key={label} {...{ label, isFocused }} />
             ) : label == "Feed" ? (
               <FeedTab key={label} {...{ label, isFocused }} />
+            ) : label == "Settings" ? (
+              <SettingsTab key={label} {...{ label, isFocused }} />
             ) : null}
-            {/* </View> */}
           </TouchableOpacity>
         );
       })}

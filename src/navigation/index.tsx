@@ -3,16 +3,13 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, View } from "react-native";
+import { ColorSchemeName } from "react-native";
 import useColorScheme from "../hooks/useColorScheme";
-
-import LinkingConfiguration from "./LinkingConfiguration";
-
 import Colors from "../constants/Colors";
 import { Home } from "../screens/Home";
 import {
@@ -23,7 +20,8 @@ import {
 import HotelDetails from "../screens/HotelDetails";
 import MyTabBar from "./MyTabBar";
 import { FeedScreen } from "../screens/FeedScreen";
-import { NavigationContainerRef } from "@react-navigation/native";
+import HomeStackNavigator from "./HomeStackNavigatior/HomeStackNavigator";
+import { SettingsScreen } from "../screens/SettingsScreen";
 export default function Navigation({
   colorScheme,
 }: {
@@ -31,16 +29,11 @@ export default function Navigation({
 }) {
   return (
     <NavigationContainer>
-      {/* <NavigationContainer linking={LinkingConfiguration}> */}
       <RootNavigator />
     </NavigationContainer>
   );
 }
 
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
@@ -51,19 +44,10 @@ function RootNavigator() {
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="HotelDetails"
-        component={HotelDetails}
-        options={{ headerShown: false }}
-      />
     </Stack.Navigator>
   );
 }
 
-/**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
@@ -71,7 +55,7 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Home"
+      initialRouteName="HomeStackNavigator"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
         headerShown: false,
@@ -81,9 +65,11 @@ function BottomTabNavigator() {
       }}
     >
       <BottomTab.Screen
-        name="Home"
-        component={Home}
-        options={({ navigation }: RootTabScreenProps<"Home">) => ({
+        name="HomeStackNavigator"
+        component={HomeStackNavigator}
+        options={({
+          navigation,
+        }: RootTabScreenProps<"HomeStackNavigator">) => ({
           title: "Home",
         })}
       />
@@ -94,13 +80,17 @@ function BottomTabNavigator() {
           title: "Feed",
         }}
       />
+      <BottomTab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          title: "Settings",
+        }}
+      />
     </BottomTab.Navigator>
   );
 }
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;

@@ -9,6 +9,7 @@ import { Feather, MaterialIcons } from "@expo/vector-icons";
 
 import { useNavigation } from "@react-navigation/native";
 import LoadingIndicator from "../mini/LoadingIndicator";
+import SkeletonLoader from "expo-skeleton-loader";
 type Props = {
   post: Post;
   isViewable: boolean;
@@ -32,13 +33,22 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
 
     return unsubscribe;
   }, [navigation]);
-
+  const [videoLoading, setVideoLoading] = useState(false);
   const [showPauseButton, setShowPauseButton] = useState(false);
-
+  function SkeltonItem() {
+    return (
+      <SkeletonLoader boneColor="#EEE" highlightColor="#20b2aa" duration={1000}>
+        <SkeletonLoader.Item style={styles.videoContainer} />
+      </SkeletonLoader>
+    );
+  }
   return (
     <View
       style={{
         width: "100%",
+        justifyContent: "center",
+        alignContent: "center",
+        alignItems: "center",
       }}
     >
       <View>
@@ -47,24 +57,32 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
       <View style={{ marginTop: 10 }}>
         <PostText text={post.text} />
       </View>
-      <View
-        style={{
-          borderRadius: 20,
-          marginTop: 10,
-          height: 250,
-          // width: width - 20,
-
-          justifyContent: "center",
-          alignContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <View style={[styles.videoContainer]}>
+        {videoLoading && (
+          <View
+            style={[
+              styles.videoContainer,
+              {
+                position: "absolute",
+                zIndex: 1,
+              },
+            ]}
+          >
+            <SkeltonItem />
+          </View>
+        )}
         <Video
           accessibilityHint="video"
           ref={video}
           style={styles.video}
           source={{
             uri: post?.video!,
+          }}
+          onLoadStart={() => {
+            setVideoLoading(true);
+          }}
+          onLoad={() => {
+            setVideoLoading(false);
           }}
           useNativeControls
           resizeMode={ResizeMode.CONTAIN}
@@ -122,6 +140,15 @@ const styles = StyleSheet.create({
   video: {
     height: 240,
     width: "100%",
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+  },
+  videoContainer: {
+    marginTop: 10,
+    height: 250,
+    width: width - 20,
+
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

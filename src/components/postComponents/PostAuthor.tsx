@@ -1,14 +1,16 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, ImageURISource } from "react-native";
 import React, { useState } from "react";
 import { User } from "../../types";
 import MedButton from "../mini/MedButton";
 import { myColors } from "../../constants/myColors";
 import DuringSevenDaysAgo from "./DuringSevenDaysAgo";
 import * as Notifications from "expo-notifications";
+import LoadingIndicator from "../mini/LoadingIndicator";
+import SkeletonLoader from "expo-skeleton-loader";
 type Props = { user: User };
 const PostAuthor = ({ user }: Props) => {
   const [followState, setFollowState] = useState(Math.random() < 0.5);
-
+  const [authImageLoading, setAuthImageLoading] = useState(false);
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
@@ -31,6 +33,21 @@ const PostAuthor = ({ user }: Props) => {
       console.log(error);
     }
   }
+  function SkeltonItem() {
+    return (
+      <SkeletonLoader boneColor="#EEE" highlightColor="#20b2aa" duration={1000}>
+        <SkeletonLoader.Item
+          style={{
+            width: 50,
+            height: 50,
+            borderRadius: 50 / 2,
+            marginRight: 20,
+          }}
+        />
+      </SkeletonLoader>
+    );
+  }
+
   return (
     <View
       style={{
@@ -71,10 +88,35 @@ const PostAuthor = ({ user }: Props) => {
               alignItems: "center",
             }}
           >
-            <Image
-              source={{ uri: user.image }}
-              style={{ width: 50, height: 50, borderRadius: 50, margin: 10 }}
-            />
+            <View>
+              {authImageLoading && (
+                <View
+                  style={{
+                    position: "absolute",
+                    width: 50,
+                    height: 50,
+                    borderRadius: 50,
+                    margin: 10,
+                    zIndex: 1,
+                  }}
+                >
+                  <SkeltonItem />
+                </View>
+              )}
+              <Image
+                onLoadStart={() => {
+                  setAuthImageLoading(true);
+                }}
+                onLoad={() => {
+                  setAuthImageLoading(false);
+                }}
+                onLoadEnd={() => {
+                  setAuthImageLoading(false);
+                }}
+                style={{ width: 50, height: 50, borderRadius: 50, margin: 10 }}
+                source={{ uri: user.image }}
+              />
+            </View>
             <Text
               accessibilityRole="header"
               style={{ fontSize: 22, fontWeight: "700" }}
@@ -94,7 +136,6 @@ const PostAuthor = ({ user }: Props) => {
                 title="Follow"
                 onPress={async () => {
                   setFollowState(true);
-
                   await schedulePushNotification(user);
                 }}
                 accessibilityHint={"Follow" + user.name}

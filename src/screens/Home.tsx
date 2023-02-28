@@ -1,28 +1,35 @@
 import { FlatList, StyleSheet, View, Text, ScrollView } from "react-native";
 import React from "react";
-import { Contributor, Hotel, RootTabScreenProps } from "../types";
+import {
+  Contributor,
+  Hotel,
+  RootStackParamList,
+  RootTabScreenProps,
+} from "../types";
 
 import HotelCard from "../components/HotelCard";
 import ContributorCard from "../components/ContributorCard";
 import { contributors } from "../../dummy/Contributors";
 import { hotels } from "../../dummy/hotels";
 import CommentIcon from "../../assets/icons/CommentIcon";
+import { StackScreenProps } from "@react-navigation/stack";
+import { i18n } from "../translation/i18n";
 
-function Home({ navigation }: RootTabScreenProps<"Home">) {
+type Props = StackScreenProps<RootStackParamList, "Home">;
+// function Home({ navigation }: RootTabScreenProps<"Home">) {
+function Home({ navigation }: Props) {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={{ marginTop: 100 }}>
         <View style={{ marginTop: 10, marginLeft: 20 }}>
           <Text accessibilityRole="header" style={styles.sectionTitleText}>
-            Hotels
+          {i18n.t("hotels")}
           </Text>
         </View>
         <FlatList
           data={hotels}
           horizontal
-          renderItem={({ item }) => (
-            <HotelCard hotel={item}  />
-          )}
+          renderItem={({ item }) => <HotelCard hotel={item} />}
           keyExtractor={(item: Hotel) => item.id.toString()}
           showsHorizontalScrollIndicator={false}
         />
