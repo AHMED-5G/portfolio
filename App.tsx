@@ -6,6 +6,9 @@ import { RootSiblingParent } from "react-native-root-siblings";
 import Navigation from "./src/navigation";
 import useCachedResources from "./src/hooks/useCachedResources";
 import LoadingIndicator from "./src/components/mini/LoadingIndicator";
+import { Provider } from "react-redux";
+import { persistor, store } from "./src/redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -13,12 +16,17 @@ export default function App() {
   if (!isLoadingComplete) {
     return <LoadingIndicator />;
   }
+  
   return (
-    <RootSiblingParent>
-      <SafeAreaProvider>
-        <StatusBar />
-        <Navigation colorScheme={colorScheme} />
-      </SafeAreaProvider>
-    </RootSiblingParent>
+    <Provider store={store}>
+      <RootSiblingParent>
+        <SafeAreaProvider>
+          <PersistGate persistor={persistor}>
+            <StatusBar />
+            <Navigation colorScheme={colorScheme} />
+          </PersistGate>
+        </SafeAreaProvider>
+      </RootSiblingParent>
+    </Provider>
   );
 }

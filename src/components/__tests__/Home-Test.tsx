@@ -9,10 +9,11 @@ it("renders correctly", async () => {
 });
 
 //https://stackoverflow.com/questions/52569447/how-to-mock-react-navigations-navigation-prop-for-unit-tests-with-typescript-in
-test("renders correctly", async () => {
-  // const navigation = { navigate: () => {} };
-  // spyOn(navigation, "navigate");
-  // const navigation= useNavigation();
-  // const tree = renderer.create(<Home navigation={navigation} />).toJSON();
-  // expect(tree).toMatchSnapshot();
-});
+// test("renders correctly", async () => {
+//   // const navigation = { navigate: () => {} };
+//   // spyOn(navigation, "navigate");
+//   // const navigation= useNavigation();
+//   const tree = renderer.create(<Home  />).toJSON();
+//   // expect(tree).toMatchSnapshot();
+// });
+

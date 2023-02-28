@@ -22,11 +22,17 @@ import MyTabBar from "./MyTabBar";
 import { FeedScreen } from "../screens/FeedScreen";
 import HomeStackNavigator from "./HomeStackNavigatior/HomeStackNavigator";
 import { SettingsScreen } from "../screens/SettingsScreen";
+import { useAppSelector } from "../redux/Hooks/hooks";
+import { loadLocale } from "../translation/i18n";
 export default function Navigation({
   colorScheme,
 }: {
   colorScheme: ColorSchemeName;
 }) {
+  const { language } = useAppSelector((state) => state.dataSlice);
+
+  loadLocale(language);
+
   return (
     <NavigationContainer>
       <RootNavigator />

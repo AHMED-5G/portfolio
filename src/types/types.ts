@@ -63,10 +63,10 @@ export interface Post {
   likes?: User[];
 }
 
-/**
- * Learn more about using TypeScript with React Navigation:
- * https://reactnavigation.org/docs/typescript/
- */
+export enum Languages {
+  Arabic = "ar",
+  English = "en",
+}
 
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import {

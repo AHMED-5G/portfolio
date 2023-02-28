@@ -1,17 +1,20 @@
 import { StyleSheet, View, Text, DevSettings } from "react-native";
 import React from "react";
-import { RootTabScreenProps } from "../types";
+import { Languages, RootTabScreenProps } from "../types";
 import MedButton from "../components/mini/MedButton";
 import { width } from "../constants/Layout";
 import { myColors } from "../constants/myColors";
-import { i18n, loadLocale } from "../translation/i18n";
+import { i18n } from "../translation/i18n";
+import { useAppDispatch } from "../redux/Hooks/hooks";
+import { SET_LANGUAGE } from "../redux/reducers/dataSlice";
 
 function SettingsScreen({ navigation }: RootTabScreenProps<"Settings">) {
   const restartApp = () => {
     DevSettings.reload();
   };
-  const handelChangeLanguage = (lang: "ar" | "en") => {
-    loadLocale(lang)
+  const dispatch = useAppDispatch();
+  const handelChangeLanguage = (lang: Languages) => {
+    dispatch(SET_LANGUAGE(lang));
     restartApp();
   };
   return (
@@ -50,7 +53,7 @@ function SettingsScreen({ navigation }: RootTabScreenProps<"Settings">) {
             borderRadius={12}
             textStyle={{ fontSize: 12 }}
             onPress={() => {
-              handelChangeLanguage("en");
+              handelChangeLanguage(Languages.English);
             }}
             color={myColors.secondary}
           />
@@ -64,7 +67,7 @@ function SettingsScreen({ navigation }: RootTabScreenProps<"Settings">) {
             borderRadius={12}
             textStyle={{ fontSize: 12 }}
             onPress={() => {
-              handelChangeLanguage("ar");
+              handelChangeLanguage(Languages.Arabic);
             }}
             color={myColors.secondary}
           />
