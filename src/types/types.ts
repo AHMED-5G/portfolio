@@ -48,8 +48,8 @@ type TimeStamp = string;
 export interface PostComment {
   body: string;
   timeStamp: TimeStamp;
-  by?: User
-  favoriteCounter?: number
+  by?: User;
+  favoriteCounter?: number;
 }
 
 export interface Post {
@@ -85,14 +85,16 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   NotFound: undefined;
   HotelDetails: Hotel;
+  Home: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
 
 export type RootTabParamList = {
-  Home: undefined;
+  HomeStackNavigator: undefined;
   Feed: undefined;
+  Settings: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
