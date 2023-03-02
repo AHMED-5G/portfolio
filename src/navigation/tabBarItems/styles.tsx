@@ -1,3 +1,4 @@
+import { myColors } from "../../constants/myColors";
 import {
   OpaqueColorValue,
   StyleProp,
@@ -15,7 +16,7 @@ export const tabContainerStyle: StyleProp<ViewStyle> = {
 
 export const tabColor = (isFocused: boolean) => {
   // return isFocused ? "#5184E5" : "white";
-  return isFocused ? "white" : "#9E978E";
+  return isFocused ? myColors.blueA : myColors.black;
 };
 
 export const tabTextStyle = (isFocused: boolean) => {

@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, DevSettings } from "react-native";
+import { StyleSheet, View, Text, DevSettings, Image } from "react-native";
 import React from "react";
 import { Languages, RootTabScreenProps } from "../types";
 import MedButton from "../components/mini/MedButton";
