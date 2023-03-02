@@ -24,7 +24,7 @@ const HotelCard = ({ hotel }: Props) => {
       onPress={() => {
         navigation.navigate("HotelDetails", hotel);
       }}
-      style={{ width: 270, height: 320, margin: 20 }}
+      style={{ width: 270, height: 320, marginRight: 20 }}
     >
       <ImageBackground
         source={{ uri: hotel.images[0] as string }}

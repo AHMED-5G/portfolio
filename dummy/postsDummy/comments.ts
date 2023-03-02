@@ -1,4 +1,4 @@
-import { PostComment } from "../src/types";
+import { PostComment } from "../../src/types";
 
 export const comments: PostComment[] = [
     {

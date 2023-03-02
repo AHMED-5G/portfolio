@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Post, RootTabScreenProps } from "../types";
-import { mergePosts } from "../../dummy/dummy";
+import { mergePosts } from "../../dummy/postsDummy/postsDummy";
 import { myColors } from "../constants/myColors";
 import { PostComponent } from "../components/postComponents/PostComponent";
 import { width } from "../constants/Layout";

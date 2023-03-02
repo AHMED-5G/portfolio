@@ -68,6 +68,14 @@ export enum Languages {
   English = "en",
 }
 
+export interface Horse {
+  id: ID;
+  name: string;
+  image: string;
+  history: string;
+  images?: string[];
+}
+
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import {
   CompositeScreenProps,
@@ -86,6 +94,8 @@ export type RootStackParamList = {
   NotFound: undefined;
   HotelDetails: Hotel;
   Home: undefined;
+  Horses: Horse[];
+  HorseDetails: Horse;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
