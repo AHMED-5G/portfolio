@@ -112,3 +112,12 @@ export function generateRandomBoolean() {
 export function removeWhiteSpaceAtStart(text: string) {
   return text.replace(/^\s+/g, "");
 }
+
+export const addMinutesToNowTimeStamp = (minutes: number) => {
+  let now = new Date();
+  let newTime = new Date();
+  newTime.setTime(now.getTime() + minutes * 60 * 1000);
+  return newTime.getTime();
+};
+
+

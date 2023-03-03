@@ -76,6 +76,17 @@ export interface Horse {
   images?: string[];
 }
 
+export type Bid = { user: User; timeStamp: number; amount: number };
+
+export interface HorseInAuction {
+
+  horse: Horse;
+  bids: Bid[];
+  currentBidPrice: () => number;
+  startingPrice: number;
+  timeRemindingInSeconds: number;
+}
+
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import {
   CompositeScreenProps,
@@ -96,6 +107,7 @@ export type RootStackParamList = {
   Home: undefined;
   Horses: Horse[];
   HorseDetails: Horse;
+  HorsesStack: Horse[];
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

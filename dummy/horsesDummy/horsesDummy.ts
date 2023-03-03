@@ -1,4 +1,11 @@
-import { Horse } from "../../src/types/types";
+import { Bid, Horse, HorseInAuction } from "../../src/types/types";
+import {
+  getRandomInt,
+  getRandomOneItemFromList,
+  randomIntNumber,
+} from "../../src/utils/helperFunctions";
+import { usersWithImages } from "../postsDummy/postsDummy";
+
 export const horses: Horse[] = [
   {
     id: "1",
@@ -49,3 +56,33 @@ export const horses: Horse[] = [
     ],
   },
 ];
+
+const generateObjectOfBid = () => {
+  return {
+    user: getRandomOneItemFromList(usersWithImages),
+    timeStamp: new Date().getTime(),
+    amount: getRandomInt(10),
+  };
+};
+
+const myBids: Bid[] = new Array(getRandomInt(3))
+  .fill(getRandomInt(3))
+  .map(() => generateObjectOfBid());
+
+const horseInAuction = {
+  horse: getRandomOneItemFromList(horses),
+  bids: myBids,
+  currentBidPrice: function () {
+    const maxBid = this.bids.reduce((max, bid) =>
+      max.amount > bid.amount ? max : bid
+    );
+    return maxBid.amount;
+  },
+
+  startingPrice: getRandomOneItemFromList([4000, 3000, 8000]),
+  timeRemindingInSeconds: randomIntNumber(60 * 5),
+};
+
+export const horsesInAuction: HorseInAuction[] = new Array(3)
+  .fill(3)
+  .map(() => horseInAuction);

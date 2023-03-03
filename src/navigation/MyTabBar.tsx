@@ -83,7 +83,6 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
     );
     return {
       height,
-      // flexGrow: flexGrow.value
     };
   });
 
@@ -101,14 +100,13 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
     <Animated.View
       style={[
         {
-          // height: 50,
           borderRadius: 10,
           backgroundColor: myColors.white,
           flexDirection: "row",
           display: !keyboardStatus ? "flex" : "none",
           justifyContent: "center",
           alignContent: "center",
-          // width: width ,
+          overflow: "hidden",
         },
         tabReanimatedStyle,
       ]}
