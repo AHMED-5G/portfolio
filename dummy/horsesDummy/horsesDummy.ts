@@ -5,6 +5,7 @@ import {
   randomIntNumber,
 } from "../../src/utils/helperFunctions";
 import { usersWithImages } from "../postsDummy/postsDummy";
+import { horsesImages } from "./images";
 
 export const horses: Horse[] = [
   {
@@ -44,14 +45,14 @@ export const horses: Horse[] = [
     history:
       "The Morgan horse is one of the earliest horse breeds developed in the United States.[1] Tracing back to the foundation sire Figure, later named Justin Morgan after his best-known owner, Morgans served many roles in 19th-century American history, being used as coach horses and for harness racing, as general riding animals, and as cavalry horses during the American Civil War on both sides of the conflict. Morgans have influenced other major American breeds, including the American Quarter Horse, Tennessee Walking Horse and the Standardbred. ",
     image:
-      "https://images.unsplash.com/photo-1666280607956-ccf536344e8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bW9yZ2FuJTIwaG9yc2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Morganhead.jpg/640px-Morganhead.jpg",
+    // "https://images.unsplash.com/photo-1666280607956-ccf536344e8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bW9yZ2FuJTIwaG9yc2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
     images: [
       "https://images.unsplash.com/photo-1622900595625-bbe6493a92b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bW9yZ2FuJTIwaG9yc2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
       "https://images.unsplash.com/photo-1641089143270-581d364314d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8bW9yZ2FuJTIwaG9yc2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
       "https://images.unsplash.com/uploads/14136148007774dc82563/ce92d553?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fG1vcmdhbiUyMGhvcnNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/MorganStarSnyp.jpg/640px-MorganStarSnyp.jpg",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/MorganHead1.jpg/640px-MorganHead1.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Morganhead.jpg/640px-Morganhead.jpg",
     ],
   },
 ];
@@ -76,7 +77,8 @@ const myBids: Bid[] = [
 
 const generateHorseInAuction = () => {
   const horsesInAuction = {
-    horse: getRandomOneItemFromList(horses),
+    horse: getRandomOneItemFromList(horsesImages),
+    // horse: getRandomOneItemFromList(horsesImages),
     bids: myBids,
     currentBidPrice: function () {
       const maxBid = this.bids.reduce((max, bid) =>

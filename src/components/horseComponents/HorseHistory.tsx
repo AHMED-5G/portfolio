@@ -16,40 +16,45 @@ const HorseHistory = ({ history, isModalActive }: Props) => {
   return (
     <>
       {isModalActive ? (
-        <ScrollView>
+        <>
           <View
-            style={{
-              padding: 5,
-              borderRadius: 5,
-              backgroundColor: settings.savedReadingTheme.backGroundColor,
-            }}
+            style={{ marginLeft: 5, marginBottom: 7, alignSelf: "flex-start" }}
           >
-            <View style={{ marginBottom: 7 }}>
+            <Text
+              style={{
+                fontSize: settings.savedReadingTheme.fontSize ?? 22,
+                fontWeight: "bold",
+                color: settings.savedReadingTheme.fontColor,
+                marginLeft: 5,
+              }}
+            >
+              History
+            </Text>
+          </View>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View
+              style={{
+                padding: 5,
+                borderRadius: 5,
+                backgroundColor: settings.savedReadingTheme.backGroundColor,
+              }}
+            >
               <Text
                 style={{
-                  fontSize: settings.savedReadingTheme.fontSize! + 4,
-                  fontWeight: "bold",
+                  fontSize: settings.savedReadingTheme.fontSize,
                   color: settings.savedReadingTheme.fontColor,
                 }}
               >
-                History
+                {history}
               </Text>
             </View>
-            <Text
-              style={{
-                fontSize: settings.savedReadingTheme.fontSize,
-                color: settings.savedReadingTheme.fontColor,
-              }}
-            >
-              {history}
-            </Text>
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </>
       ) : (
         <View style={styles.inActiveIconContainer}>
           <Entypo
             name="feather"
-            size={28}
+            size={26}
             color={myColors.black}
             style={{ margin: 10 }}
           />
@@ -70,5 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: myColors.white,
     borderRadius: 28,
     margin: 10,
+    borderWidth: 1,
+    borderColor: myColors.black,
   },
 });

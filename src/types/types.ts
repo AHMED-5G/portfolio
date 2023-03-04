@@ -79,7 +79,8 @@ export interface Horse {
 export type Bid = { user: User; timeStamp: number; amount: number };
 
 export interface HorseInAuction {
-  horse: Horse;
+  // horse: Horse;
+  horse: string;
   bids: Bid[];
   currentBidPrice: () => number;
   startingPrice: number;
@@ -91,8 +92,6 @@ export type ReadingThemesCombo = {
   backGroundColor: ColorValue;
   fontSize?: number;
 };
-
-
 
 export interface InitialStateInterface {
   error?: Error;

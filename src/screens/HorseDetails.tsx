@@ -244,7 +244,12 @@ const Horses = ({ navigation, route }: Props) => {
       <View style={{ marginTop: 20 }}>
         <Animated.View style={[styles.firstModal, firstModalReanimatedStyle]}>
           <TouchableOpacity
-            style={{ flex: 1 }}
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignContent: "center",
+              alignItems: "center",
+            }}
             onPress={() => {
               currentActiveModalNumber != 1 && activeModal(1);
             }}
@@ -258,7 +263,12 @@ const Horses = ({ navigation, route }: Props) => {
         </Animated.View>
         <Animated.View style={[styles.secondModal, secondModalReanimatedStyle]}>
           <TouchableOpacity
-            style={{ flex: 1 }}
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignContent: "center",
+              alignItems: "center",
+            }}
             onPress={() => {
               currentActiveModalNumber != 2 && activeModal(2);
             }}
@@ -298,7 +308,7 @@ export default Horses;
 
 const styles = StyleSheet.create({
   firstModal: {
-    backgroundColor: myColors.yy,
+    backgroundColor: myColors.white,
     position: "absolute",
     borderTopRightRadius: 20,
     borderBottomRightRadius: 20,

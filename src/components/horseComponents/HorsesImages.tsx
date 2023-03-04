@@ -13,7 +13,20 @@ const HorsesImages = ({ images, isModalActive }: Props) => {
     <>
       {isModalActive ? (
         <View>
+          <View style={{ marginBottom: 7 }}>
+            <Text
+              style={{
+                fontSize: 22,
+                fontWeight: "bold",
+                color: myColors.white,
+                marginLeft: 5,
+              }}
+            >
+              Photos
+            </Text>
+          </View>
           <FlatList
+            style={{ marginBottom: 60 }}
             data={images}
             numColumns={2}
             renderItem={({ item }) => {

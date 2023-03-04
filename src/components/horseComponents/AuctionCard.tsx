@@ -45,7 +45,7 @@ const AuctionCard = ({ auction }: Props) => {
     <View
       style={{
         borderRadius: 10,
-        backgroundColor: "#90cf90",
+        backgroundColor: "#8d1a45",
         marginBottom: 25,
         padding: 5,
         justifyContent: "center",
@@ -57,7 +57,8 @@ const AuctionCard = ({ auction }: Props) => {
         <Image
           resizeMode="cover"
           resizeMethod="scale"
-          source={{ uri: auction.horse.image }}
+          // source={{ uri: auction.horse.image }}
+          source={{ uri: auction.horse }}
           style={{ height: 120, borderRadius: 10, width: width / 2 }}
         />
       </View>
@@ -101,33 +102,45 @@ const AuctionCard = ({ auction }: Props) => {
       <View
         style={{
           flexDirection: "row",
-          marginTop: 10,
-          justifyContent: "space-around",
 
-          width: "100%",
+          width: "80%",
+          backgroundColor: myColors.grey5,
+          borderBottomRightRadius: 10,
+          borderBottomLeftRadius: 10,
         }}
       >
-        <View style={{ flexDirection: "row" }}>
-          <View style={{ justifyContent: "center" }}>
-            <MaterialIcons
-              name="circle"
-              color={timerDisplay ? myColors.orange : myColors.black}
-            />
+        <View
+          style={{
+            flexDirection: "row",
+            margin: 5,
+            justifyContent: "space-around",
+            alignContent: "center",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <View style={{ flexDirection: "row" }}>
+            <View style={{ justifyContent: "center" }}>
+              <MaterialIcons
+                name="circle"
+                color={timerDisplay ? myColors.orange : myColors.black}
+              />
+            </View>
+            <View>
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: "700",
+                  marginLeft: 6,
+                }}
+              >
+                {timerDisplay ? "Live Auction" : "Sold"}
+              </Text>
+            </View>
           </View>
           <View>
-            <Text
-              style={{
-                fontSize: 16,
-                fontWeight: "700",
-                marginLeft: 6,
-              }}
-            >
-              {timerDisplay ? "Live Auction" : "Sold"}
-            </Text>
+            <Text>{auction.bids.length} bids made</Text>
           </View>
-        </View>
-        <View>
-          <Text>{auction.bids.length} bids made</Text>
         </View>
       </View>
       <View style={{ marginTop: 10 }}>

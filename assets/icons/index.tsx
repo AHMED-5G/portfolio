@@ -17,12 +17,11 @@ export default function AuctionIcon({
 }) {
   return (
     <Auction
-      fontSize={20}
-      fontWeight="bold"
       style={style}
       width={width}
       height={height}
       color={color}
+      fill={"#8d1a45"}
     />
   );
 }

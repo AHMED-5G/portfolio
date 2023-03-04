@@ -14,6 +14,7 @@ const initialState: InitialStateInterface = {
     savedReadingTheme: {
       fontColor: "#000000",
       backGroundColor: "#FFFFFF",
+      fontSize: 18,
     },
   },
 };
