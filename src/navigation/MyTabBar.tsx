@@ -185,7 +185,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
                 testID={options.tabBarTestID}
                 onPress={onPress}
                 onLongPress={onLongPress}
-                style={{ flex: 1, alignItems: "center" }}
+                style={{ flex: 1, alignItems: "center" , width: 48 , height: 48 }}
                 key={label.toString()}
               >
                 {label == "Home" ? (

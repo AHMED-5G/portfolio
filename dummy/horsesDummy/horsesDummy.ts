@@ -11,7 +11,7 @@ export const horses: Horse[] = [
     id: "1",
     name: "Arabian Horse",
     history:
-      "The Arabian or Arab horse (Arabic: الحصان العربي ) is a breed of horse that originated on the Arabian Peninsula. With a distinctive head shape and high tail carriage, the Arabian is one of the most easily recognizable horse breeds in the world. It is also one of the oldest breeds, with archaeological evidence of horses in the Middle East that resemble modern Arabians dating back 4,500 years. Throughout history, Arabian horses have spread around the world by both war and trade, used to improve other breeds by adding speed, refinement, endurance, and strong bone. Today, Arabian bloodlines are found in almost every modern breed of riding horse. ",
+      "الخيل العربي الأصيل. هو من سلالات الخيول الخفيفة في العالم في منطقة الشرق الأوسط في شبه الجزيرة العربية، والخيول العربية تتميز برأسها المميز وذيلها المرتفع وتعدّ بذلك واحدة من الأنواع التي من السهل التعرف عليها عبر العالم، وهي واحدة من أقدم سلالات الخيول وأفضلها وقدرتها على الركض لمسافات طويلة وجمالها الملفت للنظر، فالأدلة الأثرية ترجع أصول الخيول العربية إلى أكثر من 4500 سنة، فعلى مر العصور، بدأت الخيول العربية من قلب الجزيرة العربية وانتشرت في باقي بلدان العالم، إما عن طريق التجارة أو الحروب، كما تستخدم للتناسل مع السلالات الأخرى لتحسين قدرات تلك السلالات على الصبر والدقة والسرعة، وتمتلك عظامًا قوية ودمًا عربيًا أصيلًا، لذلك تعدّ الخيول العربية الأكثر حضورًا حاليًا في سباقات ركوب الخيل في دول العالم. ",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Halterstandingshotarabianone.jpg/800px-Halterstandingshotarabianone.jpg",
     images: [
@@ -44,10 +44,9 @@ export const horses: Horse[] = [
     history:
       "The Morgan horse is one of the earliest horse breeds developed in the United States.[1] Tracing back to the foundation sire Figure, later named Justin Morgan after his best-known owner, Morgans served many roles in 19th-century American history, being used as coach horses and for harness racing, as general riding animals, and as cavalry horses during the American Civil War on both sides of the conflict. Morgans have influenced other major American breeds, including the American Quarter Horse, Tennessee Walking Horse and the Standardbred. ",
     image:
-      "https://images.unsplash.com/photo-1666280254670-23d2fbe494ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bW9yZ2FuJTIwaG9yc2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+      "https://images.unsplash.com/photo-1666280607956-ccf536344e8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bW9yZ2FuJTIwaG9yc2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
     images: [
       "https://images.unsplash.com/photo-1622900595625-bbe6493a92b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bW9yZ2FuJTIwaG9yc2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-      "https://images.unsplash.com/photo-1666280607956-ccf536344e8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bW9yZ2FuJTIwaG9yc2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
       "https://images.unsplash.com/photo-1641089143270-581d364314d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8bW9yZ2FuJTIwaG9yc2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
       "https://images.unsplash.com/uploads/14136148007774dc82563/ce92d553?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fG1vcmdhbiUyMGhvcnNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
       "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/MorganStarSnyp.jpg/640px-MorganStarSnyp.jpg",
@@ -65,24 +64,34 @@ const generateObjectOfBid = () => {
   };
 };
 
-const myBids: Bid[] = new Array(getRandomInt(3))
-  .fill(getRandomInt(3))
-  .map(() => generateObjectOfBid());
+// const myBids: Bid[] = new Array(getRandomInt(3))
+//   .fill(getRandomInt(3))
+//   .map(() => generateObjectOfBid());
 
-const horseInAuction = {
-  horse: getRandomOneItemFromList(horses),
-  bids: myBids,
-  currentBidPrice: function () {
-    const maxBid = this.bids.reduce((max, bid) =>
-      max.amount > bid.amount ? max : bid
-    );
-    return maxBid.amount;
-  },
+const myBids: Bid[] = [
+  generateObjectOfBid(),
+  generateObjectOfBid(),
+  generateObjectOfBid(),
+];
 
-  startingPrice: getRandomOneItemFromList([4000, 3000, 8000]),
-  timeRemindingInSeconds: randomIntNumber(60 * 5),
+const generateHorseInAuction = () => {
+  const horsesInAuction = {
+    horse: getRandomOneItemFromList(horses),
+    bids: myBids,
+    currentBidPrice: function () {
+      const maxBid = this.bids.reduce((max, bid) =>
+        max.amount > bid.amount ? max : bid
+      );
+      return maxBid.amount;
+    },
+
+    startingPrice: getRandomOneItemFromList([4000, 3000, 8000]),
+    timeRemindingInSeconds: randomIntNumber(60 * 5),
+  };
+  return horsesInAuction;
 };
 
-export const horsesInAuction: HorseInAuction[] = new Array(3)
-  .fill(3)
-  .map(() => horseInAuction);
+export const horsesInAuction: HorseInAuction[] = [
+  generateHorseInAuction(),
+  generateHorseInAuction(),
+];

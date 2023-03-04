@@ -35,7 +35,7 @@ const PostAuthor = ({ user }: Props) => {
   }
   function SkeltonItem() {
     return (
-      <SkeletonLoader boneColor="#EEE" highlightColor="#20b2aa" duration={1000}>
+      <SkeletonLoader boneColor="#EEE" highlightColor="#acc7d2" duration={1000}>
         <SkeletonLoader.Item
           style={{
             width: 50,
@@ -138,13 +138,14 @@ const PostAuthor = ({ user }: Props) => {
                   setFollowState(true);
                   await schedulePushNotification(user);
                 }}
+                color={'#2331b4'}
                 accessibilityHint={"Follow" + user.name}
                 width={100}
                 style={{ height: 48, borderRadius: 10 }}
                 textStyle={{
                   fontSize: 16,
                   fontWeight: "700",
-                  color: myColors.black,
+                  color: myColors.white,
                 }}
               />
             ) : (

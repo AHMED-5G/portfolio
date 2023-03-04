@@ -21,13 +21,15 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import HorsesImages from "../components/horseComponents/HorsesImages";
-import AuctionCard from "../components/horseComponents/AuctionCard";
+
 import HorseAuction from "../components/horseComponents/HorseAuction";
 import { horsesInAuction } from "../../dummy/horsesDummy/horsesDummy";
+import HorseHistory from "../components/horseComponents/HorseHistory";
+import BackArrow from "../components/mini/BackArrow";
 
 type Props = StackScreenProps<RootStackParamList, "HorseDetails">;
 
-const imageContainerHeight = height / 4;
+const imageContainerHeight = height / 4 + 20;
 
 const inActiveModalHeight = height * 0.1;
 const activeModalHeight = height * 0.57;
@@ -88,7 +90,7 @@ const Horses = ({ navigation, route }: Props) => {
         break;
       case 2:
         setCurrentActiveModalNumber(modalNumber);
-        secondModalActiveProgress.value = withSpring(1, undefined, () => {});
+        secondModalActiveProgress.value = withTiming(1, undefined, () => {});
         break;
       case 3:
         setCurrentActiveModalNumber(modalNumber);
@@ -216,12 +218,22 @@ const Horses = ({ navigation, route }: Props) => {
 
   return (
     <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
-      <View style={{ height: imageContainerHeight }}>
+      <BackArrow top={height * 0.01} />
+      <View
+        style={{
+          marginTop: 30,
+          height: imageContainerHeight,
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
         <SharedElement id={horse.id.toString()}>
           <Image
+            resizeMethod="scale"
             source={{ uri: horse.image }}
             style={{
-              width,
+              width: width * 0.9,
               height: imageContainerHeight,
               borderRadius: 10,
             }}
@@ -237,7 +249,12 @@ const Horses = ({ navigation, route }: Props) => {
               currentActiveModalNumber != 1 && activeModal(1);
             }}
             disabled={currentActiveModalNumber == 1}
-          ></TouchableOpacity>
+          >
+            <HorseAuction
+              auctions={horsesInAuction}
+              isModalActive={currentActiveModalNumber == 1}
+            />
+          </TouchableOpacity>
         </Animated.View>
         <Animated.View style={[styles.secondModal, secondModalReanimatedStyle]}>
           <TouchableOpacity
@@ -247,23 +264,29 @@ const Horses = ({ navigation, route }: Props) => {
             }}
             disabled={currentActiveModalNumber == 2}
           >
-            <HorseAuction auctions={horsesInAuction} />
+            <HorseHistory
+              history={horse.history}
+              isModalActive={currentActiveModalNumber == 2}
+            />
           </TouchableOpacity>
         </Animated.View>
         <Animated.View style={[styles.thirdModal, thirdModalReanimatedStyle]}>
           <TouchableOpacity
-            style={{ flex: 1 }}
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignContent: "center",
+              alignItems: "center",
+            }}
             onPress={() => {
               currentActiveModalNumber != 3 && activeModal(3);
             }}
             disabled={currentActiveModalNumber == 3}
           >
-            <View style={{ marginTop: 10 }}>
-              <HorsesImages
-                images={horse.images!}
-                isModalActive={currentActiveModalNumber == 3}
-              />
-            </View>
+            <HorsesImages
+              images={horse.images!}
+              isModalActive={currentActiveModalNumber == 3}
+            />
           </TouchableOpacity>
         </Animated.View>
       </View>

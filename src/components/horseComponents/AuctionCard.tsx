@@ -1,12 +1,10 @@
 import { StyleSheet, View, Text, FlatList, Image } from "react-native";
 import React, { useEffect, useState } from "react";
-import { Bid, HorseInAuction } from "../../types";
-
+import { HorseInAuction } from "../../types";
 import Feather from "@expo/vector-icons/build/Feather";
 import { myColors } from "../../constants/myColors";
-import { MaterialIcons, Octicons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import { width } from "../../constants/Layout";
-import TimeAgo from "react-native-timeago";
 import BiderCard from "./BiderCard";
 
 type Props = {
@@ -19,6 +17,7 @@ const AuctionCard = ({ auction }: Props) => {
   useEffect(() => {
     startTimer(auction.timeRemindingInSeconds);
   }, []);
+
   function startTimer(duration: any) {
     let timer = duration;
     let minutes: number;
@@ -32,11 +31,10 @@ const AuctionCard = ({ auction }: Props) => {
       minutes = minutes < 10 ? 0 + minutes : minutes;
       seconds = seconds < 10 ? 0 + seconds : seconds;
 
-      setTimerDisplay(minutes + ":" + seconds + "s");
+      setTimerDisplay(minutes + ":" + seconds + " s");
 
       if (--timer < 0) {
         timer = duration;
-        // setCodeRequested(false);
         setTimerDisplay("");
         clearInterval(interval);
       }
@@ -47,11 +45,22 @@ const AuctionCard = ({ auction }: Props) => {
     <View
       style={{
         borderRadius: 10,
-
-        backgroundColor: myColors.AzureX11,
-        marginBottom: 15,
+        backgroundColor: "#90cf90",
+        marginBottom: 25,
+        padding: 5,
+        justifyContent: "center",
+        alignContent: "center",
+        alignItems: "center",
       }}
     >
+      <View style={styles.horseDataContainer}>
+        <Image
+          resizeMode="cover"
+          resizeMethod="scale"
+          source={{ uri: auction.horse.image }}
+          style={{ height: 120, borderRadius: 10, width: width / 2 }}
+        />
+      </View>
       <View style={styles.bidDataContainer}>
         <View style={styles.leftSection}>
           <View>
@@ -76,12 +85,16 @@ const AuctionCard = ({ auction }: Props) => {
             </View>
           </View>
           <View style={{ marginTop: 10, flexDirection: "row" }}>
-            <View>
-              <Feather name="clock" size={24} color={myColors.orange} />
-            </View>
-            <View>
-              <Text>{timerDisplay} remaining</Text>
-            </View>
+            {timerDisplay && (
+              <>
+                <View>
+                  <Feather name="clock" size={20} color={myColors.orange} />
+                </View>
+                <View>
+                  <Text>{timerDisplay} remaining</Text>
+                </View>
+              </>
+            )}
           </View>
         </View>
       </View>
@@ -90,11 +103,16 @@ const AuctionCard = ({ auction }: Props) => {
           flexDirection: "row",
           marginTop: 10,
           justifyContent: "space-around",
+
+          width: "100%",
         }}
       >
         <View style={{ flexDirection: "row" }}>
           <View style={{ justifyContent: "center" }}>
-            <MaterialIcons name="circle" color={myColors.orange} />
+            <MaterialIcons
+              name="circle"
+              color={timerDisplay ? myColors.orange : myColors.black}
+            />
           </View>
           <View>
             <Text
@@ -102,10 +120,9 @@ const AuctionCard = ({ auction }: Props) => {
                 fontSize: 16,
                 fontWeight: "700",
                 marginLeft: 6,
-                // fontFamily: "BalsamiqSans_700Bold",
               }}
             >
-              Live Auction
+              {timerDisplay ? "Live Auction" : "Sold"}
             </Text>
           </View>
         </View>
@@ -130,6 +147,7 @@ const AuctionCard = ({ auction }: Props) => {
 export default AuctionCard;
 
 const styles = StyleSheet.create({
+  horseDataContainer: {},
   verticalLine: {
     height: "100%",
     width: 1,

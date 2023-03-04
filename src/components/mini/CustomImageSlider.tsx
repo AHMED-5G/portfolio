@@ -51,7 +51,7 @@ export const ImageSlider = ({
   children,
   closeIconColor = "#000",
   blurRadius = 50,
-  requestedIndex,
+  requestedIndex = 0,
   navigate = () => {},
 }: MyCustomProps) => {
   const scrollX = React.useRef(new Animated.Value(0)).current;
@@ -72,13 +72,13 @@ export const ImageSlider = ({
     }
   });
 
-  if (requestedIndex) {
-    useEffect(() => {
-      setCurrentIndex(requestedIndex);
-      // setSelectedIndex(requestedIndex);
-      changeSliderListIndexByRequest(requestedIndex);
-    }, [requestedIndex]);
-  }
+  // if (requestedIndex ) {
+  useEffect(() => {
+    setCurrentIndex(requestedIndex);
+    // setSelectedIndex(requestedIndex);
+    changeSliderListIndexByRequest(requestedIndex);
+  }, [requestedIndex]);
+  // }
 
   const viewConfigRef = React.useRef({ viewAreaCoveragePercentThreshold: 50 });
 

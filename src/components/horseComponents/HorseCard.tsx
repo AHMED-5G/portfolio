@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View  , Image} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
 import { Horse, RootStackParamList } from "../../types";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -6,7 +6,7 @@ import { SharedElement } from "react-navigation-shared-element";
 
 type Props = {
   horse: Horse;
-  navigation: StackNavigationProp<RootStackParamList, "Horses", undefined>
+  navigation: StackNavigationProp<RootStackParamList, "Horses", undefined>;
 };
 
 const HorseCard = ({ horse, navigation }: Props) => {
@@ -16,7 +16,7 @@ const HorseCard = ({ horse, navigation }: Props) => {
         width: 200,
         height: 230,
         margin: 20,
-        backgroundColor: "#638cdefa",
+        backgroundColor: "#054fb9",
         alignItems: "center",
         alignContent: "center",
         borderRadius: 10,
@@ -34,8 +34,7 @@ const HorseCard = ({ horse, navigation }: Props) => {
               height: 180,
               borderRadius: 10,
             }}
-            resizeMode={'cover'}
-
+            resizeMode={"cover"}
           />
         </SharedElement>
       </View>

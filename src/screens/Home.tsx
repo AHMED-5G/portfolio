@@ -20,6 +20,7 @@ import { horsesImages } from "../../dummy/horsesDummy/images";
 import { DataType } from "react-native-image-slider-banner/src/PropsTypes";
 import { width } from "../constants/Layout";
 import { horses } from "../../dummy/horsesDummy/horsesDummy";
+import { shuffleArray } from "../utils/helperFunctions";
 
 type Props = StackScreenProps<RootStackParamList, "Home">;
 
@@ -48,7 +49,7 @@ function Home({ navigation }: Props) {
       <View style={styles.contributesSectionContainer}>
         <View style={styles.contributesTextContainer}>
           <Text accessibilityRole="header" style={styles.sectionTitleText}>
-            Contributors
+            {i18n.t("contributors")}
           </Text>
         </View>
         <View style={{ height: 330 }}>
@@ -64,7 +65,7 @@ function Home({ navigation }: Props) {
       <View style={styles.horsesSectionContainer}>
         <View style={styles.horsesTextContainer}>
           <Text accessibilityRole="header" style={styles.sectionTitleText}>
-            Horses
+            {i18n.t("horses")}
           </Text>
         </View>
         <View
@@ -81,16 +82,15 @@ function Home({ navigation }: Props) {
               width: width - 20,
               marginRight: 10,
             }}
-            
             navigate={() => navigation.navigate("Horses", horses)}
-            // autoPlay
+            autoPlay
             timer={5000}
-            data={imagesForSlider}
+            data={shuffleArray(imagesForSlider)}
           />
         </View>
       </View>
       <View style={{ marginLeft: 10, marginTop: 20 }}>
-        <Text style={{ fontSize: 18, fontWeight: "800" }}>V0.2</Text>
+        <Text style={{ fontSize: 18, fontWeight: "800" }}>V0.3</Text>
       </View>
       <View style={{ marginBottom: 80 }}></View>
     </ScrollView>

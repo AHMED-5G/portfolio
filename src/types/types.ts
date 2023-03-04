@@ -79,12 +79,28 @@ export interface Horse {
 export type Bid = { user: User; timeStamp: number; amount: number };
 
 export interface HorseInAuction {
-
   horse: Horse;
   bids: Bid[];
   currentBidPrice: () => number;
   startingPrice: number;
   timeRemindingInSeconds: number;
+}
+
+export type ReadingThemesCombo = {
+  fontColor: ColorValue;
+  backGroundColor: ColorValue;
+  fontSize?: number;
+};
+
+
+
+export interface InitialStateInterface {
+  error?: Error;
+  loading?: boolean;
+  language: Languages;
+  settings: {
+    savedReadingTheme: ReadingThemesCombo;
+  };
 }
 
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
@@ -93,6 +109,7 @@ import {
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { ColorValue } from "react-native";
 
 declare global {
   namespace ReactNavigation {

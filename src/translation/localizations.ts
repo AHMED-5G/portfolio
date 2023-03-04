@@ -10,9 +10,13 @@ const en = {
   delete: "Delete",
   notifications: "Notifications",
   hotels: "Hotels",
+  horses: "Horses",
+  contributors: "Contributors",
 };
 
 const ar = {
+  horses: "الخيل",
+  contributors: "المساهمون",
   welcome: "مرحبا",
   language: "العربية",
 
