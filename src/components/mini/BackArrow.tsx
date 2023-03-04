@@ -7,7 +7,6 @@ import {
 } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import navigation from "../../navigation";
 import { useNavigation } from "@react-navigation/native";
 import { height } from "../../constants/Layout";
 
@@ -38,7 +37,7 @@ const BackArrow = ({ color, size, position, top }: Props) => {
         alignItems: "center",
       }}
     >
-      <Ionicons name="arrow-back" size={size ?? 42} color={color} />
+      <Ionicons name="arrow-back" size={size ?? 38} color={color} />
     </TouchableOpacity>
   );
 };

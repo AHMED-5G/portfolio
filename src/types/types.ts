@@ -68,12 +68,47 @@ export enum Languages {
   English = "en",
 }
 
+export interface Horse {
+  id: ID;
+  name: string;
+  image: string;
+  history: string;
+  images?: string[];
+}
+
+export type Bid = { user: User; timeStamp: number; amount: number };
+
+export interface HorseInAuction {
+  // horse: Horse;
+  horse: string;
+  bids: Bid[];
+  currentBidPrice: () => number;
+  startingPrice: number;
+  timeRemindingInSeconds: number;
+}
+
+export type ReadingThemesCombo = {
+  fontColor: ColorValue;
+  backGroundColor: ColorValue;
+  fontSize?: number;
+};
+
+export interface InitialStateInterface {
+  error?: Error;
+  loading?: boolean;
+  language: Languages;
+  settings: {
+    savedReadingTheme: ReadingThemesCombo;
+  };
+}
+
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import {
   CompositeScreenProps,
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { ColorValue } from "react-native";
 
 declare global {
   namespace ReactNavigation {
@@ -86,6 +121,9 @@ export type RootStackParamList = {
   NotFound: undefined;
   HotelDetails: Hotel;
   Home: undefined;
+  Horses: Horse[];
+  HorseDetails: Horse;
+  HorsesStack: Horse[];
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

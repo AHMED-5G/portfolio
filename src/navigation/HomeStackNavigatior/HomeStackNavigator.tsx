@@ -4,19 +4,37 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { Home } from "../../screens/Home";
 import HotelDetails from "../../screens/HotelDetails";
-const Stack = createNativeStackNavigator<RootStackParamList>();
+import Horses from "../../screens/Horses";
+import HorseDetails from "../../screens/HorseDetails";
+import { createSharedElementStackNavigator } from "react-navigation-shared-element";
+const Stack = createSharedElementStackNavigator<RootStackParamList>();
 
 const HomeStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Group screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen
-          name="HotelDetails"
-          component={HotelDetails}
-          options={{ headerShown: false }}
-        />
-      </Stack.Group>
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="HotelDetails"
+        component={HotelDetails}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Horses"
+        component={Horses}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="HorseDetails"
+        component={HorseDetails}
+        sharedElements={(route) => {
+          return [route.params.id];
+        }}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };

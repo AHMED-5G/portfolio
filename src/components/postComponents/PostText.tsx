@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Post } from "../../types";
 
 type Props = { text: Post["text"] };
@@ -25,6 +25,7 @@ const PostText = ({ text }: Props) => {
         >
           {text}
         </Text>
+
         {readMore && (
           <TouchableOpacity
             onPress={() => setReadMore(false)}

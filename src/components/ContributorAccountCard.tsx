@@ -3,10 +3,10 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+
 } from "react-native";
 import React from "react";
-import { AccountTypes, Contributor, ContributorAccount } from "../types";
+import { AccountTypes,  ContributorAccount } from "../types";
 import { AntDesign } from "@expo/vector-icons";
 import * as Linking from "expo-linking";
 import { getContributorAccountName } from "../utils/helperFunctions";
@@ -20,7 +20,7 @@ type Props = {
 const getIconByAccountType = ({
   account,
   color = "black",
-  size = 48,
+  size = 38,
 }: Props) => {
   switch (account.type) {
     case AccountTypes.Facebook:
@@ -99,7 +99,7 @@ const getIconByAccountType = ({
 const ContributorAccountCard = ({ account }: Props) => {
   return (
     <TouchableOpacity
-      style={{ margin: 5 }}
+      style={{  width: 48, height: 48 }}
       onPress={() => {
         Linking.openURL(account.url);
       }}

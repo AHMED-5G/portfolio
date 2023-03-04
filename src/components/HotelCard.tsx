@@ -24,7 +24,7 @@ const HotelCard = ({ hotel }: Props) => {
       onPress={() => {
         navigation.navigate("HotelDetails", hotel);
       }}
-      style={{ width: 270, height: 320, margin: 20 }}
+      style={{ width: 270, height: 320, marginRight: 20 }}
     >
       <ImageBackground
         source={{ uri: hotel.images[0] as string }}
@@ -42,20 +42,21 @@ const HotelCard = ({ hotel }: Props) => {
               marginLeft: 7,
               borderRadius: 5,
               backgroundColor: "#94C7D2",
-              width: 32,
-              height: 22,
+              width: 42,
+              height: 32,
               justifyContent: "center",
               alignItems: "center",
               flexDirection: "row",
             }}
           >
-            <Text style={{ fontSize: 12, color: "black", fontWeight: "900" }}>
+            <Text style={{ fontSize: 18, color: "black", fontWeight: "900" }}>
               {hotel.rate}
             </Text>
             <AntDesign
               accessibilityHint="stars"
               name={"star"}
               color="black"
+              size={15}
               style={{ marginLeft: 4 }}
             />
           </View>

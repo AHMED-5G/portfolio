@@ -22,7 +22,8 @@ const { width, height } = Dimensions.get("screen");
 const Os = Platform.OS;
 interface MyCustomProps extends PropsTypes {
   onItemChangedWithIndex?: (itemData: DataType, index: number) => void;
-  requestedIndex: number;
+  requestedIndex?: number;
+  navigate?: () => void;
 }
 
 export const ImageSlider = ({
@@ -50,7 +51,8 @@ export const ImageSlider = ({
   children,
   closeIconColor = "#000",
   blurRadius = 50,
-  requestedIndex,
+  requestedIndex = 0,
+  navigate = () => {},
 }: MyCustomProps) => {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const imageW = width * 0.7;
@@ -69,11 +71,14 @@ export const ImageSlider = ({
       setSelectedIndex(index);
     }
   });
+
+  // if (requestedIndex ) {
   useEffect(() => {
     setCurrentIndex(requestedIndex);
     // setSelectedIndex(requestedIndex);
     changeSliderListIndexByRequest(requestedIndex);
   }, [requestedIndex]);
+  // }
 
   const viewConfigRef = React.useRef({ viewAreaCoveragePercentThreshold: 50 });
 
@@ -268,11 +273,15 @@ export const ImageSlider = ({
                 <TouchableOpacity
                   activeOpacity={0.9}
                   onPress={() => {
-                    if (!preview) {
-                      onClick(item, index);
+                    if (navigate) {
+                      navigate();
                     } else {
-                      setSelectedIndex(index);
-                      setImageViewer(!imageViewer);
+                      if (!preview) {
+                        onClick(item, index);
+                      } else {
+                        setSelectedIndex(index);
+                        setImageViewer(!imageViewer);
+                      }
                     }
                   }}
                 >

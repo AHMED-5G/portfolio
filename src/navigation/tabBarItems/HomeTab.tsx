@@ -12,7 +12,7 @@ type Props = {
 const HomeTab = (props: Props) => {
   return (
     <View style={tabContainerStyle}>
-      <AntDesign name="home" size={34} color={tabColor(props.isFocused)} />
+      <AntDesign name="home" size={37} color={tabColor(props.isFocused)} />
       <TabText isFocused={props.isFocused} />
     </View>
   );

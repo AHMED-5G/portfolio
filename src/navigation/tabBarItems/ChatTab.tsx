@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { AntDesign, FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { tabContainerStyle, tabColor, tabTextStyle } from "./styles";
+import Animated, { StyleProps } from "react-native-reanimated";
 import TabText from "./TabText";
 
 type Props = {
@@ -9,12 +10,12 @@ type Props = {
   label: string;
 };
 
-const FeedTab = (props: Props) => {
+const ChatTab = ({ ...props }: Props) => {
   return (
-    <View style={[tabContainerStyle]}>
-      <MaterialCommunityIcons
-        name="newspaper-variant"
-        size={37}
+    <View style={[tabContainerStyle, { marginTop: 0 }]}>
+      <Ionicons
+        name="chatbox-outline"
+        size={34}
         color={tabColor(props.isFocused)}
       />
       <TabText isFocused={props.isFocused} />
@@ -22,6 +23,6 @@ const FeedTab = (props: Props) => {
   );
 };
 
-export { FeedTab };
+export { ChatTab };
 
 const styles = StyleSheet.create({});

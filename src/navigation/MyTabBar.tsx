@@ -7,7 +7,7 @@ import {
   ParamListBase,
   TabNavigationState,
 } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Dimensions,
   Keyboard,
@@ -17,16 +17,29 @@ import {
   View,
 } from "react-native";
 
-import { AntDesign, FontAwesome, Ionicons } from "@expo/vector-icons";
 import { FeedTab, HomeTab, SettingsTab } from "./tabBarItems";
 import { myColors } from "../constants/myColors";
-import { FeedScreen } from "../screens/FeedScreen";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  runOnJS,
+  interpolate,
+  Extrapolation,
+  useDerivedValue,
+  withTiming,
+} from "react-native-reanimated";
+import { AntDesign } from "@expo/vector-icons";
+import DrawerComponent from "./tabBarItems/DrawerComponent";
+
+import RightTabComponent from "./tabBarItems/RightTabComponent";
+import TabBarFooter from "./tabBarItems/TabBarFooter";
 
 interface TabBarProps {
   state: TabNavigationState<ParamListBase>;
   descriptors: BottomTabDescriptorMap;
   navigation: NavigationHelpers<ParamListBase, BottomTabNavigationEventMap>;
 }
+
 const width = Dimensions.get("screen").width;
 const height = Dimensions.get("screen").height;
 const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
@@ -37,72 +50,168 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
     Keyboard.addListener("keyboardDidShow", keyboardDidShow);
     Keyboard.addListener("keyboardDidHide", keyboardDidHide);
   }, []);
+  const barOpenHeight = 300;
+  let openTabProgress = useSharedValue(0);
+  const [tapOpenState, setTapOpenState] = useState(false);
+  let iconRotate = useDerivedValue(() => {
+    return interpolate(
+      openTabProgress.value,
+      [0, 1],
+      [0, 180],
+      Extrapolation.CLAMP
+    );
+  });
+
+  const openTab = useCallback(() => {
+    openTabProgress.value = withTiming(1, undefined, (isFinished) => {
+      runOnJS(setTapOpenState)(true);
+    });
+  }, []);
+  const closTab = useCallback(() => {
+    openTabProgress.value = withTiming(0, undefined, (isFinished) => {
+      runOnJS(setTapOpenState)(false);
+    });
+  }, []);
+  const tabReanimatedStyle = useAnimatedStyle(() => {
+    const height = interpolate(
+      openTabProgress.value,
+      [0, 1],
+      [50, barOpenHeight],
+      {
+        extrapolateRight: Extrapolation.CLAMP,
+      }
+    );
+    return {
+      height,
+    };
+  });
+
+  const upIconReanimatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          rotate: iconRotate.value + "deg",
+        },
+      ],
+    };
+  });
 
   return (
-    <View
-      style={{
-        height: 50,
-        borderRadius: 10,
-        backgroundColor: myColors.Baltic,
-        flexDirection: "row",
-        display: !keyboardStatus ? "flex" : "none",
-      }}
+    <Animated.View
+      style={[
+        {
+          borderRadius: 10,
+          backgroundColor: myColors.white,
+          flexDirection: "row",
+          display: !keyboardStatus ? "flex" : "none",
+          justifyContent: "center",
+          alignContent: "center",
+          overflow: "hidden",
+        },
+        tabReanimatedStyle,
+      ]}
     >
-      {state.routes.map((route, index) => {
-        const { options } = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
+      <TouchableOpacity
+        onPress={() => {
+          !tapOpenState ? openTab() : closTab();
+        }}
+        style={{
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
 
-        const isFocused = state.index === index;
+          width: "10%",
+        }}
+      >
+        <Animated.View
+          style={[
+            {
+              justifyContent: "center",
+              alignContent: "center",
+              alignItems: "center",
+            },
+            upIconReanimatedStyle,
+          ]}
+        >
+          <AntDesign name="up" size={34} color="black" />
+        </Animated.View>
+      </TouchableOpacity>
 
-        const onPress = () => {
-          const event = navigation.emit({
-            type: "tabPress",
-            target: route.key,
-            canPreventDefault: true,
-          });
+      <View
+        style={{
+          width: "90%",
+          marginBottom: 20,
+        }}
+      >
+        <View style={{ flexDirection: "row" }}>
+          {state.routes.map((route, index) => {
+            const { options } = descriptors[route.key];
+            const label =
+              options.tabBarLabel !== undefined
+                ? options.tabBarLabel
+                : options.title !== undefined
+                ? options.title
+                : route.name;
 
-          if (!isFocused && !event.defaultPrevented) {
-            // The `merge: true` option makes sure that the params inside the tab screen are preserved
-            // navigation.navigate({ name: route.name, merge: true });
-            navigation.navigate(route.name);
-          }
-        };
+            const isFocused = state.index === index;
 
-        const onLongPress = () => {
-          navigation.emit({
-            type: "tabLongPress",
-            target: route.key,
-          });
-        };
+            const onPress = () => {
+              const event = navigation.emit({
+                type: "tabPress",
+                target: route.key,
+                canPreventDefault: true,
+              });
 
-        return (
-          <TouchableOpacity
-            accessibilityRole="button"
-            accessibilityState={isFocused ? { selected: true } : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            accessibilityHint={label.toString()}
-            testID={options.tabBarTestID}
-            onPress={onPress}
-            onLongPress={onLongPress}
-            style={{ flex: 1, alignItems: "center" }}
-            key={label.toString()}
-          >
-            {label == "Home" ? (
-              <HomeTab key={label} {...{ label, isFocused }} />
-            ) : label == "Feed" ? (
-              <FeedTab key={label} {...{ label, isFocused }} />
-            ) : label == "Settings" ? (
-              <SettingsTab key={label} {...{ label, isFocused }} />
-            ) : null}
-          </TouchableOpacity>
-        );
-      })}
-    </View>
+              if (!isFocused && !event.defaultPrevented) {
+                // The `merge: true` option makes sure that the params inside the tab screen are preserved
+                // navigation.navigate({ name: route.name, merge: true });
+                navigation.navigate(route.name);
+              }
+            };
+
+            const onLongPress = () => {
+              navigation.emit({
+                type: "tabLongPress",
+                target: route.key,
+              });
+            };
+
+            return (
+              <TouchableOpacity
+                accessibilityRole="button"
+                accessibilityState={isFocused ? { selected: true } : {}}
+                accessibilityLabel={options.tabBarAccessibilityLabel}
+                accessibilityHint={label.toString()}
+                testID={options.tabBarTestID}
+                onPress={onPress}
+                onLongPress={onLongPress}
+                style={{ flex: 1, alignItems: "center" , width: 48 , height: 48 }}
+                key={label.toString()}
+              >
+                {label == "Home" ? (
+                  <HomeTab key={label} {...{ label, isFocused }} />
+                ) : label == "Feed" ? (
+                  <FeedTab key={label} {...{ label, isFocused }} />
+                ) : label == "Settings" ? (
+                  <SettingsTab key={label} {...{ label, isFocused }} />
+                ) : null}
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+        <View
+          style={{
+            paddingTop: 20,
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <DrawerComponent />
+          <RightTabComponent />
+        </View>
+        <TabBarFooter />
+      </View>
+    </Animated.View>
   );
 };
 
