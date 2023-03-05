@@ -24,7 +24,7 @@ const HorseHistory = ({ history, isModalActive }: Props) => {
               style={{
                 fontSize: settings.savedReadingTheme.fontSize ?? 22,
                 fontWeight: "bold",
-                color: settings.savedReadingTheme.fontColor,
+                color: myColors.black,
                 marginLeft: 5,
               }}
             >

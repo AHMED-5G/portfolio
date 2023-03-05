@@ -1,5 +1,5 @@
 # Review my react native portfolio application v0.2
-
+** only for android devices.
 - download Expo Go application https://expo.dev/client
 
 - scan QR
@@ -26,20 +26,20 @@ Improve UI and UX and test all app in all stages
 
 - Create details screen with some features like :Animations, Image slide ,Payment simulation, Chat.
 
-Released and have this Features :
+Released and have this features :
 
 - Home Screen with 2 sections
 - Hotel details screen contains :
   - Images Slider automated with mini images
   - booking button with loading indicator and 2 flash messages for both senarios .
 
-## V 0.2 "Pull To Refresh" -- released
+## V 0.2 "PULL TO REFRESH" -- released
 
-- repeat v 0.1
+- repeat v 0.1.
 
-- add accessibility
+- add accessibility.
 
-Released and have this Features :
+Released and have this features :
 
 - feeds tab added , text , image and videos posts.
 
@@ -53,11 +53,27 @@ Released and have this Features :
 
 - follow user and he will follow you back .
 
-## V 0.3
+## V 0.3 "SWITCH" -- released
 
 - repeat v 0.1
 
-- add multi language
+- add multi language.
+
+Released and have this features :
+
+- upgraded bottom tab add dynamic open and close, add more drawer features in.
+
+- settings Tab has added contains:
+
+  - multi language option.
+  - reading theme options so user can save his reading theme to use it in app.
+
+- Horses Section has added to Home screen contains:
+
+  - shared element feature.
+  - 3 switchable modals to improve browsing all Item content in one screen instead of use many.
+
+- add skeleton animations to posts while download , resize some icons improve UI / UX, fix bugs and improve accessability .
 
 # app in [Trello](https://trello.com/b/LCgVV444/portfolio)
 
