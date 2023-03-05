@@ -1,9 +1,8 @@
 import { StyleSheet, View, Text, FlatList, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import { HorseInAuction } from "../../types";
-import Feather from "@expo/vector-icons/build/Feather";
 import { myColors } from "../../constants/myColors";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons,Feather } from "@expo/vector-icons";
 import { width } from "../../constants/Layout";
 import BiderCard from "./BiderCard";
 

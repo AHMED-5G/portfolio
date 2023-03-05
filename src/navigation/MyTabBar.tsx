@@ -119,8 +119,8 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
           justifyContent: "center",
           alignContent: "center",
           alignItems: "center",
-
-          width: "10%",
+          width: "18%",
+          backgroundColor: myColors.grey1,
         }}
       >
         <Animated.View
@@ -185,7 +185,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
                 testID={options.tabBarTestID}
                 onPress={onPress}
                 onLongPress={onLongPress}
-                style={{ flex: 1, alignItems: "center" , width: 48 , height: 48 }}
+                style={{ flex: 1, alignItems: "center", width: 48, height: 48 }}
                 key={label.toString()}
               >
                 {label == "Home" ? (
