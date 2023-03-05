@@ -1,18 +1,20 @@
 //https://www.figma.com/file/B9OgBKLpDWj4JjwsdYYRFW/auction-app-(Community)?node-id=6%3A764&t=80vYuaDUFt5RAYhI-0
 import { StyleSheet, View, FlatList, Text } from "react-native";
 import React from "react";
-import { HorseInAuction } from "../../types";
+import { Horse, HorseInAuction } from "../../types";
 import AuctionCard from "./AuctionCard";
 import AuctionIcon from "../../../assets/icons";
 import { myColors } from "../../constants/myColors";
 import { horsesInAuction } from "../../../dummy/horsesDummy/horsesDummy";
+import { SharedElement } from "react-navigation-shared-element";
 
 type Props = {
   auctions: HorseInAuction[];
   isModalActive: boolean;
+
 };
 
-const HorseAuction = ({ auctions, isModalActive }: Props) => {
+const HorseAuction = ({ auctions, isModalActive,  }: Props) => {
   return (
     <>
       {isModalActive ? (
@@ -32,7 +34,6 @@ const HorseAuction = ({ auctions, isModalActive }: Props) => {
           <FlatList
             style={{ marginBottom: 60 }}
             data={auctions}
-
             renderItem={({ item }) => {
               return <AuctionCard auction={item} />;
             }}

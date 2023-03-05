@@ -95,7 +95,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
       ],
     };
   });
-
+  const upButtonPercentage = 0.15;
   return (
     <Animated.View
       style={[
@@ -119,7 +119,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
           justifyContent: "center",
           alignContent: "center",
           alignItems: "center",
-          width: "18%",
+          width: width * upButtonPercentage,
           backgroundColor: myColors.grey1,
         }}
       >
@@ -133,13 +133,13 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             upIconReanimatedStyle,
           ]}
         >
-          <AntDesign name="up" size={34} color="black" />
+          <AntDesign name="up" size={44} color={myColors.white} />
         </Animated.View>
       </TouchableOpacity>
 
       <View
         style={{
-          width: "90%",
+          width: width * (1 - upButtonPercentage),
           marginBottom: 20,
         }}
       >

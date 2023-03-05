@@ -138,10 +138,21 @@ const PostAuthor = ({ user }: Props) => {
                   setFollowState(true);
                   await schedulePushNotification(user);
                 }}
-                color={'#2331b4'}
+                color={"#2331b4"}
                 accessibilityHint={"Follow" + user.name}
                 width={100}
-                style={{ height: 48, borderRadius: 10 }}
+                style={{
+                  height: 48,
+                  borderRadius: 10,
+                  elevation: 1,
+                  shadowColor: "#000",
+                  shadowOffset: {
+                    width: 0,
+                    height: 1,
+                  },
+                  shadowOpacity: 0.18,
+                  shadowRadius: 1.0,
+                }}
                 textStyle={{
                   fontSize: 16,
                   fontWeight: "700",
