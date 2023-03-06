@@ -1,5 +1,7 @@
-# Review my react native portfolio application v0.2
-** only for android devices.
+# Review my react native portfolio application v0.3
+
+\*\* only for android devices.
+
 - download Expo Go application https://expo.dev/client
 
 - scan QR
@@ -47,7 +49,9 @@ Released and have this features :
 
 - scroll to top when tab in feed tab.
 
-- user experience improved by add: animations, sounds and alert messages ...
+- video stop when scroll away .
+
+- user experience improved by add micro interactions :  animations, sounds and alert messages ...
 
 - accessibility improved and tested by google accessibility scanner application and android talkback .
 
