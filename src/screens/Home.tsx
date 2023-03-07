@@ -8,19 +8,16 @@ import {
 } from "react-native";
 import React from "react";
 import { Contributor, Hotel, RootStackParamList } from "../types";
-
 import HotelCard from "../components/HotelCard";
 import ContributorCard from "../components/ContributorCard";
 import { contributors } from "../../dummy/Contributors";
 import { hotels } from "../../dummy/hotels";
 import { StackScreenProps } from "@react-navigation/stack";
 import { i18n } from "../translation/i18n";
-import { ImageSlider } from "../components/mini/CustomImageSlider";
 import { horsesImages } from "../../dummy/horsesDummy/images";
 import { DataType } from "react-native-image-slider-banner/src/PropsTypes";
-import { width } from "../constants/Layout";
-import { horses } from "../../dummy/horsesDummy/horsesDummy";
 import { shuffleArray } from "../utils/helperFunctions";
+
 
 type Props = StackScreenProps<RootStackParamList, "Home">;
 
@@ -28,6 +25,7 @@ function Home({ navigation }: Props) {
   let imagesForSlider: DataType[] = horsesImages.map((item) => {
     return { img: item as ImageURISource };
   });
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.hotelsSectionContainer}>
@@ -46,29 +44,13 @@ function Home({ navigation }: Props) {
           />
         </View>
       </View>
-      <View style={styles.contributesSectionContainer}>
-        <View style={styles.contributesTextContainer}>
-          <Text accessibilityRole="header" style={styles.sectionTitleText}>
-            {i18n.t("contributors")}
-          </Text>
-        </View>
-        <View style={{ height: 330 }}>
-          <FlatList
-            data={contributors}
-            horizontal
-            renderItem={({ item }) => <ContributorCard contributor={item} />}
-            keyExtractor={(item: Contributor) => item.id.toString()}
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
-      </View>
-      <View style={styles.horsesSectionContainer}>
+      {/*  <View style={styles.horsesSectionContainer}>
         <View style={styles.horsesTextContainer}>
           <Text accessibilityRole="header" style={styles.sectionTitleText}>
             {i18n.t("horses")}
           </Text>
         </View>
-        <View
+         <View
           style={{
             width: width - 20,
             marginLeft: 10,
@@ -87,15 +69,32 @@ function Home({ navigation }: Props) {
             timer={5000}
             data={shuffleArray(imagesForSlider)}
           />
+        </View> 
+      </View>*/}
+      <View style={styles.contributesSectionContainer}>
+        <View style={styles.contributesTextContainer}>
+          <Text accessibilityRole="header" style={styles.sectionTitleText}>
+            {i18n.t("contributors")}
+          </Text>
+        </View>
+        <View style={{ height: 330 }}>
+          <FlatList
+            data={shuffleArray(contributors)}
+            horizontal
+            renderItem={({ item }) => <ContributorCard contributor={item} />}
+            keyExtractor={(item: Contributor) => item.id.toString()}
+            showsHorizontalScrollIndicator={false}
+          />
         </View>
       </View>
       <View style={{ marginLeft: 10, marginTop: 20 }}>
-        <Text style={{ fontSize: 18, fontWeight: "800" }}>V0.3</Text>
+        <Text style={{ fontSize: 18, fontWeight: "800" }}>V0.4</Text>
       </View>
       <View style={{ marginBottom: 80 }}></View>
     </ScrollView>
   );
 }
+
 export { Home };
 
 const styles = StyleSheet.create({
@@ -127,7 +126,7 @@ const styles = StyleSheet.create({
   },
   hotelsTextContainer: {
     marginTop: 10,
-    marginLeft: 20,
+    marginLeft: 10,
     alignSelf: "flex-start",
   },
   contributesSectionContainer: {
@@ -137,7 +136,7 @@ const styles = StyleSheet.create({
   },
   contributesTextContainer: {
     marginTop: 10,
-    marginLeft: 20,
+    marginLeft: 10,
     alignSelf: "flex-start",
   },
   horsesSectionContainer: {
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
   },
   horsesTextContainer: {
     marginTop: 10,
-    marginLeft: 20,
+    marginLeft: 10,
     alignSelf: "flex-start",
   },
 });

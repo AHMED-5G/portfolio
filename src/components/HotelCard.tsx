@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { Hotel } from "../types";
-import { myColors } from "../constants/myColors";
+import { myColors, theme } from "../constants/myColors";
 import {
   useNavigation,
   useNavigationContainerRef,
@@ -28,46 +28,19 @@ const HotelCard = ({ hotel }: Props) => {
     >
       <ImageBackground
         source={{ uri: hotel.images[0] as string }}
-        style={{ height: 300, justifyContent: "space-between" }}
+        style={{ height: 300, justifyContent: 'flex-end' }}
         imageStyle={{ borderRadius: 12 }}
       >
-        <View
-          style={{
-            margin: 15,
-            alignItems: "flex-end",
-          }}
-        >
-          <View
-            style={{
-              marginLeft: 7,
-              borderRadius: 5,
-              backgroundColor: "#94C7D2",
-              width: 42,
-              height: 32,
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row",
-            }}
-          >
-            <Text style={{ fontSize: 18, color: "black", fontWeight: "900" }}>
-              {hotel.rate}
-            </Text>
-            <AntDesign
-              accessibilityHint="stars"
-              name={"star"}
-              color="black"
-              size={15}
-              style={{ marginLeft: 4 }}
-            />
-          </View>
-        </View>
+
         <View
           style={{
             alignContent: "flex-end",
             justifyContent: "flex-end",
 
-            opacity: 0.8,
-            backgroundColor: myColors.grey4,
+            borderBottomRightRadius: 15,
+            borderBottomStartRadius: 15,
+
+            backgroundColor: theme.secondary,
           }}
         >
           <View
@@ -89,14 +62,14 @@ export default HotelCard;
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 27,
+    fontSize: 22,
     fontWeight: "700",
     lineHeight: 36,
-    color: "black",
+    color: theme.secondaryText,
   },
   secondlyTitle: {
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: "bold",
-    color: "black",
+    color: theme.secondaryText,
   },
 });

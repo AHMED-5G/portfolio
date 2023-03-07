@@ -30,7 +30,7 @@ export const contributors: Contributor[] = [
     id: "1",
     name: "Khalid",
     email: "khaled@zahoo.com",
-    title: "Creative Logo & Graphics Designer",
+    title: "Graphics Designer",
     accounts: [
       {
         name: "facebook",

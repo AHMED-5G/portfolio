@@ -11,7 +11,7 @@ import {
 import React, { useState } from "react";
 import { RootStackParamList } from "../types";
 import { height, width } from "../constants/Layout";
-import { myColors } from "../constants/myColors";
+import { myColors, theme } from "../constants/myColors";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -161,7 +161,7 @@ function HotelDetails({ navigation, route }: Props) {
                 style={{
                   marginLeft: 7,
                   borderRadius: 5,
-                  backgroundColor: "#94C7D2",
+                  backgroundColor: theme.secondary,
                   width: 28,
                   height: 22,
                   justifyContent: "center",
@@ -169,7 +169,11 @@ function HotelDetails({ navigation, route }: Props) {
                 }}
               >
                 <Text
-                  style={{ fontSize: 12, color: "black", fontWeight: "300" }}
+                  style={{
+                    fontSize: 12,
+                    color: theme.secondaryText,
+                    fontWeight: "300",
+                  }}
                   accessibilityHint={hotel.rate + "stars"}
                 >
                   {hotel.rate}
@@ -183,15 +187,15 @@ function HotelDetails({ navigation, route }: Props) {
           <View style={{ marginBottom: 40 }}>
             <MedButton
               loading={loading}
-              textStyle={{ color: "black" }}
-              style={{ width: 149, height: 43, marginTop: 10 }}
-              borderRadius={11}
+              textStyle={{ color: theme.actionColorText, fontSize: 20 }}
+              style={{ width: 140, height: 50, marginTop: 10 }}
+              borderRadius={5}
               onPress={() => {
                 setLoading(true);
                 sendFakeRequest();
               }}
-              title="Book now"
-              color={"#94C7D2"}
+              title="Book Now"
+              color={theme.actionColor}
             />
           </View>
         </View>
@@ -229,7 +233,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   myStarStyle: {
-    color: "#94C7D2",
+    color: theme.actionColor,
     backgroundColor: "transparent",
     textShadowColor: "black",
     textShadowOffset: { width: 1, height: 1 },

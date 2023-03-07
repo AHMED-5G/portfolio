@@ -1,8 +1,7 @@
-import { myColors } from "../../constants/myColors";
+import { myColors, theme } from "../../constants/myColors";
 import {
-  OpaqueColorValue,
   StyleProp,
-  TextStyle,
+
   ViewStyle,
 } from "react-native";
 
@@ -16,7 +15,7 @@ export const tabContainerStyle: StyleProp<ViewStyle> = {
 
 export const tabColor = (isFocused: boolean) => {
   // return isFocused ? "#5184E5" : "white";
-  return isFocused ? myColors.blueA : myColors.black;
+  return isFocused ? myColors.blueA : theme.primaryText;
 };
 
 export const tabTextStyle = (isFocused: boolean) => {

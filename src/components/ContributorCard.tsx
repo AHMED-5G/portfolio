@@ -3,6 +3,7 @@ import React from "react";
 import { Contributor, ContributorAccount } from "../types";
 import { LinearGradient } from "expo-linear-gradient";
 import ContributorAccountCard from "./ContributorAccountCard";
+import { shuffleArray } from "../utils/helperFunctions";
 
 type Props = {
   contributor: Contributor;
@@ -13,74 +14,58 @@ const ContributorCard = ({ contributor }: Props) => {
     <View
       style={{
         margin: 10,
-        width: 240,
-        height: 320,
-        borderRadius: 20,
+        // height: 280,
+        // width: 200,
+        width: 180,
+        padding: 15,
+        borderRadius: 10,
         marginBottom: 90,
+        backgroundColor: "white",
+        alignItems: "center",
+        alignContent: "center",
+        justifyContent: "center",
+        elevation: 1,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 1.0,
       }}
     >
-      <LinearGradient
-        colors={["#008fa1", "#2fe0fe", "#2b68dd"]}
-        //   style={styles.button}
+      <View style={styles.imageContainer}>
+        <Image
+          resizeMode="center"
+          style={{ width: 80, height: 80, borderRadius: 80 }}
+          source={{ uri: contributor.image }}
+        />
+      </View>
+      <View style={styles.nameContainer}>
+        <Text style={styles.nameText}>{contributor.name}</Text>
+      </View>
+      <View style={styles.titleContainer}>
+        <Text style={styles.titleText}>{contributor.title}</Text>
+      </View>
+      <View
         style={{
-          justifyContent: "center",
-          alignItems: "center",
-          borderRadius: 10,
-          height: 320,
+          height: 1,
+          backgroundColor: "black",
+          width: "100%",
+          opacity: 0.5,
         }}
-      >
-        <View
-          style={{
-            marginTop: 20,
-          }}
-        >
-          <View style={styles.imageContainer}>
-            <Image
-              resizeMode="center"
-              style={{ width: 99, height: 99, borderRadius: 100 }}
-              source={{ uri: contributor.image }}
-            />
-          </View>
-        </View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameText}>{contributor.name}</Text>
-        </View>
-        <View style={styles.titleContainer}>
-          <Text style={styles.titleText}>{contributor.title}</Text>
-        </View>
-        <View style={styles.socialContainer}>
-          <View
-            style={{
-              marginTop: 25,
-              alignItems: "center",
-              alignContent: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 16,
-                color: "black",
-                fontWeight: "bold",
-              }}
-              accessibilityHint={"Get in touch at  socials for " + contributor.name}
-            >
-              Get in touch at
-            </Text>
-          </View>
-          <View>
-            <FlatList
-              data={contributor.accounts}
-              numColumns={4}
-              renderItem={({ item }: { item: ContributorAccount }) => (
-                <ContributorAccountCard account={item} />
-              )}
-              keyExtractor={(item, index) => index.toString()}
-              showsVerticalScrollIndicator={false}
-            />
-          </View>
-        </View>
-      </LinearGradient>
+      />
+      <View style={styles.socialContainer}>
+        <FlatList
+          data={contributor.accounts.slice(0, 3)}
+          numColumns={4}
+          renderItem={({ item }: { item: ContributorAccount }) => (
+            <ContributorAccountCard account={item} />
+          )}
+          keyExtractor={(item, index) => index.toString()}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
     </View>
   );
 };
@@ -89,17 +74,12 @@ export default ContributorCard;
 
 const styles = StyleSheet.create({
   imageContainer: {
-    width: 110,
-    height: 110,
-    borderRadius: 100,
-
     alignItems: "center",
     alignContent: "center",
     justifyContent: "center",
-    backgroundColor: "white",
   },
   nameContainer: {
-    marginTop: 10,
+    marginTop: 5,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
@@ -119,7 +99,7 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   titleContainer: {
-    marginTop: 10,
+    marginTop: 0,
     height: 30,
   },
   titleText: {
@@ -129,10 +109,9 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   socialContainer: {
-    width: 190,
-    height: 100,
-    backgroundColor: "white",
-    borderColor: "white",
+    marginLeft: 5,
+    height: 40,
+    marginTop: 5,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

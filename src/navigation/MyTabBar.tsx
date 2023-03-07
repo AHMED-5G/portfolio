@@ -18,7 +18,7 @@ import {
 } from "react-native";
 
 import { FeedTab, HomeTab, SettingsTab } from "./tabBarItems";
-import { myColors } from "../constants/myColors";
+import { myColors, theme } from "../constants/myColors";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -101,7 +101,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
       style={[
         {
           borderRadius: 10,
-          backgroundColor: myColors.white,
+          backgroundColor: "white",
           flexDirection: "row",
           display: !keyboardStatus ? "flex" : "none",
           justifyContent: "center",
@@ -120,7 +120,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
           alignContent: "center",
           alignItems: "center",
           width: width * upButtonPercentage,
-          backgroundColor: myColors.grey1,
+          backgroundColor: theme.primary,
         }}
       >
         <Animated.View
@@ -133,7 +133,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             upIconReanimatedStyle,
           ]}
         >
-          <AntDesign name="up" size={44} color={myColors.white} />
+          <AntDesign name="up" size={44} color={theme.primaryText} />
         </Animated.View>
       </TouchableOpacity>
 

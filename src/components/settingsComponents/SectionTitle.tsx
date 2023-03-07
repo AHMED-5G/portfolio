@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { width } from "../../constants/Layout";
 import { myColors } from "../../constants/myColors";
+import { i18n } from "../../translation/i18n";
 
 type Props = { title: string };
 

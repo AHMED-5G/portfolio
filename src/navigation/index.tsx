@@ -17,7 +17,7 @@ import {
   RootTabParamList,
   RootTabScreenProps,
 } from "../types";
-import HotelDetails from "../screens/HotelDetails";
+
 import MyTabBar from "./MyTabBar";
 import { FeedScreen } from "../screens/FeedScreen";
 import HomeStackNavigator from "./HomeStackNavigatior/HomeStackNavigator";
@@ -33,8 +33,9 @@ export default function Navigation({
 
   loadLocale(language);
 
+
   return (
-    <NavigationContainer>
+    <NavigationContainer >
       <RootNavigator />
     </NavigationContainer>
   );

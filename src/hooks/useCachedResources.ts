@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { loadLocale } from "../translation/i18n";
 
 import { useAppSelector } from "../redux/Hooks/hooks";
+// import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -13,6 +14,9 @@ export default function useCachedResources() {
       try {
         SplashScreen.preventAutoHideAsync();
         // loadLocale(language);
+        // AsyncStorage.getAllKeys().then((res)=>{
+        //   console.log(res)
+        // })
       } catch (e) {
         console.warn(e);
       } finally {

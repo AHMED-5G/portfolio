@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image, ImageURISource } from "react-native";
 import React, { useState } from "react";
 import { User } from "../../types";
 import MedButton from "../mini/MedButton";
-import { myColors } from "../../constants/myColors";
+import { myColors, theme } from "../../constants/myColors";
 import DuringSevenDaysAgo from "./DuringSevenDaysAgo";
 import * as Notifications from "expo-notifications";
 import LoadingIndicator from "../mini/LoadingIndicator";
@@ -58,7 +58,7 @@ const PostAuthor = ({ user }: Props) => {
         style={{
           flexDirection: "row",
           alignItems: "center",
-          backgroundColor: "#ffefd5",
+          backgroundColor: theme.primary,
           width: "100%",
           borderRadius: 10,
           borderBottomLeftRadius: 0,
@@ -119,7 +119,11 @@ const PostAuthor = ({ user }: Props) => {
             </View>
             <Text
               accessibilityRole="header"
-              style={{ fontSize: 22, fontWeight: "700" }}
+              style={{
+                fontSize: 22,
+                fontWeight: "700",
+                color: theme.primaryText,
+              }}
             >
               {user.name}
             </Text>
@@ -138,7 +142,7 @@ const PostAuthor = ({ user }: Props) => {
                   setFollowState(true);
                   await schedulePushNotification(user);
                 }}
-                color={"#2331b4"}
+                color={theme.actionColor}
                 accessibilityHint={"Follow" + user.name}
                 width={100}
                 style={{
@@ -169,13 +173,13 @@ const PostAuthor = ({ user }: Props) => {
                 width={100}
                 style={{
                   height: 48,
-                  borderRadius: 10,
-                  backgroundColor: myColors.white,
+                  // borderRadius: 10,
+                  backgroundColor: theme.primary,
                 }}
                 textStyle={{
                   fontSize: 16,
                   fontWeight: "700",
-                  color: myColors.black,
+                  color: theme.actionColor,
                 }}
               />
             )}

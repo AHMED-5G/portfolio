@@ -30,4 +30,16 @@ export const myColors = {
   yy: "#fcefab",
   black: "black",
   blueA: "#0048BA",
+  tr: 'trans'
+};
+
+export const theme = {
+  primary: "#dddcec",
+  primaryText: "#000",
+
+  secondary: "#6a154e",
+  secondaryText: "#FFF",
+
+  actionColor: "#2331b4",
+  actionColorText: "#FFF",
 };

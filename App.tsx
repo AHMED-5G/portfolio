@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
+
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import useColorScheme from "./src/hooks/useColorScheme";
 import { RootSiblingParent } from "react-native-root-siblings";
@@ -13,10 +14,11 @@ import { PersistGate } from "redux-persist/integration/react";
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
+
   if (!isLoadingComplete) {
     return <LoadingIndicator />;
   }
-  
+
   return (
     <Provider store={store}>
       <RootSiblingParent>

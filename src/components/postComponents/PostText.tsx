@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { Post } from "../../types";
+import { theme } from "../../constants/myColors";
 
 type Props = { text: Post["text"] };
 
@@ -64,5 +65,6 @@ const styles = StyleSheet.create({
   readMoreLessText: {
     fontSize: 16,
     fontWeight: "800",
+    color: theme.actionColor,
   },
 });
