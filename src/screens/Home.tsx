@@ -5,6 +5,8 @@ import {
   Text,
   ScrollView,
   ImageURISource,
+  Image,
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
 import { Contributor, Hotel, RootStackParamList } from "../types";
@@ -17,7 +19,8 @@ import { i18n } from "../translation/i18n";
 import { horsesImages } from "../../dummy/horsesDummy/images";
 import { DataType } from "react-native-image-slider-banner/src/PropsTypes";
 import { shuffleArray } from "../utils/helperFunctions";
-
+import { yachtImages } from "../../dummy/yachtDummy/images";
+import { width } from "../constants/Layout";
 
 type Props = StackScreenProps<RootStackParamList, "Home">;
 
@@ -28,6 +31,24 @@ function Home({ navigation }: Props) {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.hotelsSectionContainer}>
+        <View style={styles.hotelsTextContainer}>
+          <Text accessibilityRole="header" style={styles.sectionTitleText}>
+            Yacht
+          </Text>
+        </View>
+        <TouchableOpacity
+          style={{ marginLeft: 10 }}
+          onPress={() => {
+            navigation.navigate("YachtStackNavigation");
+          }}
+        >
+          <Image
+            source={{ uri: yachtImages[1] }}
+            style={{ height: 200, width: width * 0.8, borderRadius: 10 }}
+          />
+        </TouchableOpacity>
+      </View>
       <View style={styles.hotelsSectionContainer}>
         <View style={styles.hotelsTextContainer}>
           <Text accessibilityRole="header" style={styles.sectionTitleText}>

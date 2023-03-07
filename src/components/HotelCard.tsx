@@ -37,8 +37,8 @@ const HotelCard = ({ hotel }: Props) => {
             alignContent: "flex-end",
             justifyContent: "flex-end",
 
-            borderBottomRightRadius: 15,
-            borderBottomStartRadius: 15,
+            borderBottomRightRadius: 12,
+            borderBottomStartRadius: 12,
 
             backgroundColor: theme.secondary,
           }}
@@ -46,7 +46,7 @@ const HotelCard = ({ hotel }: Props) => {
           <View
             style={{
               marginLeft: 20,
-              marginBottom: 15,
+              marginBottom: 5,
             }}
           >
             <Text style={styles.title}>{hotel.name}</Text>

@@ -102,6 +102,14 @@ export interface InitialStateInterface {
   };
 }
 
+interface Yacht {
+  Length: number;
+  Builder: string;
+  Built: number;
+  Guests: string;
+  Price: number;
+}
+
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import {
   CompositeScreenProps,
@@ -124,6 +132,8 @@ export type RootStackParamList = {
   Horses: Horse[];
   HorseDetails: Horse;
   HorsesStack: Horse[];
+  YachtStackNavigation: undefined;
+  Yachts: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

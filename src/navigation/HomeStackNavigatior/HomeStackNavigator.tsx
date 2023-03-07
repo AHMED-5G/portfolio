@@ -7,6 +7,7 @@ import HotelDetails from "../../screens/HotelDetails";
 import Horses from "../../screens/Horses";
 import HorseDetails from "../../screens/HorseDetails";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
+import YachtStackNavigation from "../YachtStackNavigation/YachtStackNavigation";
 const Stack = createSharedElementStackNavigator<RootStackParamList>();
 
 const HomeStackNavigator = () => {
@@ -33,6 +34,11 @@ const HomeStackNavigator = () => {
         sharedElements={(route) => {
           return [route.params.id];
         }}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="YachtStackNavigation"
+        component={YachtStackNavigation}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
