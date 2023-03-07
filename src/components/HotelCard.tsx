@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
@@ -24,36 +25,42 @@ const HotelCard = ({ hotel }: Props) => {
       onPress={() => {
         navigation.navigate("HotelDetails", hotel);
       }}
-      style={{ width: 270, height: 320, marginRight: 20 }}
+      style={{
+        width: 200,
+        // height: 320,
+        marginRight: 20,
+        backgroundColor: theme.white,
+        borderRadius: 15,
+        elevation: 1,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 1.0,
+      }}
     >
-      <ImageBackground
+      <Image
         source={{ uri: hotel.images[0] as string }}
-        style={{ height: 300, justifyContent: 'flex-end' }}
-        imageStyle={{ borderRadius: 12 }}
+        style={{
+          height: 200,
+          borderRadius: 15,
+          borderBottomRightRadius: 12,
+          borderBottomLeftRadius: 12,
+          // borderBottomStartRadius: 12,
+        }}
+
+      />
+
+      <View
+        style={{
+          marginLeft: 5,
+        }}
       >
-
-        <View
-          style={{
-            alignContent: "flex-end",
-            justifyContent: "flex-end",
-
-            borderBottomRightRadius: 12,
-            borderBottomStartRadius: 12,
-
-            backgroundColor: theme.secondary,
-          }}
-        >
-          <View
-            style={{
-              marginLeft: 20,
-              marginBottom: 5,
-            }}
-          >
-            <Text style={styles.title}>{hotel.name}</Text>
-            <Text style={styles.secondlyTitle}>{hotel.address}</Text>
-          </View>
-        </View>
-      </ImageBackground>
+        <Text style={styles.title}>{hotel.name}</Text>
+        <Text style={styles.secondlyTitle}>{hotel.address}</Text>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -65,11 +72,11 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "700",
     lineHeight: 36,
-    color: theme.secondaryText,
+    color: theme.black,
   },
   secondlyTitle: {
     fontSize: 14,
     fontWeight: "bold",
-    color: theme.secondaryText,
+    color: theme.black,
   },
 });

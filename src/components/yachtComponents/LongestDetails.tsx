@@ -8,25 +8,13 @@ const LongestDetails = (props: Props) => {
   return (
     <View
       style={{
-
         flexDirection: "row",
         justifyContent: "center",
         alignContent: "center",
         // alignItems: "center",
       }}
     >
-      <View
-        style={{
-          width: 120,
-          height: 120,
-          borderRadius: 10,
-          borderWidth: 0.5,
-          backgroundColor: theme.secondary,
-          justifyContent: "center",
-          alignContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <View style={styles.cardContainer}>
         <View
           style={{
             flexDirection: "row",
@@ -34,7 +22,7 @@ const LongestDetails = (props: Props) => {
         >
           <Text
             style={{
-              color: theme.secondaryText,
+              color: theme.cardText,
               fontSize: 22,
               fontWeight: "bold",
             }}
@@ -44,7 +32,7 @@ const LongestDetails = (props: Props) => {
           <Text
             style={{
               marginLeft: 4,
-              color: theme.secondaryText,
+              color: theme.cardText,
               fontSize: 18,
               fontWeight: "500",
               lineHeight: 32,
@@ -56,7 +44,7 @@ const LongestDetails = (props: Props) => {
         <View>
           <Text
             style={{
-              color: theme.secondaryText,
+              color: theme.cardText,
               fontSize: 18,
               fontWeight: "500",
             }}
@@ -65,19 +53,7 @@ const LongestDetails = (props: Props) => {
           </Text>
         </View>
       </View>
-      <View
-        style={{
-          width: 120,
-          height: 120,
-          marginLeft: 10,
-          borderRadius: 10,
-          borderWidth: 0.5,
-          backgroundColor: theme.secondary,
-          justifyContent: "center",
-          alignContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <View style={styles.cardContainer}>
         <View
           style={{
             flexDirection: "row",
@@ -85,7 +61,7 @@ const LongestDetails = (props: Props) => {
         >
           <Text
             style={{
-              color: theme.secondaryText,
+              color: theme.cardText,
               fontSize: 22,
               fontWeight: "bold",
             }}
@@ -96,7 +72,7 @@ const LongestDetails = (props: Props) => {
         <View>
           <Text
             style={{
-              color: theme.secondaryText,
+              color: theme.cardText,
               fontSize: 18,
               fontWeight: "500",
             }}
@@ -105,19 +81,7 @@ const LongestDetails = (props: Props) => {
           </Text>
         </View>
       </View>
-      <View
-        style={{
-          width: 120,
-          height: 120,
-          marginLeft: 10,
-          borderRadius: 10,
-          borderWidth: 0.5,
-          backgroundColor: theme.secondary,
-          justifyContent: "center",
-          alignContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <View style={styles.cardContainer}>
         <View
           style={{
             flexDirection: "row",
@@ -125,7 +89,7 @@ const LongestDetails = (props: Props) => {
         >
           <Text
             style={{
-              color: theme.secondaryText,
+              color: theme.cardText,
               fontSize: 22,
               fontWeight: "bold",
             }}
@@ -136,7 +100,7 @@ const LongestDetails = (props: Props) => {
         <View>
           <Text
             style={{
-              color: theme.secondaryText,
+              color: theme.cardText,
               fontSize: 18,
               fontWeight: "500",
             }}
@@ -151,4 +115,15 @@ const LongestDetails = (props: Props) => {
 
 export default LongestDetails;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  cardContainer: {
+    width: 120,
+    height: 100,
+    margin: 5,
+    borderRadius: 10,
+    backgroundColor: theme.cardBackground,
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+  },
+});

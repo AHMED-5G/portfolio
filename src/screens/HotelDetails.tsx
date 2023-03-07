@@ -7,6 +7,7 @@ import {
   FlatList,
   ImageURISource,
   ScrollView,
+  Platform,
 } from "react-native";
 import React, { useState } from "react";
 import { RootStackParamList } from "../types";
@@ -49,7 +50,7 @@ function HotelDetails({ navigation, route }: Props) {
   };
   return (
     <>
-      <BackArrow color={"#94C7D2"} />
+      {Platform.OS == "ios" && <BackArrow position="absolute" />}
       <ScrollView style={{ height }}>
         <View
           style={{
@@ -157,28 +158,6 @@ function HotelDetails({ navigation, route }: Props) {
                   />
                 }
               />
-              <View
-                style={{
-                  marginLeft: 7,
-                  borderRadius: 5,
-                  backgroundColor: theme.secondary,
-                  width: 28,
-                  height: 22,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: 12,
-                    color: theme.secondaryText,
-                    fontWeight: "300",
-                  }}
-                  accessibilityHint={hotel.rate + "stars"}
-                >
-                  {hotel.rate}
-                </Text>
-              </View>
             </View>
           </View>
         </View>
@@ -211,15 +190,15 @@ const styles = StyleSheet.create({
     width: 94,
     height: 94,
     borderRadius: 10,
-    borderWidth: 7,
+    borderWidth: 4,
     borderColor: theme.actionColor,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
   },
   miniImageStyle: {
-    width: 86,
-    height: 86,
+    width: 90,
+    height: 90,
     borderRadius: 10,
   },
   title: {

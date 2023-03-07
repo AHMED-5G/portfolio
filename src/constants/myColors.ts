@@ -30,7 +30,7 @@ export const myColors = {
   yy: "#fcefab",
   black: "black",
   blueA: "#0048BA",
-  tr: 'trans'
+  tr: "trans",
 };
 
 export const theme = {
@@ -42,4 +42,12 @@ export const theme = {
 
   actionColor: "#2331b4",
   actionColorText: "#FFF",
+
+  white: "white",
+  black: "black",
+
+  cardBackground: "white",
+  cardText: "#000",
+
+  borderColor: myColors.grey5,
 };

@@ -49,6 +49,22 @@ function Home({ navigation }: Props) {
           />
         </TouchableOpacity>
       </View>
+      <View style={styles.contributesSectionContainer}>
+        <View style={styles.contributesTextContainer}>
+          <Text accessibilityRole="header" style={styles.sectionTitleText}>
+            {i18n.t("contributors")}
+          </Text>
+        </View>
+        <View style={{ marginLeft: 10 }}>
+          <FlatList
+            data={shuffleArray(contributors)}
+            horizontal
+            renderItem={({ item }) => <ContributorCard contributor={item} />}
+            keyExtractor={(item: Contributor) => item.id.toString()}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+      </View>
       <View style={styles.hotelsSectionContainer}>
         <View style={styles.hotelsTextContainer}>
           <Text accessibilityRole="header" style={styles.sectionTitleText}>
@@ -57,7 +73,7 @@ function Home({ navigation }: Props) {
         </View>
         <View style={{ marginLeft: 10 }}>
           <FlatList
-            data={hotels}
+            data={shuffleArray(hotels)}
             horizontal
             renderItem={({ item }) => <HotelCard hotel={item} />}
             keyExtractor={(item: Hotel) => item.id.toString()}
@@ -92,22 +108,7 @@ function Home({ navigation }: Props) {
           />
         </View> 
       </View>*/}
-      <View style={styles.contributesSectionContainer}>
-        <View style={styles.contributesTextContainer}>
-          <Text accessibilityRole="header" style={styles.sectionTitleText}>
-            {i18n.t("contributors")}
-          </Text>
-        </View>
-        <View style={{ height: 330 }}>
-          <FlatList
-            data={shuffleArray(contributors)}
-            horizontal
-            renderItem={({ item }) => <ContributorCard contributor={item} />}
-            keyExtractor={(item: Contributor) => item.id.toString()}
-            showsHorizontalScrollIndicator={false}
-          />
-        </View>
-      </View>
+
       <View style={{ marginLeft: 10, marginTop: 20 }}>
         <Text style={{ fontSize: 18, fontWeight: "800" }}>V0.4</Text>
       </View>
@@ -143,7 +144,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   hotelsSectionContainer: {
-    marginTop: 100,
+    marginTop: 10,
   },
   hotelsTextContainer: {
     marginTop: 10,
@@ -153,12 +154,11 @@ const styles = StyleSheet.create({
   contributesSectionContainer: {
     justifyContent: "center",
     alignContent: "center",
-    alignSelf: "flex-start",
+    alignSelf: "auto",
   },
   contributesTextContainer: {
     marginTop: 10,
     marginLeft: 10,
-    alignSelf: "flex-start",
   },
   horsesSectionContainer: {
     justifyContent: "center",

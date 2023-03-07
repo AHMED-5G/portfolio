@@ -24,6 +24,7 @@ import HomeStackNavigator from "./HomeStackNavigatior/HomeStackNavigator";
 import { SettingsScreen } from "../screens/SettingsScreen";
 import { useAppSelector } from "../redux/Hooks/hooks";
 import { loadLocale } from "../translation/i18n";
+import YachtStackNavigation from "./YachtStackNavigation/YachtStackNavigation";
 export default function Navigation({
   colorScheme,
 }: {
@@ -33,9 +34,8 @@ export default function Navigation({
 
   loadLocale(language);
 
-
   return (
-    <NavigationContainer >
+    <NavigationContainer>
       <RootNavigator />
     </NavigationContainer>
   );
@@ -49,6 +49,11 @@ function RootNavigator() {
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="YachtStackNavigation"
+        component={YachtStackNavigation}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

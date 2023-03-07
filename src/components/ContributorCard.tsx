@@ -4,6 +4,7 @@ import { Contributor, ContributorAccount } from "../types";
 import { LinearGradient } from "expo-linear-gradient";
 import ContributorAccountCard from "./ContributorAccountCard";
 import { shuffleArray } from "../utils/helperFunctions";
+import { theme } from "../constants/myColors";
 
 type Props = {
   contributor: Contributor;
@@ -13,25 +14,14 @@ const ContributorCard = ({ contributor }: Props) => {
   return (
     <View
       style={{
-        margin: 10,
-        // height: 280,
-        // width: 200,
+        marginRight: 15,
+
         width: 180,
-        padding: 15,
         borderRadius: 10,
-        marginBottom: 90,
         backgroundColor: "white",
         alignItems: "center",
         alignContent: "center",
         justifyContent: "center",
-        elevation: 1,
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 1,
-        },
-        shadowOpacity: 0.18,
-        shadowRadius: 1.0,
       }}
     >
       <View style={styles.imageContainer}>
@@ -50,9 +40,8 @@ const ContributorCard = ({ contributor }: Props) => {
       <View
         style={{
           height: 1,
-          backgroundColor: "black",
+          backgroundColor: theme.borderColor,
           width: "100%",
-          opacity: 0.5,
         }}
       />
       <View style={styles.socialContainer}>
@@ -74,6 +63,7 @@ export default ContributorCard;
 
 const styles = StyleSheet.create({
   imageContainer: {
+    marginTop: 10,
     alignItems: "center",
     alignContent: "center",
     justifyContent: "center",
@@ -88,30 +78,20 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: "black",
     fontWeight: "800",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.53,
-    shadowRadius: 13.97,
-    elevation: 21,
     textTransform: "uppercase",
   },
   titleContainer: {
-    marginTop: 0,
-    height: 30,
+    marginBottom: 5,
   },
   titleText: {
-    fontSize: 12,
     color: "black",
     fontWeight: "700",
     textTransform: "uppercase",
+    fontSize: 12,
   },
   socialContainer: {
-    marginLeft: 5,
     height: 40,
-    marginTop: 5,
+    marginTop: 10,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

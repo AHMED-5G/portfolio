@@ -36,11 +36,7 @@ const HomeStackNavigator = () => {
         }}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="YachtStackNavigation"
-        component={YachtStackNavigation}
-        options={{ headerShown: false }}
-      />
+
     </Stack.Navigator>
   );
 };

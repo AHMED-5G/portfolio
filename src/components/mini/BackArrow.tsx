@@ -14,7 +14,7 @@ import { theme } from "../../constants/myColors";
 type Props = {
   color?: string | OpaqueColorValue | undefined;
   size?: number;
-  position?: "relative" | undefined;
+  position?: "absolute" | "relative" | undefined;
   top?: string | number;
 };
 
