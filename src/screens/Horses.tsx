@@ -11,6 +11,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 
 import HorseCard from "../components/horseComponents/HorseCard";
 import BackArrow from "../components/mini/BackArrow";
+import { height } from "../constants/Layout";
 
 type Props = StackScreenProps<RootStackParamList, "Horses">;
 
@@ -20,11 +21,11 @@ const Horses = ({ navigation, route }: Props) => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: "#f9e7d7",
+        // backgroundColor: "#f9e7d7",
         marginTop: StatusBar.currentHeight,
       }}
     >
-      <BackArrow />
+      <BackArrow top={0.01 * height} />
       <View
         style={{
           flex: 1,

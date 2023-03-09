@@ -7,11 +7,12 @@ import {
   FlatList,
   ImageURISource,
   ScrollView,
+  Platform,
 } from "react-native";
 import React, { useState } from "react";
 import { RootStackParamList } from "../types";
 import { height, width } from "../constants/Layout";
-import { myColors } from "../constants/myColors";
+import { myColors, theme } from "../constants/myColors";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -49,7 +50,7 @@ function HotelDetails({ navigation, route }: Props) {
   };
   return (
     <>
-      <BackArrow color={"#94C7D2"} />
+      {Platform.OS == "ios" && <BackArrow position="absolute" />}
       <ScrollView style={{ height }}>
         <View
           style={{
@@ -157,24 +158,6 @@ function HotelDetails({ navigation, route }: Props) {
                   />
                 }
               />
-              <View
-                style={{
-                  marginLeft: 7,
-                  borderRadius: 5,
-                  backgroundColor: "#94C7D2",
-                  width: 28,
-                  height: 22,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text
-                  style={{ fontSize: 12, color: "black", fontWeight: "300" }}
-                  accessibilityHint={hotel.rate + "stars"}
-                >
-                  {hotel.rate}
-                </Text>
-              </View>
             </View>
           </View>
         </View>
@@ -183,15 +166,15 @@ function HotelDetails({ navigation, route }: Props) {
           <View style={{ marginBottom: 40 }}>
             <MedButton
               loading={loading}
-              textStyle={{ color: "black" }}
-              style={{ width: 149, height: 43, marginTop: 10 }}
-              borderRadius={11}
+              textStyle={{ color: theme.actionColorText, fontSize: 20 }}
+              style={{ width: 140, height: 50, marginTop: 10 }}
+              borderRadius={5}
               onPress={() => {
                 setLoading(true);
                 sendFakeRequest();
               }}
-              title="Book now"
-              color={"#94C7D2"}
+              title="Book Now"
+              color={theme.actionColor}
             />
           </View>
         </View>
@@ -207,15 +190,15 @@ const styles = StyleSheet.create({
     width: 94,
     height: 94,
     borderRadius: 10,
-    borderWidth: 7,
-    borderColor: "#009ACE",
+    borderWidth: 4,
+    borderColor: theme.actionColor,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
   },
   miniImageStyle: {
-    width: 86,
-    height: 86,
+    width: 90,
+    height: 90,
     borderRadius: 10,
   },
   title: {
@@ -229,7 +212,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   myStarStyle: {
-    color: "#94C7D2",
+    color: theme.actionColor,
     backgroundColor: "transparent",
     textShadowColor: "black",
     textShadowOffset: { width: 1, height: 1 },

@@ -3,11 +3,10 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-
 } from "react-native";
 import React from "react";
-import { AccountTypes,  ContributorAccount } from "../types";
-import { AntDesign } from "@expo/vector-icons";
+import { AccountTypes, ContributorAccount } from "../types";
+import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import * as Linking from "expo-linking";
 import { getContributorAccountName } from "../utils/helperFunctions";
 
@@ -26,9 +25,9 @@ const getIconByAccountType = ({
     case AccountTypes.Facebook:
       return (
         <AntDesign
+          name="facebook-square"
           accessibilityRole="button"
           accessibilityLabel={"facebook" + account.name}
-          name="facebook-square"
           size={size}
           color="#4267B2"
         />
@@ -40,7 +39,7 @@ const getIconByAccountType = ({
         <AntDesign
           accessibilityRole="button"
           accessibilityLabel={"behance" + account.name}
-          name="behance"
+          name="behance-square"
           size={size}
           color="#053eff"
         />
@@ -52,7 +51,7 @@ const getIconByAccountType = ({
         <AntDesign
           accessibilityRole="button"
           accessibilityLabel={"dribbble" + account.name}
-          name="dribbble"
+          name="dribbble-square"
           size={size}
           color="#ea4c89"
         />
@@ -60,10 +59,10 @@ const getIconByAccountType = ({
       break;
     case AccountTypes.Github:
       return (
-        <AntDesign
+        <FontAwesome
           accessibilityRole="button"
           accessibilityLabel={"github" + account.name}
-          name="github"
+          name="github-square"
           size={size}
           color="#171515"
         />
@@ -82,10 +81,10 @@ const getIconByAccountType = ({
       break;
     case AccountTypes.Twitter:
       return (
-        <AntDesign
+        <FontAwesome
+          name="twitter-square"
           accessibilityRole="button"
           accessibilityLabel={"twitter" + account.name}
-          name="twitter"
           size={size}
           color="#1DA1F2"
         />
@@ -99,7 +98,7 @@ const getIconByAccountType = ({
 const ContributorAccountCard = ({ account }: Props) => {
   return (
     <TouchableOpacity
-      style={{  width: 48, height: 48 }}
+      style={{ width: 48, height: 48, }}
       onPress={() => {
         Linking.openURL(account.url);
       }}

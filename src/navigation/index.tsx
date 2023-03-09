@@ -17,13 +17,14 @@ import {
   RootTabParamList,
   RootTabScreenProps,
 } from "../types";
-import HotelDetails from "../screens/HotelDetails";
+
 import MyTabBar from "./MyTabBar";
 import { FeedScreen } from "../screens/FeedScreen";
 import HomeStackNavigator from "./HomeStackNavigatior/HomeStackNavigator";
 import { SettingsScreen } from "../screens/SettingsScreen";
 import { useAppSelector } from "../redux/Hooks/hooks";
 import { loadLocale } from "../translation/i18n";
+import YachtStackNavigation from "./YachtStackNavigation/YachtStackNavigation";
 export default function Navigation({
   colorScheme,
 }: {
@@ -48,6 +49,11 @@ function RootNavigator() {
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="YachtStackNavigation"
+        component={YachtStackNavigation}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

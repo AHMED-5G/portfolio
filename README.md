@@ -1,4 +1,4 @@
-# Review my react native portfolio application v0.3
+# Review my react native portfolio application v0.4
 
 \*\* only for android devices.
 
@@ -30,10 +30,14 @@ Improve UI and UX and test all app in all stages
 
 Released and have this features :
 
+<details>
+  <summary>Details</summary>
+
 - Home Screen with 2 sections
 - Hotel details screen contains :
   - Images Slider automated with mini images
   - booking button with loading indicator and 2 flash messages for both senarios .
+  </details>
 
 ## V 0.2 "PULL TO REFRESH" -- released
 
@@ -43,6 +47,9 @@ Released and have this features :
 
 Released and have this features :
 
+<details>
+  <summary>Details</summary>
+  
 - feeds tab added , text , image and videos posts.
 
 - pull to refresh feature.
@@ -51,11 +58,12 @@ Released and have this features :
 
 - video stop when scroll away .
 
-- user experience improved by add micro interactions :  animations, sounds and alert messages ...
+- user experience improved by add micro interactions : animations, sounds and alert messages ...
 
 - accessibility improved and tested by google accessibility scanner application and android talkback .
 
 - follow user and he will follow you back .
+  </details>
 
 ## V 0.3 "SWITCH" -- released
 
@@ -65,6 +73,8 @@ Released and have this features :
 
 Released and have this features :
 
+<details>
+  <summary>Details</summary>
 - upgraded bottom tab add dynamic open and close, add more drawer features in.
 
 - settings Tab has added contains:
@@ -78,6 +88,24 @@ Released and have this features :
   - 3 switchable modals to improve browsing all Item content in one screen instead of use many.
 
 - add skeleton animations to posts while download , resize some icons improve UI / UX, fix bugs and improve accessability .
+  </details>
+
+## V 0.4 "Yacht" -- released
+
+Released and have this features :
+
+<details>
+<summary>Details</summary>
+
+- add yacht section with custom image viewer.
+
+- add design theme primary, secondary, and action color ... .
+
+- apply all them in all app sections
+- hide horses section for now .
+
+- redesign home cards Hotels card and Contributors card.
+  </details>
 
 # app in [Trello](https://trello.com/b/LCgVV444/portfolio)
 

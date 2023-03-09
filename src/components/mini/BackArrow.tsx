@@ -9,11 +9,12 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { height } from "../../constants/Layout";
+import { theme } from "../../constants/myColors";
 
 type Props = {
   color?: string | OpaqueColorValue | undefined;
   size?: number;
-  position?: "relative" | undefined;
+  position?: "absolute" | "relative" | undefined;
   top?: string | number;
 };
 
@@ -37,7 +38,7 @@ const BackArrow = ({ color, size, position, top }: Props) => {
         alignItems: "center",
       }}
     >
-      <Ionicons name="arrow-back" size={size ?? 38} color={color} />
+      <Ionicons name="arrow-back" size={size ?? 38} color={theme.actionColor} />
     </TouchableOpacity>
   );
 };

@@ -217,7 +217,13 @@ const Horses = ({ navigation, route }: Props) => {
   });
 
   return (
-    <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
+    <View
+      style={{
+        flex: 1,
+        marginTop: StatusBar.currentHeight,
+        backgroundColor: "#FFF",
+      }}
+    >
       <BackArrow top={height * 0.01} />
       <View
         style={{

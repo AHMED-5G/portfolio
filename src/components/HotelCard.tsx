@@ -4,14 +4,13 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image,
 } from "react-native";
 import React from "react";
-import { AntDesign } from "@expo/vector-icons";
 import { Hotel } from "../types";
-import { myColors } from "../constants/myColors";
+import { theme } from "../constants/myColors";
 import {
   useNavigation,
-  useNavigationContainerRef,
 } from "@react-navigation/native";
 
 type Props = {
@@ -24,63 +23,40 @@ const HotelCard = ({ hotel }: Props) => {
       onPress={() => {
         navigation.navigate("HotelDetails", hotel);
       }}
-      style={{ width: 270, height: 320, marginRight: 20 }}
+      style={{
+        width: 200,
+        marginRight: 20,
+        backgroundColor: theme.white,
+        borderRadius: 15,
+        elevation: 1,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.18,
+        shadowRadius: 1.0,
+      }}
     >
-      <ImageBackground
+      <Image
         source={{ uri: hotel.images[0] as string }}
-        style={{ height: 300, justifyContent: "space-between" }}
-        imageStyle={{ borderRadius: 12 }}
-      >
-        <View
-          style={{
-            margin: 15,
-            alignItems: "flex-end",
-          }}
-        >
-          <View
-            style={{
-              marginLeft: 7,
-              borderRadius: 5,
-              backgroundColor: "#94C7D2",
-              width: 42,
-              height: 32,
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row",
-            }}
-          >
-            <Text style={{ fontSize: 18, color: "black", fontWeight: "900" }}>
-              {hotel.rate}
-            </Text>
-            <AntDesign
-              accessibilityHint="stars"
-              name={"star"}
-              color="black"
-              size={15}
-              style={{ marginLeft: 4 }}
-            />
-          </View>
-        </View>
-        <View
-          style={{
-            alignContent: "flex-end",
-            justifyContent: "flex-end",
+        style={{
+          height: 200,
+          borderRadius: 15,
+          borderBottomRightRadius: 12,
+          borderBottomLeftRadius: 12,
+        }}
 
-            opacity: 0.8,
-            backgroundColor: myColors.grey4,
-          }}
-        >
-          <View
-            style={{
-              marginLeft: 20,
-              marginBottom: 15,
-            }}
-          >
-            <Text style={styles.title}>{hotel.name}</Text>
-            <Text style={styles.secondlyTitle}>{hotel.address}</Text>
-          </View>
-        </View>
-      </ImageBackground>
+      />
+
+      <View
+        style={{
+          marginLeft: 5,
+        }}
+      >
+        <Text style={styles.title}>{hotel.name}</Text>
+        <Text style={styles.secondlyTitle}>{hotel.address}</Text>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -89,14 +65,14 @@ export default HotelCard;
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 27,
+    fontSize: 22,
     fontWeight: "700",
     lineHeight: 36,
-    color: "black",
+    color: theme.black,
   },
   secondlyTitle: {
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: "bold",
-    color: "black",
+    color: theme.black,
   },
 });

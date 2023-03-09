@@ -6,41 +6,27 @@ import { Home } from "../../screens/Home";
 import HotelDetails from "../../screens/HotelDetails";
 import Horses from "../../screens/Horses";
 import HorseDetails from "../../screens/HorseDetails";
+import { TransitionSpecs } from "@react-navigation/stack";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
-import YachtStackNavigation from "../YachtStackNavigation/YachtStackNavigation";
+import { Yachts } from "../../screens/Yachts";
 const Stack = createSharedElementStackNavigator<RootStackParamList>();
 
-const HomeStackNavigator = () => {
+const YachtStackNavigation = () => {
+
+
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
-        component={Home}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="HotelDetails"
-        component={HotelDetails}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Horses"
-        component={Horses}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="HorseDetails"
-        component={HorseDetails}
-        sharedElements={(route) => {
-          return [route.params.id];
+        name="Yachts"
+        component={Yachts}
+        options={{
+          headerShown: false,
         }}
-        options={{ headerShown: false }}
       />
-
     </Stack.Navigator>
   );
 };
 
-export default HomeStackNavigator;
+export default YachtStackNavigation;
 
 const styles = StyleSheet.create({});

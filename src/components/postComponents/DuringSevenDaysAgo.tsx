@@ -1,7 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import TimeAgo from "react-native-timeago";
-import { getRandomInt, getRandomIntBetweenTow } from "../../utils/helperFunctions";
+import {
+  getRandomInt,
+  getRandomIntBetweenTow,
+} from "../../utils/helperFunctions";
+import { theme } from "../../constants/myColors";
 
 type Props = {};
 
@@ -12,7 +16,7 @@ const DuringSevenDaysAgo = (props: Props) => {
   return (
     <View
       style={{
-        backgroundColor: "#ffefd5",
+        backgroundColor: theme.white,
         alignSelf: "flex-start",
         borderBottomLeftRadius: 15,
         borderBottomRightRadius: 15,
@@ -29,7 +33,7 @@ const DuringSevenDaysAgo = (props: Props) => {
       <View
         style={{ alignItems: "flex-start", marginLeft: 12, marginRight: 12 }}
       >
-        <Text style={{ fontWeight: "500" }}>
+        <Text style={{ fontWeight: "500", color: theme.primaryText }}>
           {<TimeAgo time={new Date(duringSevenDaysAgo * 1000)} />}
         </Text>
       </View>

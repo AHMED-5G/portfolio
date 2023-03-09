@@ -30,22 +30,22 @@ export const contributors: Contributor[] = [
     id: "1",
     name: "Khalid",
     email: "khaled@zahoo.com",
-    title: "Creative Logo & Graphics Designer",
+    title: "Graphics Designer",
     accounts: [
       {
         name: "facebook",
         type: AccountTypes.Facebook,
-        url: "https://www.facebook.com/profile.php?id=100086148849098",
+        url: "https://www.facebook.com/",
       },
       {
         name: "behance",
         type: AccountTypes.Behance,
-        url: "https://github.com/AHMED-5G",
+        url: "https://behance.com",
       },
       {
         name: "dribbble",
         type: AccountTypes.Dribbble,
-        url: "https://github.com/AHMED-5G",
+        url: "https://dribbble.com",
       },
     ],
     image:

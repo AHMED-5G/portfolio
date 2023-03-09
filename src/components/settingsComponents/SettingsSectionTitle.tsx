@@ -5,7 +5,7 @@ import { myColors } from "../../constants/myColors";
 
 type Props = { title: string };
 
-const SectionTitle = ({ title }: Props) => {
+const SettingsSectionTitle = ({ title }: Props) => {
   return (
     <View
       style={{
@@ -29,6 +29,6 @@ const SectionTitle = ({ title }: Props) => {
   );
 };
 
-export default SectionTitle;
+export default SettingsSectionTitle;
 
 const styles = StyleSheet.create({});

@@ -13,10 +13,11 @@ import { PersistGate } from "redux-persist/integration/react";
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
+
   if (!isLoadingComplete) {
     return <LoadingIndicator />;
   }
-  
+
   return (
     <Provider store={store}>
       <RootSiblingParent>

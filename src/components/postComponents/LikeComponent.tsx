@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import React, { useCallback, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myColors } from "../../constants/myColors";
@@ -9,7 +9,7 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import { Audio } from "expo-av";
-import { like2Sound, likeSound } from "../../../assets/sounds/index";
+import { like2Sound } from "../../../assets/sounds/index";
 type Props = {
   favoriteCounter: number;
   favoriteState: boolean;
@@ -24,16 +24,14 @@ const LikeComponent = ({
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
   async function playSound() {
-    const { sound } = await Audio.Sound.createAsync(
-      like2Sound
-    );
+    const { sound } = await Audio.Sound.createAsync(like2Sound);
     setSound(sound);
     await sound.playAsync();
   }
-  
+
   React.useEffect(() => {
     return sound
-    ? () => {
+      ? () => {
           sound.unloadAsync();
         }
       : undefined;
