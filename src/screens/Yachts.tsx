@@ -201,32 +201,25 @@ function Yachts({ navigation }: Props) {
     progressValue: SharedValue<number>,
     index: number
   ) => {
-    return (progressValue.value = withTiming(
-      1,
-      {
+    if (index == 0) {
+      imagePastAwayProgress3.value = withTiming(0, {
+        duration: 400,
+      });
+      imagePastAwayProgress2.value = withTiming(0, {
+        duration: 300,
+      });
+      imagePastAwayProgress1.value = withTiming(0, {
+        duration: 200,
+      });
+      openGalleryProgress.value = withDelay(
+        400,
+        withTiming(0, { duration: 200 })
+      );
+    } else {
+      progressValue.value = withTiming(1, {
         duration: 500,
-      },
-      () => {
-        if (index == 0) {
-          imagePastAwayProgress.value = withTiming(0, {
-            duration: 100,
-          });
-          imagePastAwayProgress1.value = withTiming(0, {
-            duration: 200,
-          });
-          imagePastAwayProgress2.value = withTiming(0, {
-            duration: 300,
-          });
-          imagePastAwayProgress3.value = withTiming(0, {
-            duration: 400,
-          });
-          openGalleryProgress.value = withDelay(
-            400,
-            withTiming(0, { duration: 200 })
-          );
-        }
-      }
-    ));
+      });
+    }
   };
 
   const killThisImage = (index: number) => {

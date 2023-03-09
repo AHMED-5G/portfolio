@@ -16,7 +16,7 @@ const DuringSevenDaysAgo = (props: Props) => {
   return (
     <View
       style={{
-        backgroundColor: theme.primary,
+        backgroundColor: theme.white,
         alignSelf: "flex-start",
         borderBottomLeftRadius: 15,
         borderBottomRightRadius: 15,

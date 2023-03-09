@@ -58,7 +58,7 @@ const PostAuthor = ({ user }: Props) => {
         style={{
           flexDirection: "row",
           alignItems: "center",
-          backgroundColor: theme.primary,
+          backgroundColor: theme.white,
           width: "100%",
           borderRadius: 10,
           borderBottomLeftRadius: 0,
@@ -142,25 +142,17 @@ const PostAuthor = ({ user }: Props) => {
                   setFollowState(true);
                   await schedulePushNotification(user);
                 }}
-                color={theme.actionColor}
+                color={theme.white}
                 accessibilityHint={"Follow" + user.name}
                 width={100}
                 style={{
                   height: 48,
                   borderRadius: 10,
-                  elevation: 1,
-                  shadowColor: "#000",
-                  shadowOffset: {
-                    width: 0,
-                    height: 1,
-                  },
-                  shadowOpacity: 0.18,
-                  shadowRadius: 1.0,
                 }}
                 textStyle={{
                   fontSize: 16,
                   fontWeight: "700",
-                  color: myColors.white,
+                  color: theme.actionColor,
                 }}
               />
             ) : (
@@ -174,7 +166,7 @@ const PostAuthor = ({ user }: Props) => {
                 style={{
                   height: 48,
                   // borderRadius: 10,
-                  backgroundColor: theme.primary,
+                  backgroundColor: theme.white,
                 }}
                 textStyle={{
                   fontSize: 16,

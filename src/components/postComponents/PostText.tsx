@@ -63,8 +63,8 @@ export { PostText };
 
 const styles = StyleSheet.create({
   readMoreLessText: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "800",
-    color: theme.actionColor,
+    color: theme.black,
   },
 });

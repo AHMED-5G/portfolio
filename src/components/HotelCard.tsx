@@ -7,12 +7,10 @@ import {
   Image,
 } from "react-native";
 import React from "react";
-import { AntDesign } from "@expo/vector-icons";
 import { Hotel } from "../types";
-import { myColors, theme } from "../constants/myColors";
+import { theme } from "../constants/myColors";
 import {
   useNavigation,
-  useNavigationContainerRef,
 } from "@react-navigation/native";
 
 type Props = {
@@ -27,7 +25,6 @@ const HotelCard = ({ hotel }: Props) => {
       }}
       style={{
         width: 200,
-        // height: 320,
         marginRight: 20,
         backgroundColor: theme.white,
         borderRadius: 15,
@@ -48,7 +45,6 @@ const HotelCard = ({ hotel }: Props) => {
           borderRadius: 15,
           borderBottomRightRadius: 12,
           borderBottomLeftRadius: 12,
-          // borderBottomStartRadius: 12,
         }}
 
       />

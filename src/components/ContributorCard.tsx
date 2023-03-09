@@ -1,9 +1,7 @@
 import { StyleSheet, Text, View, Image, FlatList } from "react-native";
 import React from "react";
 import { Contributor, ContributorAccount } from "../types";
-import { LinearGradient } from "expo-linear-gradient";
 import ContributorAccountCard from "./ContributorAccountCard";
-import { shuffleArray } from "../utils/helperFunctions";
 import { theme } from "../constants/myColors";
 
 type Props = {

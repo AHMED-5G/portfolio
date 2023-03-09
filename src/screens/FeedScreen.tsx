@@ -17,7 +17,8 @@ import { Audio } from "expo-av";
 import { refreshSound } from "../../assets/sounds";
 
 function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
-  const posts = mergePosts;
+
+  const [posts, setPosts] = useState(mergePosts.slice(0, 10))
   const [refreshState, setRefreshState] = useState(false);
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
@@ -39,7 +40,7 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
     await playSound();
     setRefreshState(true);
     setTimeout(() => {
-      shuffleArray(posts);
+      setPosts(shuffleArray(posts))
       setRefreshState(false);
     }, 2000);
   };
@@ -119,6 +120,7 @@ const styles = StyleSheet.create({
   postsContainer: {
     // flex: 1,
     marginTop: 30,
+    marginBottom: 70,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

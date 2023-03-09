@@ -10,6 +10,8 @@ import { Feather, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import LoadingIndicator from "../mini/LoadingIndicator";
 import SkeletonLoader from "expo-skeleton-loader";
+import { theme } from "../../constants/myColors";
+import MyCustomSkeleton from "../MyCustomSkeleton";
 type Props = {
   post: Post;
   isViewable: boolean;
@@ -37,7 +39,11 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
   const [showPauseButton, setShowPauseButton] = useState(false);
   function SkeltonItem() {
     return (
-      <SkeletonLoader boneColor="#EEE" highlightColor="#20b2aa" duration={1000}>
+      <SkeletonLoader
+        boneColor="#EEE"
+        highlightColor={theme.primary}
+        duration={1000}
+      >
         <SkeletonLoader.Item style={styles.videoContainer} />
       </SkeletonLoader>
     );
@@ -68,7 +74,7 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
               },
             ]}
           >
-            <SkeltonItem />
+            <MyCustomSkeleton style={styles.videoContainer} />
           </View>
         )}
         <Video
@@ -84,6 +90,7 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
           onLoad={() => {
             setVideoLoading(false);
           }}
+
           useNativeControls
           resizeMode={ResizeMode.CONTAIN}
           onPlaybackStatusUpdate={(status) => {

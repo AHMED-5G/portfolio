@@ -10,6 +10,7 @@ import {
   TextStyle,
   StyleProp,
 } from "react-native";
+import { theme } from "../../constants/myColors";
 import LoadingIndicator from "./LoadingIndicator";
 interface ButtonProps {
   onPress: (event: GestureResponderEvent) => void | undefined | Promise<void>;
@@ -47,7 +48,7 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
                   ? "#bdc6cf"
                   : props.color
                   ? props.color
-                  : "#2e2f7a",
+                  : theme.actionColor,
                 width: props.width ? props.width : props.circle ? 100 : 244,
                 height: props.height
                   ? props.height
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   titleText: {
-    color: "white",
+    color: theme.actionColorText,
     fontWeight: "bold",
     fontSize: 28,
   },

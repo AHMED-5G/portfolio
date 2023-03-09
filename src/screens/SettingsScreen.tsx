@@ -1,17 +1,16 @@
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 import React from "react";
 import { RootTabScreenProps } from "../types";
-
 import ChangeLanguageComponent from "../components/settingsComponents/ChangeLanguageComponent";
 import SetReadThemeComponent from "../components/settingsComponents/SetReadThemeComponent";
-import SectionTitle from "../components/settingsComponents/SectionTitle";
+import SettingsSectionTitle from "../components/settingsComponents/SettingsSectionTitle";
 
 function SettingsScreen({ navigation }: RootTabScreenProps<"Settings">) {
   return (
     <ScrollView style={{ marginTop: 20 }}>
-      <SectionTitle title="Select Language" />
+      <SettingsSectionTitle title="Select Language" />
       <ChangeLanguageComponent />
-      <SectionTitle title="Reading Theme" />
+      <SettingsSectionTitle title="Reading Theme" />
       <SetReadThemeComponent />
     </ScrollView>
   );
