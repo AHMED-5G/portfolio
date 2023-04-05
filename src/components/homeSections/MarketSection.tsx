@@ -1,34 +1,33 @@
 import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import { yachtImages } from "../../../dummy/yachtDummy/images";
 import { width } from "../../constants/Layout";
 import { RootStackParamList } from "../../types";
 import { StackNavigationProp } from "@react-navigation/stack";
 import HomeSectionTitle from "./HomeSectionTitle";
 import { i18n } from "../../translation/i18n";
-import { getRandomOneItemFromList } from "../../utils/helperFunctions";
 import HomeSingleImage from "./HomeSingleImage";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Home", undefined>;
 };
 
-const YachtSection = ({ navigation }: Props) => {
+const MarketSection = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
-      <HomeSectionTitle text={i18n.t("yacht")} />
+      <HomeSectionTitle text={i18n.t("market")} />
       <TouchableOpacity
+  
         onPress={() => {
-          navigation.navigate("YachtStackNavigation");
+          navigation.navigate("MarketStackNavigator");
         }}
       >
-        <HomeSingleImage uri={getRandomOneItemFromList(yachtImages)} />
+        <HomeSingleImage uri="https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" />
       </TouchableOpacity>
     </View>
   );
 };
 
-export default YachtSection;
+export default MarketSection;
 
 const styles = StyleSheet.create({
   container: {

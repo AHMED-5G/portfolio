@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
   },
   sectionTitleText: {
-    fontSize: 27,
-    fontWeight: "bold",
+    fontSize: 25,
+    fontWeight: "700",
     alignSelf: "flex-start",
     marginTop: 10,
   },

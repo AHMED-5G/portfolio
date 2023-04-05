@@ -20,8 +20,6 @@ import React, {
   useEffect,
   FunctionComponent,
   ReactNode,
-  ReactElement,
-  JSXElementConstructor,
 } from "react";
 const height = Dimensions.get("screen").height;
 const width = Dimensions.get("screen").width;
@@ -46,8 +44,7 @@ interface FormTextInputInterface {
   setText?: (text: string) => void;
   onFocus?: () => void;
   onBlur?: () => void;
-  placeholderTextColor?: ColorValue 
-  
+  placeholderTextColor?: ColorValue;
 }
 
 const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
@@ -146,8 +143,7 @@ const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
                 multiline={props.multiline}
                 onFocus={() => props.onFocus?.()}
                 onBlur={() => props.onBlur?.()}
-                placeholderTextColor={props.placeholderTextColor} 
-                
+                placeholderTextColor={props.placeholderTextColor}
               />
             </KeyboardAvoidingView>
           </View>

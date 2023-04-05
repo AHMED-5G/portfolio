@@ -1,3 +1,46 @@
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import {
+  CompositeScreenProps,
+  NavigatorScreenParams,
+} from "@react-navigation/native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { ColorValue } from "react-native";
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
+
+export type RootStackParamList = {
+  Root: NavigatorScreenParams<RootTabParamList> | undefined;
+  NotFound: undefined;
+  HotelDetails: Hotel;
+  Home: undefined;
+  Horses: Horse[];
+  HorseDetails: Horse;
+  HorsesStack: Horse[];
+  YachtStackNavigation: undefined;
+  Yachts: undefined;
+  MarketStackNavigator: undefined;
+  MarketHomeScreen: undefined;
+};
+
+export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, Screen>;
+
+export type RootTabParamList = {
+  HomeStackNavigator: undefined;
+  Feed: undefined;
+  Settings: undefined;
+};
+
+export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
+  CompositeScreenProps<
+    BottomTabScreenProps<RootTabParamList, Screen>,
+    NativeStackScreenProps<RootStackParamList>
+  >;
+
 export type ID = string | number;
 
 export interface Hotel {
@@ -79,7 +122,6 @@ export interface Horse {
 export type Bid = { user: User; timeStamp: number; amount: number };
 
 export interface HorseInAuction {
-  // horse: Horse;
   horse: string;
   bids: Bid[];
   currentBidPrice: () => number;
@@ -102,51 +144,15 @@ export interface InitialStateInterface {
   };
 }
 
-interface Yacht {
-  Length: number;
-  Builder: string;
-  Built: number;
-  Guests: string;
-  Price: number;
+export enum ProductTypes {
+  max10,
+  upTo100,
+  every10,
 }
 
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import {
-  CompositeScreenProps,
-  NavigatorScreenParams,
-} from "@react-navigation/native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { ColorValue } from "react-native";
-
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
-  }
+export interface Product {
+  name: string;
+  type: ProductTypes;
+  price: number;
+  image: string;
 }
-
-export type RootStackParamList = {
-  Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  NotFound: undefined;
-  HotelDetails: Hotel;
-  Home: undefined;
-  Horses: Horse[];
-  HorseDetails: Horse;
-  HorsesStack: Horse[];
-  YachtStackNavigation: undefined;
-  Yachts: undefined;
-};
-
-export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
-  NativeStackScreenProps<RootStackParamList, Screen>;
-
-export type RootTabParamList = {
-  HomeStackNavigator: undefined;
-  Feed: undefined;
-  Settings: undefined;
-};
-
-export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
-  CompositeScreenProps<
-    BottomTabScreenProps<RootTabParamList, Screen>,
-    NativeStackScreenProps<RootStackParamList>
-  >;

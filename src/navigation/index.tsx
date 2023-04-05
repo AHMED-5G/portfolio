@@ -11,7 +11,6 @@ import * as React from "react";
 import { ColorSchemeName } from "react-native";
 import useColorScheme from "../hooks/useColorScheme";
 import Colors from "../constants/Colors";
-import { Home } from "../screens/Home";
 import {
   RootStackParamList,
   RootTabParamList,
@@ -25,6 +24,7 @@ import { SettingsScreen } from "../screens/SettingsScreen";
 import { useAppSelector } from "../redux/Hooks/hooks";
 import { loadLocale } from "../translation/i18n";
 import YachtStackNavigation from "./YachtStackNavigation/YachtStackNavigation";
+import MarketStackNavigator from "./MarketStackNavigator/MarketStackNavigator";
 export default function Navigation({
   colorScheme,
 }: {
@@ -54,6 +54,11 @@ function RootNavigator() {
       <Stack.Screen
         name="YachtStackNavigation"
         component={YachtStackNavigation}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="MarketStackNavigator"
+        component={MarketStackNavigator}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

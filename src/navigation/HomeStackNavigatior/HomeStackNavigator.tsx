@@ -1,13 +1,12 @@
 import { StyleSheet } from "react-native";
 import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../types";
 import { Home } from "../../screens/Home";
 import HotelDetails from "../../screens/HotelDetails";
 import Horses from "../../screens/Horses";
 import HorseDetails from "../../screens/HorseDetails";
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
-import YachtStackNavigation from "../YachtStackNavigation/YachtStackNavigation";
+import MarketStackNavigator from "../MarketStackNavigator/MarketStackNavigator";
 const Stack = createSharedElementStackNavigator<RootStackParamList>();
 
 const HomeStackNavigator = () => {
@@ -36,7 +35,6 @@ const HomeStackNavigator = () => {
         }}
         options={{ headerShown: false }}
       />
-
     </Stack.Navigator>
   );
 };

@@ -26,7 +26,6 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import LongestDetails from "../components/yachtComponents/LongestDetails";
-import LongestGallery from "../components/yachtComponents/LongestGallery";
 import { myColors } from "../constants/myColors";
 import { generateRandomBoolean } from "../utils/helperFunctions";
 import RightSide from "../components/yachtComponents/RightSide";
