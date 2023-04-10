@@ -147,7 +147,7 @@ export interface InitialStateInterface {
 export enum ProductTypes {
   max10,
   upTo100,
-  every10,
+  Product10Step,
 }
 
 export interface Product {
@@ -155,4 +155,5 @@ export interface Product {
   type: ProductTypes;
   price: number;
   image: string;
+  listOfPrice?: number[];
 }
