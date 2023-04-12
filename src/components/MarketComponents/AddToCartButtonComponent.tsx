@@ -3,7 +3,7 @@ import React from "react";
 import MedButton from "../mini/MedButton";
 import { width } from "../../constants/Layout";
 import { theme } from "../../constants/myColors";
-import { useAppDispatch } from "../../redux/Hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
 import { ADD_ITEM_TO_CART } from "../../redux/reducers/dataSlice";
 import { InitialStateInterface, Product, ProductInCart } from "../../types";
 
@@ -40,8 +40,8 @@ const AddToCartButtonComponent = ({
       // );
     } else {
       console.log("else");
-      dispatch(ADD_ITEM_TO_CART({ ...product, counter }));
-      setIsItemInCart({ ...product, counter });
+      // dispatch(ADD_ITEM_TO_CART({ ...product, counter }));
+      // setIsItemInCart({ ...product, counter });
     }
   };
   return (
@@ -61,7 +61,5 @@ const AddToCartButtonComponent = ({
 export default AddToCartButtonComponent;
 
 const styles = StyleSheet.create({});
-function useAppSelector(arg0: (state: any) => any): InitialStateInterface {
-  throw new Error("Function not implemented.");
-}
+
 
