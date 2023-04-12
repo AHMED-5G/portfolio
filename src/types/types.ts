@@ -142,6 +142,7 @@ export interface InitialStateInterface {
   settings: {
     savedReadingTheme: ReadingThemesCombo;
   };
+  itemsInCart: ProductInCart[];
 }
 
 export enum ProductTypes {
@@ -151,9 +152,15 @@ export enum ProductTypes {
 }
 
 export interface Product {
+  id: string;
   name: string;
+  description?: string;
   type: ProductTypes;
   price: number;
   image: string;
   listOfPrice?: number[];
+}
+
+export interface ProductInCart extends Product {
+  counter: number;
 }

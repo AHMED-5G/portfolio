@@ -10,9 +10,9 @@ const ProductImageComponent = ({ product }: Props) => {
   return (
     <View
       style={{
-        backgroundColor: "#EEE",
-        borderRadius: 10,
-        width: productCardWidth,
+        // backgroundColor: "#EEE",
+        borderRadius: 20,
+        // width: productCardWidth * 0.3,
       }}
     >
       <Image
@@ -20,12 +20,12 @@ const ProductImageComponent = ({ product }: Props) => {
           uri: product.image,
         }}
         resizeMode="cover"
-        style={{ width: productCardWidth, height: 200, borderRadius: 10 }}
+        style={{
+          width: productCardWidth / 2 - 10,
+          height: 170,
+          borderRadius: 20,
+        }}
       />
-      <View style={{ margin: 5 }}>
-        <Text style={{ fontSize: 15, fontWeight: "400" }}>{product.name}</Text>
-      </View>
-
     </View>
   );
 };

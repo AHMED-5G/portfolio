@@ -1,12 +1,12 @@
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 // import {logger} from 'redux-logger';
-import {persistReducer, persistStore} from 'redux-persist';
+import { persistReducer, persistStore } from "redux-persist";
 // import thunk from 'redux-thunk';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {dataSlice} from '../reducers/dataSlice';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { dataSlice } from "../reducers/dataSlice";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage: AsyncStorage,
 };
 
@@ -17,9 +17,9 @@ export const store = configureStore({
   },
   // devTools: process.env.NODE_ENV !== "production",
   // middleware: [thunk, logger],
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({serializableCheck: false}).concat(),
-    // getDefaultMiddleware({serializableCheck: false}).concat(logger),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }).concat(),
+  // getDefaultMiddleware({serializableCheck: false}).concat(logger),
 });
 
 export const persistor = persistStore(store);
