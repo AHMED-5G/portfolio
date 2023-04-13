@@ -38,18 +38,24 @@ export const dataSlice: Slice = createSlice({
       state = initialState,
       action: PayloadAction<ProductInCart>
     ) => {
-      // console.log(state.itemsInCart);
-      state.itemsInCart = [];
+      // state.itemsInCart = [];
       // state.itemsInCart = [...state.itemsInCart, action.payload];
-      // state.itemsInCart = state.itemsInCart.push(action.payload);
-      //  state.itemsInCarts.push(action.payload)
-      // console.log(state.itemsInCarts)
+
+    },
+    SET_CART: (
+      state = initialState,
+      action: PayloadAction<InitialStateInterface["itemsInCart"]>
+    ) => {
+
+      state.itemsInCart = [];
+      state.itemsInCart = action.payload;
+      // console.log(state.itemsInCart)
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { SET_LANGUAGE, SET_READING_THEME, ADD_ITEM_TO_CART } =
+export const { SET_CART, SET_LANGUAGE, SET_READING_THEME, ADD_ITEM_TO_CART } =
   dataSlice.actions;
 
 export default dataSlice.reducer;

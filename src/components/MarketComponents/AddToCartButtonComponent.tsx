@@ -4,7 +4,7 @@ import MedButton from "../mini/MedButton";
 import { width } from "../../constants/Layout";
 import { theme } from "../../constants/myColors";
 import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
-import { ADD_ITEM_TO_CART } from "../../redux/reducers/dataSlice";
+import { ADD_ITEM_TO_CART, SET_CART } from "../../redux/reducers/dataSlice";
 import { InitialStateInterface, Product, ProductInCart } from "../../types";
 
 type Props = {
@@ -28,20 +28,30 @@ const AddToCartButtonComponent = ({
   );
   const addCounterToCart = () => {
     if (isItemInCart.id != "0") {
-      console.log("in if", isItemInCart.counter);
-      const thisProduct: ProductInCart = state.itemsInCart.filter(
-        (item) => (item.id = product.id)
-      )[1];
-      // dispatch(
-      //   ADD_ITEM_TO_CART({
-      //     ...product,
-      //     counter: isItemInCart.counter + counter,
-      //   })
-      // );
+      const newArray = state.itemsInCart.filter(
+        (item) => item.id != product.id
+      );
+      if (isItemInCart.counter < 999 && isItemInCart.counter + counter < 999) {
+        dispatch(
+          SET_CART([
+            ...newArray,
+            { ...product, counter: isItemInCart.counter && 0 + counter },
+          ])
+        );
+        setIsItemInCart({
+          ...product,
+          counter: counter + isItemInCart.counter,
+        });
+      }
     } else {
       console.log("else");
-      // dispatch(ADD_ITEM_TO_CART({ ...product, counter }));
-      // setIsItemInCart({ ...product, counter });
+      dispatch(
+        SET_CART([
+          ...state.itemsInCart,
+          { ...product, counter: counter + isItemInCart.counter },
+        ])
+      );
+      setIsItemInCart({ ...product, counter: counter + isItemInCart.counter });
     }
   };
   return (
@@ -61,5 +71,3 @@ const AddToCartButtonComponent = ({
 export default AddToCartButtonComponent;
 
 const styles = StyleSheet.create({});
-
-

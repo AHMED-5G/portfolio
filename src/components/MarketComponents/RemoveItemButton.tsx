@@ -11,33 +11,78 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import { InitialStateInterface, Product, ProductInCart } from "../../types";
+import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
+import { SET_CART } from "../../redux/reducers/dataSlice";
+import { Extrapolate } from "react-native-reanimated";
+import { withSpring } from "react-native-reanimated";
 
-type Props = { counter: number };
+type Props = {
+  counter: number;
+  isItemInCart: ProductInCart;
+  setIsItemInCart: React.Dispatch<React.SetStateAction<ProductInCart>>;
+  product: Product;
+  allButtonWidth: number;
+};
 
-const RemoveItemButton = ({ counter }: Props) => {
+const RemoveItemButton = ({
+  counter,
+  isItemInCart,
+  setIsItemInCart,
+  product,
+  allButtonWidth,
+}: Props) => {
   const buttonHeight = 55;
 
-  // const buttonWidth = 40;
+  const counterContainerWidth = allButtonWidth * 0.3;
+  const RemoveTextContainerWidth = 1 - counterContainerWidth;
   const openRemoveButton = useSharedValue(0);
   const buttonWidth = productCardWidth * 0.45 - 10;
+  const openRemoveButtonTime = 900;
+  const closeRemoveButtonTime = 900;
   const removeButtonRStyle = useAnimatedStyle(() => {
     const toWidth = interpolate(
       openRemoveButton.value,
-      [0, 1],
-      [0, buttonWidth]
+      [0.5, 1],
+      [0, buttonWidth],
+      Extrapolate.CLAMP
     );
     return {
       width: toWidth,
     };
   });
 
-  // useEffect(() => {
-  //   if (counter > 1) {
-  //     openRemoveButton.value = withTiming(1, { duration: 400 });
-  //   }
-  // }, [counter]);
+  const RemoveTextContainerRStyle = useAnimatedStyle(() => {
+    const toWidth = interpolate(
+      openRemoveButton.value,
+      [0, 0.5],
+      [0, RemoveTextContainerWidth],
+      Extrapolate.CLAMP
+    );
+    return {
+      width: toWidth,
+    };
+  });
+  const state: InitialStateInterface = useAppSelector(
+    (state) => state.dataSlice
+  );
+  useEffect(() => {
+    if (isItemInCart.counter > 0) {
+      openRemoveButton.value = withTiming(1, {
+        duration: openRemoveButtonTime,
+      });
+    }
+  }, [isItemInCart.counter]);
+  const dispatch = useAppDispatch();
+
+  const removeItems = () => {
+    const newArray = state.itemsInCart.filter((item) => item.id != product.id);
+    dispatch(SET_CART(newArray));
+    setIsItemInCart({ id: "0", counter: 0 } as ProductInCart);
+    openRemoveButton.value = withTiming(0, { duration: closeRemoveButtonTime });
+  };
   return (
-    <Animated.View>
+    <Animated.View style={[{ overflow: "hidden" }, removeButtonRStyle]}>
       <TouchableOpacity
         style={{
           backgroundColor: "white",
@@ -48,19 +93,31 @@ const RemoveItemButton = ({ counter }: Props) => {
           flexDirection: "row",
           justifyContent: "space-around",
         }}
+        onPress={() => {
+          removeItems();
+        }}
       >
-        <View
-          style={{
-            justifyContent: "center",
-            alignContent: "center",
-            alignItems: "center",
-            margin: 5,
-          }}
+        <Animated.View
+          style={[
+            {
+              justifyContent: "center",
+              alignContent: "center",
+              alignItems: "center",
+              margin: 2,
+            },
+            RemoveTextContainerRStyle,
+          ]}
         >
-          <Text style={{ fontSize: 22, color: "black", fontWeight: "bold" }}>
+          <Text
+            style={{
+              fontSize: 22,
+              color: theme.actionColor,
+              fontWeight: "bold",
+            }}
+          >
             Remove
           </Text>
-        </View>
+        </Animated.View>
         <View
           style={{
             justifyContent: "center",
@@ -69,27 +126,33 @@ const RemoveItemButton = ({ counter }: Props) => {
             width: 60,
           }}
         >
-          <View
-            style={{
-              width: 40,
-              height: 40,
-              borderRadius: 10,
-              backgroundColor: theme.secondary,
-              justifyContent: "center",
-              alignContent: "center",
-              alignItems: "center",
-            }}
+          <Animated.View
+            style={[
+              {
+                width: counterContainerWidth,
+                height: 40,
+                margin: 5,
+                borderRadius: 10,
+                backgroundColor: theme.secondary,
+                justifyContent: "center",
+                alignContent: "center",
+                alignItems: "center",
+              },
+              // counterContainerRStyle,
+            ]}
           >
             <Text
               style={{
                 color: theme.secondaryText,
-                fontSize: 22,
+                fontSize: 20,
                 fontWeight: "bold",
+                margin: 5,
               }}
+              numberOfLines={1}
             >
-              {counter}
+              {isItemInCart.counter}
             </Text>
-          </View>
+          </Animated.View>
         </View>
       </TouchableOpacity>
     </Animated.View>

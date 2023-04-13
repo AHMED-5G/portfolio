@@ -18,6 +18,7 @@ export default HomeSectionTitle;
 const styles = StyleSheet.create({
   hotelsTextContainer: {
     marginTop: 10,
+    marginBottom: 5,
     marginLeft: 10,
     alignSelf: "flex-start",
   },

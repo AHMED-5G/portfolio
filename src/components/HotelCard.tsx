@@ -29,7 +29,7 @@ const HotelCard = ({ hotel }: Props) => {
         backgroundColor: theme.white,
         borderRadius: 15,
         elevation: 1,
-        shadowColor: "#000",
+        shadowColor: "#EEE",
         shadowOffset: {
           width: 0,
           height: 1,

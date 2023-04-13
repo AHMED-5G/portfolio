@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   FlatList,
   Platform,
+  SafeAreaView,
+  StatusBar,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { RootStackParamList } from "../types";
@@ -243,7 +245,13 @@ function Yachts({ navigation }: Props) {
     return (3 - index) * 2 - 2 * (generateRandomBoolean() ? -1 : 1);
   };
   return (
-    <View style={{ backgroundColor: "#EEE" }}>
+    // <View style={{ backgroundColor: "#EEE" }}>
+    <SafeAreaView
+      style={{
+
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+      }}
+    >
       {Platform.OS == "ios" && <BackArrow position="absolute" />}
       <View style={{ flexDirection: "row" }}>
         <Animated.View
@@ -391,7 +399,7 @@ function Yachts({ navigation }: Props) {
           <RightSide />
         </Animated.View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 export { Yachts };

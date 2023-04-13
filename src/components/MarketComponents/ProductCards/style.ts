@@ -11,3 +11,4 @@ export default StyleSheet.create({
 });
 
 export const productCardWidth = width - 20;
+export const productCardHeight = width;
