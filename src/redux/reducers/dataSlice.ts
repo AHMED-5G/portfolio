@@ -40,16 +40,14 @@ export const dataSlice: Slice = createSlice({
     ) => {
       // state.itemsInCart = [];
       // state.itemsInCart = [...state.itemsInCart, action.payload];
-
     },
     SET_CART: (
       state = initialState,
       action: PayloadAction<InitialStateInterface["itemsInCart"]>
     ) => {
-
-      state.itemsInCart = [];
       state.itemsInCart = action.payload;
-      // console.log(state.itemsInCart)
+
+      // console.log("in store", action.payload);
     },
   },
 });

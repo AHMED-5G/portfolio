@@ -4,7 +4,7 @@ import {
   NavigatorScreenParams,
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { ColorValue } from "react-native";
+import { ColorValue, ImageSourcePropType } from "react-native";
 
 declare global {
   namespace ReactNavigation {
@@ -157,7 +157,7 @@ export interface Product {
   description?: string;
   type: ProductTypes;
   price: number;
-  image: string;
+  image: ImageSourcePropType;
   listOfPrice?: number[];
 }
 

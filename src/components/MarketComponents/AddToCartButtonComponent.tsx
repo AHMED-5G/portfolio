@@ -1,10 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import MedButton from "../mini/MedButton";
-import { width } from "../../constants/Layout";
 import { theme } from "../../constants/myColors";
 import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
-import { ADD_ITEM_TO_CART, SET_CART } from "../../redux/reducers/dataSlice";
+import {  SET_CART } from "../../redux/reducers/dataSlice";
 import { InitialStateInterface, Product, ProductInCart } from "../../types";
 
 type Props = {
@@ -13,6 +12,7 @@ type Props = {
   product: Product;
   isItemInCart: ProductInCart;
   setIsItemInCart: React.Dispatch<React.SetStateAction<ProductInCart>>;
+  callBack?: (lastValue: number) => void;
 };
 
 const AddToCartButtonComponent = ({
@@ -21,6 +21,7 @@ const AddToCartButtonComponent = ({
   product,
   isItemInCart,
   setIsItemInCart,
+  callBack,
 }: Props) => {
   const dispatch = useAppDispatch();
   const state: InitialStateInterface = useAppSelector(
@@ -35,7 +36,7 @@ const AddToCartButtonComponent = ({
         dispatch(
           SET_CART([
             ...newArray,
-            { ...product, counter: isItemInCart.counter && 0 + counter },
+            { ...product, counter: counter + isItemInCart.counter },
           ])
         );
         setIsItemInCart({
@@ -43,8 +44,8 @@ const AddToCartButtonComponent = ({
           counter: counter + isItemInCart.counter,
         });
       }
+      callBack?.(counter + isItemInCart.counter);
     } else {
-      console.log("else");
       dispatch(
         SET_CART([
           ...state.itemsInCart,
@@ -52,6 +53,7 @@ const AddToCartButtonComponent = ({
         ])
       );
       setIsItemInCart({ ...product, counter: counter + isItemInCart.counter });
+      callBack?.(counter + isItemInCart.counter);
     }
   };
   return (

@@ -1,4 +1,5 @@
 import { Product, ProductTypes } from "../../src/types";
+import { stickyImage } from "./marketImages";
 
 export const productsData: Product[] = [
   // {
@@ -13,8 +14,7 @@ export const productsData: Product[] = [
     id: "2",
     name: "Sticky Notes ",
     description: "3x3 Inches,Bright Colors Self-Stick",
-    image:
-      "https://images.unsplash.com/photo-1587145820137-a9dbc8c5ed99?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
+    image: stickyImage,
     price: 0.3,
     type: ProductTypes.upTo100,
   },

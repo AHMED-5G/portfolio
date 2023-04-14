@@ -1,11 +1,12 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MedButton from "../mini/MedButton";
 import { width } from "../../constants/Layout";
 import { theme } from "../../constants/myColors";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import { productCardWidth } from "./ProductCards/style";
 import Animated, {
+  SharedValue,
   interpolate,
   useAnimatedStyle,
   useSharedValue,
@@ -23,6 +24,9 @@ type Props = {
   setIsItemInCart: React.Dispatch<React.SetStateAction<ProductInCart>>;
   product: Product;
   allButtonWidth: number;
+  callBack?: () => void;
+  // openRemoveButton: number;
+  openRemoveButton: SharedValue<number>;
 };
 
 const RemoveItemButton = ({
@@ -31,12 +35,13 @@ const RemoveItemButton = ({
   setIsItemInCart,
   product,
   allButtonWidth,
+  callBack,
+  openRemoveButton,
 }: Props) => {
   const buttonHeight = 55;
 
   const counterContainerWidth = allButtonWidth * 0.3;
   const RemoveTextContainerWidth = 1 - counterContainerWidth;
-  const openRemoveButton = useSharedValue(0);
   const buttonWidth = productCardWidth * 0.45 - 10;
   const openRemoveButtonTime = 900;
   const closeRemoveButtonTime = 900;
@@ -66,13 +71,17 @@ const RemoveItemButton = ({
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );
+  const openCloseButton = () => {
+    openRemoveButton.value = withTiming(1, {
+      duration: openRemoveButtonTime,
+    });
+  };
+
   useEffect(() => {
     if (isItemInCart.counter > 0) {
-      openRemoveButton.value = withTiming(1, {
-        duration: openRemoveButtonTime,
-      });
+      openCloseButton();
     }
-  }, [isItemInCart.counter]);
+  }, [isItemInCart]);
   const dispatch = useAppDispatch();
 
   const removeItems = () => {
@@ -80,7 +89,9 @@ const RemoveItemButton = ({
     dispatch(SET_CART(newArray));
     setIsItemInCart({ id: "0", counter: 0 } as ProductInCart);
     openRemoveButton.value = withTiming(0, { duration: closeRemoveButtonTime });
+    callBack?.();
   };
+  const [totalPressed, setTotalPressed] = useState(false);
   return (
     <Animated.View style={[{ overflow: "hidden" }, removeButtonRStyle]}>
       <TouchableOpacity
@@ -126,20 +137,18 @@ const RemoveItemButton = ({
             width: 60,
           }}
         >
-          <Animated.View
-            style={[
-              {
-                width: counterContainerWidth,
-                height: 40,
-                margin: 5,
-                borderRadius: 10,
-                backgroundColor: theme.secondary,
-                justifyContent: "center",
-                alignContent: "center",
-                alignItems: "center",
-              },
-              // counterContainerRStyle,
-            ]}
+          <View
+            style={{
+              opacity: totalPressed ? 0.8 : 1,
+              width: counterContainerWidth,
+              height: 40,
+              margin: 5,
+              borderRadius: 10,
+              backgroundColor: theme.secondary,
+              justifyContent: "center",
+              alignContent: "center",
+              alignItems: "center",
+            }}
           >
             <Text
               style={{
@@ -152,7 +161,7 @@ const RemoveItemButton = ({
             >
               {isItemInCart.counter}
             </Text>
-          </Animated.View>
+          </View>
         </View>
       </TouchableOpacity>
     </Animated.View>
