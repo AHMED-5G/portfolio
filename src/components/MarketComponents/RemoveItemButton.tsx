@@ -19,27 +19,24 @@ import { Extrapolate } from "react-native-reanimated";
 import { withSpring } from "react-native-reanimated";
 
 type Props = {
-  counter: number;
   isItemInCart: ProductInCart;
   setIsItemInCart: React.Dispatch<React.SetStateAction<ProductInCart>>;
   product: Product;
   allButtonWidth: number;
   callBack?: () => void;
   // openRemoveButton: number;
-  openRemoveButton: SharedValue<number>;
+  openRemoveButtonProgress: SharedValue<number>;
 };
 
 const RemoveItemButton = ({
-  counter,
   isItemInCart,
   setIsItemInCart,
   product,
   allButtonWidth,
   callBack,
-  openRemoveButton,
+  openRemoveButtonProgress,
 }: Props) => {
   const buttonHeight = 55;
-
   const counterContainerWidth = allButtonWidth * 0.3;
   const RemoveTextContainerWidth = 1 - counterContainerWidth;
   const buttonWidth = productCardWidth * 0.45 - 10;
@@ -47,7 +44,7 @@ const RemoveItemButton = ({
   const closeRemoveButtonTime = 900;
   const removeButtonRStyle = useAnimatedStyle(() => {
     const toWidth = interpolate(
-      openRemoveButton.value,
+      openRemoveButtonProgress.value,
       [0.5, 1],
       [0, buttonWidth],
       Extrapolate.CLAMP
@@ -59,7 +56,7 @@ const RemoveItemButton = ({
 
   const RemoveTextContainerRStyle = useAnimatedStyle(() => {
     const toWidth = interpolate(
-      openRemoveButton.value,
+      openRemoveButtonProgress.value,
       [0, 0.5],
       [0, RemoveTextContainerWidth],
       Extrapolate.CLAMP
@@ -68,30 +65,23 @@ const RemoveItemButton = ({
       width: toWidth,
     };
   });
+
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );
-  const openCloseButton = () => {
-    openRemoveButton.value = withTiming(1, {
-      duration: openRemoveButtonTime,
-    });
-  };
 
-  useEffect(() => {
-    if (isItemInCart.counter > 0) {
-      openCloseButton();
-    }
-  }, [isItemInCart]);
   const dispatch = useAppDispatch();
 
   const removeItems = () => {
     const newArray = state.itemsInCart.filter((item) => item.id != product.id);
     dispatch(SET_CART(newArray));
     setIsItemInCart({ id: "0", counter: 0 } as ProductInCart);
-    openRemoveButton.value = withTiming(0, { duration: closeRemoveButtonTime });
+    openRemoveButtonProgress.value = withTiming(0, {
+      duration: closeRemoveButtonTime,
+    });
     callBack?.();
   };
-  const [totalPressed, setTotalPressed] = useState(false);
+
   return (
     <Animated.View style={[{ overflow: "hidden" }, removeButtonRStyle]}>
       <TouchableOpacity
@@ -139,7 +129,6 @@ const RemoveItemButton = ({
         >
           <View
             style={{
-              opacity: totalPressed ? 0.8 : 1,
               width: counterContainerWidth,
               height: 40,
               margin: 5,

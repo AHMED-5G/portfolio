@@ -3,7 +3,7 @@ import React from "react";
 import MedButton from "../mini/MedButton";
 import { theme } from "../../constants/myColors";
 import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
-import {  SET_CART } from "../../redux/reducers/dataSlice";
+import { SET_CART } from "../../redux/reducers/dataSlice";
 import { InitialStateInterface, Product, ProductInCart } from "../../types";
 
 type Props = {
@@ -29,10 +29,10 @@ const AddToCartButtonComponent = ({
   );
   const addCounterToCart = () => {
     if (isItemInCart.id != "0") {
-      const newArray = state.itemsInCart.filter(
-        (item) => item.id != product.id
-      );
       if (isItemInCart.counter < 999 && isItemInCart.counter + counter < 999) {
+        const newArray = state.itemsInCart.filter(
+          (item) => item.id != product.id
+        );
         dispatch(
           SET_CART([
             ...newArray,
@@ -56,6 +56,7 @@ const AddToCartButtonComponent = ({
       callBack?.(counter + isItemInCart.counter);
     }
   };
+
   return (
     <MedButton
       title="Add to cart"

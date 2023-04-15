@@ -22,15 +22,13 @@ type Props = {
   product: Product;
 };
 
+const inCalculationTextSize = 35;
+const priceInitialSize = 45;
 const ProductUpTo100 = ({ product }: Props) => {
   // constants
-  const showImageProgress = useSharedValue(0);
-  const multiplyViewFadeInProgress = useSharedValue(0);
-  const openRemoveButtonProgress = useSharedValue(0);
-
   const showImageFullCardTime = 500;
-  const openMultiplyViewTime = 500;
-  const buttonWidth = productCardWidth * 0.45 - 10;
+  const openMultiplyViewTime = 700;
+  const actionButtonWidth = productCardWidth * 0.45 - 10;
   const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
   const [counter, setCounter] = useState(1);
   const [isItemInCart, setIsItemInCart] = useState({
@@ -40,6 +38,9 @@ const ProductUpTo100 = ({ product }: Props) => {
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );
+  const showImageProgress = useSharedValue(0);
+  const multiplyViewFadeInProgress = useSharedValue(0);
+  const openRemoveButtonProgress = useSharedValue(0);
 
   //useEffects
   // on Component load multiplyView control listening to counter
@@ -56,11 +57,19 @@ const ProductUpTo100 = ({ product }: Props) => {
     if (state.itemsInCart.length) {
       state.itemsInCart.filter((item) => item.id == product.id);
       if (state.itemsInCart[0]) {
-        setIsItemInCart(state.itemsInCart[0]);
-        openRemoveButton();
+        openRemoveButtonProgress.value = withTiming(1, { duration: 100 });
+        setTimeout(() => {
+          setIsItemInCart(state.itemsInCart[0]);
+        }, 100);
       }
     }
   }, []);
+
+  useEffect(() => {
+    if (isItemInCart.counter > 0) {
+      openRemoveButton();
+    }
+  }, [isItemInCart]);
 
   // functions
   const openMultiplyView = () => {
@@ -88,7 +97,11 @@ const ProductUpTo100 = ({ product }: Props) => {
   };
 
   const openRemoveButton = () => {
-    openRemoveButtonProgress.value = withTiming(1, { duration: 500 });
+    if (openRemoveButtonProgress.value == 0) {
+      openRemoveButtonProgress.value = withTiming(1, {
+        duration: 700,
+      });
+    }
   };
 
   // Use Animated Styles
@@ -151,6 +164,15 @@ const ProductUpTo100 = ({ product }: Props) => {
     return { opacity: toOpacity };
   });
 
+  const priceTextRStyle = useAnimatedStyle(() => {
+    const toSize = interpolate(
+      multiplyViewFadeInProgress.value,
+      [0, 1],
+      [priceInitialSize, inCalculationTextSize]
+    );
+    return { fontSize: toSize };
+  });
+
   return (
     <View style={styles.cardContainer}>
       <View style={styles.topSectionContainer}>
@@ -184,15 +206,9 @@ const ProductUpTo100 = ({ product }: Props) => {
             >
               <Text style={styles.priceCurrencyText}>$</Text>
               {
-                <Text
-                  style={{
-                    fontSize: 40,
-                    fontWeight: "bold",
-                    color: theme.secondary,
-                  }}
-                >
+                <Animated.Text style={[styles.priceText, priceTextRStyle]}>
                   {product.price.toFixed(2)}
-                </Text>
+                </Animated.Text>
               }
             </Animated.View>
             <Animated.View
@@ -201,25 +217,17 @@ const ProductUpTo100 = ({ product }: Props) => {
                 multiplyViewContainerRStyle,
               ]}
             >
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignContent: "center",
-                  alignItems: "center",
-                }}
-              >
+              <View style={styles.multiplicationSignText}>
                 <Text
                   style={{ fontSize: 30, fontWeight: "400", marginRight: 20 }}
                 >
                   {"X"}
                 </Text>
-                <Text style={styles.counterContainer}>{counter}</Text>
+                <Text style={styles.counterText}>{counter}</Text>
               </View>
               <View
                 style={{ width: "100%", backgroundColor: "black", height: 2 }}
               ></View>
-
               <Text style={styles.totalText}>
                 ${(product.price * counter).toFixed(2)}
               </Text>
@@ -244,18 +252,8 @@ const ProductUpTo100 = ({ product }: Props) => {
             outOfRangeBarColor={myColors.grey2}
           />
         </View>
-        {/* <View
-          style={{
-            justifyContent: "center",
-            alignContent: "center",
-            alignItems: "center",
-            width: productCardWidth,
-            marginTop: 40,
-            backgroundColor :'red'
-          }}
-        > */}
         <View style={styles.buttonsContainer}>
-          <View style={{ width: buttonWidth }}>
+          <View style={{ width: actionButtonWidth }}>
             <AddToCartButtonComponent
               {...{
                 counter,
@@ -279,15 +277,14 @@ const ProductUpTo100 = ({ product }: Props) => {
                 setIsItemInCart,
                 product,
               }}
-              openRemoveButton={openRemoveButtonProgress}
-              allButtonWidth={buttonWidth}
+              openRemoveButtonProgress={openRemoveButtonProgress}
+              allButtonWidth={actionButtonWidth}
               callBack={() => {
                 closeMultiplyView();
               }}
             />
           </Animated.View>
         </View>
-        {/* </View> */}
       </View>
     </View>
   );
@@ -325,14 +322,14 @@ const styles = StyleSheet.create({
     left: 0,
     width: productCardWidth / 2 + 15,
     height: productCardHeight / 2 + 5,
-    backgroundColor: theme.primary,
+    backgroundColor: theme.white,
     borderRadius: productCardBorderRadius,
     borderBottomLeftRadius: 0,
     borderTopRightRadius: 0,
-    borderWidth: 0.5,
+    borderWidth: 0.8,
     borderColor: theme.borderColor,
     shadowColor: "#EEE",
-    elevation: 3,
+    elevation: 5,
     shadowOffset: {
       width: 1,
       height: 1,
@@ -377,8 +374,8 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
   },
-  counterContainer: {
-    fontSize: 40,
+  counterText: {
+    fontSize: inCalculationTextSize,
     fontWeight: "bold",
     color: theme.secondary,
     margin: 5,
@@ -404,11 +401,22 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   priceCurrencyText: {
-    fontSize: 35,
+    fontSize: inCalculationTextSize,
     fontWeight: "400",
     color: theme.secondary,
   },
   priceSectionContainer: {
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+  },
+  priceText: {
+    fontSize: inCalculationTextSize,
+    fontWeight: "bold",
+    color: theme.secondary,
+  },
+  multiplicationSignText: {
+    flexDirection: "row",
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

@@ -9,9 +9,8 @@ import {
 import React from "react";
 import { Hotel } from "../types";
 import { theme } from "../constants/myColors";
-import {
-  useNavigation,
-} from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import { getRandomOneItemFromList } from "../utils/helperFunctions";
 
 type Props = {
   hotel: Hotel;
@@ -39,14 +38,13 @@ const HotelCard = ({ hotel }: Props) => {
       }}
     >
       <Image
-        source={{ uri: hotel.images[0] as string }}
+        source={{ uri: getRandomOneItemFromList(hotel.images) as string }}
         style={{
           height: 200,
           borderRadius: 15,
-          borderBottomRightRadius: 12,
-          borderBottomLeftRadius: 12,
+          borderBottomRightRadius: 0,
+          borderBottomLeftRadius: 0,
         }}
-
       />
 
       <View

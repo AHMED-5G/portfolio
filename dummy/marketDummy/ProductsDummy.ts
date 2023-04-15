@@ -1,15 +1,15 @@
 import { Product, ProductTypes } from "../../src/types";
-import { stickyImage } from "./marketImages";
+import { stickyImage, water } from "./marketImages";
 
 export const productsData: Product[] = [
-  // {
-  // id: '1' ,
-  //   name: "mug",
-  //   price: 3,
-  //   type: ProductTypes.max10,
-  //   image:
-  //     "https://images.unsplash.com/photo-1555447014-7ead71574544?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8bXVnfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-  // },
+  {
+    id: "1",
+    name: "Drinking Water",
+    description: "Natural Drinking Water - 600ml",
+    price: 2,
+    type: ProductTypes.max10,
+    image: water,
+  },
   {
     id: "2",
     name: "Sticky Notes ",

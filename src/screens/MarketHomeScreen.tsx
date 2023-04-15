@@ -18,6 +18,7 @@ import SearchComponent from "../components/MarketComponents/SearchComponent";
 import Cart from "../components/MarketComponents/Cart";
 import { productsData } from "../../dummy/marketDummy/ProductsDummy";
 import ProductCard from "../components/MarketComponents/ProductCard";
+import ProductCardParent from "../components/MarketComponents/ProductCards/ProductCardParent";
 
 type Props = StackScreenProps<RootStackParamList, "MarketHomeScreen">;
 
@@ -46,7 +47,9 @@ const MarketHomeScreen = ({ navigation }: Props) => {
         <FlatList
           data={productsData}
           renderItem={({ item }) => {
-            return <ProductCard product={item} />;
+            return <ProductCardParent product={item} />
+
+            // return <ProductCard product={item} />;
           }}
           keyExtractor={(item) => item.name}
           showsVerticalScrollIndicator={false}

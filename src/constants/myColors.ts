@@ -50,6 +50,7 @@ export const theme = {
   cardText: "#000",
 
   borderColor: myColors.grey5,
+  disableColor: myColors.grey5,
 
   warning: "#FF0000",
 };

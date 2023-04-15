@@ -3,7 +3,6 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import {
   InitialStateInterface,
   Languages,
-  ProductInCart,
   ReadingThemesCombo,
 } from "../../types";
 
@@ -34,26 +33,17 @@ export const dataSlice: Slice = createSlice({
     ) => {
       state.settings.savedReadingTheme = action.payload;
     },
-    ADD_ITEM_TO_CART: (
-      state = initialState,
-      action: PayloadAction<ProductInCart>
-    ) => {
-      // state.itemsInCart = [];
-      // state.itemsInCart = [...state.itemsInCart, action.payload];
-    },
     SET_CART: (
       state = initialState,
       action: PayloadAction<InitialStateInterface["itemsInCart"]>
     ) => {
       state.itemsInCart = action.payload;
-
-      // console.log("in store", action.payload);
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { SET_CART, SET_LANGUAGE, SET_READING_THEME, ADD_ITEM_TO_CART } =
+export const { SET_CART, SET_LANGUAGE, SET_READING_THEME } =
   dataSlice.actions;
 
 export default dataSlice.reducer;

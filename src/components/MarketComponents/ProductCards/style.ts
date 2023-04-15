@@ -13,3 +13,5 @@ export default StyleSheet.create({
 export const productCardWidth = width - 20;
 export const productCardHeight = width;
 export const productCardBorderRadius = 20;
+export const inCalculationTextSize = 35;
+export const priceInitialSize = 45;
