@@ -104,9 +104,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: productCardWidth,
     backgroundColor: "white",
-    marginTop: 30,
+    marginTop: 140,
+    marginBottom: 90,
     borderRadius: productCardBorderRadius,
     height: productCardHeight,
-    
   },
 });

@@ -34,19 +34,16 @@ const TopSection = ({
   // const multiplyViewFadeInProgress = useSharedValue(0);
   // const showImageFullCardTime = 500;
   const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
-
+  const showImageFullCardTime = 300;
   //functions
   const showImageFullCard = () => {
-    console.log("shwow image", showImageProgress.value);
     if (showImageProgress.value == 0) {
       showImageProgress.value = withTiming(1, {
-        duration: 500,
-        // duration: showImageFullCardTime,
+        duration: showImageFullCardTime,
       });
     } else {
       showImageProgress.value = withTiming(0, {
-        duration: 500,
-        // duration: showImageFullCardTime,
+        duration: showImageFullCardTime,
       });
     }
   };
@@ -119,6 +116,15 @@ const TopSection = ({
     );
     return { fontSize: toSize };
   });
+
+  const priceCurrencyRStyle = useAnimatedStyle(() => {
+    const toOpacity = interpolate(
+      multiplyViewFadeInProgress.value,
+      [0, 1],
+      [1, 0]
+    );
+    return { opacity: toOpacity };
+  });
   return (
     <View style={styles.topSectionContainer}>
       <AnimatedTouchable
@@ -149,7 +155,11 @@ const TopSection = ({
           <Animated.View
             style={[styles.priceContainerStyle, priceContainerRStyle]}
           >
-            <Text style={styles.priceCurrencyText}>$</Text>
+            <Animated.Text
+              style={[styles.priceCurrencyText, priceCurrencyRStyle]}
+            >
+              $
+            </Animated.Text>
             {
               <Animated.Text style={[styles.priceText, priceTextRStyle]}>
                 {product.price.toFixed(2)}
