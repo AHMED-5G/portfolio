@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
-import { RootStackParamList } from "../types";
+import { Product, RootStackParamList } from "../types";
 import { height, width } from "../constants/Layout";
 
 import BackComponent from "../components/MarketComponents/BackComponent";
@@ -22,7 +22,12 @@ import ProductCardParent from "../components/MarketComponents/ProductCards/Produ
 import FormTextInput from "../components/mini/FormTextInput";
 import MedButton from "../components/mini/MedButton";
 import { myColors, theme } from "../constants/myColors";
-import MyLine from "../components/MyLine";
+import Animated, {
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
 type Props = StackScreenProps<RootStackParamList, "MarketHomeScreen">;
 
@@ -32,6 +37,8 @@ const MarketHomeScreen = ({ navigation }: Props) => {
   const showTextInput = () => {
     setShowSearchInput(true);
   };
+  const openSearchMessageContainerProgress = useSharedValue(0);
+
   const [keyboardStatus, setKeyboardStatus] = useState(false);
   const keyboardDidShow = () => setKeyboardStatus(true);
   const keyboardDidHide = () => setKeyboardStatus(false);
@@ -41,6 +48,32 @@ const MarketHomeScreen = ({ navigation }: Props) => {
   }, []);
   const [myProducts, setMyProducts] = useState(productsData);
   const [searchText, setSearchText] = useState("");
+  const [searchResult, setSearchResult] = useState<Product[]>();
+  const searchMessageContainerMaxHeight = 50;
+
+  const searchMessageRStylerContainer = useAnimatedStyle(() => {
+    const toHeight = interpolate(
+      openSearchMessageContainerProgress.value,
+      [0, 1],
+      [0, searchMessageContainerMaxHeight]
+    );
+    return {
+      height: toHeight,
+      backgroundColor: searchResult ? "#8fdd42" : "#edc68f",
+    };
+  });
+  const openSearchMessageContainer = () => {
+    if (openSearchMessageContainerProgress.value != 1) {
+      openSearchMessageContainerProgress.value = withTiming(1);
+    }
+  };
+  const closeSearchMessageContainer = () => {
+    openSearchMessageContainerProgress.value = withTiming(0);
+  };
+
+  const resultText = (number: number) => {
+    return number <= 1 ? "result" : "results";
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -61,55 +94,102 @@ const MarketHomeScreen = ({ navigation }: Props) => {
         </View>
         {showSearchInput && (
           <View style={styles.searchInputContainer}>
-            <FormTextInput
-              placeholder="Search"
-              mainContainerStyle={{
-                width: "80%",
-                borderWidth: 0.5,
-                borderColor: theme.borderColor,
-                borderRadius: 5,
+            <Animated.View
+              style={[
+                {
+                  borderRadius: 5,
+                  height: 0,
+                  justifyContent: "center",
+                  alignContent: "center",
+                  alignItems: "center",
+                },
+                searchMessageRStylerContainer,
+                {
+                  backgroundColor: searchResult?.length ? "#8fdd42" : "#edc68f",
+                },
+              ]}
+            >
+              {searchResult?.length ? (
+                <Text style={styles.searchResultText}>
+                  {searchResult.length +
+                    " " +
+                    resultText(searchResult.length) +
+                    " for " +
+                    "' " +
+                    searchText +
+                    " '"}
+                </Text>
+              ) : (
+                searchText && (
+                  <Text style={[styles.searchResultText, { color: "black" }]}>
+                    {"No results for " + "' " + searchText + " '"}
+                  </Text>
+                )
+              )}
+            </Animated.View>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+                alignContent: "center",
+                alignItems: "center",
+                width,
               }}
-              containerStyle={{ width: "100%" }}
-              autoFocus={true}
-              value={searchText}
-              setText={(text) => {
-                setMyProducts(
-                  productsData.filter((product) =>
-                    product.searchText.includes(text)
-                  )
-                );
-                setSearchText(text);
-              }}
-              onSubmitEditing={() => {
-                if (!searchText) {
+            >
+              <FormTextInput
+                placeholder="Search"
+                mainContainerStyle={{
+                  width: "80%",
+                  borderWidth: 0.5,
+                  borderColor: theme.borderColor,
+                  borderRadius: 5,
+                }}
+                containerStyle={{ width: "100%" }}
+                autoFocus={true}
+                value={searchText}
+                setText={(text) => {
+                  // if (text) {
+                  setMyProducts(
+                    productsData.filter((product) =>
+                      product.searchText.includes(text)
+                    )
+                  );
+                  setSearchResult(
+                    productsData.filter((product) =>
+                      product.searchText.includes(text)
+                    )
+                  );
+                  setSearchText(text);
+                  if (text) {
+                    openSearchMessageContainer();
+                  } else {
+                    closeSearchMessageContainer();
+                  }
+                  // }
+                }}
+                onSubmitEditing={() => {
+                  if (!searchText) {
+                    setShowSearchInput(false);
+                  }
+                }}
+              />
+              <MedButton
+                width={48}
+                title="X"
+                circle
+                onPress={() => {
                   setShowSearchInput(false);
-                }
-              }}
-            />
-
-            <MedButton
-              width={48}
-              title="X"
-              circle
-              onPress={() => {
-                setShowSearchInput(false);
-                setMyProducts(productsData);
-              }}
-              textStyle={{ fontWeight: "500", color: "black" }}
-              style={{ backgroundColor: "white" }}
-            />
+                  setMyProducts(productsData);
+                }}
+                textStyle={{ fontWeight: "500", color: "black" }}
+                style={{ backgroundColor: "white" }}
+              />
+            </View>
           </View>
         )}
       </View>
       {!keyboardStatus && (
-        <View
-          style={[
-            styles.customBottomTab,
-            {
-              // display: !keyboardStatus ? "flex" : "none",
-            },
-          ]}
-        >
+        <View style={styles.customBottomTab}>
           <BackComponent navigation={navigation} />
           <SearchComponent showTextInput={showTextInput} />
           <Cart />
@@ -163,10 +243,15 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   searchInputContainer: {
-    flexDirection: "row",
     justifyContent: "space-evenly",
     alignContent: "center",
     alignItems: "center",
     width,
+  },
+  searchResultText: {
+    margin: 4,
+    color: theme.primaryText,
+    fontSize: 20,
+    fontWeight: "500",
   },
 });

@@ -27,13 +27,14 @@ interface FormTextInputInterface {
   mainContainerStyle?: StyleProp<ViewStyle>;
   containerStyle?: StyleProp<ViewStyle>;
   textInputContainer?: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
+  
   placeholder?: string;
   value?: string | undefined;
   validations?: string | undefined;
   width?: number | string | undefined;
   height?: number | string | undefined;
   icon?: ReactNode | any;
-
   secure?: boolean;
   keyboardType?: KeyboardTypeOptions | undefined;
   onSubmitEditing?:
@@ -129,11 +130,15 @@ const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
             <KeyboardAvoidingView behavior="height">
               <TextInput
                 placeholder={props.placeholder}
-                style={{
-                  width: inputWidth,
-                  maxWidth: inputWidth,
-                  height: 48,
-                }}
+                style={[
+                  {
+                    width: inputWidth,
+                    maxWidth: inputWidth,
+                    height: 48,
+                    fontSize: 20,
+                  },
+                  props.style,
+                ]}
                 onChangeText={props.setText}
                 value={props.value}
                 autoCapitalize="none"
