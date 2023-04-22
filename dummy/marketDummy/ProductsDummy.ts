@@ -5,6 +5,7 @@ export const productsData: Product[] = [
   {
     id: "1",
     name: "Drinking Water",
+    searchText: "drinking water",
     description: "Natural Drinking Water - 600ml",
     price: 2,
     type: ProductTypes.max10,
@@ -12,7 +13,8 @@ export const productsData: Product[] = [
   },
   {
     id: "2",
-    name: "Sticky Notes ",
+    name: "Sticky Notes",
+    searchText: "sticky notes",
     description: "3x3 Inches,Bright Colors Self-Stick",
     image: stickyImage,
     price: 0.3,

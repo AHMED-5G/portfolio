@@ -6,9 +6,9 @@ import { RootStackParamList } from "../../types";
 
 type Props = {
   navigation: StackNavigationProp<
-    RootStackParamList,
-    "MarketHomeScreen",
-    undefined
+    RootStackParamList
+    // "MarketHomeScreen",
+    // undefined
   >;
 };
 

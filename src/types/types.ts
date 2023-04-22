@@ -154,6 +154,7 @@ export enum ProductTypes {
 export interface Product {
   id: string;
   name: string;
+  searchText: string;
   description?: string;
   type: ProductTypes;
   price: number;

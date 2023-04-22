@@ -45,6 +45,7 @@ interface FormTextInputInterface {
   onFocus?: () => void;
   onBlur?: () => void;
   placeholderTextColor?: ColorValue;
+  autoFocus?: boolean;
 }
 
 const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
@@ -144,6 +145,7 @@ const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
                 onFocus={() => props.onFocus?.()}
                 onBlur={() => props.onBlur?.()}
                 placeholderTextColor={props.placeholderTextColor}
+                autoFocus={props.autoFocus}
               />
             </KeyboardAvoidingView>
           </View>

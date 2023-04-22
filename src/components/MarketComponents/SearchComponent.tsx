@@ -2,9 +2,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 
-type Props = {};
+type Props = {
+  showTextInput: () => void;
+};
 
-const SearchComponent = (props: Props) => {
+const SearchComponent = ({ showTextInput }: Props) => {
   return (
     <TouchableOpacity
       style={{
@@ -14,6 +16,9 @@ const SearchComponent = (props: Props) => {
         width: 48,
         height: 48,
         marginLeft: 10,
+      }}
+      onPress={() => {
+        showTextInput();
       }}
     >
       <Ionicons disabled name="search-sharp" size={38} color="black" />
