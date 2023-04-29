@@ -13,8 +13,7 @@ const ContributorCard = ({ contributor }: Props) => {
     <View
       style={{
         marginRight: 15,
-
-        width: 180,
+        width: 160,
         borderRadius: 10,
         backgroundColor: "white",
         alignItems: "center",

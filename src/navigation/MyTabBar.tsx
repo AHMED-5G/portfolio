@@ -76,7 +76,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
     const height = interpolate(
       openTabProgress.value,
       [0, 1],
-      [50, barOpenHeight],
+      [theme.tabBarHeight, barOpenHeight],
       {
         extrapolateRight: Extrapolation.CLAMP,
       }
@@ -120,7 +120,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
           alignContent: "center",
           alignItems: "center",
           width: width * upButtonPercentage,
-          backgroundColor: theme.primary,
+          backgroundColor: theme.tabBarLeftSectionColor(),
         }}
       >
         <Animated.View
@@ -184,7 +184,13 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
                 testID={options.tabBarTestID}
                 onPress={onPress}
                 onLongPress={onLongPress}
-                style={{ flex: 1, alignItems: "center", width: 48, height: 48 }}
+                style={{
+                  flex: 1,
+                  alignItems: "center",
+                  width: 48,
+                  height: 48,
+                  marginTop: 10,
+                }}
                 key={label.toString()}
               >
                 {label == "Home" ? (

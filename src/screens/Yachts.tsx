@@ -14,7 +14,7 @@ import { RootStackParamList } from "../types";
 
 import { StackScreenProps } from "@react-navigation/stack";
 import { yachtImages, yachtInterior } from "../../dummy/yachtDummy/images";
-import { height, width } from "../constants/Layout";
+import { height, width, windowHeight } from "../constants/Layout";
 import Animated, {
   Extrapolation,
   interpolate,
@@ -28,12 +28,19 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import LongestDetails from "../components/yachtComponents/LongestDetails";
-import { myColors } from "../constants/myColors";
+import { myColors, theme } from "../constants/myColors";
 import { generateRandomBoolean } from "../utils/helperFunctions";
 import RightSide from "../components/yachtComponents/RightSide";
 import BackArrow from "../components/mini/BackArrow";
+import CustomBottomTab from "../components/CustomBottomTab";
 
 type Props = StackScreenProps<RootStackParamList, "Yachts">;
+
+const longestMarinTop = height * 0.15;
+const leftContainerHeight = height * 0.7;
+const galleryContainerTop = -20;
+const galleryContainerHeight = 200;
+const rightSideHeight = height;
 
 function Yachts({ navigation }: Props) {
   const openLongestProgress = useSharedValue(0);
@@ -41,7 +48,7 @@ function Yachts({ navigation }: Props) {
   const imagePastAwayProgress = useSharedValue(0);
   const imagePastAwayProgress1 = useSharedValue(0);
   const imagePastAwayProgress2 = useSharedValue(0);
-  const imagePastAwayProgress3: SharedValue<number> = useSharedValue(0);
+  const imagePastAwayProgress3 = useSharedValue(0);
 
   let longestRotate = useDerivedValue(() => {
     return interpolate(
@@ -51,9 +58,6 @@ function Yachts({ navigation }: Props) {
       Extrapolation.CLAMP
     );
   });
-
-  const longestMarinTop = height * 0.15;
-  const leftContainerHeight = height * 0.7;
 
   const longestRStyle = useAnimatedStyle(() => {
     const widthStyle = interpolate(
@@ -71,6 +75,11 @@ function Yachts({ navigation }: Props) {
       [0, 1],
       [longestMarinTop, 0]
     );
+    const borderTopRight = interpolate(
+      openLongestProgress.value,
+      [0, 1],
+      [longestMarinTop, 0]
+    );
     return {
       width: widthStyle,
       height: heightStyle,
@@ -83,7 +92,14 @@ function Yachts({ navigation }: Props) {
     };
   });
 
-  const rightSideHeight = height;
+  const longestImageRStyle = useAnimatedStyle(() => {
+    const borderAtTop = interpolate(openLongestProgress.value, [0, 1], [10, 0]);
+    return {
+      borderTopLeftRadius: borderAtTop,
+      borderBottomLeftRadius: borderAtTop,
+    };
+  });
+
   const rightSideRStyle = useAnimatedStyle(() => {
     const translateX = interpolate(
       openLongestProgress.value,
@@ -104,6 +120,7 @@ function Yachts({ navigation }: Props) {
       ],
     };
   });
+
   const longestDetailsRStyle = useAnimatedStyle(() => {
     const left = interpolate(openLongestProgress.value, [0, 1], [-width, 0]);
     return {
@@ -111,8 +128,6 @@ function Yachts({ navigation }: Props) {
     };
   });
 
-  const galleryContainerTop = -20;
-  const galleryContainerHeight = 230;
   const longestGalleryRStyle = useAnimatedStyle(() => {
     const top = interpolate(
       openGalleryProgress.value,
@@ -126,7 +141,6 @@ function Yachts({ navigation }: Props) {
     );
 
     const left = interpolate(openLongestProgress.value, [0, 1], [-width, 0]);
-    // const left = interpolate(openLongestProgress.value, [0, 1], [width, 0]);
     return {
       left,
       top,
@@ -160,13 +174,12 @@ function Yachts({ navigation }: Props) {
       left,
     };
   });
-  const openCloseGallery = (value = 1, duration = 300) => {
-    openGalleryProgress.value = withTiming(value, { duration: duration });
-  };
 
-  const lastStepForImageRStyle = (
-    imagePastAwayProgress: SharedValue<number>
-  ) => {
+  function openCloseGallery(value = 1, duration = 300) {
+    openGalleryProgress.value = withTiming(value, { duration: duration });
+  }
+
+  function lastStepForImageRStyle(imagePastAwayProgress: SharedValue<number>) {
     const imagePastAwayRStyle = useAnimatedStyle(() => {
       const left = interpolate(
         imagePastAwayProgress.value,
@@ -178,9 +191,9 @@ function Yachts({ navigation }: Props) {
       };
     });
     return imagePastAwayRStyle;
-  };
+  }
 
-  const getStyle = (index: number) => {
+  function getStyle(index: number) {
     switch (index) {
       case 3:
         return lastStepForImageRStyle(imagePastAwayProgress3);
@@ -196,12 +209,12 @@ function Yachts({ navigation }: Props) {
 
       default:
     }
-  };
+  }
 
-  const refactorKillImage = (
+  function refactorKillImage(
     progressValue: SharedValue<number>,
     index: number
-  ) => {
+  ) {
     if (index == 0) {
       imagePastAwayProgress3.value = withTiming(0, {
         duration: 400,
@@ -221,9 +234,9 @@ function Yachts({ navigation }: Props) {
         duration: 500,
       });
     }
-  };
+  }
 
-  const killThisImage = (index: number) => {
+  function killThisImage(index: number) {
     switch (index) {
       case 0:
         refactorKillImage(imagePastAwayProgress, index);
@@ -239,95 +252,117 @@ function Yachts({ navigation }: Props) {
       default:
         break;
     }
+  }
+
+  function imageRotateValue(index: number): number {
+    return (3 - index) * 2 - 2 * (generateRandomBoolean() ? -1 : 1);
+  }
+
+  const yachtNameRStyle = useAnimatedStyle(() => {
+    return {
+      opacity: interpolate(openLongestProgress.value, [0, 1], [0, 1]),
+    };
+  });
+  const BarTitleFontSize = 25;
+  const yachtTextRStyle = useAnimatedStyle(() => {
+    const toTop = interpolate(
+      openLongestProgress.value,
+      [0, 1],
+      [theme.tabBarHeight / 2 - BarTitleFontSize / 2, theme.tabBarHeight]
+    );
+    return {
+      opacity: interpolate(openLongestProgress.value, [0, 1], [1, 0]),
+      top: toTop,
+    };
+  });
+
+  const BarTitle = () => {
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+          height: theme.tabBarHeight,
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Animated.Text
+          style={[
+            {
+              fontSize: BarTitleFontSize,
+              fontWeight: "800",
+              backgroundColor: "white",
+              position: "absolute",
+              top: theme.tabBarHeight / 2 - BarTitleFontSize / 2,
+            },
+            yachtTextRStyle,
+          ]}
+        >
+          Yachts
+        </Animated.Text>
+        <Animated.Text
+          style={[
+            {
+              fontSize: BarTitleFontSize,
+              fontWeight: "800",
+              position: "absolute",
+              top: theme.tabBarHeight / 2 - BarTitleFontSize / 2,
+            },
+            yachtNameRStyle,
+          ]}
+        >
+          TACANUY
+        </Animated.Text>
+      </View>
+    );
   };
 
-  const imageRotateValue = (index: number): number => {
-    return (3 - index) * 2 - 2 * (generateRandomBoolean() ? -1 : 1);
-  };
   return (
-    // <View style={{ backgroundColor: "#EEE" }}>
     <SafeAreaView
       style={{
-
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+        justifyContent: "flex-end",
       }}
     >
-      {Platform.OS == "ios" && <BackArrow position="absolute" />}
-      <View style={{ flexDirection: "row" }}>
-        <Animated.View
-          style={[
-            {
-              marginTop: longestMarinTop,
-              height: leftContainerHeight,
-              width: width / 2,
-            },
-            longestRStyle,
-          ]}
-        >
-          <TouchableOpacity
-            activeOpacity={1}
-            style={{}}
-            onPress={() => {
-              let value = openLongestProgress.value == 1 ? 0 : 1;
-
-              value == 0 && openCloseGallery(0);
-              openLongestProgress.value = withTiming(value, {
-                duration: 500,
-              });
-            }}
-          >
-            <Image
-              source={{ uri: yachtImages[0] }}
-              style={{ width: "100%", height: "100%", borderRadius: 15 }}
-            />
-          </TouchableOpacity>
-        </Animated.View>
-
-        <Animated.View
-          style={[
-            {
-              position: "absolute",
-              marginTop: height / 2 - 30,
-              left: -width,
-              width: width,
-            },
-            longestDetailsRStyle,
-          ]}
-        >
-          <LongestDetails />
-        </Animated.View>
-        <Animated.View
-          style={[
-            {
-              position: "absolute",
-              marginTop: height / 2 + 120,
-              left: -width,
-              width: width,
-              height: galleryContainerHeight,
-              top: galleryContainerTop,
-              justifyContent: "center",
-              alignContent: "center",
-              alignItems: "center",
-            },
-            longestGalleryRStyle,
-          ]}
-        >
-          <TouchableOpacity
-            onPress={() => {
-              let value = openGalleryProgress.value == 1 ? 0 : 1;
-              openCloseGallery(value);
-              // openGalleryProgress.value = withTiming(value, { duration: 300 });
-            }}
+      <View>
+        <View style={{ flexDirection: "row" }}>
+          <Animated.View
             style={[
               {
-                justifyContent: "center",
-                alignContent: "center",
-                alignItems: "center",
-                width,
-                height: "100%",
-                backgroundColor: myColors.black,
+                marginTop: longestMarinTop,
+                height: leftContainerHeight,
+                width: width / 2,
               },
+              longestRStyle,
             ]}
+          >
+            <TouchableOpacity
+              activeOpacity={1}
+              style={{}}
+              onPress={() => {
+                let value = openLongestProgress.value == 1 ? 0 : 1;
+                value == 0 && openCloseGallery(0);
+                openLongestProgress.value = withTiming(value, {
+                  duration: 500,
+                });
+              }}
+            >
+              <Animated.Image
+                source={{ uri: yachtImages[0] }}
+                style={[
+                  { width: "100%", height: "100%", borderRadius: 10 },
+                  longestImageRStyle,
+                ]}
+              />
+            </TouchableOpacity>
+          </Animated.View>
+
+          <Animated.View style={[styles.longestDetails, longestDetailsRStyle]}>
+            <LongestDetails />
+          </Animated.View>
+          <Animated.View
+            style={[styles.longestGalleryRStyle, longestGalleryRStyle]}
           >
             {yachtInterior.slice(0, 4).map((image, index) => {
               return (
@@ -376,32 +411,47 @@ function Yachts({ navigation }: Props) {
                 </Animated.View>
               );
             })}
-          </TouchableOpacity>
-        </Animated.View>
-        <Animated.View
-          style={[
-            {
-              position: "absolute",
-              maxHeight: leftContainerHeight,
-              overflow: "hidden",
-              // backgroundColor: "pink",
-              // backgroundColor :'white' ,
-              width: width / 2,
-              left: width / 2,
-              top: longestMarinTop,
-              // justifyContent: "space-evenly",
-              // alignContent: "space-between",
-              alignItems: "center",
-            },
-            rightSideRStyle,
-          ]}
-        >
-          <RightSide />
-        </Animated.View>
+          </Animated.View>
+          <Animated.View style={[styles.rightSide, rightSideRStyle]}>
+            <RightSide />
+          </Animated.View>
+        </View>
+      </View>
+      <View
+        style={{ position: "absolute", top: windowHeight - theme.tabBarHeight }}
+      >
+        <CustomBottomTab navigation={navigation} components={[<BarTitle />]} />
       </View>
     </SafeAreaView>
   );
 }
 export { Yachts };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  rightSide: {
+    position: "absolute",
+    maxHeight: leftContainerHeight,
+    overflow: "hidden",
+    width: width / 2,
+    left: width / 2,
+    top: longestMarinTop,
+    alignItems: "center",
+  },
+  longestGalleryRStyle: {
+    position: "absolute",
+    marginTop: height / 2 + 120,
+    left: -width,
+    width: width,
+    height: galleryContainerHeight,
+    top: galleryContainerTop,
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+  },
+  longestDetails: {
+    position: "absolute",
+    marginTop: height / 2 - 30,
+    left: -width,
+    width: width,
+  },
+});

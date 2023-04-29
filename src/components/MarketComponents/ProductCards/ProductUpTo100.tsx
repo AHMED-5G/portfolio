@@ -269,7 +269,7 @@ const ProductUpTo100 = ({ product }: Props) => {
               }}
             />
           </View>
-          <Animated.View style={[]}>
+          <Animated.View >
             <RemoveItemButton
               {...{
                 counter,

@@ -53,4 +53,10 @@ export const theme = {
   disableColor: myColors.grey5,
 
   warning: "#FF0000",
+
+  tabBarHeight: 70,
+  tabBarBackground: "#FFF",
+  tabBarTextColor: "#000",
+  tabBarBorderRadius: 10,
+  tabBarLeftSectionColor: () => theme.primary,
 };

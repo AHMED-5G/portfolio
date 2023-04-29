@@ -28,10 +28,11 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import CustomBottomTab from "../components/CustomBottomTab";
 
 type Props = StackScreenProps<RootStackParamList, "MarketHomeScreen">;
 
-const bottomNavigationHeight = 70;
+const bottomNavigationHeight = theme.tabBarHeight;
 const MarketHomeScreen = ({ navigation }: Props) => {
   const [showSearchInput, setShowSearchInput] = useState(false);
   const showTextInput = () => {
@@ -39,13 +40,13 @@ const MarketHomeScreen = ({ navigation }: Props) => {
   };
   const openSearchMessageContainerProgress = useSharedValue(0);
 
-  const [keyboardStatus, setKeyboardStatus] = useState(false);
-  const keyboardDidShow = () => setKeyboardStatus(true);
-  const keyboardDidHide = () => setKeyboardStatus(false);
-  useEffect(() => {
-    Keyboard.addListener("keyboardDidShow", keyboardDidShow);
-    Keyboard.addListener("keyboardDidHide", keyboardDidHide);
-  }, []);
+  // const [keyboardStatus, setKeyboardStatus] = useState(false);
+  // const keyboardDidShow = () => setKeyboardStatus(true);
+  // const keyboardDidHide = () => setKeyboardStatus(false);
+  // useEffect(() => {
+  //   Keyboard.addListener("keyboardDidShow", keyboardDidShow);
+  //   Keyboard.addListener("keyboardDidHide", keyboardDidHide);
+  // }, []);
   const [myProducts, setMyProducts] = useState(productsData);
   const [searchText, setSearchText] = useState("");
   const [searchResult, setSearchResult] = useState<Product[]>();
@@ -148,7 +149,6 @@ const MarketHomeScreen = ({ navigation }: Props) => {
                 autoFocus={true}
                 value={searchText}
                 setText={(text) => {
-                  // if (text) {
                   setMyProducts(
                     productsData.filter((product) =>
                       product.searchText.includes(text)
@@ -165,7 +165,6 @@ const MarketHomeScreen = ({ navigation }: Props) => {
                   } else {
                     closeSearchMessageContainer();
                   }
-                  // }
                 }}
                 onSubmitEditing={() => {
                   if (!searchText) {
@@ -188,13 +187,13 @@ const MarketHomeScreen = ({ navigation }: Props) => {
           </View>
         )}
       </View>
-      {!keyboardStatus && (
-        <View style={styles.customBottomTab}>
-          <BackComponent navigation={navigation} />
-          <SearchComponent showTextInput={showTextInput} />
-          <Cart />
-        </View>
-      )}
+      <CustomBottomTab
+        navigation={navigation}
+        components={[
+          <SearchComponent showTextInput={showTextInput} />,
+          <Cart />,
+        ]}
+      />
     </SafeAreaView>
   );
 };
@@ -217,7 +216,7 @@ const styles = StyleSheet.create({
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     flex: 1,
     backgroundColor: "#EEE",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignContent: "center",
     alignItems: "center",
   },

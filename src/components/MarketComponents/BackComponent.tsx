@@ -5,11 +5,9 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../types";
 
 type Props = {
-  navigation: StackNavigationProp<
-    RootStackParamList
-    // "MarketHomeScreen",
-    // undefined
-  >;
+  navigation: StackNavigationProp<RootStackParamList>;
+  // "MarketHomeScreen",
+  // undefined
 };
 
 const BackComponent = ({ navigation }: Props) => {
@@ -21,7 +19,6 @@ const BackComponent = ({ navigation }: Props) => {
         alignItems: "center",
         width: 48,
         height: 48,
-        marginLeft: 10,
       }}
       onPress={() => {
         navigation.goBack();

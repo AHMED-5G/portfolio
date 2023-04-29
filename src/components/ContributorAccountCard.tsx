@@ -98,7 +98,13 @@ const getIconByAccountType = ({
 const ContributorAccountCard = ({ account }: Props) => {
   return (
     <TouchableOpacity
-      style={{ width: 48, height: 48, }}
+      style={{
+        width: 48,
+        height: 48,
+        // justifyContent: "center",
+        alignContent: "center",
+        alignItems: "center",
+      }}
       onPress={() => {
         Linking.openURL(account.url);
       }}
