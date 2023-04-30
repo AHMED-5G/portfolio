@@ -51,7 +51,7 @@ const BottomSection = ({
   return (
     <View style={styles.bottomSection}>
       <View style={styles.inputContainer}>
-        <InputComponent {...{ product, setCounter , counter }} />
+        <InputComponent {...{ product, setCounter, counter }} />
       </View>
       <View style={styles.buttonsContainer}>
         <View style={{ width: actionButtonWidth }}>
@@ -111,5 +111,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
+
   },
 });

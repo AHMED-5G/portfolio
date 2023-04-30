@@ -223,6 +223,7 @@ const styles = StyleSheet.create({
     height: productCardHeight / 2,
     position: "absolute",
     top: 0,
+    zIndex: 1,
   },
   productImageStyle: {
     width: "100%",

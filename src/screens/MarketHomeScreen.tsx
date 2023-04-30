@@ -40,13 +40,6 @@ const MarketHomeScreen = ({ navigation }: Props) => {
   };
   const openSearchMessageContainerProgress = useSharedValue(0);
 
-  // const [keyboardStatus, setKeyboardStatus] = useState(false);
-  // const keyboardDidShow = () => setKeyboardStatus(true);
-  // const keyboardDidHide = () => setKeyboardStatus(false);
-  // useEffect(() => {
-  //   Keyboard.addListener("keyboardDidShow", keyboardDidShow);
-  //   Keyboard.addListener("keyboardDidHide", keyboardDidHide);
-  // }, []);
   const [myProducts, setMyProducts] = useState(productsData);
   const [searchText, setSearchText] = useState("");
   const [searchResult, setSearchResult] = useState<Product[]>();
@@ -63,11 +56,13 @@ const MarketHomeScreen = ({ navigation }: Props) => {
       backgroundColor: searchResult ? "#8fdd42" : "#edc68f",
     };
   });
+
   const openSearchMessageContainer = () => {
     if (openSearchMessageContainerProgress.value != 1) {
       openSearchMessageContainerProgress.value = withTiming(1);
     }
   };
+
   const closeSearchMessageContainer = () => {
     openSearchMessageContainerProgress.value = withTiming(0);
   };
@@ -77,8 +72,8 @@ const MarketHomeScreen = ({ navigation }: Props) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={{ marginTop: 40, alignContent: "flex-start", width }}>
+    <View style={styles.container}>
+      <View style={{ marginTop: 10, alignContent: "flex-start", width }}>
         <Text style={styles.sectionHeadText}>Everyday Essentials</Text>
         <View style={styles.line} />
       </View>
@@ -194,7 +189,7 @@ const MarketHomeScreen = ({ navigation }: Props) => {
           <Cart />,
         ]}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -213,7 +208,7 @@ const styles = StyleSheet.create({
     width,
   },
   container: {
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    // paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     flex: 1,
     backgroundColor: "#EEE",
     justifyContent: "flex-end",

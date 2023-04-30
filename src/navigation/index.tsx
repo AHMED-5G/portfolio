@@ -8,7 +8,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName } from "react-native";
+import { ColorSchemeName, Platform, SafeAreaView } from "react-native";
 import useColorScheme from "../hooks/useColorScheme";
 import Colors from "../constants/Colors";
 import {
@@ -25,6 +25,8 @@ import { useAppSelector } from "../redux/Hooks/hooks";
 import { loadLocale } from "../translation/i18n";
 import YachtStackNavigation from "./YachtStackNavigation/YachtStackNavigation";
 import MarketStackNavigator from "./MarketStackNavigator/MarketStackNavigator";
+import { View } from "react-native";
+import { StatusBar } from "react-native";
 export default function Navigation({
   colorScheme,
 }: {
@@ -36,7 +38,14 @@ export default function Navigation({
 
   return (
     <NavigationContainer>
-      <RootNavigator />
+      <SafeAreaView
+        style={{
+          flex: 1,
+          paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+        }}
+      >
+        <RootNavigator />
+      </SafeAreaView>
     </NavigationContainer>
   );
 }
