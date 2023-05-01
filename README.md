@@ -113,7 +113,7 @@ Released and contains:
 
 - market section managed by redux toolkit with search for products and custom bottom bar.
 
-- "Add to cart" card contain interactions, deferent inputs methods , image view and calculations.
+- "Add to cart" card contain interactions, different inputs methods, image view and calculations.
 
 - improve yacht screen animations and add custom bottom bar.
 
