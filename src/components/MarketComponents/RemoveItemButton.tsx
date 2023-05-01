@@ -1,15 +1,11 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useEffect, useState } from "react";
-import MedButton from "../mini/MedButton";
-import { width } from "../../constants/Layout";
+import React from "react";
 import { theme } from "../../constants/myColors";
-import { AntDesign, Feather } from "@expo/vector-icons";
 import { productCardWidth } from "./ProductCards/style";
 import Animated, {
   SharedValue,
   interpolate,
   useAnimatedStyle,
-  useSharedValue,
   withTiming,
 } from "react-native-reanimated";
 import { InitialStateInterface, Product, ProductInCart } from "../../types";
@@ -24,7 +20,6 @@ type Props = {
   product: Product;
   allButtonWidth: number;
   callBack?: () => void;
-  // openRemoveButton: number;
   openRemoveButtonProgress: SharedValue<number>;
 };
 
@@ -40,12 +35,12 @@ const RemoveItemButton = ({
   const counterContainerWidth = allButtonWidth * 0.3;
   const RemoveTextContainerWidth = 1 - counterContainerWidth;
   const buttonWidth = productCardWidth * 0.45 - 10;
-  const openRemoveButtonTime = 900;
   const closeRemoveButtonTime = 900;
+
   const removeButtonRStyle = useAnimatedStyle(() => {
     const toWidth = interpolate(
       openRemoveButtonProgress.value,
-      [0.5, 1],
+      [0, 1],
       [0, buttonWidth],
       Extrapolate.CLAMP
     );
@@ -57,11 +52,20 @@ const RemoveItemButton = ({
   const RemoveTextContainerRStyle = useAnimatedStyle(() => {
     const toWidth = interpolate(
       openRemoveButtonProgress.value,
-      [0, 0.5],
+      [0, 1],
       [0, RemoveTextContainerWidth],
       Extrapolate.CLAMP
     );
+
+    const toOpacity = interpolate(
+      openRemoveButtonProgress.value,
+      [0.5, 1],
+      [0, 1],
+      Extrapolate.CLAMP
+    );
+
     return {
+      opacity: toOpacity,
       width: toWidth,
     };
   });
@@ -83,14 +87,16 @@ const RemoveItemButton = ({
   };
 
   return (
-    <Animated.View style={[{ overflow: "hidden" }, removeButtonRStyle]}>
+    <Animated.View
+      style={[{ overflow: "hidden", width: buttonWidth }, removeButtonRStyle]}
+    >
       <TouchableOpacity
         style={{
           backgroundColor: "white",
           borderWidth: 0.5,
           borderColor: theme.warning,
           height: buttonHeight,
-          borderRadius: 10,
+          borderRadius: 5,
           flexDirection: "row",
           justifyContent: "space-around",
         }}
@@ -112,7 +118,7 @@ const RemoveItemButton = ({
           <Text
             style={{
               fontSize: 22,
-              color: theme.actionColor,
+              color: theme.black,
               fontWeight: "bold",
             }}
           >

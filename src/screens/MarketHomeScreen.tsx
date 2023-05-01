@@ -29,6 +29,8 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import CustomBottomTab from "../components/CustomBottomTab";
+import MyLine from "../components/MyLine";
+import SimpleHeader from "../components/SimpleHeader";
 
 type Props = StackScreenProps<RootStackParamList, "MarketHomeScreen">;
 
@@ -73,10 +75,7 @@ const MarketHomeScreen = ({ navigation }: Props) => {
 
   return (
     <View style={styles.container}>
-      <View style={{ marginTop: 10, alignContent: "flex-start", width }}>
-        <Text style={styles.sectionHeadText}>Everyday Essentials</Text>
-        <View style={styles.line} />
-      </View>
+      <SimpleHeader title="Everyday Essentials" />
       <View style={{ flex: 1, justifyContent: "flex-end" }}>
         <View style={styles.productsFlatListContainer}>
           <FlatList
@@ -223,19 +222,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 10,
   },
-  sectionHeadText: {
-    marginLeft: 15,
-    fontSize: 22,
-    color: myColors.black,
-    fontWeight: "800",
-  },
-  line: {
-    marginTop: 20,
-    width,
-    height: 1,
-    backgroundColor: myColors.black,
-    opacity: 0.7,
-  },
+
   searchInputContainer: {
     justifyContent: "space-evenly",
     alignContent: "center",

@@ -6,8 +6,6 @@ import { Product, ProductInCart } from "../../../types";
 import { productCardHeight, productCardWidth } from "./style";
 import {
   SharedValue,
-  useSharedValue,
-  withTiming,
 } from "react-native-reanimated";
 import InputComponent from "./inputsComponents/InputComponent";
 
@@ -19,6 +17,7 @@ type Props = {
   setIsItemInCart: React.Dispatch<React.SetStateAction<ProductInCart>>;
   openRemoveButtonProgress: SharedValue<number>;
   multiplyViewFadeInProgress: SharedValue<number>;
+  openRemoveButton: ()=> void
 };
 
 const actionButtonWidth = productCardWidth * 0.45 - 10;
@@ -31,22 +30,8 @@ const BottomSection = ({
   setIsItemInCart,
   openRemoveButtonProgress,
   multiplyViewFadeInProgress,
+  openRemoveButton
 }: Props) => {
-  // const multiplyViewFadeInProgress = useSharedValue(0);
-  // const openMultiplyViewTime = 700;
-  // const openRemoveButtonProgress = useSharedValue(0);
-
-  // const openMultiplyView = () => {
-  //   multiplyViewFadeInProgress.value = withTiming(1, {
-  //     duration: openMultiplyViewTime,
-  //   });
-  // };
-
-  // const closeMultiplyView = () => {
-  //   multiplyViewFadeInProgress.value = withTiming(0, {
-  //     duration: openMultiplyViewTime,
-  //   });
-  // };
 
   return (
     <View style={styles.bottomSection}>
@@ -58,10 +43,10 @@ const BottomSection = ({
           <AddToCartButtonComponent
             {...{
               counter,
-              setCounter,
               product,
               isItemInCart,
               setIsItemInCart,
+              openRemoveButton
             }}
             callBack={(lastValue) => {
               if (multiplyViewFadeInProgress.value == 0 && counter != 1) {
@@ -111,6 +96,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-
   },
 });

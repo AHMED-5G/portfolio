@@ -23,20 +23,17 @@ type Props = {
 };
 
 const priceInitialSize = 45;
-// const TopSection = ({ product, counter, showImageProgress }: Props) => {
 const TopSection = ({
   product,
   counter,
-  // showImageProgress,
   multiplyViewFadeInProgress,
 }: Props) => {
   const showImageProgress = useSharedValue(0);
-  // const multiplyViewFadeInProgress = useSharedValue(0);
-  // const showImageFullCardTime = 500;
   const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
   const showImageFullCardTime = 300;
+
   //functions
-  const showImageFullCard = () => {
+  function showImageFullCard() {
     if (showImageProgress.value == 0) {
       showImageProgress.value = withTiming(1, {
         duration: showImageFullCardTime,
@@ -46,7 +43,7 @@ const TopSection = ({
         duration: showImageFullCardTime,
       });
     }
-  };
+  }
 
   //reanimated style
   const imageContainerRStyle = useAnimatedStyle(() => {
@@ -66,7 +63,7 @@ const TopSection = ({
       [0, productCardBorderRadius]
     );
 
-    const toIndex = interpolate(showImageProgress.value, [0, 0.3], [0, 1]);
+    const toIndex = interpolate(showImageProgress.value, [0, 0.3], [0, 2]);
     return {
       borderBottomLeftRadius: toBorderBottomLeftRadius,
       borderTopRightRadius: toBorderBottomLeftRadius,
@@ -125,8 +122,14 @@ const TopSection = ({
     );
     return { opacity: toOpacity };
   });
+
+  const topSectionRStyle = useAnimatedStyle(() => {
+    const toIndex = interpolate(showImageProgress.value, [0, 0.3], [0, 2]);
+
+    return { zIndex: toIndex };
+  });
   return (
-    <View style={styles.topSectionContainer}>
+    <Animated.View style={[styles.topSectionContainer, topSectionRStyle]}>
       <AnimatedTouchable
         activeOpacity={1}
         style={[styles.productImageCard, imageContainerRStyle]}
@@ -189,7 +192,7 @@ const TopSection = ({
           </Animated.View>
         </View>
       </View>
-    </View>
+    </Animated.View>
   );
 };
 
@@ -223,7 +226,7 @@ const styles = StyleSheet.create({
     height: productCardHeight / 2,
     position: "absolute",
     top: 0,
-    zIndex: 1,
+    // zIndex: 1,
   },
   productImageStyle: {
     width: "100%",

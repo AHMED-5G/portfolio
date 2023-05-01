@@ -17,16 +17,18 @@ type Props = {
 };
 const HotelCard = ({ hotel }: Props) => {
   const navigation = useNavigation();
+  const cardWidth = 200;
+  const borderRadius = theme.cardBorderRadiusWidthFactor * cardWidth;
   return (
     <TouchableOpacity
       onPress={() => {
         navigation.navigate("HotelDetails", hotel);
       }}
       style={{
-        width: 200,
+        width: cardWidth,
         marginRight: 20,
         backgroundColor: theme.white,
-        borderRadius: 15,
+        borderRadius: theme.borderRadius,
         elevation: 1,
         shadowColor: "#EEE",
         shadowOffset: {
@@ -41,7 +43,7 @@ const HotelCard = ({ hotel }: Props) => {
         source={{ uri: getRandomOneItemFromList(hotel.images) as string }}
         style={{
           height: 200,
-          borderRadius: 15,
+          borderRadius: theme.borderRadius,
           borderBottomRightRadius: 0,
           borderBottomLeftRadius: 0,
         }}

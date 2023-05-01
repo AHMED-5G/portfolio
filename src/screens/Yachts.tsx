@@ -346,7 +346,6 @@ function Yachts({ navigation }: Props) {
     <View
       style={{
         flex: 1,
-        // paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
         justifyContent: "flex-end",
       }}
     >

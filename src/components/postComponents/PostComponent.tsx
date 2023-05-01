@@ -9,11 +9,11 @@ import { width } from "../../constants/Layout";
 
 import PostOptions from "./PostOptions";
 import { Video } from "expo-av";
+import { theme } from "../../constants/myColors";
 type Props = {
   post: Post;
   isViewable: boolean;
   index: number;
-
 };
 
 const PostComponent = ({ post, isViewable, index }: Props) => {
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    borderRadius: 10,
+    borderRadius: theme.borderRadius,
     marginTop: 20,
   },
 });

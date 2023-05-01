@@ -38,7 +38,7 @@ export default function App() {
       <RootSiblingParent>
         <SafeAreaProvider>
           <PersistGate persistor={persistor}>
-            <StatusBar />
+            <StatusBar style="auto" />
             <ApolloProvider client={client}>
               <Navigation colorScheme={colorScheme} />
             </ApolloProvider>

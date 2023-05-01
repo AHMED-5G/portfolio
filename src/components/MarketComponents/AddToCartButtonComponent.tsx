@@ -8,20 +8,20 @@ import { InitialStateInterface, Product, ProductInCart } from "../../types";
 
 type Props = {
   counter: number;
-  setCounter: React.Dispatch<React.SetStateAction<number>>;
   product: Product;
   isItemInCart: ProductInCart;
   setIsItemInCart: React.Dispatch<React.SetStateAction<ProductInCart>>;
   callBack?: (lastValue: number) => void;
+  openRemoveButton: () => void;
 };
 
 const AddToCartButtonComponent = ({
   counter,
-  setCounter,
   product,
   isItemInCart,
   setIsItemInCart,
   callBack,
+  openRemoveButton,
 }: Props) => {
   const dispatch = useAppDispatch();
   const state: InitialStateInterface = useAppSelector(
@@ -52,6 +52,7 @@ const AddToCartButtonComponent = ({
           { ...product, counter: counter + isItemInCart.counter },
         ])
       );
+      openRemoveButton();
       setIsItemInCart({ ...product, counter: counter + isItemInCart.counter });
       callBack?.(counter + isItemInCart.counter);
     }
@@ -61,7 +62,7 @@ const AddToCartButtonComponent = ({
     <MedButton
       title="Add to cart"
       width={"100%"}
-      borderRadius={10}
+      borderRadius={5}
       color={theme.actionColor}
       textStyle={{ fontSize: 24 }}
       onPress={() => {

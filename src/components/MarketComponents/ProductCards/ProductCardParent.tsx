@@ -1,7 +1,12 @@
 import { StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import TopSection from "./TopSection";
-import { InitialStateInterface, Product, ProductInCart } from "../../../types";
+import {
+  InitialStateInterface,
+  Product,
+  ProductInCart,
+  ProductTypes,
+} from "../../../types";
 import BottomSection from "./BottomSection";
 import {
   productCardWidth,
@@ -23,11 +28,14 @@ const ProductCardParent = ({ product }: Props) => {
   } as ProductInCart);
 
   const [counter, setCounter] = useState(1);
-  const multiplyViewFadeInProgress = useSharedValue(0);
+  const multiplyViewFadeInProgress = useSharedValue(
+    product.type == ProductTypes.upTo100 ? 1 : 0
+  );
   const openRemoveButtonProgress = useSharedValue(0);
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );
+  
   //useEffects
   // on Component load multiplyView control listening to counter
   useEffect(() => {
@@ -40,22 +48,16 @@ const ProductCardParent = ({ product }: Props) => {
 
   //check if the product in cart
   useEffect(() => {
-    if (state.itemsInCart.length) {
-      state.itemsInCart.filter((item) => item.id == product.id);
-      if (state.itemsInCart[0]) {
-        openRemoveButtonProgress.value = withTiming(1, { duration: 100 });
-        setTimeout(() => {
-          setIsItemInCart(state.itemsInCart[0]);
-        }, 100);
-      }
+    const thisProduct = state.itemsInCart.find((item) => item.id == product.id);
+    if (thisProduct != undefined) {
+      openRemoveButtonProgress.value = withTiming(1, { duration: 100 });
+
+      setTimeout(() => {
+        setIsItemInCart(thisProduct);
+      }, 100);
     }
   }, []);
 
-  useEffect(() => {
-    if (isItemInCart.counter > 0) {
-      openRemoveButton();
-    }
-  }, [isItemInCart]);
 
   // functions
   const openMultiplyView = () => {
@@ -89,6 +91,7 @@ const ProductCardParent = ({ product }: Props) => {
           setIsItemInCart,
           openRemoveButtonProgress,
           multiplyViewFadeInProgress,
+          openRemoveButton,
         }}
       />
     </View>

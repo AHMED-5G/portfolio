@@ -1,17 +1,21 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { theme, myColors } from "../../../../constants/myColors";
 import { MySlider } from "../../../mini/MySlider";
 
 type Props = { setCounter: React.Dispatch<React.SetStateAction<number>> };
 
 const SliderInput = ({ setCounter }: Props) => {
+  useEffect(() => {
+    setCounter(10);
+  }, []);
+
   return (
     <View>
       <MySlider
-        min={1}
+        min={10}
         max={100}
-        step={1}
+        step={10}
         valueOnChange={(value) => {
           setCounter(value);
         }}
@@ -35,5 +39,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
+    zIndex: 2,
   },
 });

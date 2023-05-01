@@ -59,4 +59,7 @@ export const theme = {
   tabBarTextColor: "#000",
   tabBarBorderRadius: 10,
   tabBarLeftSectionColor: () => theme.primary,
+
+  cardBorderRadiusWidthFactor: 0.05,
+  borderRadius: 10,
 };

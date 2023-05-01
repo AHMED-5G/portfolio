@@ -16,7 +16,7 @@ type Props = {
 const YachtSection = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
-      <HomeSectionTitle text={i18n.t("yacht")} />
+      <HomeSectionTitle text={i18n.t("yachts")} />
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("YachtStackNavigation");
