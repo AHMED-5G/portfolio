@@ -14,7 +14,8 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/b89f6c6b-eacd-4624-bc60-d11d3b0f12f3"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -26,10 +27,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ahmed_5g.portfolio"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b89f6c6b-eacd-4624-bc60-d11d3b0f12f3"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }

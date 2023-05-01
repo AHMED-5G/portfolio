@@ -1,4 +1,4 @@
-import { StyleSheet,  View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { yachtImages } from "../../../dummy/yachtDummy/images";
 import { width } from "../../constants/Layout";
@@ -7,6 +7,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import HomeSectionTitle from "./HomeSectionTitle";
 import { i18n } from "../../translation/i18n";
 import { getRandomOneItemFromList } from "../../utils/helperFunctions";
+import HomeSingleImage from "./HomeSingleImage";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Home", undefined>;
@@ -15,17 +16,13 @@ type Props = {
 const YachtSection = ({ navigation }: Props) => {
   return (
     <View style={styles.container}>
-      <HomeSectionTitle text={i18n.t("yacht")} />
+      <HomeSectionTitle text={i18n.t("yachts")} />
       <TouchableOpacity
-        style={{ marginLeft: 10 }}
         onPress={() => {
           navigation.navigate("YachtStackNavigation");
         }}
       >
-        <Image
-          source={{ uri: getRandomOneItemFromList(yachtImages) }}
-          style={{ height: 200, width: width * 0.8, borderRadius: 10 }}
-        />
+        <HomeSingleImage uri={getRandomOneItemFromList(yachtImages)} />
       </TouchableOpacity>
     </View>
   );

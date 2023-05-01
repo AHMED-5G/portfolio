@@ -9,16 +9,16 @@ import {
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Post, RootTabScreenProps } from "../types";
 import { mergePosts } from "../../dummy/postsDummy/postsDummy";
-import { myColors } from "../constants/myColors";
+import { myColors, theme } from "../constants/myColors";
 import { PostComponent } from "../components/postComponents/PostComponent";
 import { width } from "../constants/Layout";
 import { shuffleArray } from "../utils/helperFunctions";
 import { Audio } from "expo-av";
 import { refreshSound } from "../../assets/sounds";
+import SimpleHeader from "../components/SimpleHeader";
 
 function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
-
-  const [posts, setPosts] = useState(mergePosts.slice(0, 10))
+  const [posts, setPosts] = useState(mergePosts.slice(0, 10));
   const [refreshState, setRefreshState] = useState(false);
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
@@ -40,7 +40,7 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
     await playSound();
     setRefreshState(true);
     setTimeout(() => {
-      setPosts(shuffleArray(posts))
+      setPosts(shuffleArray(posts));
       setRefreshState(false);
     }, 2000);
   };
@@ -57,10 +57,12 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
       }
     });
   };
+
   const viewabilityConfig = { itemVisiblePercentThreshold: 100 };
   const viewabilityConfigCallbackPairs = useRef([
     { viewabilityConfig, onViewableItemsChanged },
   ]);
+
   useEffect(() => {
     const unsubscribe = navigation.addListener("tabPress", (e) => {
       if (e.target?.split("-")[0] == "Feed") {
@@ -72,11 +74,8 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
   }, [navigation]);
   const flatListRef = useRef<FlatList | null>(null);
   return (
-    <View style={{ marginBottom: 120 }}>
-      <View style={{ marginTop: 40 }}>
-        <Text style={styles.sectionHeadText}>Time Line</Text>
-        <View style={styles.line} />
-      </View>
+    <View style={{ marginBottom: theme.tabBarHeight , flex: 1 }}>
+      <SimpleHeader title="Time Line" />
       <View style={styles.postsContainer}>
         <FlatList
           refreshControl={
@@ -98,7 +97,10 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
             []
           )}
           ref={flatListRef}
-          keyExtractor={useCallback((_, index) => index.toString(), [])}
+          keyExtractor={useCallback(
+            (item: string, index: number) => index.toString(),
+            []
+          )}
           initialNumToRender={5}
           windowSize={2}
           maxToRenderPerBatch={10}
@@ -119,8 +121,8 @@ export { FeedScreen };
 const styles = StyleSheet.create({
   postsContainer: {
     // flex: 1,
-    marginTop: 30,
-    marginBottom: 70,
+    // marginTop: 20,
+    // marginBottom: 70,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
@@ -131,11 +133,5 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: myColors.black,
     opacity: 0.7,
-  },
-  sectionHeadText: {
-    marginLeft: 15,
-    fontSize: 22,
-    color: myColors.black,
-    fontWeight: "800",
   },
 });

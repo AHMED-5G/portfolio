@@ -39,6 +39,7 @@ postsCloneForImages.map((post) => {
   post.image = getRandomOneItemFromList(images);
   post.type = PostTypes.Image;
 });
+
 postsCloneForVideos.map((post) => {
   post.video = getRandomOneItemFromList(videos);
   post.type = PostTypes.Video;

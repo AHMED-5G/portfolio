@@ -20,8 +20,6 @@ import React, {
   useEffect,
   FunctionComponent,
   ReactNode,
-  ReactElement,
-  JSXElementConstructor,
 } from "react";
 const height = Dimensions.get("screen").height;
 const width = Dimensions.get("screen").width;
@@ -29,13 +27,14 @@ interface FormTextInputInterface {
   mainContainerStyle?: StyleProp<ViewStyle>;
   containerStyle?: StyleProp<ViewStyle>;
   textInputContainer?: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
+  
   placeholder?: string;
   value?: string | undefined;
   validations?: string | undefined;
   width?: number | string | undefined;
   height?: number | string | undefined;
   icon?: ReactNode | any;
-
   secure?: boolean;
   keyboardType?: KeyboardTypeOptions | undefined;
   onSubmitEditing?:
@@ -46,8 +45,8 @@ interface FormTextInputInterface {
   setText?: (text: string) => void;
   onFocus?: () => void;
   onBlur?: () => void;
-  placeholderTextColor?: ColorValue 
-  
+  placeholderTextColor?: ColorValue;
+  autoFocus?: boolean;
 }
 
 const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
@@ -131,11 +130,15 @@ const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
             <KeyboardAvoidingView behavior="height">
               <TextInput
                 placeholder={props.placeholder}
-                style={{
-                  width: inputWidth,
-                  maxWidth: inputWidth,
-                  height: 48,
-                }}
+                style={[
+                  {
+                    width: inputWidth,
+                    maxWidth: inputWidth,
+                    height: 48,
+                    fontSize: 20,
+                  },
+                  props.style,
+                ]}
                 onChangeText={props.setText}
                 value={props.value}
                 autoCapitalize="none"
@@ -146,8 +149,8 @@ const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
                 multiline={props.multiline}
                 onFocus={() => props.onFocus?.()}
                 onBlur={() => props.onBlur?.()}
-                placeholderTextColor={props.placeholderTextColor} 
-                
+                placeholderTextColor={props.placeholderTextColor}
+                autoFocus={props.autoFocus}
               />
             </KeyboardAvoidingView>
           </View>

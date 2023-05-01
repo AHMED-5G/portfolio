@@ -1,22 +1,20 @@
 # Review my react native portfolio application v0.4
 
-\*\* only for android devices.
+- for android devices download Expo Go application https://expo.dev/client
 
-- download Expo Go application https://expo.dev/client
+- for IOS devices soon .
 
 - scan QR
 
-- <a href="exp://exp.host/@ahmed_5g/portfolio?release-channel=default">
+<!-- - <a href="exp://exp.host/@ahmed_5g/portfolio?release-channel=default"> -->
 
-  <img
+<img
      width=150 height= 150
-      src="./assets/images/expo-go-portfolio-default.svg">
-  </a>
+      src="./assets/images/expo-go-portfolio-default-android.svg">
+</a>
 
 - or past link:
-  exp://exp.host/@ahmed_5g/portfolio?release-channel=default
-
-- https://expo.dev/@ahmed_5g/portfolio?serviceType=classic
+  exp://u.expo.dev/update/5d2490bf-41a8-464a-bd82-b884cbe40daa
 
 # Rood map
 
@@ -101,10 +99,24 @@ Released and have this features :
 
 - add design theme primary, secondary, and action color ... .
 
-- apply all them in all app sections
 - hide horses section for now .
 
 - redesign home cards Hotels card and Contributors card.
+  </details>
+
+## V 0.5 "Add To Cart" -- released
+
+Released and contains:
+
+<details>
+<summary>Details</summary>
+
+- market section managed by redux toolkit with search for products and custom bottom bar.
+
+- "Add to cart" card contain interactions, deferent inputs methods , image view and calculations.
+
+- improve yacht screen animations and add custom bottom bar.
+
   </details>
 
 # app in [Trello](https://trello.com/b/LCgVV444/portfolio)
@@ -113,17 +125,10 @@ Released and have this features :
 
 ## contribute in this application as :
 
-- User Experience Developer
-- User Interface Developer
-- Graphic Designer
-  ...
+- User Experience Developer.
+- User Interface Developer.
+- Graphic Designer.
 
-or suggest any idea to improve any phase.
-
-### And add your profile to Home screen as contributor and get access to share your improvement with your customers on live mobile application .
-
- <a href="https://www.facebook.com/profile.php?id=100086148849098" target="_blank">
-<img src=https://img.shields.io/badge/facebook-%232E87FB.svg?&style=for-the-badge&logo=facebook&logoColor=white alt=facebook style="margin-bottom: 5px;" />
-</a>
+[![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://www.facebook.com/people/Ahmed-Ali/100086148849098/) [![twitter](https://img.shields.io/badge/-twitter-1DA1F2?logo=twitter&logoColor=white)](https://twitter.com/AD_5G)
 
 AHMED_5G@YAHOO.COM

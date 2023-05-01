@@ -9,27 +9,28 @@ import {
 import React from "react";
 import { Hotel } from "../types";
 import { theme } from "../constants/myColors";
-import {
-  useNavigation,
-} from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import { getRandomOneItemFromList } from "../utils/helperFunctions";
 
 type Props = {
   hotel: Hotel;
 };
 const HotelCard = ({ hotel }: Props) => {
   const navigation = useNavigation();
+  const cardWidth = 200;
+  const borderRadius = theme.cardBorderRadiusWidthFactor * cardWidth;
   return (
     <TouchableOpacity
       onPress={() => {
         navigation.navigate("HotelDetails", hotel);
       }}
       style={{
-        width: 200,
+        width: cardWidth,
         marginRight: 20,
         backgroundColor: theme.white,
-        borderRadius: 15,
+        borderRadius: theme.borderRadius,
         elevation: 1,
-        shadowColor: "#000",
+        shadowColor: "#EEE",
         shadowOffset: {
           width: 0,
           height: 1,
@@ -39,14 +40,13 @@ const HotelCard = ({ hotel }: Props) => {
       }}
     >
       <Image
-        source={{ uri: hotel.images[0] as string }}
+        source={{ uri: getRandomOneItemFromList(hotel.images) as string }}
         style={{
           height: 200,
-          borderRadius: 15,
-          borderBottomRightRadius: 12,
-          borderBottomLeftRadius: 12,
+          borderRadius: theme.borderRadius,
+          borderBottomRightRadius: 0,
+          borderBottomLeftRadius: 0,
         }}
-
       />
 
       <View

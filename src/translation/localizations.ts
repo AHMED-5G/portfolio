@@ -12,11 +12,15 @@ const en = {
   hotels: "Hotels",
   horses: "Horses",
   contributors: "Contributors",
-  yacht: 'Yacht'
+  yacht: 'Yacht',
+  yachts: 'Yachts',
+  market: 'Market'
 };
 
 const ar = {
+  market: 'السوق',
   yacht: 'يخت',
+  yachts: 'اليخوت',
   horses: "الخيل",
   contributors: "المساهمون",
   welcome: "مرحبا",

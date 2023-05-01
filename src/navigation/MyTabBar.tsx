@@ -16,7 +16,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
 import { FeedTab, HomeTab, SettingsTab } from "./tabBarItems";
 import { myColors, theme } from "../constants/myColors";
 import Animated, {
@@ -30,7 +29,6 @@ import Animated, {
 } from "react-native-reanimated";
 import { AntDesign } from "@expo/vector-icons";
 import DrawerComponent from "./tabBarItems/DrawerComponent";
-
 import RightTabComponent from "./tabBarItems/RightTabComponent";
 import TabBarFooter from "./tabBarItems/TabBarFooter";
 
@@ -67,16 +65,18 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
       runOnJS(setTapOpenState)(true);
     });
   }, []);
+
   const closTab = useCallback(() => {
     openTabProgress.value = withTiming(0, undefined, (isFinished) => {
       runOnJS(setTapOpenState)(false);
     });
   }, []);
+
   const tabReanimatedStyle = useAnimatedStyle(() => {
     const height = interpolate(
       openTabProgress.value,
       [0, 1],
-      [50, barOpenHeight],
+      [theme.tabBarHeight, barOpenHeight],
       {
         extrapolateRight: Extrapolation.CLAMP,
       }
@@ -120,7 +120,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
           alignContent: "center",
           alignItems: "center",
           width: width * upButtonPercentage,
-          backgroundColor: theme.primary,
+          backgroundColor: theme.tabBarLeftSectionColor(),
         }}
       >
         <Animated.View
@@ -136,7 +136,6 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
           <AntDesign name="up" size={44} color={theme.primaryText} />
         </Animated.View>
       </TouchableOpacity>
-
       <View
         style={{
           width: width * (1 - upButtonPercentage),
@@ -185,7 +184,13 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
                 testID={options.tabBarTestID}
                 onPress={onPress}
                 onLongPress={onLongPress}
-                style={{ flex: 1, alignItems: "center", width: 48, height: 48 }}
+                style={{
+                  flex: 1,
+                  alignItems: "center",
+                  width: 48,
+                  height: 48,
+                  marginTop: 10,
+                }}
                 key={label.toString()}
               >
                 {label == "Home" ? (

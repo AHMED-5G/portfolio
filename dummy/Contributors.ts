@@ -33,9 +33,9 @@ export const contributors: Contributor[] = [
     title: "Graphics Designer",
     accounts: [
       {
-        name: "facebook",
-        type: AccountTypes.Facebook,
-        url: "https://www.facebook.com/",
+        name: "twitter",
+        type: AccountTypes.Twitter,
+        url: "https://www.twitter.com/",
       },
       {
         name: "behance",
@@ -66,6 +66,11 @@ export const contributors: Contributor[] = [
         name: "Github",
         type: AccountTypes.Github,
         url: "https://github.com/AHMED-5G",
+      },
+      {
+        name: "twitter",
+        type: AccountTypes.Twitter,
+        url: "https://www.twitter.com/ad_5g",
       },
     ],
     image: "https://i.stack.imgur.com/RWR5C.jpg?s=256&g=1",
