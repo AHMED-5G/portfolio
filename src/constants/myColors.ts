@@ -46,6 +46,12 @@ export const theme = {
   white: "white",
   black: "black",
 
+  alertSuccessColor: "#b0f2b4",
+  alertInfoColor: "#bad7f2",
+  alertWarningColor: "#f2e2ba",
+  alertFailColor: "#f2bac9",
+  alertTextColor: "#000",
+
   cardBackground: "white",
   cardText: "#000",
 
@@ -62,4 +68,5 @@ export const theme = {
 
   cardBorderRadiusWidthFactor: 0.05,
   borderRadius: 10,
+  buttonBorderRadius: 5,
 };

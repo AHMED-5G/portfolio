@@ -21,57 +21,40 @@ import { ImageSlider } from "../components/mini/CustomImageSlider";
 import { DataType } from "react-native-image-slider-banner/src";
 //@ts-ignore
 import Stars from "react-native-stars";
-import BackArrow from "../components/mini/BackArrow";
 import { showToast } from "../utils/helperFunctions";
+import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
+import ImageSliderComponent from "../components/HotelDetailsComponents/ImageSliderComponent";
 
 type Props = StackScreenProps<RootStackParamList, "HotelDetails">;
 
 function HotelDetails({ navigation, route }: Props) {
-  const hotel = route.params;
-  let imagesForSlider: DataType[] = hotel.images.map((item) => {
-    return { img: item as ImageURISource };
-  });
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [requestedIndex, setRequestedIndex] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [requestResult, setRequestResult] = useState(false);
+  const Content = () => {
+    const hotel = route.params;
+    let imagesForSlider: DataType[] = hotel.images.map((item) => {
+      return { img: item as ImageURISource };
+    });
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [requestedIndex, setRequestedIndex] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [requestResult, setRequestResult] = useState(false);
 
-  const sendFakeRequest = () => {
-    setTimeout(() => {
-      setLoading(false);
-      showToast(
-        requestResult
-          ? "Request sent successfully!"
-          : "Request failed to send.",
-        requestResult ? myColors.Baltic : myColors.redFavorite
-      );
-      setRequestResult(!requestResult);
-    }, 3000);
-  };
-  return (
-    <>
-      {Platform.OS == "ios" && <BackArrow position="absolute" />}
-      <ScrollView style={{ height }}>
-        <View
-          style={{
-            width,
-            height: height / 2,
-          }}
-        >
-          <ImageSlider
-            data={imagesForSlider}
-            requestedIndex={requestedIndex}
-            onItemChangedWithIndex={(_, index) => {
-              setCurrentImageIndex(index);
-            }}
-            caroselImageStyle={{
-              height: height / 2,
-              borderBottomLeftRadius: 40,
-              borderBottomRightRadius: 40,
-            }}
-            closeIconColor="#fff"
-          />
-        </View>
+    function sendFakeRequest() {
+      setTimeout(() => {
+        setLoading(false);
+        showToast(
+          requestResult
+            ? "Request sent successfully!"
+            : "Request failed to send.",
+          requestResult ? myColors.Baltic : myColors.redFavorite
+        );
+        setRequestResult(!requestResult);
+      }, 3000);
+    }
+    return (
+      <ScrollView style={{ flex: 1 }}>
+        <ImageSliderComponent
+          {...{ hotel, requestedIndex, setCurrentImageIndex }}
+        />
         <View style={styles.meddleCard}>
           <View style={{ margin: 15, maxWidth: 300, height: 105 }}>
             <FlatList
@@ -79,29 +62,28 @@ function HotelDetails({ navigation, route }: Props) {
               data={hotel.images}
               renderItem={({ item, index }) => (
                 <View style={{ width: 100 }}>
-                  {index == currentImageIndex ? (
-                    <View
-                      style={[styles.miniImageContainerStyle, { margin: 5 }]}
-                    >
-                      <Image
-                        source={{ uri: item as string }}
-                        style={styles.miniImageStyle}
-                      />
-                    </View>
-                  ) : (
-                    <TouchableOpacity
-                      onPress={() => {
-                        setCurrentImageIndex(index);
-                        setRequestedIndex(index);
-                      }}
-                      style={{ margin: 5 }}
-                    >
-                      <Image
-                        source={{ uri: item as string }}
-                        style={styles.miniImageStyle}
-                      />
-                    </TouchableOpacity>
-                  )}
+                  <TouchableOpacity
+                    style={[styles.miniImageContainerStyle, { margin: 5 }]}
+                    disabled={index == currentImageIndex}
+                    onPress={() => {
+                      setCurrentImageIndex(index);
+                      setRequestedIndex(index);
+                    }}
+                  >
+                    <Image
+                      source={{ uri: item as string }}
+                      style={[
+                        styles.miniImageStyle,
+                        {
+                          borderWidth: index == currentImageIndex ? 1 : 0,
+                          borderColor:
+                            index == currentImageIndex
+                              ? theme.secondary
+                              : undefined,
+                        },
+                      ]}
+                    />
+                  </TouchableOpacity>
                 </View>
               )}
               keyExtractor={(_: string, index: number) => index.toString()}
@@ -167,19 +149,27 @@ function HotelDetails({ navigation, route }: Props) {
             <MedButton
               loading={loading}
               textStyle={{ color: theme.actionColorText, fontSize: 20 }}
-              style={{ width: 140, height: 50, marginTop: 10 }}
-              borderRadius={5}
+              style={{
+                width: 140,
+                height: 50,
+                marginTop: 10,
+                borderRadius: theme.buttonBorderRadius,
+              }}
               onPress={() => {
                 setLoading(true);
                 sendFakeRequest();
               }}
-              title="Book Now"
+              title="Book now"
               color={theme.actionColor}
             />
           </View>
         </View>
       </ScrollView>
-    </>
+    );
+  };
+  // return <Content />;
+  return (
+    <ScreenWithCustomBottomTab content={<Content />} navigation={navigation} />
   );
 }
 
@@ -187,11 +177,9 @@ export default HotelDetails;
 
 const styles = StyleSheet.create({
   miniImageContainerStyle: {
-    width: 94,
-    height: 94,
+    width: 90,
+    height: 90,
     borderRadius: 10,
-    borderWidth: 4,
-    borderColor: theme.actionColor,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

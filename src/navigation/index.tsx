@@ -25,8 +25,8 @@ import { useAppSelector } from "../redux/Hooks/hooks";
 import { loadLocale } from "../translation/i18n";
 import YachtStackNavigation from "./YachtStackNavigation/YachtStackNavigation";
 import MarketStackNavigator from "./MarketStackNavigator/MarketStackNavigator";
-import { View } from "react-native";
 import { StatusBar } from "react-native";
+import HotelDetails from "../screens/HotelDetails";
 export default function Navigation({
   colorScheme,
 }: {
@@ -58,6 +58,11 @@ function RootNavigator() {
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="HotelDetails"
+        component={HotelDetails}
         options={{ headerShown: false }}
       />
       <Stack.Screen

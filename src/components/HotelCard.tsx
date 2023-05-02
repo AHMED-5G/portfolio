@@ -22,7 +22,8 @@ const HotelCard = ({ hotel }: Props) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("HotelDetails", hotel);
+        // navigation.navigate("HotelStackNavigation" , hotel);
+        navigation.navigate('HotelDetails', hotel);
       }}
       style={{
         width: cardWidth,

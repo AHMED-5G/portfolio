@@ -1,36 +1,28 @@
 import {
-  Platform,
-  SafeAreaView,
   StyleSheet,
   Text,
   View,
-  StatusBar,
-  TouchableOpacity,
   FlatList,
-  Keyboard,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import { Product, RootStackParamList } from "../types";
-import { height, width } from "../constants/Layout";
-
-import BackComponent from "../components/MarketComponents/BackComponent";
+import {  width } from "../constants/Layout";
 import SearchComponent from "../components/MarketComponents/SearchComponent";
 import Cart from "../components/MarketComponents/Cart";
 import { productsData } from "../../dummy/marketDummy/ProductsDummy";
 import ProductCardParent from "../components/MarketComponents/ProductCards/ProductCardParent";
 import FormTextInput from "../components/mini/FormTextInput";
 import MedButton from "../components/mini/MedButton";
-import { myColors, theme } from "../constants/myColors";
+import { theme } from "../constants/myColors";
 import Animated, {
   interpolate,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import CustomBottomTab from "../components/CustomBottomTab";
-import MyLine from "../components/MyLine";
 import SimpleHeader from "../components/SimpleHeader";
+import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 
 type Props = StackScreenProps<RootStackParamList, "MarketHomeScreen">;
 
@@ -73,122 +65,129 @@ const MarketHomeScreen = ({ navigation }: Props) => {
     return number <= 1 ? "result" : "results";
   };
 
-  return (
-    <View style={styles.container}>
-      <SimpleHeader title="Everyday Essentials" />
-      <View style={{ flex: 1, justifyContent: "flex-end" }}>
-        <View style={styles.productsFlatListContainer}>
-          <FlatList
-            data={myProducts}
-            renderItem={({ item }) => {
-              return <ProductCardParent product={item} />;
-            }}
-            keyExtractor={(item) => item.name}
-            showsVerticalScrollIndicator={false}
-          />
-        </View>
-        {showSearchInput && (
-          <View style={styles.searchInputContainer}>
-            <Animated.View
-              style={[
-                {
-                  borderRadius: 5,
-                  height: 0,
-                  justifyContent: "center",
+  const Content = () => {
+    return (
+      <View style={styles.container}>
+        <SimpleHeader title="Everyday Essentials" />
+        <View style={{ flex: 1, justifyContent: "flex-end" }}>
+          <View style={styles.productsFlatListContainer}>
+            <FlatList
+              data={myProducts}
+              renderItem={({ item }) => {
+                return <ProductCardParent product={item} />;
+              }}
+              keyExtractor={(item) => item.name}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+          {showSearchInput && (
+            <View style={styles.searchInputContainer}>
+              <Animated.View
+                style={[
+                  {
+                    borderRadius: 5,
+                    height: 0,
+                    justifyContent: "center",
+                    alignContent: "center",
+                    alignItems: "center",
+                  },
+                  searchMessageRStylerContainer,
+                  {
+                    backgroundColor: searchResult?.length
+                      ? "#8fdd42"
+                      : "#edc68f",
+                  },
+                ]}
+              >
+                {searchResult?.length ? (
+                  <Text style={styles.searchResultText}>
+                    {searchResult.length +
+                      " " +
+                      resultText(searchResult.length) +
+                      " for " +
+                      "' " +
+                      searchText +
+                      " '"}
+                  </Text>
+                ) : (
+                  searchText && (
+                    <Text style={[styles.searchResultText, { color: "black" }]}>
+                      {"No results for " + "' " + searchText + " '"}
+                    </Text>
+                  )
+                )}
+              </Animated.View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-evenly",
                   alignContent: "center",
                   alignItems: "center",
-                },
-                searchMessageRStylerContainer,
-                {
-                  backgroundColor: searchResult?.length ? "#8fdd42" : "#edc68f",
-                },
-              ]}
-            >
-              {searchResult?.length ? (
-                <Text style={styles.searchResultText}>
-                  {searchResult.length +
-                    " " +
-                    resultText(searchResult.length) +
-                    " for " +
-                    "' " +
-                    searchText +
-                    " '"}
-                </Text>
-              ) : (
-                searchText && (
-                  <Text style={[styles.searchResultText, { color: "black" }]}>
-                    {"No results for " + "' " + searchText + " '"}
-                  </Text>
-                )
-              )}
-            </Animated.View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-evenly",
-                alignContent: "center",
-                alignItems: "center",
-                width,
-              }}
-            >
-              <FormTextInput
-                placeholder="Search"
-                mainContainerStyle={{
-                  width: "80%",
-                  borderWidth: 0.5,
-                  borderColor: theme.borderColor,
-                  borderRadius: 5,
+                  width,
                 }}
-                containerStyle={{ width: "100%" }}
-                autoFocus={true}
-                value={searchText}
-                setText={(text) => {
-                  setMyProducts(
-                    productsData.filter((product) =>
-                      product.searchText.includes(text)
-                    )
-                  );
-                  setSearchResult(
-                    productsData.filter((product) =>
-                      product.searchText.includes(text)
-                    )
-                  );
-                  setSearchText(text);
-                  if (text) {
-                    openSearchMessageContainer();
-                  } else {
-                    closeSearchMessageContainer();
-                  }
-                }}
-                onSubmitEditing={() => {
-                  if (!searchText) {
+              >
+                <FormTextInput
+                  placeholder="Search"
+                  mainContainerStyle={{
+                    width: "80%",
+                    borderWidth: 0.5,
+                    borderColor: theme.borderColor,
+                    borderRadius: 5,
+                  }}
+                  containerStyle={{ width: "100%" }}
+                  autoFocus={true}
+                  value={searchText}
+                  setText={(text) => {
+                    setMyProducts(
+                      productsData.filter((product) =>
+                        product.searchText.includes(text)
+                      )
+                    );
+                    setSearchResult(
+                      productsData.filter((product) =>
+                        product.searchText.includes(text)
+                      )
+                    );
+                    setSearchText(text);
+                    if (text) {
+                      openSearchMessageContainer();
+                    } else {
+                      closeSearchMessageContainer();
+                    }
+                  }}
+                  onSubmitEditing={() => {
+                    if (!searchText) {
+                      setShowSearchInput(false);
+                    }
+                  }}
+                />
+                <MedButton
+                  width={48}
+                  title="X"
+                  circle
+                  onPress={() => {
                     setShowSearchInput(false);
-                  }
-                }}
-              />
-              <MedButton
-                width={48}
-                title="X"
-                circle
-                onPress={() => {
-                  setShowSearchInput(false);
-                  setMyProducts(productsData);
-                }}
-                textStyle={{ fontWeight: "500", color: "black" }}
-                style={{ backgroundColor: "white" }}
-              />
+                    setMyProducts(productsData);
+                  }}
+                  textStyle={{ fontWeight: "500", color: "black" }}
+                  style={{ backgroundColor: "white" }}
+                />
+              </View>
             </View>
-          </View>
-        )}
+          )}
+        </View>
       </View>
-      <CustomBottomTab
-        navigation={navigation}
-        components={[
-          <SearchComponent showTextInput={showTextInput} />,
-          <Cart />,
-        ]}
-      />
-    </View>
+    );
+  };
+  return (
+    <ScreenWithCustomBottomTab
+      content={<Content />}
+      navigation={navigation}
+      CustomBottomTabComponents={[
+        <SearchComponent showTextInput={showTextInput} />,
+        <Cart />,
+      ]}
+    />
   );
 };
 

@@ -29,7 +29,7 @@ function Home({ navigation }: Props) {
         {/* <HorsesSection navigation={navigation} />
         <MyLine width="90%" /> */}
         <View style={{ marginLeft: 10 }}>
-          <Text style={{ fontSize: 18, fontWeight: "800" }}>V0.5</Text>
+          <Text style={{ fontSize: 18, fontWeight: "800" }}>V0.6</Text>
         </View>
       </ScrollView>
     </View>
