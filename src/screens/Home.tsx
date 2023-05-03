@@ -8,15 +8,19 @@ import HotelsSection from "../components/homeSections/HotelsSection";
 import MarketSection from "../components/homeSections/MarketSection";
 import MyLine from "../components/MyLine";
 import HorsesSection from "../components/homeSections/HorsesSection";
+import { width } from "../constants/Layout";
 
 type Props = StackScreenProps<RootStackParamList, "Home">;
 
 function Home({ navigation }: Props) {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1,  }}>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{ marginBottom: 10 }}
+        style={{
+          marginBottom: 10,
+ 
+        }}
       >
         <MarketSection navigation={navigation} />
         <MyLine width="90%" />

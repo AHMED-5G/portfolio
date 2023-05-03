@@ -1,3 +1,5 @@
+import { ColorValue, FlexStyle } from "react-native";
+
 export const myColors = {
   main: "#CD9575",
   secondary: "#007FFF",
@@ -33,7 +35,56 @@ export const myColors = {
   tr: "trans",
 };
 
-export const theme = {
+export enum LocalizationDirection {
+  "rtl",
+  "ltr",
+}
+let localizationFlexDirection: FlexStyle["flexDirection"] = "row-reverse";
+// localizationFlexDirection = "row";
+// let localizationDirection = LocalizationDirection.ltr;
+
+interface ThemeInterface {
+  primary: ColorValue;
+  primaryText: "#000";
+
+  secondary: ColorValue;
+  secondaryText: "#FFF";
+
+  actionColor: ColorValue;
+  actionColorText: "#FFF";
+
+  white: ColorValue;
+  black: ColorValue;
+
+  alertSuccessColor: ColorValue;
+  alertInfoColor: ColorValue;
+  alertWarningColor: ColorValue;
+  alertFailColor: ColorValue;
+  alertTextColor: "#000";
+
+  cardBackground: ColorValue;
+  cardBackgroundColorValue: ColorValue;
+  cardText: "#000";
+
+  tabBarHeight: number;
+  tabBarBackground: ColorValue;
+  tabBarTextColor: ColorValue;
+  tabBarBorderRadius: number;
+  tabBarLeftSectionColor: () => void;
+
+  cardBorderRadiusWidthFactor: number;
+  borderRadius: number;
+  buttonBorderRadius: number;
+  borderColor: ColorValue;
+  disableColor: ColorValue;
+
+  warning: ColorValue;
+  // localizationFlexDirection: () => FlexStyle["flexDirection"];
+  localizationFlexDirection: FlexStyle["flexDirection"] | undefined;
+  localizationDirection?: "rtl" | "ltr";
+}
+
+export const theme: ThemeInterface = {
   primary: "#dddcec",
   primaryText: "#000",
 
@@ -66,7 +117,12 @@ export const theme = {
   tabBarBorderRadius: 10,
   tabBarLeftSectionColor: () => theme.primary,
 
+  cardBackgroundColorValue: "#FFF",
   cardBorderRadiusWidthFactor: 0.05,
   borderRadius: 10,
   buttonBorderRadius: 5,
+
+  localizationDirection: undefined,
+  localizationFlexDirection: undefined,
+  //  theme.localizationDirection == "ltr" ? "row" : "row-reverse";
 };

@@ -9,11 +9,11 @@ type Props = {
 };
 
 const ContributorCard = ({ contributor }: Props) => {
+  
   const cardWidth = 160;
   return (
     <View
       style={{
-        marginRight: 15,
         width: cardWidth,
         borderRadius: theme.borderRadius,
         backgroundColor: "white",
