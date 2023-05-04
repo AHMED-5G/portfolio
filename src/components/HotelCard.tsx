@@ -22,12 +22,10 @@ const HotelCard = ({ hotel }: Props) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        // navigation.navigate("HotelStackNavigation" , hotel);
-        navigation.navigate('HotelDetails', hotel);
+        navigation.navigate("HotelDetails", hotel);
       }}
       style={{
         width: cardWidth,
-        marginRight: 20,
         backgroundColor: theme.white,
         borderRadius: theme.borderRadius,
         elevation: 1,
@@ -53,10 +51,13 @@ const HotelCard = ({ hotel }: Props) => {
       <View
         style={{
           marginLeft: 5,
+          marginBottom: 10,
         }}
       >
         <Text style={styles.title}>{hotel.name}</Text>
-        <Text style={styles.secondlyTitle}>{hotel.address}</Text>
+        <Text numberOfLines={1} style={styles.secondlyTitle}>
+          {hotel.address}
+        </Text>
       </View>
     </TouchableOpacity>
   );

@@ -46,6 +46,21 @@ const SetReadThemeComponent = (props: Props) => {
   return (
     <View style={styles.container}>
       <View
+        style={[
+          styles.exampleContainer,
+          { backgroundColor: selectedCombo?.backGroundColor },
+        ]}
+      >
+        <Text
+          style={{
+            fontSize: selectedCombo.fontSize,
+            color: selectedCombo.fontColor,
+          }}
+        >
+          I can read this text
+        </Text>
+      </View>
+      <View
         style={{
           flexDirection: "row",
           overflow: "hidden",
@@ -71,21 +86,6 @@ const SetReadThemeComponent = (props: Props) => {
           keyExtractor={(item, index) => index.toString()}
           showsVerticalScrollIndicator={false}
         />
-      </View>
-      <View
-        style={[
-          styles.exampleContainer,
-          { backgroundColor: selectedCombo?.backGroundColor },
-        ]}
-      >
-        <Text
-          style={{
-            fontSize: selectedCombo.fontSize,
-            color: selectedCombo.fontColor,
-          }}
-        >
-          I can read this text
-        </Text>
       </View>
       <View>
         <View style={styles.sliderContainer}>

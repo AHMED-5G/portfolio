@@ -10,6 +10,7 @@ export const loadLocale = (lang: Languages) => {
   i18n.locale = lang == Languages.Arabic ? "ar" : "en";
   theme.localizationDirection = lang == "ar" ? "rtl" : "ltr";
   theme.localizationFlexDirection = lang == "ar" ? "row-reverse" : "row";
+  theme.localizationRtl = lang == "ar" ? true : false;
 };
 
 export { i18n };

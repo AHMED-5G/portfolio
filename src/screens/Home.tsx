@@ -8,20 +8,24 @@ import HotelsSection from "../components/homeSections/HotelsSection";
 import MarketSection from "../components/homeSections/MarketSection";
 import MyLine from "../components/MyLine";
 import HorsesSection from "../components/homeSections/HorsesSection";
-import { width } from "../constants/Layout";
+import { height, width } from "../constants/Layout";
+import { theme } from "../constants/myColors";
+import { i18n } from "../translation/i18n";
+import SimpleHeader from "../components/SimpleHeader";
 
 type Props = StackScreenProps<RootStackParamList, "Home">;
 
 function Home({ navigation }: Props) {
   return (
-    <View style={{ flex: 1,  }}>
+    <View style={{ flex: 1 }}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{
           marginBottom: 10,
- 
         }}
       >
+        <SimpleHeader title="Home" />
+
         <MarketSection navigation={navigation} />
         <MyLine width="90%" />
         <ContributesSection navigation={navigation} />
@@ -32,8 +36,15 @@ function Home({ navigation }: Props) {
         <MyLine width="90%" />
         {/* <HorsesSection navigation={navigation} />
         <MyLine width="90%" /> */}
-        <View style={{ marginLeft: 10 }}>
-          <Text style={{ fontSize: 18, fontWeight: "800" }}>V0.6</Text>
+        <View
+          style={{
+            marginLeft: 10,
+            flexDirection: theme.localizationFlexDirection,
+          }}
+        >
+          <Text style={{ fontSize: 18, fontWeight: "800" }}>
+            {i18n.t("version")} 0.6
+          </Text>
         </View>
       </ScrollView>
     </View>

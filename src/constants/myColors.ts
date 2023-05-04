@@ -70,7 +70,7 @@ interface ThemeInterface {
   tabBarBackground: ColorValue;
   tabBarTextColor: ColorValue;
   tabBarBorderRadius: number;
-  tabBarLeftSectionColor: () => void;
+  tabBarLeftSectionColor: () => ColorValue;
 
   cardBorderRadiusWidthFactor: number;
   borderRadius: number;
@@ -79,9 +79,12 @@ interface ThemeInterface {
   disableColor: ColorValue;
 
   warning: ColorValue;
-  // localizationFlexDirection: () => FlexStyle["flexDirection"];
+
+  localizationRtl: boolean;
   localizationFlexDirection: FlexStyle["flexDirection"] | undefined;
   localizationDirection?: "rtl" | "ltr";
+  iconLocalizationTransform: () => [{ rotateY: string }];
+  //[{ rotateY: theme.localizationRtl ? "180deg" : "0deg" }],
 }
 
 export const theme: ThemeInterface = {
@@ -123,6 +126,13 @@ export const theme: ThemeInterface = {
   buttonBorderRadius: 5,
 
   localizationDirection: undefined,
+  localizationRtl: false,
   localizationFlexDirection: undefined,
+  iconLocalizationTransform: function () {
+    return [{ rotateY: this.localizationRtl ? "180deg" : "0deg" }];
+  },
+
+  //[{ rotateY: theme.localizationRtl ? "180deg" : "0deg" }],
+
   //  theme.localizationDirection == "ltr" ? "row" : "row-reverse";
 };

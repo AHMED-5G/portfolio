@@ -8,7 +8,13 @@ type Props = { uri: string };
 const HomeSingleImage = ({ uri }: Props) => {
   const imageWidth = width * 0.9;
   return (
-    <View style={{ marginTop: 5, marginLeft: 10 }}>
+    <View
+      style={{
+        marginTop: 5,
+        marginLeft: 10,
+        flexDirection: theme.localizationFlexDirection,
+      }}
+    >
       <Image
         source={{
           uri,

@@ -24,6 +24,7 @@ const ContributesSection = ({ navigation }: Props) => {
         }}
       >
         <MyFlatList
+          // data={shuffleArray(contributors)}
           data={contributors}
           horizontal
           RenderItemComponent={({ item }: { item: Contributor }) => {
@@ -33,28 +34,6 @@ const ContributesSection = ({ navigation }: Props) => {
           showsHorizontalScrollIndicator={false}
           renderItem={undefined}
         />
-
-        {/* <FlatList
-          // data={shuffleArray(contributors)}
-          data={contributors}
-          horizontal
-          contentContainerStyle={{
-            flexDirection: theme.localizationFlexDirection,
-          }}
-          inverted={true}
-          renderItem={({ item }) => (
-            <View
-              style={{
-                marginRight: theme.localizationDirection == "ltr" ? 15 : 0,
-                marginLeft: theme.localizationDirection == "rtl" ? 15 : 0,
-              }}
-            >
-              <ContributorCard contributor={item} />
-            </View>
-          )}
-          keyExtractor={(item: Contributor) => item.id.toString()}
-          showsHorizontalScrollIndicator={false}
-        /> */}
       </View>
     </View>
   );

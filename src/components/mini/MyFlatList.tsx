@@ -1,20 +1,19 @@
 import {
   FlatList,
   FlatListProps,
-  ListRenderItem,
-  ListRenderItemInfo,
+  FlexStyle,
   StyleProp,
   StyleSheet,
   Text,
   View,
   ViewStyle,
 } from "react-native";
-import React, { ReactNode } from "react";
+import React from "react";
 import { theme } from "../../constants/myColors";
 
 interface MyFlatListInterface<ItemT = any> extends FlatListProps<ItemT> {
   RenderItemComponent: (item: ItemT) => JSX.Element;
-  marginValue?: number;
+  marginValue?: FlexStyle["marginRight"] | FlexStyle["marginLeft"];
   localizationContainerStyle?: StyleProp<ViewStyle>;
 }
 
@@ -33,20 +32,14 @@ const MyFlatList = ({
         },
         props.contentContainerStyle,
       ]}
-      inverted={theme.localizationFlexDirection == "row" ? false : true}
+      inverted={theme.localizationRtl ?? true}
       renderItem={({ item, index }) => {
         return (
           <View
             style={[
               {
-                marginRight:
-                  theme.localizationFlexDirection == "row"
-                    ? marginValue ?? 15
-                    : 0,
-                marginLeft:
-                  theme.localizationFlexDirection == "row-reverse"
-                    ? marginValue ?? 15
-                    : 0,
+                marginRight: !theme.localizationRtl ? marginValue ?? 15 : 0,
+                marginLeft: theme.localizationRtl ? marginValue ?? 15 : 0,
               },
               localizationContainerStyle,
             ]}

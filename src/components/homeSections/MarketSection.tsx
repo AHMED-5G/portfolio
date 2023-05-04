@@ -16,7 +16,6 @@ const MarketSection = ({ navigation }: Props) => {
     <View style={styles.container}>
       <HomeSectionTitle text={i18n.t("market")} />
       <TouchableOpacity
-  
         onPress={() => {
           navigation.navigate("MarketStackNavigator");
         }}

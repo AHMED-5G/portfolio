@@ -18,7 +18,7 @@ import { refreshSound } from "../../assets/sounds";
 import SimpleHeader from "../components/SimpleHeader";
 
 function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
-  const [posts, setPosts] = useState(mergePosts.slice(0, 10));
+  const [posts, setPosts] = useState<Post[]>(mergePosts.slice(0, 10));
   const [refreshState, setRefreshState] = useState(false);
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
