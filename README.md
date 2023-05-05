@@ -120,6 +120,7 @@ Released and contains:
   </details>
 
 # app in [Trello](https://trello.com/b/LCgVV444/portfolio)
+# app in [![wakatime](https://wakatime.com/badge/user/2b8d577c-8421-4136-96aa-e15e59c6a7d8/project/4b9ac203-6a0d-4fb1-a6c7-cbf7318bd9e4.svg)](https://wakatime.com/@Ahmed5g/projects/kxvjbhoeuc?start=2023-04-29&end=2023-05-05)
 
 # Need Contributors
 
