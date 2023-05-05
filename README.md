@@ -1,4 +1,4 @@
-# Review my react native portfolio application v0.4
+# Review my react native portfolio application v0.5
 
 - for android devices download Expo Go application https://expo.dev/client
 
@@ -6,14 +6,13 @@
 
 - scan QR
 
-<!-- - <a href="exp://exp.host/@ahmed_5g/portfolio?release-channel=default"> -->
-
 <img
      width=150 height= 150
       src="./assets/images/expo-go-portfolio-default-android.svg">
 </a>
 
 - or past link:
+
   exp://u.expo.dev/update/5d2490bf-41a8-464a-bd82-b884cbe40daa
 
 # Rood map
