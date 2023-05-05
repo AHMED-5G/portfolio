@@ -38,7 +38,10 @@ const MyLine = ({ width = "100%", containerStyle, lineStyle }: Props) => {
           },
           lineStyle,
         ]}
-      />
+      >
+  
+      </View>
+
     </View>
   );
 };

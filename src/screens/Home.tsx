@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Text, ScrollView, TextInput } from "react-native";
 import React from "react";
 import { RootStackParamList } from "../types";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -18,14 +18,13 @@ type Props = StackScreenProps<RootStackParamList, "Home">;
 function Home({ navigation }: Props) {
   return (
     <View style={{ flex: 1 }}>
+      <SimpleHeader title={i18n.t("home")} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{
           marginBottom: 10,
         }}
       >
-        <SimpleHeader title="Home" />
-
         <MarketSection navigation={navigation} />
         <MyLine width="90%" />
         <ContributesSection navigation={navigation} />

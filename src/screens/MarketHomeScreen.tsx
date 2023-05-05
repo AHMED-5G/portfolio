@@ -1,13 +1,8 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-} from "react-native";
-import React, {  useState } from "react";
+import { StyleSheet, Text, View, FlatList } from "react-native";
+import React, { useState } from "react";
 import { StackScreenProps } from "@react-navigation/stack";
 import { Product, RootStackParamList } from "../types";
-import {  width } from "../constants/Layout";
+import { width } from "../constants/Layout";
 import SearchComponent from "../components/MarketComponents/SearchComponent";
 import Cart from "../components/MarketComponents/Cart";
 import { productsData } from "../../dummy/marketDummy/ProductsDummy";
@@ -23,6 +18,7 @@ import Animated, {
 } from "react-native-reanimated";
 import SimpleHeader from "../components/SimpleHeader";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
+import { i18n } from "../translation/i18n";
 
 type Props = StackScreenProps<RootStackParamList, "MarketHomeScreen">;
 
@@ -68,7 +64,9 @@ const MarketHomeScreen = ({ navigation }: Props) => {
   const Content = () => {
     return (
       <View style={styles.container}>
-        <SimpleHeader title="Everyday Essentials" />
+        <SimpleHeader
+          title={i18n.t("market") + " - " + i18n.t("everydayEssentials")}
+        />
         <View style={{ flex: 1, justifyContent: "flex-end" }}>
           <View style={styles.productsFlatListContainer}>
             <FlatList

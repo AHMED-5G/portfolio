@@ -26,13 +26,12 @@ import Animated, {
   Extrapolation,
   useDerivedValue,
   withTiming,
+  Easing,
 } from "react-native-reanimated";
 import { AntDesign } from "@expo/vector-icons";
 import DrawerComponent from "./tabBarItems/DrawerComponent";
-import RightTabComponent from "./tabBarItems/RightTabComponent";
 import TabBarFooter from "./tabBarItems/TabBarFooter";
 import MyLine from "../components/MyLine";
-
 interface TabBarProps {
   state: TabNavigationState<ParamListBase>;
   descriptors: BottomTabDescriptorMap;
@@ -62,9 +61,14 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
   });
 
   const openTab = useCallback(() => {
-    openTabProgress.value = withTiming(1, undefined, (isFinished) => {
-      runOnJS(setTapOpenState)(true);
-    });
+    openTabProgress.value = withTiming(
+      1,
+
+      { easing: Easing.bezier(0, 0, 0.1, 0.4) },
+      (isFinished) => {
+        runOnJS(setTapOpenState)(true);
+      }
+    );
   }, []);
 
   const closTab = useCallback(() => {
@@ -105,6 +109,13 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
     );
     return {
       height: toHeight,
+    };
+  });
+
+  const drawerContainerRStyle = useAnimatedStyle(() => {
+    const toOpacity = interpolate(openTabProgress.value, [1, 0], [1, 0]);
+    return {
+      opacity: toOpacity,
     };
   });
 
@@ -161,7 +172,6 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
           style={[
             {
               flexDirection: theme.localizationFlexDirection,
-              // backgroundColor: "pink",
               overflow: "hidden",
             },
             tabBarTopSectionRStyle,
@@ -228,16 +238,18 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             );
           })}
         </Animated.View>
-        <View
-          style={{
-            marginTop: 10,
-            flexDirection: theme.localizationFlexDirection,
-            justifyContent: "space-between",
-          }}
+        <Animated.View
+          style={[
+            {
+              marginTop: 10,
+              flexDirection: theme.localizationFlexDirection,
+              justifyContent: "space-between",
+            },
+            drawerContainerRStyle,
+          ]}
         >
           <DrawerComponent />
-          {/* <RightTabComponent /> */}
-        </View>
+        </Animated.View>
         <MyLine lineStyle={{ marginTop: 0 }} />
         <TabBarFooter />
       </View>

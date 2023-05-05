@@ -21,37 +21,40 @@ const CustomBottomTab = ({ navigation, components }: Props) => {
   }, []);
   return (
     <>
-      {!keyboardStatus ? (
-        <View style={styles.customBottomTab}>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "center",
-              alignContent: "center",
-              alignItems: "center",
-              width: 0.15 * width,
-              backgroundColor: theme.tabBarLeftSectionColor(),
-              height: "100%",
-              borderTopLeftRadius: theme.tabBarBorderRadius,
-            }}
-          >
-            <BackComponent navigation={navigation} />
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignContent: "center",
-              alignItems: "center",
-              justifyContent: "space-evenly",
-              flex: 1,
-            }}
-          >
-            {components?.map((component, index) => (
-              <View key={index}>{component}</View>
-            ))}
-          </View>
+      <View
+        style={[
+          styles.customBottomTab,
+          { display: !keyboardStatus ? "flex" : "none" },
+        ]}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignContent: "center",
+            alignItems: "center",
+            width: 0.15 * width,
+            backgroundColor: theme.tabBarLeftSectionColor(),
+            height: "100%",
+            borderTopLeftRadius: theme.tabBarBorderRadius,
+          }}
+        >
+          <BackComponent navigation={navigation} />
         </View>
-      ) : undefined}
+        <View
+          style={{
+            flexDirection: "row",
+            alignContent: "center",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+            flex: 1,
+          }}
+        >
+          {components?.map((component, index) => (
+            <View key={index}>{component}</View>
+          ))}
+        </View>
+      </View>
     </>
   );
 };

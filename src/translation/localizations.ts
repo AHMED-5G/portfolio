@@ -1,7 +1,7 @@
 const en = {
   welcome: "Hello",
   language: "English",
-  Home: "Home",
+  home: "Home",
   SelectLanguage: "Select language",
   profile: "Profile",
   settings: "Settings",
@@ -17,10 +17,10 @@ const en = {
   yacht: "Yacht",
   yachts: "Yachts",
   market: "Market",
-  version: 'V',
-  nightMood: 'Night mood',
-  logOut: 'Log out',
-
+  version: "V",
+  nightMood: "Night mood",
+  logOut: "Log out",
+  everydayEssentials: "Everyday essentials",
 };
 
 const ar = {
@@ -32,7 +32,7 @@ const ar = {
   welcome: "مرحبا",
   language: "العربية",
 
-  Home: "الرئيسية",
+  home: "الصفحة الرئيسية",
   SelectLanguage: "اختر اللغة",
   profile: "ملفي الشخصي",
   settings: "الاعدادات",
@@ -43,10 +43,10 @@ const ar = {
   delete: "حذف",
   notifications: "الاشعارات",
   hotels: "الفنادق",
-  version: 'الاصدار',
-  nightMood: 'الوضع الليلي',
-  logOut: 'تسجيل الخروج',
-
+  version: "الاصدار",
+  nightMood: "الوضع الليلي",
+  logOut: "تسجيل الخروج",
+  everydayEssentials: "مستلزمات يومية",
 };
 
 export { en, ar };
