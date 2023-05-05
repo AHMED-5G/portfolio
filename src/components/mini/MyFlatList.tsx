@@ -11,8 +11,9 @@ import {
 import React from "react";
 import { theme } from "../../constants/myColors";
 
-interface MyFlatListInterface<ItemT = any> extends FlatListProps<ItemT> {
-  RenderItemComponent: (item: ItemT) => JSX.Element;
+interface MyFlatListInterface<ItemT = any>
+  extends Omit<FlatListProps<ItemT>, "renderItem"> {
+  RenderItemComponent: (item: ItemT) => RecatNode;
   marginValue?: FlexStyle["marginRight"] | FlexStyle["marginLeft"];
   localizationContainerStyle?: StyleProp<ViewStyle>;
 }

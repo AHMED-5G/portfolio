@@ -9,6 +9,7 @@ import ContributorCard from "../ContributorCard";
 import HomeSectionTitle from "./HomeSectionTitle";
 import { LocalizationDirection, theme } from "../../constants/myColors";
 import MyFlatList from "../mini/MyFlatList";
+import { LocalizedFlatList } from "react-native-localized-flatlist-rtl-ltr";
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Home">;
 };
@@ -23,16 +24,14 @@ const ContributesSection = ({ navigation }: Props) => {
           flexDirection: theme.localizationFlexDirection,
         }}
       >
-        <MyFlatList
-          // data={shuffleArray(contributors)}
+        <LocalizedFlatList
           data={contributors}
-          horizontal
           RenderItemComponent={({ item }: { item: Contributor }) => {
             return <ContributorCard contributor={item} />;
           }}
           keyExtractor={(item: Contributor) => item.id.toString()}
           showsHorizontalScrollIndicator={false}
-          renderItem={undefined}
+          rtl={theme.localizationRtl}
         />
       </View>
     </View>

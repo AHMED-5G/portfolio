@@ -9031,6 +9031,11 @@ react-native-image-slider-banner@^1.0.3:
   dependencies:
     react-native-vector-icons "^8.1.0"
 
+react-native-localized-flatlist-rtl-ltr@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-localized-flatlist-rtl-ltr/-/react-native-localized-flatlist-rtl-ltr-1.0.0.tgz#ceeb365e76cd15a6e88502a9411308ae83429965"
+  integrity sha512-ufdqcPdSxq+drlhNPKrN0GByJhMazuFD8ocNX9EK9fZwl+a4NW8PX6SRGfmyACxwh9tagIt0LeqegW1U2uMXmA==
+
 react-native-range-slider-expo@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/react-native-range-slider-expo/-/react-native-range-slider-expo-1.4.3.tgz#d21baab8820d8827992b94d881868d634337de0c"
