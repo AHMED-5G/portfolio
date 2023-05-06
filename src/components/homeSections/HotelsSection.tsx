@@ -9,34 +9,30 @@ import { shuffleArray } from "../../utils/helperFunctions";
 import HotelCard from "../HotelCard";
 import HomeSectionTitle from "./HomeSectionTitle";
 import { theme } from "../../constants/myColors";
-import MyFlatList from "../mini/MyFlatList";
+import { LocalizedFlatList } from "react-native-localized-flatlist-rtl-ltr";
+import HomeSectionContainer from "./HomeSectionContainer";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Home", undefined>;
 };
 
 const HotelsSection = ({ navigation }: Props) => {
+  const Content = () => {
+    return (
+      <LocalizedFlatList
+        data={hotels}
+        // data={shuffleArray(hotels)}
+        rtl={theme.localizationRtl}
+        LocalizedRenderItem={({ item }) => <HotelCard hotel={item} />}
+        keyExtractor={(item: Hotel) => item.id.toString()}
+        showsHorizontalScrollIndicator={false}
+      />
+    );
+  };
   return (
     <View style={styles.container}>
       <HomeSectionTitle text={i18n.t("hotels")} />
-      <View
-        style={{
-          marginLeft: 10,
-          // marginRight: 10,
-          // flexDirection:"row-reverse",
-          flexDirection: theme.localizationFlexDirection,
-        }}
-      >
-        <MyFlatList
-          data={hotels}
-          // data={shuffleArray(hotels)}
-          horizontal
-          RenderItemComponent={({ item }) => <HotelCard hotel={item} />}
-          renderItem={undefined}
-          keyExtractor={(item: Hotel) => item.id.toString()}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
+      <HomeSectionContainer content={<Content />} />
     </View>
   );
 };

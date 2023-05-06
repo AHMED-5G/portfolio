@@ -11,9 +11,9 @@ const HomeSingleImage = ({ uri }: Props) => {
     <View
       style={{
         marginTop: 5,
-        marginLeft: 10,
         flexDirection: theme.localizationFlexDirection,
       }}
+    
     >
       <Image
         source={{

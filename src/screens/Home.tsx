@@ -12,6 +12,7 @@ import { height, width } from "../constants/Layout";
 import { theme } from "../constants/myColors";
 import { i18n } from "../translation/i18n";
 import SimpleHeader from "../components/SimpleHeader";
+import HomeSectionContainer from "../components/homeSections/HomeSectionContainer";
 
 type Props = StackScreenProps<RootStackParamList, "Home">;
 
@@ -22,29 +23,19 @@ function Home({ navigation }: Props) {
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{
-          marginBottom: 10,
+          marginBottom: 5,
         }}
       >
         <MarketSection navigation={navigation} />
-        <MyLine width="90%" />
         <ContributesSection navigation={navigation} />
-        <MyLine width="90%" />
         <YachtSection navigation={navigation} />
-        <MyLine width="90%" />
         <HotelsSection navigation={navigation} />
-        <MyLine width="90%" />
-        {/* <HorsesSection navigation={navigation} />
-        <MyLine width="90%" /> */}
-        <View
-          style={{
-            marginLeft: 10,
-            flexDirection: theme.localizationFlexDirection,
-          }}
-        >
-          <Text style={{ fontSize: 18, fontWeight: "800" }}>
-            {i18n.t("version")} 0.6
-          </Text>
-        </View>
+        <HomeSectionContainer
+          content={
+            <Text style={styles.versionText}>{i18n.t("version")} 0.6</Text>
+          }
+          line={false}
+        />
       </ScrollView>
     </View>
   );
@@ -52,4 +43,6 @@ function Home({ navigation }: Props) {
 
 export { Home };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  versionText: { fontSize: 18, fontWeight: "800" },
+});

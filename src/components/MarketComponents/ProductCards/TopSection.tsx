@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  AccessibilityInfo,
+} from "react-native";
 import React from "react";
 import {
   inCalculationTextSize,
@@ -135,7 +141,13 @@ const TopSection = ({
         style={[styles.productImageCard, imageContainerRStyle]}
         onPress={() => {
           showImageFullCard();
+          AccessibilityInfo.announceForAccessibility(
+            showImageProgress.value == 0
+              ? "opening image in 100% of card"
+              : "closing image in 25% of card"
+          );
         }}
+        accessibilityHint={"Product Image tab to show image bigger"}
       >
         <Animated.Image
           source={product.image}

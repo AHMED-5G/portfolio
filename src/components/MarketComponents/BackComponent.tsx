@@ -20,6 +20,7 @@ const BackComponent = ({ navigation }: Props) => {
         width: 48,
         height: 48,
       }}
+      accessibilityHint="navigation back"
       onPress={() => {
         navigation.goBack();
       }}
