@@ -19,11 +19,10 @@ type Props = {
 const HotelsSection = ({ navigation }: Props) => {
   const Content = () => {
     return (
-      <LocalizedFlatList
+      <FlatList
         data={hotels}
-        // data={shuffleArray(hotels)}
-        rtl={theme.localizationRtl}
-        LocalizedRenderItem={({ item }) => <HotelCard hotel={item} />}
+        horizontal
+        renderItem={({ item }) => <HotelCard hotel={item} />}
         keyExtractor={(item: Hotel) => item.id.toString()}
         showsHorizontalScrollIndicator={false}
       />

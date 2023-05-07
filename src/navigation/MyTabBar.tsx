@@ -12,12 +12,11 @@ import {
   Dimensions,
   Keyboard,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import { FeedTab, HomeTab, SettingsTab } from "./tabBarItems";
-import { myColors, theme } from "../constants/myColors";
+import { theme } from "../constants/myColors";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -32,14 +31,13 @@ import { AntDesign } from "@expo/vector-icons";
 import DrawerComponent from "./tabBarItems/DrawerComponent";
 import TabBarFooter from "./tabBarItems/TabBarFooter";
 import MyLine from "../components/MyLine";
+import { width } from "../constants/Layout";
 interface TabBarProps {
   state: TabNavigationState<ParamListBase>;
   descriptors: BottomTabDescriptorMap;
   navigation: NavigationHelpers<ParamListBase, BottomTabNavigationEventMap>;
 }
 
-const width = Dimensions.get("screen").width;
-const height = Dimensions.get("screen").height;
 const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
   const [keyboardStatus, setKeyboardStatus] = useState(false);
   const keyboardDidShow = () => setKeyboardStatus(true);

@@ -26,6 +26,7 @@ const HotelCard = ({ hotel }: Props) => {
       }}
       style={{
         width: cardWidth,
+        marginRight: 20,
         backgroundColor: theme.white,
         borderRadius: theme.borderRadius,
         elevation: 1,

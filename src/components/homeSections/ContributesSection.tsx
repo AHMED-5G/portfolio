@@ -1,5 +1,5 @@
-import { FlatList, StyleSheet, View } from "react-native";
 import React from "react";
+import { FlatList, StyleSheet, View } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { contributors } from "../../../dummy/Contributors";
 import { i18n } from "../../translation/i18n";
@@ -10,6 +10,7 @@ import HomeSectionTitle from "./HomeSectionTitle";
 import { LocalizationDirection, theme } from "../../constants/myColors";
 import { LocalizedFlatList } from "react-native-localized-flatlist-rtl-ltr";
 import HomeSectionContainer from "./HomeSectionContainer";
+
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Home">;
 };
@@ -17,15 +18,27 @@ type Props = {
 const ContributesSection = ({ navigation }: Props) => {
   const Content = () => {
     return (
-      <LocalizedFlatList
-        data={contributors}
-        LocalizedRenderItem={({ item }: { item: Contributor }) => {
-          return <ContributorCard contributor={item} />;
-        }}
-        keyExtractor={(item: Contributor) => item.id.toString()}
-        showsHorizontalScrollIndicator={false}
-        rtl={theme.localizationRtl}
-      />
+      <View>
+        {/* <LocalizedFlatList
+          data={contributors}
+          LocalizedRenderItem={({ item }: { item: Contributor }) => {
+            return <ContributorCard contributor={item} />;
+          }}
+          keyExtractor={(item: Contributor) => item.id.toString()}
+          showsHorizontalScrollIndicator={false}
+          // rtl={theme.localizationRtl}
+        /> */}
+        <FlatList
+          data={contributors}
+          renderItem={({ item }: { item: Contributor }) => {
+            return <ContributorCard contributor={item} />;
+          }}
+          keyExtractor={(item: Contributor) => item.id.toString()}
+          showsHorizontalScrollIndicator={false}
+          // rtl={theme.localizationRtl}
+          horizontal
+        />
+      </View>
     );
   };
   return (

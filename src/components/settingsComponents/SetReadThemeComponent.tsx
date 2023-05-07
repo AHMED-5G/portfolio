@@ -144,8 +144,6 @@ export default SetReadThemeComponent;
 const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
-    borderColor: myColors.black,
-    borderWidth: 0.3,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

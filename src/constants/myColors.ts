@@ -1,4 +1,5 @@
 import { ColorValue, FlexStyle } from "react-native";
+import { I18nManager } from "react-native";
 
 export const myColors = {
   main: "#CD9575",
@@ -126,7 +127,7 @@ export const theme: ThemeInterface = {
   buttonBorderRadius: 5,
 
   localizationDirection: undefined,
-  localizationRtl: false,
+  localizationRtl: I18nManager.isRTL,
   localizationFlexDirection: undefined,
   iconLocalizationTransform: function () {
     return [{ rotateY: this.localizationRtl ? "180deg" : "0deg" }];

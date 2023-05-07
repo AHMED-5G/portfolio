@@ -292,9 +292,14 @@ function Yachts({ navigation }: Props) {
     function imageRotateValue(index: number): number {
       return (3 - index) * 2 - 2 * (generateRandomBoolean() ? -1 : 1);
     }
-
+// console.log(theme.localizationDirection )
     return (
-      <View style={{ flex: 1 }}>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: theme.localizationRtl ? "row-reverse" : "row",
+        }}
+      >
         <Animated.View style={[styles.longestRStyle, longestRStyle]}>
           <TouchableOpacity
             activeOpacity={1}

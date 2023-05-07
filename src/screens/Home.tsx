@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, ScrollView, TextInput } from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 import React from "react";
 import { RootStackParamList } from "../types";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -6,14 +6,10 @@ import YachtSection from "../components/homeSections/YachtSection";
 import ContributesSection from "../components/homeSections/ContributesSection";
 import HotelsSection from "../components/homeSections/HotelsSection";
 import MarketSection from "../components/homeSections/MarketSection";
-import MyLine from "../components/MyLine";
 import HorsesSection from "../components/homeSections/HorsesSection";
-import { height, width } from "../constants/Layout";
-import { theme } from "../constants/myColors";
 import { i18n } from "../translation/i18n";
 import SimpleHeader from "../components/SimpleHeader";
 import HomeSectionContainer from "../components/homeSections/HomeSectionContainer";
-
 type Props = StackScreenProps<RootStackParamList, "Home">;
 
 function Home({ navigation }: Props) {

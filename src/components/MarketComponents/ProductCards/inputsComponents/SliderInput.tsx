@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import { theme, myColors } from "../../../../constants/myColors";
-import { MySlider } from "../../../mini/MySlider";
+import Slider from "@react-native-community/slider";
 
 type Props = { setCounter: React.Dispatch<React.SetStateAction<number>> };
 
@@ -12,19 +12,16 @@ const SliderInput = ({ setCounter }: Props) => {
 
   return (
     <View>
-      <MySlider
-        min={10}
-        max={100}
+      <Slider
+        style={{ width: "100%", height: 70 , }}
+        minimumValue={10}
+        maximumValue={100}
         step={10}
-        valueOnChange={(value) => {
+        minimumTrackTintColor={myColors.grey5}
+        maximumTrackTintColor={myColors.grey2}
+        onValueChange={(value) => {
           setCounter(value);
         }}
-        containerStyle={styles.slierStyle}
-        initialValue={1}
-        knobColor={theme.actionColor}
-        valueLabelsBackgroundColor="black"
-        inRangeBarColor={myColors.grey5}
-        outOfRangeBarColor={myColors.grey2}
       />
     </View>
   );

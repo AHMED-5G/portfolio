@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { AccessibilityInfo, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import MedButton from "../mini/MedButton";
 import { theme } from "../../constants/myColors";
@@ -61,6 +61,7 @@ const AddToCartButtonComponent = ({
   return (
     <MedButton
       title="Add to cart"
+      accessibilityHint={"Add " + counter + "to Cart"}
       width={"100%"}
       borderRadius={5}
       color={theme.actionColor}
