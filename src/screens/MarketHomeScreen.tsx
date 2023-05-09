@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     // paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
     flex: 1,
     backgroundColor: "#EEE",
-    justifyContent: "flex-end",
+    // justifyContent: "flex-end",
     alignContent: "center",
     alignItems: "center",
   },
