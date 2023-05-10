@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import ToggleSwitch from "toggle-switch-react-native";
@@ -13,7 +13,6 @@ const TabBarFooter = (props: Props) => {
   return (
     <View
       style={{
-        // flexDirection: "row",
         flexDirection: theme.localizationFlexDirection,
         marginLeft: 10,
         marginTop: 10,
@@ -31,12 +30,6 @@ const TabBarFooter = (props: Props) => {
       >
         <ToggleSwitch
           isOn={switchState}
-          style={{
-            flexDirection: theme.localizationFlexDirection,
-            justifyContent: "center",
-            alignContent: "center",
-            alignItems: "center",
-          }}
           onColor={myColors.sky}
           offColor="black"
           label={i18n.t("nightMood")}
@@ -46,7 +39,7 @@ const TabBarFooter = (props: Props) => {
           onToggle={(isOn) => setSwitchState(isOn)}
         />
       </View>
-      <View
+      <TouchableOpacity
         style={{
           justifyContent: "center",
           alignContent: "center",
@@ -72,6 +65,7 @@ const TabBarFooter = (props: Props) => {
           }}
         >
           <MaterialCommunityIcons
+            disabled
             name="logout"
             size={40}
             color="black"
@@ -82,7 +76,7 @@ const TabBarFooter = (props: Props) => {
             }}
           />
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

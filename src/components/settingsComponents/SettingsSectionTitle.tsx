@@ -14,6 +14,7 @@ const SettingsSectionTitle = ({ title }: Props) => {
         width: width,
         backgroundColor: theme.primary,
         marginTop: 10,
+        // marginLeft: 10,
       }}
     >
       <Text

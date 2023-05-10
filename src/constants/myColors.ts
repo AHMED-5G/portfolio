@@ -1,5 +1,6 @@
 import { ColorValue, FlexStyle } from "react-native";
-import { I18nManager } from "react-native";
+import * as Localization from "expo-localization";
+import { ReadingThemesCombo } from "../types";
 
 export const myColors = {
   main: "#CD9575",
@@ -35,14 +36,6 @@ export const myColors = {
   blueA: "#0048BA",
   tr: "trans",
 };
-
-export enum LocalizationDirection {
-  "rtl",
-  "ltr",
-}
-let localizationFlexDirection: FlexStyle["flexDirection"] = "row-reverse";
-// localizationFlexDirection = "row";
-// let localizationDirection = LocalizationDirection.ltr;
 
 interface ThemeInterface {
   primary: ColorValue;
@@ -83,11 +76,34 @@ interface ThemeInterface {
 
   localizationRtl: boolean;
   localizationFlexDirection: FlexStyle["flexDirection"] | undefined;
+  freezeInLeftWhenIsRTLTrue: () => FlexStyle["flexDirection"];
   localizationDirection?: "rtl" | "ltr";
   iconLocalizationTransform: () => [{ rotateY: string }];
-  //[{ rotateY: theme.localizationRtl ? "180deg" : "0deg" }],
-}
 
+  readingTheme: ReadingThemesCombo;
+}
+export const readingThemes: ReadingThemesCombo[] = [
+  {
+    fontColor: "#000000",
+    backGroundColor: "#FFFFFF",
+  },
+  {
+    fontColor: "#ffffff",
+    backGroundColor: "#230d9a",
+  },
+  {
+    fontColor: "#000000",
+    backGroundColor: "#90d8b2",
+  },
+  {
+    fontColor: "#000000",
+    backGroundColor: "#8babf1",
+  },
+  {
+    fontColor: "#FFFFFF",
+    backGroundColor: "#000000",
+  },
+];
 export const theme: ThemeInterface = {
   primary: "#dddcec",
   primaryText: "#000",
@@ -127,13 +143,14 @@ export const theme: ThemeInterface = {
   buttonBorderRadius: 5,
 
   localizationDirection: undefined,
-  localizationRtl: I18nManager.isRTL,
+  localizationRtl: Localization.isRTL,
   localizationFlexDirection: undefined,
   iconLocalizationTransform: function () {
     return [{ rotateY: this.localizationRtl ? "180deg" : "0deg" }];
   },
+  freezeInLeftWhenIsRTLTrue: function () {
+    return this.localizationRtl ? "row-reverse" : "row";
+  },
 
-  //[{ rotateY: theme.localizationRtl ? "180deg" : "0deg" }],
-
-  //  theme.localizationDirection == "ltr" ? "row" : "row-reverse";
+  readingTheme: readingThemes[0],
 };

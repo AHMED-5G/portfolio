@@ -1,31 +1,47 @@
 import { StyleSheet, Text, View, Image, FlatList } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Contributor, ContributorAccount } from "../types";
 import ContributorAccountCard from "./ContributorAccountCard";
 import { theme } from "../constants/myColors";
+import MyCustomSkeleton from "./MyCustomSkeleton";
 
 type Props = {
   contributor: Contributor;
 };
-
+const imageSize = 80;
+const cardWidth = 160;
 const ContributorCard = ({ contributor }: Props) => {
-  const cardWidth = 160;
+  const [imageLoading, setImageLoading] = useState(true);
+
   return (
-    <View
-      style={{
-        width: cardWidth,
-        marginRight: 10,
-        borderRadius: theme.borderRadius,
-        backgroundColor: "white",
-        alignItems: "center",
-        alignContent: "center",
-        justifyContent: "center",
-      }}
-    >
+    <View style={styles.container}>
       <View style={styles.imageContainer}>
+        {imageLoading && (
+          <View
+            style={[
+              styles.image,
+              {
+                position: "absolute",
+                zIndex: 1,
+              },
+            ]}
+          >
+            <MyCustomSkeleton style={styles.image} />
+          </View>
+        )}
+
         <Image
+          onLoadStart={() => {
+            setImageLoading(true);
+          }}
+          onLoad={() => {
+            setImageLoading(false);
+          }}
+          onLoadEnd={() => {
+            setImageLoading(false);
+          }}
           resizeMode="center"
-          style={{ width: 80, height: 80, borderRadius: 80 }}
+          style={styles.image}
           source={{ uri: contributor.image }}
         />
       </View>
@@ -60,6 +76,15 @@ const ContributorCard = ({ contributor }: Props) => {
 export default ContributorCard;
 
 const styles = StyleSheet.create({
+  container: {
+    width: cardWidth,
+    marginRight: 10,
+    borderRadius: theme.borderRadius,
+    backgroundColor: "white",
+    alignItems: "center",
+    alignContent: "center",
+    justifyContent: "center",
+  },
   imageContainer: {
     marginTop: 10,
     alignItems: "center",
@@ -95,5 +120,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 12,
     marginBottom: 5,
+  },
+  image: {
+    height: imageSize,
+    width: imageSize,
+    borderRadius: imageSize,
   },
 });

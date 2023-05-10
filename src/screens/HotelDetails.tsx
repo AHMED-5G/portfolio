@@ -24,6 +24,7 @@ import { showToast } from "../utils/helperFunctions";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import ImageSliderComponent from "../components/HotelDetailsComponents/ImageSliderComponent";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { i18n } from "../translation/i18n";
 // import DatePicker from "react-native-datepicker";
 type Props = StackScreenProps<RootStackParamList, "HotelDetails">;
 
@@ -45,9 +46,11 @@ function HotelDetails({ navigation, route }: Props) {
         setLoading(false);
         showToast(
           requestResult
-            ? "Request sent successfully!"
-            : "Request failed to send.",
-          requestResult ? myColors.Baltic : myColors.redFavorite
+            ? i18n.t("requestSentSuccessfully")
+            : i18n.t("requestFailedToSend"),
+          requestResult
+            ? (theme.alertSuccessColor as string)
+            : (theme.alertFailColor as string)
         );
         setRequestResult(!requestResult);
       }, 3000);
@@ -93,26 +96,33 @@ function HotelDetails({ navigation, route }: Props) {
             />
           </View>
           <View style={{ marginTop: 2, marginLeft: 15 }}>
-            <TouchableOpacity>
-              <Text style={styles.secondlyTitle}>Address</Text>
-            </TouchableOpacity>
+            <View>
+              <Text style={styles.secondlyTitle}>{i18n.t("address")}</Text>
+            </View>
             <View
               style={{
-                flexDirection: "row",
                 alignItems: "center",
                 alignContent: "center",
+                flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
+                marginLeft: 5,
               }}
             >
               <Text>
-                <Entypo name="map" size={24} color="black" />
+                <Entypo disabled name="map" size={24} color="black" />
               </Text>
-              <Text style={styles.smallText}> {hotel.address}</Text>
+              <View
+                style={{
+                  marginLeft: 5,
+                }}
+              >
+                <Text style={styles.smallText}>{hotel.address}</Text>
+              </View>
             </View>
           </View>
           <View style={{ marginTop: 15, marginLeft: 15 }}>
-            <TouchableOpacity>
-              <Text style={styles.secondlyTitle}>Reviews</Text>
-            </TouchableOpacity>
+            <View>
+              <Text style={styles.secondlyTitle}>{i18n.t("reviews")}</Text>
+            </View>
             <View
               style={{
                 flexDirection: "row",
@@ -120,34 +130,40 @@ function HotelDetails({ navigation, route }: Props) {
                 alignItems: "center",
               }}
             >
-              <Text>
-                <FontAwesome5 name="smile" size={24} color="black" />{" "}
-              </Text>
-              <Stars
-                default={hotel.rate}
-                count={5}
-                starSize={50}
-                fullStar={
-                  <AntDesign
-                    accessibilityHint="1 filled star from 5"
-                    name={"star"}
-                    style={[styles.myStarStyle]}
-                  />
-                }
-                emptyStar={
-                  <AntDesign
-                    name={"staro"}
-                    accessibilityHint="1 empty star from 5"
-                    style={[styles.myStarStyle, styles.myEmptyStarStyle]}
-                  />
-                }
-              />
+              <View>
+                <Text>
+                  <FontAwesome5 name="smile" size={24} color="black" />{" "}
+                </Text>
+              </View>
+              <View style={{ marginLeft: 5 }}>
+                <Stars
+                  default={hotel.rate}
+                  count={5}
+                  starSize={50}
+                  fullStar={
+                    <AntDesign
+                      accessibilityHint="1 filled star from 5"
+                      name={"star"}
+                      style={[styles.myStarStyle]}
+                    />
+                  }
+                  emptyStar={
+                    <AntDesign
+                      name={"staro"}
+                      accessibilityHint="1 empty star from 5"
+                      style={[styles.myStarStyle, styles.myEmptyStarStyle]}
+                    />
+                  }
+                />
+              </View>
             </View>
           </View>
         </View>
-        <View style={{ left: 20, marginTop: height / 2 - 140 }}>
-          <Text style={styles.title}>{hotel.name}</Text>
-          <View style={{ marginBottom: 40 }}>
+        <View style={{ marginLeft: 20, marginTop: height / 2 - 140 }}>
+          <View style={{ margin: 20 }}>
+            <Text style={styles.title}>{hotel.name}</Text>
+          </View>
+          <View style={{ marginBottom: 20 }}>
             <MedButton
               loading={loading}
               textStyle={{ color: theme.actionColorText, fontSize: 20 }}
@@ -161,14 +177,12 @@ function HotelDetails({ navigation, route }: Props) {
                 setLoading(true);
                 sendFakeRequest();
               }}
-              title="Book now"
+              title={i18n.t("bookNow")}
               color={theme.actionColor}
             />
           </View>
         </View>
-        <DateTimePicker mode="date" display="spinner"
-        
-        value={new Date}/>
+        {/* <DateTimePicker mode="date" display="spinner" value={new Date()} /> */}
       </ScrollView>
     );
   };

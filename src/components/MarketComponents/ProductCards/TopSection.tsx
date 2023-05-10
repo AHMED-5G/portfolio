@@ -155,13 +155,24 @@ const TopSection = ({
           style={[styles.productImageStyle, productImageRStyle]}
         />
       </AnimatedTouchable>
-      <View style={styles.topRightSection}>
-        <View>
+      <View style={[styles.topRightSection]}>
+        <View
+          style={{
+            marginLeft: theme.localizationRtl ? 10 : 0,
+            flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
+          }}
+        >
           <Text style={{ fontSize: 15, fontWeight: "bold" }}>
             {product.name}
           </Text>
         </View>
-        <View style={{ marginTop: 5 }}>
+        <View
+          style={{
+            marginTop: 5,
+            marginLeft: theme.localizationRtl ? 5 : 0,
+            flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
+          }}
+        >
           <Text style={{ fontSize: 12, fontWeight: "400", marginRight: 5 }}>
             {product.description}
           </Text>

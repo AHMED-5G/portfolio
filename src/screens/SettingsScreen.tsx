@@ -5,13 +5,16 @@ import ChangeLanguageComponent from "../components/settingsComponents/ChangeLang
 import SetReadThemeComponent from "../components/settingsComponents/SetReadThemeComponent";
 import SettingsSectionTitle from "../components/settingsComponents/SettingsSectionTitle";
 import MyLine from "../components/MyLine";
+import { i18n } from "../translation/i18n";
+import SimpleHeader from "../components/SimpleHeader";
 
 function SettingsScreen({ navigation }: RootTabScreenProps<"Settings">) {
   return (
-    <ScrollView style={{ marginTop: 20 }}>
+    <ScrollView style={{}}>
+      <SimpleHeader title={i18n.t("settings")} />
       {/* <SettingsSectionTitle title="Select Language" /> */}
       {/* <ChangeLanguageComponent /> */}
-      <SettingsSectionTitle title="Reading theme" />
+      <SettingsSectionTitle title={i18n.t("readingTheme")} />
       <SetReadThemeComponent />
       <MyLine />
     </ScrollView>

@@ -10,12 +10,6 @@ import { Provider } from "react-redux";
 import { persistor, store } from "./src/redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { AppRegistry } from "react-native";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from "@apollo/client";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -25,23 +19,13 @@ export default function App() {
     return <LoadingIndicator />;
   }
 
-  // Initialize Apollo Client
-
-  const client = new ApolloClient({
-    uri: "https://meet-shark-48.hasura.app/v1/graphql",
-
-    cache: new InMemoryCache(),
-  });
-
   return (
     <Provider store={store}>
       <RootSiblingParent>
         <SafeAreaProvider>
           <PersistGate persistor={persistor}>
             <StatusBar style="auto" />
-            <ApolloProvider client={client}>
-              <Navigation colorScheme={colorScheme} />
-            </ApolloProvider>
+            <Navigation colorScheme={colorScheme} />
           </PersistGate>
         </SafeAreaProvider>
       </RootSiblingParent>

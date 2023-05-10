@@ -1,29 +1,47 @@
 import { StyleSheet, View, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { width } from "../../constants/Layout";
 import { theme } from "../../constants/myColors";
+import MyCustomSkeleton from "../MyCustomSkeleton";
 
 type Props = { uri: string };
 
+const imageWidth = width * 0.9;
 const HomeSingleImage = ({ uri }: Props) => {
-  const imageWidth = width * 0.9;
+  const [imageLoading, setImageLoading] = useState(true);
+
   return (
     <View
       style={{
         marginTop: 5,
         flexDirection: theme.localizationFlexDirection,
       }}
-    
     >
+      {imageLoading && (
+        <View
+          style={[
+            styles.image,
+            {
+              position: "absolute",
+              zIndex: 1,
+            },
+          ]}
+        >
+          <MyCustomSkeleton style={styles.image} />
+        </View>
+      )}
       <Image
-        source={{
-          uri,
+        onLoadStart={() => {
+          setImageLoading(true);
         }}
-        style={{
-          height: 200,
-          width: imageWidth,
-          borderRadius: theme.borderRadius,
+        onLoad={() => {
+          setImageLoading(false);
         }}
+        onLoadEnd={() => {
+          setImageLoading(false);
+        }}
+        source={{ uri: uri }}
+        style={styles.image}
       />
     </View>
   );
@@ -31,4 +49,10 @@ const HomeSingleImage = ({ uri }: Props) => {
 
 export default HomeSingleImage;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  image: {
+    height: 200,
+    width: imageWidth,
+    borderRadius: theme.borderRadius,
+  },
+});

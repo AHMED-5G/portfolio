@@ -7,17 +7,22 @@ type Props = {
   colors: ReadingThemesCombo;
   isSelected: boolean;
   setSelectedCombo?: React.Dispatch<React.SetStateAction<ReadingThemesCombo>>;
+  fontSize: number;
 };
 
 const ReadingThemComboComponent = ({
   colors,
   isSelected,
   setSelectedCombo,
+  fontSize,
 }: Props) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        setSelectedCombo ? setSelectedCombo(colors) : undefined;
+        setSelectedCombo
+          ? setSelectedCombo({ ...colors, fontSize })
+          : undefined;
+        // setSelectedCombo ? setSelectedCombo(colors) : undefined;
       }}
       disabled={setSelectedCombo ? false : true}
       style={[

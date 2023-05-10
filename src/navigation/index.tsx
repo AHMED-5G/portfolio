@@ -12,6 +12,7 @@ import { ColorSchemeName, Platform, SafeAreaView } from "react-native";
 import useColorScheme from "../hooks/useColorScheme";
 import Colors from "../constants/Colors";
 import {
+  InitialStateInterface,
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps,
@@ -27,14 +28,22 @@ import YachtStackNavigation from "./YachtStackNavigation/YachtStackNavigation";
 import MarketStackNavigator from "./MarketStackNavigator/MarketStackNavigator";
 import { StatusBar } from "react-native";
 import HotelDetails from "../screens/HotelDetails";
+import { theme } from "../constants/myColors";
 export default function Navigation({
   colorScheme,
 }: {
   colorScheme: ColorSchemeName;
 }) {
-  const { language } = useAppSelector((state) => state.dataSlice);
-
-  loadLocale(language);
+  const state: InitialStateInterface = useAppSelector(
+    (state) => state.dataSlice
+  );
+  function setUpReadingTheme() {
+    theme.readingTheme = state.settings.savedReadingTheme;
+  }
+  React.useEffect(() => {
+    setUpReadingTheme();
+  }, []);
+  loadLocale(state.language);
 
   return (
     <NavigationContainer>
