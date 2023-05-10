@@ -13,7 +13,7 @@
 
 - or past link:
 
-  exp://u.expo.dev/update/5d2490bf-41a8-464a-bd82-b884cbe40daa
+  exp://u.expo.dev/update/3e3243a4-6e89-4861-8970-a04cd7d38770
 
 # Rood map
 
