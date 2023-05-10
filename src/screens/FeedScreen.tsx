@@ -75,8 +75,8 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
   }, [navigation]);
   const flatListRef = useRef<FlatList | null>(null);
   return (
-    <View style={{ marginBottom: theme.tabBarHeight , flex: 1 }}>
-      <SimpleHeader title={i18n.t('timeLine')} />
+    <View style={{ flex: 1 }}>
+      <SimpleHeader title={i18n.t("timeLine")} />
       <View style={styles.postsContainer}>
         <FlatList
           refreshControl={
@@ -121,12 +121,10 @@ export { FeedScreen };
 
 const styles = StyleSheet.create({
   postsContainer: {
-    // flex: 1,
-    // marginTop: 20,
-    // marginBottom: 70,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
+    marginBottom: theme.tabBarHeight,
   },
   line: {
     marginTop: 20,

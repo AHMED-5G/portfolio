@@ -31,8 +31,8 @@ type Props = StackScreenProps<RootStackParamList, "HotelDetails">;
 function HotelDetails({ navigation, route }: Props) {
   const [date, setDate] = useState("09-10-2020");
 
+  const hotel = route.params;
   const Content = () => {
-    const hotel = route.params;
     let imagesForSlider: DataType[] = hotel.images.map((item) => {
       return { img: item as ImageURISource };
     });
@@ -163,7 +163,7 @@ function HotelDetails({ navigation, route }: Props) {
           <View style={{ margin: 20 }}>
             <Text style={styles.title}>{hotel.name}</Text>
           </View>
-          <View style={{ marginBottom: 20 }}>
+          <View style={{ marginBottom: 20, marginLeft: 20 }}>
             <MedButton
               loading={loading}
               textStyle={{ color: theme.actionColorText, fontSize: 20 }}
@@ -187,7 +187,13 @@ function HotelDetails({ navigation, route }: Props) {
     );
   };
   return (
-    <ScreenWithCustomBottomTab content={<Content />} navigation={navigation} />
+    <ScreenWithCustomBottomTab
+      content={<Content />}
+      navigation={navigation}
+      CustomBottomTabComponents={[
+        <Text style={{ fontSize: 22, fontWeight: "700" }}>{hotel.name}</Text>,
+      ]}
+    />
   );
 }
 

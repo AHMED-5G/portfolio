@@ -209,9 +209,11 @@ const TopSection = ({
             <View
               style={{ width: "100%", backgroundColor: "black", height: 2 }}
             ></View>
-            <Text style={styles.totalText}>
-              ${(product.price * counter).toFixed(2)}
-            </Text>
+            <View style={{}}>
+              <Text style={styles.totalText}>
+                ${(product.price * counter).toFixed(2)}
+              </Text>
+            </View>
           </Animated.View>
         </View>
       </View>
@@ -293,6 +295,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: theme.secondary,
     margin: 5,
+    direction: "rtl",
   },
   priceCurrencyText: {
     fontSize: inCalculationTextSize,

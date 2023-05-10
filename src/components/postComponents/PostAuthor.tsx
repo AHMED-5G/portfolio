@@ -7,6 +7,7 @@ import DuringSevenDaysAgo from "./DuringSevenDaysAgo";
 import * as Notifications from "expo-notifications";
 import LoadingIndicator from "../mini/LoadingIndicator";
 import SkeletonLoader from "expo-skeleton-loader";
+import { i18n } from "../../translation/i18n";
 type Props = { user: User };
 const PostAuthor = ({ user }: Props) => {
   const [followState, setFollowState] = useState(Math.random() < 0.5);
@@ -137,7 +138,7 @@ const PostAuthor = ({ user }: Props) => {
           >
             {!followState ? (
               <MedButton
-                title="Follow"
+                title={i18n.t("follow")}
                 onPress={async () => {
                   setFollowState(true);
                   await schedulePushNotification(user);
@@ -157,7 +158,7 @@ const PostAuthor = ({ user }: Props) => {
               />
             ) : (
               <MedButton
-                title="Unfollow"
+                title={i18n.t("unFollow")}
                 onPress={() => {
                   setFollowState(false);
                 }}

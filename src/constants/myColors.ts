@@ -37,6 +37,29 @@ export const myColors = {
   tr: "trans",
 };
 
+export const readingThemes: ReadingThemesCombo[] = [
+  {
+    fontColor: "#000000",
+    backGroundColor: "#FFFFFF",
+  },
+  {
+    fontColor: "#ffffff",
+    backGroundColor: "#230d9a",
+  },
+  {
+    fontColor: "#000000",
+    backGroundColor: "#90d8b2",
+  },
+  {
+    fontColor: "#000000",
+    backGroundColor: "#8babf1",
+  },
+  {
+    fontColor: "#FFFFFF",
+    backGroundColor: "#000000",
+  },
+];
+
 interface ThemeInterface {
   primary: ColorValue;
   primaryText: "#000";
@@ -82,28 +105,7 @@ interface ThemeInterface {
 
   readingTheme: ReadingThemesCombo;
 }
-export const readingThemes: ReadingThemesCombo[] = [
-  {
-    fontColor: "#000000",
-    backGroundColor: "#FFFFFF",
-  },
-  {
-    fontColor: "#ffffff",
-    backGroundColor: "#230d9a",
-  },
-  {
-    fontColor: "#000000",
-    backGroundColor: "#90d8b2",
-  },
-  {
-    fontColor: "#000000",
-    backGroundColor: "#8babf1",
-  },
-  {
-    fontColor: "#FFFFFF",
-    backGroundColor: "#000000",
-  },
-];
+
 export const theme: ThemeInterface = {
   primary: "#dddcec",
   primaryText: "#000",

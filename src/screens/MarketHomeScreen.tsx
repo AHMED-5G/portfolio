@@ -1,7 +1,7 @@
-import { StyleSheet, View, FlatList } from "react-native";
 import React from "react";
+import { StyleSheet, View, FlatList } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
-import {  RootStackParamList } from "../types";
+import { RootStackParamList } from "../types";
 import { width } from "../constants/Layout";
 import SearchComponent from "../components/MarketComponents/SearchComponent";
 import Cart from "../components/MarketComponents/Cart";
@@ -16,7 +16,6 @@ type Props = StackScreenProps<RootStackParamList, "MarketHomeScreen">;
 
 const bottomNavigationHeight = theme.tabBarHeight;
 const MarketHomeScreen = ({ navigation }: Props) => {
-
   const Content = () => {
     return (
       <View style={styles.container}>
@@ -38,6 +37,7 @@ const MarketHomeScreen = ({ navigation }: Props) => {
       </View>
     );
   };
+
   return (
     <ScreenWithCustomBottomTab
       content={<Content />}

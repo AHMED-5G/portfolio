@@ -34,6 +34,8 @@ const en = {
   requestFailedToSend: "Request failed to send",
   addToCart: "Add to cart",
   remove: "Remove",
+  follow: "follow",
+  unFollow: "unFollow",
 };
 
 const ar = {
@@ -71,8 +73,10 @@ const ar = {
   reviews: "التقييمات",
   requestSentSuccessfully: "تم إرسال الطلب بنجاح",
   requestFailedToSend: "فشل إرسال الطلب",
-  addToCart: "اضف إلى السلة",
+  addToCart: "أضف إلى السلة",
   remove: "إزالة",
+  follow: "متابعة",
+  unFollow: "إلغاء المتابعة",
 };
 
 export { en, ar };
