@@ -18,11 +18,6 @@ const HomeStackNavigator = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="HotelDetails"
-        component={HotelDetails}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
         name="Horses"
         component={Horses}
         options={{ headerShown: false }}

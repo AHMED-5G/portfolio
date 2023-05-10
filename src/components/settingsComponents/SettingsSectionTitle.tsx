@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { width } from "../../constants/Layout";
-import { myColors } from "../../constants/myColors";
+import { theme } from "../../constants/myColors";
 
 type Props = { title: string };
 
@@ -11,9 +11,10 @@ const SettingsSectionTitle = ({ title }: Props) => {
       style={{
         justifyContent: "center",
         height: 40,
-        width: width - 5,
-        backgroundColor: myColors.grey5,
+        width: width,
+        backgroundColor: theme.primary,
         marginTop: 10,
+        // marginLeft: 10,
       }}
     >
       <Text
@@ -21,6 +22,7 @@ const SettingsSectionTitle = ({ title }: Props) => {
           marginLeft: 10,
           fontSize: 20,
           fontWeight: "bold",
+          color: theme.primaryText,
         }}
       >
         {title}

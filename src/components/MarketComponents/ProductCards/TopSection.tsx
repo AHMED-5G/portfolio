@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  AccessibilityInfo,
+} from "react-native";
 import React from "react";
 import {
   inCalculationTextSize,
@@ -135,7 +141,13 @@ const TopSection = ({
         style={[styles.productImageCard, imageContainerRStyle]}
         onPress={() => {
           showImageFullCard();
+          AccessibilityInfo.announceForAccessibility(
+            showImageProgress.value == 0
+              ? "opening image in 100% of card"
+              : "closing image in 25% of card"
+          );
         }}
+        accessibilityHint={"Product Image tab to show image bigger"}
       >
         <Animated.Image
           source={product.image}
@@ -143,13 +155,24 @@ const TopSection = ({
           style={[styles.productImageStyle, productImageRStyle]}
         />
       </AnimatedTouchable>
-      <View style={styles.topRightSection}>
-        <View>
+      <View style={[styles.topRightSection]}>
+        <View
+          style={{
+            marginLeft: theme.localizationRtl ? 10 : 0,
+            flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
+          }}
+        >
           <Text style={{ fontSize: 15, fontWeight: "bold" }}>
             {product.name}
           </Text>
         </View>
-        <View style={{ marginTop: 5 }}>
+        <View
+          style={{
+            marginTop: 5,
+            marginLeft: theme.localizationRtl ? 5 : 0,
+            flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
+          }}
+        >
           <Text style={{ fontSize: 12, fontWeight: "400", marginRight: 5 }}>
             {product.description}
           </Text>
@@ -186,9 +209,11 @@ const TopSection = ({
             <View
               style={{ width: "100%", backgroundColor: "black", height: 2 }}
             ></View>
-            <Text style={styles.totalText}>
-              ${(product.price * counter).toFixed(2)}
-            </Text>
+            <View style={{}}>
+              <Text style={styles.totalText}>
+                ${(product.price * counter).toFixed(2)}
+              </Text>
+            </View>
           </Animated.View>
         </View>
       </View>
@@ -270,6 +295,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: theme.secondary,
     margin: 5,
+    direction: "rtl",
   },
   priceCurrencyText: {
     fontSize: inCalculationTextSize,

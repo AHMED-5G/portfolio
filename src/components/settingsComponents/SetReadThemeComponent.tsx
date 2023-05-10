@@ -3,37 +3,16 @@ import React, { useState } from "react";
 import ReadingThemComboComponent from "./ReadingThemComboComponent";
 import { InitialStateInterface, ReadingThemesCombo } from "../../types";
 import { width } from "../../constants/Layout";
-import { myColors } from "../../constants/myColors";
-import { Slider } from "react-native-range-slider-expo";
+import { myColors, readingThemes, theme } from "../../constants/myColors";
+// import { Slider } from "react-native-range-slider-expo";
 import MedButton from "../mini/MedButton";
 import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
 import { SET_READING_THEME } from "../../redux/reducers/dataSlice";
+import { i18n } from "../../translation/i18n";
+import Slider from "@react-native-community/slider";
 type Props = {};
 
 const SetReadThemeComponent = (props: Props) => {
-  const readingThemes: ReadingThemesCombo[] = [
-    {
-      fontColor: "#000000",
-      backGroundColor: "#FFFFFF",
-    },
-    {
-      fontColor: "#ffffff",
-      backGroundColor: "#230d9a",
-    },
-    {
-      fontColor: "#000000",
-      backGroundColor: "#90d8b2",
-    },
-    {
-      fontColor: "#000000",
-      backGroundColor: "#8babf1",
-    },
-    {
-      fontColor: "#FFFFFF",
-      backGroundColor: "#000000",
-    },
-  ];
-
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );
@@ -41,10 +20,28 @@ const SetReadThemeComponent = (props: Props) => {
   const [selectedCombo, setSelectedCombo] = useState<ReadingThemesCombo>(
     readingThemes[0]
   );
+  const [fontSize, setFontSize] = useState(
+    state.settings.savedReadingTheme.fontSize ?? 18
+  );
 
   const dispatch = useAppDispatch();
   return (
     <View style={styles.container}>
+      <View
+        style={[
+          styles.exampleContainer,
+          { backgroundColor: selectedCombo?.backGroundColor },
+        ]}
+      >
+        <Text
+          style={{
+            fontSize: selectedCombo.fontSize,
+            color: selectedCombo.fontColor,
+          }}
+        >
+          {i18n.t("iCanReadThisText")}
+        </Text>
+      </View>
       <View
         style={{
           flexDirection: "row",
@@ -65,6 +62,7 @@ const SetReadThemeComponent = (props: Props) => {
                   selectedCombo.fontColor == readingThemes[index].fontColor
                 }
                 setSelectedCombo={setSelectedCombo}
+                fontSize={fontSize}
               />
             );
           }}
@@ -72,35 +70,20 @@ const SetReadThemeComponent = (props: Props) => {
           showsVerticalScrollIndicator={false}
         />
       </View>
-      <View
-        style={[
-          styles.exampleContainer,
-          { backgroundColor: selectedCombo?.backGroundColor },
-        ]}
-      >
-        <Text
-          style={{
-            fontSize: selectedCombo.fontSize,
-            color: selectedCombo.fontColor,
-          }}
-        >
-          I can read this text
-        </Text>
-      </View>
       <View>
         <View style={styles.sliderContainer}>
           <Slider
-            min={12}
-            max={60}
+            style={{ width: "100%" }}
+            minimumValue={10}
+            maximumValue={100}
             step={2}
-            valueOnChange={(value) => {
+            minimumTrackTintColor={myColors.grey5}
+            maximumTrackTintColor={myColors.grey2}
+            value={fontSize}
+            onValueChange={(value) => {
+              setFontSize(value);
               setSelectedCombo({ ...selectedCombo, fontSize: value });
             }}
-            initialValue={18}
-            knobColor="black"
-            valueLabelsBackgroundColor="black"
-            inRangeBarColor={myColors.grey2}
-            outOfRangeBarColor={myColors.grey5}
           />
         </View>
       </View>
@@ -124,12 +107,15 @@ const SetReadThemeComponent = (props: Props) => {
             selectedCombo.fontSize == savedReadingTheme.fontSize &&
             selectedCombo.backGroundColor == savedReadingTheme.backGroundColor
           }
-          title="Save"
+          title={i18n.t("save")}
           width={100}
+          color={theme.actionColor}
+          textStyle={{ color: theme.actionColorText }}
           style={{ borderRadius: 10 }}
         />
         <View>
           <ReadingThemComboComponent
+            fontSize={fontSize}
             colors={state.settings.savedReadingTheme}
             isSelected={false}
           />
@@ -144,8 +130,6 @@ export default SetReadThemeComponent;
 const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
-    borderColor: myColors.black,
-    borderWidth: 0.3,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
@@ -163,8 +147,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   sliderContainer: {
-    height: 100,
-    marginBottom: 10,
+    marginTop: 20,
     width: width - 20,
     justifyContent: "center",
     alignContent: "center",

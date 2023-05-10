@@ -6,31 +6,32 @@ import YachtSection from "../components/homeSections/YachtSection";
 import ContributesSection from "../components/homeSections/ContributesSection";
 import HotelsSection from "../components/homeSections/HotelsSection";
 import MarketSection from "../components/homeSections/MarketSection";
-import MyLine from "../components/MyLine";
 import HorsesSection from "../components/homeSections/HorsesSection";
-
+import { i18n } from "../translation/i18n";
+import SimpleHeader from "../components/SimpleHeader";
+import HomeSectionContainer from "../components/homeSections/HomeSectionContainer";
 type Props = StackScreenProps<RootStackParamList, "Home">;
 
 function Home({ navigation }: Props) {
   return (
     <View style={{ flex: 1 }}>
+      <SimpleHeader title={i18n.t("home")} />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{ marginBottom: 10 }}
+        style={{
+          marginBottom: 5,
+        }}
       >
         <MarketSection navigation={navigation} />
-        <MyLine width="90%" />
         <ContributesSection navigation={navigation} />
-        <MyLine width="90%" />
         <YachtSection navigation={navigation} />
-        <MyLine width="90%" />
         <HotelsSection navigation={navigation} />
-        <MyLine width="90%" />
-        {/* <HorsesSection navigation={navigation} />
-        <MyLine width="90%" /> */}
-        <View style={{ marginLeft: 10 }}>
-          <Text style={{ fontSize: 18, fontWeight: "800" }}>V0.5</Text>
-        </View>
+        <HomeSectionContainer
+          content={
+            <Text style={styles.versionText}>{i18n.t("version")} 0.6</Text>
+          }
+          line={false}
+        />
       </ScrollView>
     </View>
   );
@@ -38,4 +39,6 @@ function Home({ navigation }: Props) {
 
 export { Home };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  versionText: { fontSize: 18, fontWeight: "800" },
+});

@@ -1,20 +1,22 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import ToggleSwitch from "toggle-switch-react-native";
-import { myColors } from "../../constants/myColors";
+import { myColors, theme } from "../../constants/myColors";
+import { i18n } from "../../translation/i18n";
 
 type Props = {};
 
 const TabBarFooter = (props: Props) => {
-  const [switchState, setSwitchState] = useState(false);
+  const [switchState, setSwitchState] = useState(true);
 
   return (
     <View
       style={{
-        flexDirection: "row",
+        flexDirection: theme.localizationFlexDirection,
         marginLeft: 10,
-        justifyContent: "center",
+        marginTop: 10,
+        justifyContent: "space-evenly",
         alignContent: "center",
         alignItems: "center",
       }}
@@ -30,31 +32,29 @@ const TabBarFooter = (props: Props) => {
           isOn={switchState}
           onColor={myColors.sky}
           offColor="black"
-          label="Night Mood"
+          label={i18n.t("nightMood")}
           icon={<Entypo name="moon" size={24} color="black" />}
-          labelStyle={{ color: "black", fontWeight: "500", fontSize: 15 }}
+          labelStyle={styles.text}
           size="large"
           onToggle={(isOn) => setSwitchState(isOn)}
         />
       </View>
-      <View
+      <TouchableOpacity
         style={{
           justifyContent: "center",
           alignContent: "center",
           alignItems: "center",
-          marginLeft: 20,
-          flexDirection: "row",
+          flexDirection: theme.localizationFlexDirection,
         }}
       >
         <View
           style={{
-            marginLeft: 10,
             justifyContent: "center",
             alignContent: "center",
             alignItems: "center",
           }}
         >
-          <Text style={{ fontSize: 15, fontWeight: "500" }}>Log Out</Text>
+          <Text style={styles.text}>{i18n.t("logOut")}</Text>
         </View>
         <View
           style={{
@@ -64,13 +64,25 @@ const TabBarFooter = (props: Props) => {
             alignItems: "center",
           }}
         >
-          <MaterialCommunityIcons name="logout" size={40} color="black" />
+          <MaterialCommunityIcons
+            disabled
+            name="logout"
+            size={40}
+            color="black"
+            style={{
+              transform: [
+                { rotateY: theme.localizationRtl ? "180deg" : "0deg" },
+              ],
+            }}
+          />
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
 
 export default TabBarFooter;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  text: { color: "black", fontWeight: "700", fontSize: 15 },
+});

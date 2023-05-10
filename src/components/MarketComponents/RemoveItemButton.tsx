@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
 import { SET_CART } from "../../redux/reducers/dataSlice";
 import { Extrapolate } from "react-native-reanimated";
 import { withSpring } from "react-native-reanimated";
+import { i18n } from "../../translation/i18n";
 
 type Props = {
   isItemInCart: ProductInCart;
@@ -122,7 +123,7 @@ const RemoveItemButton = ({
               fontWeight: "bold",
             }}
           >
-            Remove
+            {i18n.t("remove")}
           </Text>
         </Animated.View>
         <View

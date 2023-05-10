@@ -1,4 +1,4 @@
-import {  StyleSheet } from "react-native";
+import { ColorValue, StyleSheet } from "react-native";
 import React from "react";
 import SkeletonLoader from "expo-skeleton-loader";
 import { theme } from "../constants/myColors";
@@ -8,7 +8,7 @@ type Props = {
   style: LoaderItemStyle;
   duration?: number;
   boneColor?: string;
-  highlightColor?: string;
+  highlightColor?: ColorValue;
 };
 
 const MyCustomSkeleton = ({
@@ -20,7 +20,7 @@ const MyCustomSkeleton = ({
   return (
     <SkeletonLoader
       boneColor={boneColor}
-      highlightColor={highlightColor}
+      highlightColor={highlightColor as string}
       duration={duration}
     >
       <SkeletonLoader.Item style={style} />

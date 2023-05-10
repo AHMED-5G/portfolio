@@ -30,7 +30,7 @@ import LongestDetails from "../components/yachtComponents/LongestDetails";
 import { theme } from "../constants/myColors";
 import { generateRandomBoolean } from "../utils/helperFunctions";
 import RightSide from "../components/yachtComponents/RightSide";
-import CustomBottomTab from "../components/CustomBottomTab";
+import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 
 type Props = StackScreenProps<RootStackParamList, "Yachts">;
 
@@ -55,301 +55,251 @@ function Yachts({ navigation }: Props) {
   const imagePastAwayProgress2 = useSharedValue(0);
   const imagePastAwayProgress3 = useSharedValue(0);
 
-  let longestRotate = useDerivedValue(() => {
-    return interpolate(
-      openLongestProgress.value,
-      [0, 1],
-      [0, 90],
-      Extrapolation.CLAMP
-    );
-  });
-
-  const longestRStyle = useAnimatedStyle(() => {
-    const widthStyle = interpolate(
-      openLongestProgress.value,
-      [0, 1],
-      [width / 2, width]
-    );
-    const heightStyle = interpolate(
-      openLongestProgress.value,
-      [0, 1],
-      [height * 0.7, imageInTopHeight]
-    );
-    const marginTop = interpolate(
-      openLongestProgress.value,
-      [0, 1],
-      [longestMarinTop, 0]
-    );
-
-    return {
-      width: widthStyle,
-      height: heightStyle,
-      marginTop,
-      transform: [
-        {
-          rotate: longestRotate.value + "deg",
-        },
-      ],
-    };
-  });
-
-  const longestImageRStyle = useAnimatedStyle(() => {
-    const borderAtTop = interpolate(openLongestProgress.value, [0, 1], [10, 0]);
-    return {
-      borderTopLeftRadius: borderAtTop,
-      borderBottomLeftRadius: borderAtTop,
-    };
-  });
-
-  const rightSideRStyle = useAnimatedStyle(() => {
-    const translateX = interpolate(
-      openLongestProgress.value,
-      [0, 1],
-      [0, width]
-    );
-    const heightStyle = interpolate(
-      openLongestProgress.value,
-      [0, 0.5],
-      [rightSideHeight, height / 2]
-    );
-    return {
-      height: heightStyle,
-      transform: [
-        {
-          translateX: translateX,
-        },
-      ],
-    };
-  });
-
-  const detailsRStyle = useAnimatedStyle(() => {
-    const left = interpolate(
-      openLongestProgress.value,
-      [0.5, 1],
-      [-width, 0],
-      Extrapolation.CLAMP
-    );
-    let toOpacity = interpolate(openLongestProgress.value, [1, 0.5], [1, 0]);
-
-    return {
-      left,
-      opacity: toOpacity,
-    };
-  });
-
-  const detailsRStyleWithGallery = useAnimatedStyle(() => {
-    let toOpacityWithGallery = interpolate(
-      openGalleryProgress.value,
-      [0, 1],
-      [1, 0.5]
-    );
-    return {
-      opacity: toOpacityWithGallery,
-    };
-  });
-
-  const longestGalleryRStyle = useAnimatedStyle(() => {
-    const top = interpolate(
-      openGalleryProgress.value,
-      [0, 1],
-      [
-        imageInTopHeight + informationCardContainerHeight,
-        height / 2 - informationCardContainerHeight / 2,
-      ]
-    );
-
-    const toHeight = interpolate(
-      openGalleryProgress.value,
-      [0, 1],
-      [galleryContainerHeight, height / 2]
-    );
-
-    const left = interpolate(openLongestProgress.value, [0, 1], [-width, 0]);
-
-    const toOpacity = interpolate(openLongestProgress.value, [1, 0.25], [1, 0]);
-    return {
-      left,
-      top,
-      height: toHeight,
-      opacity: toOpacity,
-    };
-  });
-
-  const imageAnimatedViewRStyle = useAnimatedStyle(() => {
-    const widthStyle = interpolate(
-      openGalleryProgress.value,
-      [0, 1],
-      [imageSize, galleryScaleUpRatio]
-    );
-    const heightStyle = interpolate(
-      openGalleryProgress.value,
-      [0, 1],
-      [imageSize, galleryScaleUpRatio]
-    );
-    const left = interpolate(
-      openGalleryProgress.value,
-      [0, 1],
-      [imageLeft, bigImageLeft]
-    );
-
-    return {
-      width: widthStyle,
-      height: heightStyle,
-      left,
-    };
-  });
-
-  const yachtNameRStyle = useAnimatedStyle(() => {
-    return {
-      opacity: interpolate(openLongestProgress.value, [0, 1], [0, 1]),
-    };
-  });
-
-  const yachtTextRStyle = useAnimatedStyle(() => {
-    const toTop = interpolate(
-      openLongestProgress.value,
-      [0, 1],
-      [theme.tabBarHeight / 2 - BarTitleFontSize / 2, theme.tabBarHeight]
-    );
-    return {
-      opacity: interpolate(openLongestProgress.value, [0, 1], [1, 0]),
-      top: toTop,
-    };
-  });
-
-  function openCloseGallery(value = 1, duration = 300) {
-    openGalleryProgress.value = withTiming(value, { duration: duration });
-  }
-
-  function lastStepForImageRStyle(imagePastAwayProgress: SharedValue<number>) {
-    const imagePastAwayRStyle = useAnimatedStyle(() => {
-      const left = interpolate(
-        imagePastAwayProgress.value,
+  const Content = () => {
+    const longestRotate = useDerivedValue(() => {
+      return interpolate(
+        openLongestProgress.value,
         [0, 1],
-        [bigImageLeft, -width]
+        [0, 90],
+        Extrapolation.CLAMP
+      );
+    });
+
+    const longestRStyle = useAnimatedStyle(() => {
+      const widthStyle = interpolate(
+        openLongestProgress.value,
+        [0, 1],
+        [width / 2, width]
+      );
+      const heightStyle = interpolate(
+        openLongestProgress.value,
+        [0, 1],
+        [height * 0.7, imageInTopHeight]
+      );
+      const marginTop = interpolate(
+        openLongestProgress.value,
+        [0, 1],
+        [longestMarinTop, 0]
+      );
+
+      return {
+        width: widthStyle,
+        height: heightStyle,
+        marginTop,
+        transform: [
+          {
+            rotate: longestRotate.value + "deg",
+          },
+        ],
+      };
+    });
+
+    const longestImageRStyle = useAnimatedStyle(() => {
+      const borderAtTop = interpolate(
+        openLongestProgress.value,
+        [0, 1],
+        [10, 0]
+      );
+      return {
+        borderTopLeftRadius: borderAtTop,
+        borderBottomLeftRadius: borderAtTop,
+      };
+    });
+
+    const rightSideRStyle = useAnimatedStyle(() => {
+      const translateX = interpolate(
+        openLongestProgress.value,
+        [0, 1],
+        [0, width]
+      );
+      const heightStyle = interpolate(
+        openLongestProgress.value,
+        [0, 0.5],
+        [rightSideHeight, height / 2]
+      );
+      return {
+        height: heightStyle,
+        transform: [
+          {
+            translateX: translateX,
+          },
+        ],
+      };
+    });
+
+    const detailsRStyle = useAnimatedStyle(() => {
+      const left = interpolate(
+        openLongestProgress.value,
+        [0.5, 1],
+        [-width, 0],
+        Extrapolation.CLAMP
+      );
+      let toOpacity = interpolate(openLongestProgress.value, [1, 0.5], [1, 0]);
+
+      return {
+        left,
+        opacity: toOpacity,
+      };
+    });
+
+    const detailsRStyleWithGallery = useAnimatedStyle(() => {
+      let toOpacityWithGallery = interpolate(
+        openGalleryProgress.value,
+        [0, 1],
+        [1, 0.5]
+      );
+      return {
+        opacity: toOpacityWithGallery,
+      };
+    });
+
+    const longestGalleryRStyle = useAnimatedStyle(() => {
+      const top = interpolate(
+        openGalleryProgress.value,
+        [0, 1],
+        [
+          imageInTopHeight + informationCardContainerHeight,
+          height / 2 - informationCardContainerHeight / 2,
+        ]
+      );
+
+      const toHeight = interpolate(
+        openGalleryProgress.value,
+        [0, 1],
+        [galleryContainerHeight, height / 2]
+      );
+
+      const left = interpolate(openLongestProgress.value, [0, 1], [-width, 0]);
+
+      const toOpacity = interpolate(
+        openLongestProgress.value,
+        [1, 0.25],
+        [1, 0]
       );
       return {
         left,
+        top,
+        height: toHeight,
+        opacity: toOpacity,
       };
     });
-    return imagePastAwayRStyle;
-  }
 
-  function getStyle(index: number) {
-    switch (index) {
-      case 3:
-        return lastStepForImageRStyle(imagePastAwayProgress3);
-
-      case 2:
-        return lastStepForImageRStyle(imagePastAwayProgress2);
-
-      case 1:
-        return lastStepForImageRStyle(imagePastAwayProgress1);
-
-      case 0:
-        return lastStepForImageRStyle(imagePastAwayProgress);
-
-      default:
-    }
-  }
-
-  function refactorKillImage(
-    progressValue: SharedValue<number>,
-    index: number
-  ) {
-    if (index == 0) {
-      imagePastAwayProgress3.value = withTiming(0, {
-        duration: 400,
-      });
-      imagePastAwayProgress2.value = withTiming(0, {
-        duration: 300,
-      });
-      imagePastAwayProgress1.value = withTiming(0, {
-        duration: 200,
-      });
-      openGalleryProgress.value = withDelay(
-        400,
-        withTiming(0, { duration: 200 })
+    const imageAnimatedViewRStyle = useAnimatedStyle(() => {
+      const widthStyle = interpolate(
+        openGalleryProgress.value,
+        [0, 1],
+        [imageSize, galleryScaleUpRatio]
       );
-    } else {
-      progressValue.value = withTiming(1, {
-        duration: 500,
+      const heightStyle = interpolate(
+        openGalleryProgress.value,
+        [0, 1],
+        [imageSize, galleryScaleUpRatio]
+      );
+      const left = interpolate(
+        openGalleryProgress.value,
+        [0, 1],
+        [imageLeft, bigImageLeft]
+      );
+
+      return {
+        width: widthStyle,
+        height: heightStyle,
+        left,
+      };
+    });
+
+    function openCloseGallery(value = 1, duration = 300) {
+      openGalleryProgress.value = withTiming(value, { duration: duration });
+    }
+
+    function lastStepForImageRStyle(
+      imagePastAwayProgress: SharedValue<number>
+    ) {
+      const imagePastAwayRStyle = useAnimatedStyle(() => {
+        const left = interpolate(
+          imagePastAwayProgress.value,
+          [0, 1],
+          [bigImageLeft, -width]
+        );
+        return {
+          left,
+        };
       });
+      return imagePastAwayRStyle;
     }
-  }
 
-  function killThisImage(index: number) {
-    switch (index) {
-      case 0:
-        refactorKillImage(imagePastAwayProgress, index);
-      case 1:
-        refactorKillImage(imagePastAwayProgress1, index);
-        break;
-      case 2:
-        refactorKillImage(imagePastAwayProgress2, index);
-        break;
-      case 3:
-        refactorKillImage(imagePastAwayProgress3, index);
-        break;
-      default:
-        break;
+    function getStyle(index: number) {
+      switch (index) {
+        case 3:
+          return lastStepForImageRStyle(imagePastAwayProgress3);
+
+        case 2:
+          return lastStepForImageRStyle(imagePastAwayProgress2);
+
+        case 1:
+          return lastStepForImageRStyle(imagePastAwayProgress1);
+
+        case 0:
+          return lastStepForImageRStyle(imagePastAwayProgress);
+
+        default:
+      }
     }
-  }
 
-  function imageRotateValue(index: number): number {
-    return (3 - index) * 2 - 2 * (generateRandomBoolean() ? -1 : 1);
-  }
+    function refactorKillImage(
+      progressValue: SharedValue<number>,
+      index: number
+    ) {
+      if (index == 0) {
+        imagePastAwayProgress3.value = withTiming(0, {
+          duration: 400,
+        });
+        imagePastAwayProgress2.value = withTiming(0, {
+          duration: 300,
+        });
+        imagePastAwayProgress1.value = withTiming(0, {
+          duration: 200,
+        });
+        openGalleryProgress.value = withDelay(
+          400,
+          withTiming(0, { duration: 200 })
+        );
+      } else {
+        progressValue.value = withTiming(1, {
+          duration: 500,
+        });
+      }
+    }
 
-  const BarTitle = () => {
+    function killThisImage(index: number) {
+      switch (index) {
+        case 0:
+          refactorKillImage(imagePastAwayProgress, index);
+        case 1:
+          refactorKillImage(imagePastAwayProgress1, index);
+          break;
+        case 2:
+          refactorKillImage(imagePastAwayProgress2, index);
+          break;
+        case 3:
+          refactorKillImage(imagePastAwayProgress3, index);
+          break;
+        default:
+          break;
+      }
+    }
+
+    function imageRotateValue(index: number): number {
+      return (3 - index) * 2 - 2 * (generateRandomBoolean() ? -1 : 1);
+    }
+// console.log(theme.localizationDirection )
     return (
       <View
         style={{
-          flexDirection: "row",
-          height: theme.tabBarHeight,
-          justifyContent: "center",
-          alignContent: "center",
-          alignItems: "center",
+          flex: 1,
+          flexDirection: theme.localizationRtl ? "row-reverse" : "row",
         }}
       >
-        <Animated.Text
-          style={[
-            {
-              fontSize: BarTitleFontSize,
-              fontWeight: "800",
-              backgroundColor: "white",
-              position: "absolute",
-              top: theme.tabBarHeight / 2 - BarTitleFontSize / 2,
-            },
-            yachtTextRStyle,
-          ]}
-        >
-          Yachts
-        </Animated.Text>
-        <Animated.Text
-          style={[
-            {
-              fontSize: BarTitleFontSize,
-              fontWeight: "800",
-              position: "absolute",
-              top: theme.tabBarHeight / 2 - BarTitleFontSize / 2,
-            },
-            yachtNameRStyle,
-          ]}
-        >
-          TACANUY
-        </Animated.Text>
-      </View>
-    );
-  };
-
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "flex-end",
-      }}
-    >
-      <View style={{ flex: 1 }}>
         <Animated.View style={[styles.longestRStyle, longestRStyle]}>
           <TouchableOpacity
             activeOpacity={1}
@@ -422,12 +372,72 @@ function Yachts({ navigation }: Props) {
           <RightSide />
         </Animated.View>
       </View>
-      {/* <View
-        style={{ position: "absolute", top: windowHeight - theme.tabBarHeight }}
-      > */}
-      <CustomBottomTab navigation={navigation} components={[<BarTitle />]} />
-      {/* </View> */}
-    </View>
+    );
+  };
+  const BarTitle = () => {
+    const yachtNameRStyle = useAnimatedStyle(() => {
+      return {
+        opacity: interpolate(openLongestProgress.value, [0, 1], [0, 1]),
+      };
+    });
+
+    const yachtTextRStyle = useAnimatedStyle(() => {
+      const toTop = interpolate(
+        openLongestProgress.value,
+        [0, 1],
+        [theme.tabBarHeight / 2 - BarTitleFontSize / 2, theme.tabBarHeight]
+      );
+      return {
+        opacity: interpolate(openLongestProgress.value, [0, 1], [1, 0]),
+        top: toTop,
+      };
+    });
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+          height: theme.tabBarHeight,
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Animated.Text
+          style={[
+            {
+              fontSize: BarTitleFontSize,
+              fontWeight: "800",
+              backgroundColor: "white",
+              position: "absolute",
+              top: theme.tabBarHeight / 2 - BarTitleFontSize / 2,
+            },
+            yachtTextRStyle,
+          ]}
+        >
+          Yachts
+        </Animated.Text>
+        <Animated.Text
+          style={[
+            {
+              fontSize: BarTitleFontSize,
+              fontWeight: "800",
+              position: "absolute",
+              top: theme.tabBarHeight / 2 - BarTitleFontSize / 2,
+            },
+            yachtNameRStyle,
+          ]}
+        >
+          TACANUY
+        </Animated.Text>
+      </View>
+    );
+  };
+  return (
+    <ScreenWithCustomBottomTab
+      content={<Content />}
+      navigation={navigation}
+      CustomBottomTabComponents={[<BarTitle />]}
+    />
   );
 }
 export { Yachts };

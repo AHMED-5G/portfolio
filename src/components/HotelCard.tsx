@@ -6,19 +6,22 @@ import {
   View,
   Image,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Hotel } from "../types";
 import { theme } from "../constants/myColors";
 import { useNavigation } from "@react-navigation/native";
 import { getRandomOneItemFromList } from "../utils/helperFunctions";
+import MyCustomSkeleton from "./MyCustomSkeleton";
+import { height } from "../constants/Layout";
 
 type Props = {
   hotel: Hotel;
 };
+const imageHeight = 200;
 const HotelCard = ({ hotel }: Props) => {
   const navigation = useNavigation();
   const cardWidth = 200;
-  const borderRadius = theme.cardBorderRadiusWidthFactor * cardWidth;
+  const [imageLoading, setImageLoading] = useState(true);
   return (
     <TouchableOpacity
       onPress={() => {
@@ -39,23 +42,51 @@ const HotelCard = ({ hotel }: Props) => {
         shadowRadius: 1.0,
       }}
     >
+      {imageLoading && (
+        <View
+          style={[
+            styles.image,
+            {
+              position: "absolute",
+              zIndex: 1,
+            },
+          ]}
+        >
+          <MyCustomSkeleton style={{ height: imageHeight, width: cardWidth }} />
+        </View>
+      )}
+
       <Image
-        source={{ uri: getRandomOneItemFromList(hotel.images) as string }}
-        style={{
-          height: 200,
-          borderRadius: theme.borderRadius,
-          borderBottomRightRadius: 0,
-          borderBottomLeftRadius: 0,
+        source={{ uri: hotel.images[1] }}
+        onLoadStart={() => {
+          setImageLoading(true);
         }}
+        onLoad={() => {
+          setImageLoading(false);
+        }}
+        onLoadEnd={() => {
+          setImageLoading(false);
+        }}
+        style={styles.image}
       />
 
       <View
         style={{
           marginLeft: 5,
+          marginBottom: 10,
+          flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
         }}
       >
-        <Text style={styles.title}>{hotel.name}</Text>
-        <Text style={styles.secondlyTitle}>{hotel.address}</Text>
+        <View
+          style={{
+            marginLeft: 5,
+          }}
+        >
+          <Text style={styles.title}>{hotel.name}</Text>
+          <Text numberOfLines={1} style={styles.secondlyTitle}>
+            {hotel.address}
+          </Text>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -74,5 +105,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     color: theme.black,
+  },
+  image: {
+    height: imageHeight,
+    borderRadius: theme.borderRadius,
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0,
   },
 });

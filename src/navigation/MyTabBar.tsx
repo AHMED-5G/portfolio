@@ -12,12 +12,11 @@ import {
   Dimensions,
   Keyboard,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import { FeedTab, HomeTab, SettingsTab } from "./tabBarItems";
-import { myColors, theme } from "../constants/myColors";
+import { theme } from "../constants/myColors";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -26,20 +25,19 @@ import Animated, {
   Extrapolation,
   useDerivedValue,
   withTiming,
+  Easing,
 } from "react-native-reanimated";
 import { AntDesign } from "@expo/vector-icons";
 import DrawerComponent from "./tabBarItems/DrawerComponent";
-import RightTabComponent from "./tabBarItems/RightTabComponent";
 import TabBarFooter from "./tabBarItems/TabBarFooter";
-
+import MyLine from "../components/MyLine";
+import { width } from "../constants/Layout";
 interface TabBarProps {
   state: TabNavigationState<ParamListBase>;
   descriptors: BottomTabDescriptorMap;
   navigation: NavigationHelpers<ParamListBase, BottomTabNavigationEventMap>;
 }
 
-const width = Dimensions.get("screen").width;
-const height = Dimensions.get("screen").height;
 const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
   const [keyboardStatus, setKeyboardStatus] = useState(false);
   const keyboardDidShow = () => setKeyboardStatus(true);
@@ -48,7 +46,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
     Keyboard.addListener("keyboardDidShow", keyboardDidShow);
     Keyboard.addListener("keyboardDidHide", keyboardDidHide);
   }, []);
-  const barOpenHeight = 300;
+  const barOpenHeight = 370;
   let openTabProgress = useSharedValue(0);
   const [tapOpenState, setTapOpenState] = useState(false);
   let iconRotate = useDerivedValue(() => {
@@ -61,9 +59,14 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
   });
 
   const openTab = useCallback(() => {
-    openTabProgress.value = withTiming(1, undefined, (isFinished) => {
-      runOnJS(setTapOpenState)(true);
-    });
+    openTabProgress.value = withTiming(
+      1,
+
+      { easing: Easing.bezier(0, 0, 0.1, 0.4) },
+      (isFinished) => {
+        runOnJS(setTapOpenState)(true);
+      }
+    );
   }, []);
 
   const closTab = useCallback(() => {
@@ -95,6 +98,25 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
       ],
     };
   });
+
+  const tabBarTopSectionRStyle = useAnimatedStyle(() => {
+    const toHeight = interpolate(
+      openTabProgress.value,
+      [0, 1],
+      [theme.tabBarHeight, 0]
+    );
+    return {
+      height: toHeight,
+    };
+  });
+
+  const drawerContainerRStyle = useAnimatedStyle(() => {
+    const toOpacity = interpolate(openTabProgress.value, [1, 0], [1, 0]);
+    return {
+      opacity: toOpacity,
+    };
+  });
+
   const upButtonPercentage = 0.15;
   return (
     <Animated.View
@@ -102,7 +124,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
         {
           borderRadius: 10,
           backgroundColor: "white",
-          flexDirection: "row",
+          flexDirection: theme.localizationFlexDirection,
           display: !keyboardStatus ? "flex" : "none",
           justifyContent: "center",
           alignContent: "center",
@@ -137,12 +159,22 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
         </Animated.View>
       </TouchableOpacity>
       <View
-        style={{
-          width: width * (1 - upButtonPercentage),
-          marginBottom: 20,
-        }}
+        style={[
+          {
+            width: width * (1 - upButtonPercentage),
+            marginBottom: 20,
+          },
+        ]}
       >
-        <View style={{ flexDirection: "row" }}>
+        <Animated.View
+          style={[
+            {
+              flexDirection: theme.localizationFlexDirection,
+              overflow: "hidden",
+            },
+            tabBarTopSectionRStyle,
+          ]}
+        >
           {state.routes.map((route, index) => {
             const { options } = descriptors[route.key];
             const label =
@@ -203,17 +235,20 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
               </TouchableOpacity>
             );
           })}
-        </View>
-        <View
-          style={{
-            paddingTop: 20,
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
+        </Animated.View>
+        <Animated.View
+          style={[
+            {
+              marginTop: 10,
+              flexDirection: theme.localizationFlexDirection,
+              justifyContent: "space-between",
+            },
+            drawerContainerRStyle,
+          ]}
         >
           <DrawerComponent />
-          <RightTabComponent />
-        </View>
+        </Animated.View>
+        <MyLine lineStyle={{ marginTop: 0 }} />
         <TabBarFooter />
       </View>
     </Animated.View>

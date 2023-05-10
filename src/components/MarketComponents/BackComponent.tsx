@@ -1,13 +1,12 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../types";
+import { theme } from "../../constants/myColors";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
-  // "MarketHomeScreen",
-  // undefined
 };
 
 const BackComponent = ({ navigation }: Props) => {
@@ -19,7 +18,9 @@ const BackComponent = ({ navigation }: Props) => {
         alignItems: "center",
         width: 48,
         height: 48,
+        transform: theme.iconLocalizationTransform(),
       }}
+      accessibilityHint="navigation back"
       onPress={() => {
         navigation.goBack();
       }}

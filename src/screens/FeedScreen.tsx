@@ -16,9 +16,10 @@ import { shuffleArray } from "../utils/helperFunctions";
 import { Audio } from "expo-av";
 import { refreshSound } from "../../assets/sounds";
 import SimpleHeader from "../components/SimpleHeader";
+import { i18n } from "../translation/i18n";
 
 function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
-  const [posts, setPosts] = useState(mergePosts.slice(0, 10));
+  const [posts, setPosts] = useState<Post[]>(mergePosts.slice(0, 10));
   const [refreshState, setRefreshState] = useState(false);
   const [sound, setSound] = useState<Audio.Sound | null>(null);
 
@@ -74,8 +75,8 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
   }, [navigation]);
   const flatListRef = useRef<FlatList | null>(null);
   return (
-    <View style={{ marginBottom: theme.tabBarHeight , flex: 1 }}>
-      <SimpleHeader title="Time Line" />
+    <View style={{ flex: 1 }}>
+      <SimpleHeader title={i18n.t("timeLine")} />
       <View style={styles.postsContainer}>
         <FlatList
           refreshControl={
@@ -120,12 +121,10 @@ export { FeedScreen };
 
 const styles = StyleSheet.create({
   postsContainer: {
-    // flex: 1,
-    // marginTop: 20,
-    // marginBottom: 70,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
+    marginBottom: theme.tabBarHeight,
   },
   line: {
     marginTop: 20,

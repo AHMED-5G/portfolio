@@ -164,6 +164,7 @@ const Max10Input = ({ setCounter, counter }: Props) => {
             onLongPress={() => {
               setCounter(10);
             }}
+            accessibilityHint="add one or long Pres to add 10"
             style={[styles.iconContainer, { marginLeft: 5 }]}
           >
             <AntDesign
@@ -198,7 +199,6 @@ const Max10Input = ({ setCounter, counter }: Props) => {
             }}
           >
             {
-              // {counter == 1 && (
               <Animated.Text
                 style={[
                   {
@@ -225,6 +225,7 @@ const Max10Input = ({ setCounter, counter }: Props) => {
             onLongPress={() => {
               setCounter(1);
             }}
+            accessibilityHint="remove one or long Pres to reset to 1"
             style={[styles.iconContainer, { marginRight: 5 }]}
           >
             <AntDesign
@@ -243,7 +244,6 @@ const Max10Input = ({ setCounter, counter }: Props) => {
               borderRadius: 10,
               borderWidth: 0.7,
               borderColor: theme.borderColor,
-              // backgroundColor: "#EEE",
               justifyContent: "center",
               alignContent: "center",
               alignItems: "center",

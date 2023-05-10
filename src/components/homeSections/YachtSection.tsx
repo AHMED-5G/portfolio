@@ -8,22 +8,29 @@ import HomeSectionTitle from "./HomeSectionTitle";
 import { i18n } from "../../translation/i18n";
 import { getRandomOneItemFromList } from "../../utils/helperFunctions";
 import HomeSingleImage from "./HomeSingleImage";
+import HomeSectionContainer from "./HomeSectionContainer";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Home", undefined>;
 };
 
 const YachtSection = ({ navigation }: Props) => {
-  return (
-    <View style={styles.container}>
-      <HomeSectionTitle text={i18n.t("yachts")} />
+  function Content() {
+    return (
       <TouchableOpacity
         onPress={() => {
           navigation.navigate("YachtStackNavigation");
         }}
+        accessibilityHint={i18n.t("yachts") + "image"}
       >
         <HomeSingleImage uri={getRandomOneItemFromList(yachtImages)} />
       </TouchableOpacity>
+    );
+  }
+  return (
+    <View style={styles.container}>
+      <HomeSectionTitle text={i18n.t("yachts")} />
+      <HomeSectionContainer content={<Content />} />
     </View>
   );
 };

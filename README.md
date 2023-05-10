@@ -1,8 +1,8 @@
-# Review my react native portfolio application v0.5
+# Review my react native portfolio application v0.6
 
 - for android devices download Expo Go application https://expo.dev/client
 
-- for IOS devices soon .
+- for IOS devices maybe later .
 
 - scan QR
 
@@ -115,6 +115,21 @@ Released and contains:
 - "Add to cart" card contain interactions, different inputs methods, image view and calculations.
 
 - improve yacht screen animations and add custom bottom bar.
+
+  </details>
+
+  ## V 0.6 "From Right To Left" -- released
+
+<details>
+<summary>Details</summary>
+
+- Improve Localization, application running in arabic and From Right To left with RTL systems.
+
+- Improve accessability.
+
+- Add skeleton placeholders in home screen .
+
+- Search for products feature disabled contains some issues,
 
   </details>
 

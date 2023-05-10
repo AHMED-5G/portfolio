@@ -1,9 +1,4 @@
-import {
-  StyleSheet,
-  View,
-
-  FlatList,
-} from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import React from "react";
 
 import { Hotel, RootStackParamList } from "../../types";
@@ -13,24 +8,30 @@ import { i18n } from "../../translation/i18n";
 import { shuffleArray } from "../../utils/helperFunctions";
 import HotelCard from "../HotelCard";
 import HomeSectionTitle from "./HomeSectionTitle";
+import { theme } from "../../constants/myColors";
+import { LocalizedFlatList } from "react-native-localized-flatlist-rtl-ltr";
+import HomeSectionContainer from "./HomeSectionContainer";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Home", undefined>;
 };
 
 const HotelsSection = ({ navigation }: Props) => {
+  const Content = () => {
+    return (
+      <FlatList
+        data={hotels}
+        horizontal
+        renderItem={({ item }) => <HotelCard hotel={item} />}
+        keyExtractor={(item: Hotel) => item.id.toString()}
+        showsHorizontalScrollIndicator={false}
+      />
+    );
+  };
   return (
     <View style={styles.container}>
       <HomeSectionTitle text={i18n.t("hotels")} />
-      <View style={{ marginLeft: 10 }}>
-        <FlatList
-          data={shuffleArray(hotels)}
-          horizontal
-          renderItem={({ item }) => <HotelCard hotel={item} />}
-          keyExtractor={(item: Hotel) => item.id.toString()}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
+      <HomeSectionContainer content={<Content />} />
     </View>
   );
 };

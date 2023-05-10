@@ -21,6 +21,7 @@ export type RootStackParamList = {
   HorseDetails: Horse;
   HorsesStack: Horse[];
   YachtStackNavigation: undefined;
+  HotelStackNavigation: Hotel;
   Yachts: undefined;
   MarketStackNavigator: undefined;
   MarketHomeScreen: undefined;
