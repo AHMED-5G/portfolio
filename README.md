@@ -8,7 +8,7 @@
 
 <img
      width=150 height= 150
-      src="./assets/images/expo-go-portfolio-default-android.svg">
+      src="./assets/images/eas-update.svg">
 </a>
 
 - or past link:
