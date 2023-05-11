@@ -28,7 +28,7 @@ function Home({ navigation }: Props) {
         <HotelsSection navigation={navigation} />
         <HomeSectionContainer
           content={
-            <Text style={styles.versionText}>{i18n.t("version")} 0.6</Text>
+            <Text style={styles.versionText}>{i18n.t("version")} 0.6.0</Text>
           }
           line={false}
         />
