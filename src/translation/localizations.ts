@@ -58,7 +58,7 @@ const ar = {
   delete: "حذف",
   notifications: "الاشعارات",
   hotels: "الفنادق",
-  version: "الاصدار",
+  version: "الإصدار",
   nightMood: "الوضع الليلي",
   logOut: "تسجيل الخروج",
   everydayEssentials: "مستلزمات يومية",
