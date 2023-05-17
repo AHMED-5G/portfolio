@@ -15,7 +15,7 @@ const MyCustomSkeleton = ({
   style,
   duration = 1000,
   boneColor = "#EEE",
-  highlightColor = theme.primary,
+  highlightColor = theme.primary(),
 }: Props) => {
   return (
     <SkeletonLoader

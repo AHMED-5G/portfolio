@@ -28,7 +28,7 @@ import YachtStackNavigation from "./YachtStackNavigation/YachtStackNavigation";
 import MarketStackNavigator from "./MarketStackNavigator/MarketStackNavigator";
 import { StatusBar } from "react-native";
 import HotelDetails from "../screens/HotelDetails";
-import { theme } from "../constants/myColors";
+import { theme, userConfiguration } from "../constants/myColors";
 export default function Navigation({
   colorScheme,
 }: {
@@ -37,13 +37,16 @@ export default function Navigation({
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );
-  function setUpReadingTheme() {
+
+  function setConfigures() {
     theme.readingTheme = state.settings.savedReadingTheme;
+    loadLocale(state.language);
+    theme.nightMood = state.settings.userConfiguration?.nightMood
+      ? true
+      : false;
   }
-  React.useEffect(() => {
-    setUpReadingTheme();
-  }, []);
-  loadLocale(state.language);
+
+  setConfigures();
 
   return (
     <NavigationContainer>
@@ -51,6 +54,7 @@ export default function Navigation({
         style={{
           flex: 1,
           paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+          backgroundColor: theme.baseBackground(),
         }}
       >
         <RootNavigator />

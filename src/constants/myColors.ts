@@ -60,9 +60,22 @@ export const readingThemes: ReadingThemesCombo[] = [
   },
 ];
 
+export interface UserConfigurationInterface {
+  nightMood: boolean;
+}
+
+export const userConfiguration: UserConfigurationInterface = {
+  nightMood: true,
+};
+
 interface ThemeInterface {
-  primary: ColorValue;
-  primaryText: "#000";
+  nightMood: boolean;
+
+  baseBackground: () => ColorValue;
+  baseTextColor: () => ColorValue;
+
+  primary: () => ColorValue;
+  primaryText: () => ColorValue;
 
   secondary: ColorValue;
   secondaryText: "#FFF";
@@ -79,9 +92,9 @@ interface ThemeInterface {
   alertFailColor: ColorValue;
   alertTextColor: "#000";
 
-  cardBackground: ColorValue;
+  cardBackground: () => ColorValue;
   cardBackgroundColorValue: ColorValue;
-  cardText: "#000";
+  cardText: () => ColorValue;
 
   tabBarHeight: number;
   tabBarBackground: ColorValue;
@@ -102,13 +115,25 @@ interface ThemeInterface {
   freezeInLeftWhenIsRTLTrue: () => FlexStyle["flexDirection"];
   localizationDirection?: "rtl" | "ltr";
   iconLocalizationTransform: () => [{ rotateY: string }];
-
   readingTheme: ReadingThemesCombo;
 }
 
 export const theme: ThemeInterface = {
-  primary: "#dddcec",
-  primaryText: "#000",
+  nightMood: false,
+
+  baseBackground: function () {
+    return this.nightMood ? "#141414" : "";
+  },
+  baseTextColor: function () {
+    return this.nightMood ? "#FFF" : "#000";
+  },
+
+  primary: function () {
+    return !this.nightMood ? "#dddcec" : "#282828";
+  },
+  primaryText: function () {
+    return !this.nightMood ? "#000" : "#fff";
+  },
 
   secondary: "#6a154e",
   secondaryText: "#FFF",
@@ -125,9 +150,12 @@ export const theme: ThemeInterface = {
   alertFailColor: "#f2bac9",
   alertTextColor: "#000",
 
-  cardBackground: "white",
-  cardText: "#000",
-
+  cardBackground: function () {
+    return !this.nightMood ? "white" : "#282828";
+  },
+  cardText: function () {
+    return this.baseTextColor();
+  },
   borderColor: myColors.grey5,
   disableColor: myColors.grey5,
 
@@ -137,7 +165,9 @@ export const theme: ThemeInterface = {
   tabBarBackground: "#FFF",
   tabBarTextColor: "#000",
   tabBarBorderRadius: 10,
-  tabBarLeftSectionColor: () => theme.primary,
+  tabBarLeftSectionColor: function () {
+    return !this.nightMood ? this.primary() : "#282828";
+  },
 
   cardBackgroundColorValue: "#FFF",
   cardBorderRadiusWidthFactor: 0.05,

@@ -6,11 +6,13 @@ import * as Localization from "expo-localization";
 
 const i18n = new I18n();
 export const loadLocale = (lang: Languages) => {
+  // console.log(Localization.getLocales()[0].textDirection=='rtl');
   i18n.translations = { en, ar };
   i18n.defaultLocale = Localization.locale.split("-")[0] == "ar" ? "ar" : "en";
   i18n.locale = Localization.locale.split("-")[0] == "ar" ? "ar" : "en";
   theme.localizationFlexDirection = "row";
-  theme.localizationRtl = Localization.isRTL;
+  theme.localizationRtl = false;
+  // theme.localizationRtl = Localization.getLocales()[0].textDirection == "rtl";
 };
 
 export { i18n };

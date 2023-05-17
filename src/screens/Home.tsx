@@ -10,11 +10,12 @@ import HorsesSection from "../components/homeSections/HorsesSection";
 import { i18n } from "../translation/i18n";
 import SimpleHeader from "../components/SimpleHeader";
 import HomeSectionContainer from "../components/homeSections/HomeSectionContainer";
+import { theme } from "../constants/myColors";
 type Props = StackScreenProps<RootStackParamList, "Home">;
 
 function Home({ navigation }: Props) {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: theme.baseBackground() }}>
       <SimpleHeader title={i18n.t("home")} />
       <ScrollView
         showsVerticalScrollIndicator={false}

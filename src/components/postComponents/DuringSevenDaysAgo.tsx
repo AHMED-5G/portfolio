@@ -33,7 +33,7 @@ const DuringSevenDaysAgo = (props: Props) => {
       <View
         style={{ alignItems: "flex-start", marginLeft: 12, marginRight: 12 }}
       >
-        <Text style={{ fontWeight: "500", color: theme.primaryText }}>
+        <Text style={{ fontWeight: "500", color: theme.primaryText() }}>
           {<TimeAgo time={new Date(duringSevenDaysAgo * 1000)} />}
         </Text>
       </View>

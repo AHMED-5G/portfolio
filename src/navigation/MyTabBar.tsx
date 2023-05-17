@@ -142,6 +142,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
           alignContent: "center",
           alignItems: "center",
           width: width * upButtonPercentage,
+
           backgroundColor: theme.tabBarLeftSectionColor(),
         }}
       >
@@ -155,7 +156,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             upIconReanimatedStyle,
           ]}
         >
-          <AntDesign name="up" size={44} color={theme.primaryText} />
+          <AntDesign name="up" size={44} color={theme.primaryText()} />
         </Animated.View>
       </TouchableOpacity>
       <View

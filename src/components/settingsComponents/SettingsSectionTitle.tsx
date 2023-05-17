@@ -12,7 +12,7 @@ const SettingsSectionTitle = ({ title }: Props) => {
         justifyContent: "center",
         height: 40,
         width: width,
-        backgroundColor: theme.primary,
+        backgroundColor: theme.primary(),
         marginTop: 10,
         // marginLeft: 10,
       }}
@@ -22,7 +22,7 @@ const SettingsSectionTitle = ({ title }: Props) => {
           marginLeft: 10,
           fontSize: 20,
           fontWeight: "bold",
-          color: theme.primaryText,
+          color: theme.primaryText(),
         }}
       >
         {title}

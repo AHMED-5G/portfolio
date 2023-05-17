@@ -1,15 +1,27 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  DevSettings,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useState } from "react";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import ToggleSwitch from "toggle-switch-react-native";
-import { myColors, theme } from "../../constants/myColors";
+import { myColors, theme, userConfiguration } from "../../constants/myColors";
 import { i18n } from "../../translation/i18n";
+import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
+import { InitialStateInterface } from "../../types";
+import { SET_USER_CONFIGURATIONS } from "../../redux/reducers/dataSlice";
 
 type Props = {};
 
 const TabBarFooter = (props: Props) => {
   const [switchState, setSwitchState] = useState(true);
-
+  const state: InitialStateInterface = useAppSelector(
+    (state) => state.dataSlice
+  );
+  const useDispatch = useAppDispatch();
   return (
     <View
       style={{
@@ -29,14 +41,25 @@ const TabBarFooter = (props: Props) => {
         }}
       >
         <ToggleSwitch
-          isOn={switchState}
+          isOn={state.settings.userConfiguration?.nightMood ? true : false}
           onColor={myColors.sky}
           offColor="black"
           label={i18n.t("nightMood")}
           icon={<Entypo name="moon" size={24} color="black" />}
           labelStyle={styles.text}
           size="large"
-          onToggle={(isOn) => setSwitchState(isOn)}
+          onToggle={(isOn) => {
+            // setSwitchState(isOn);
+
+            userConfiguration.nightMood = isOn;
+            useDispatch(
+              SET_USER_CONFIGURATIONS({
+                ...state.settings.userConfiguration,
+                nightMood: isOn,
+              })
+            );
+            DevSettings.reload();
+          }}
         />
       </View>
       <TouchableOpacity

@@ -38,6 +38,8 @@ const SetReadThemeComponent = (props: Props) => {
             fontSize: selectedCombo.fontSize,
             color: selectedCombo.fontColor,
           }}
+          selectable
+          
         >
           {i18n.t("iCanReadThisText")}
         </Text>

@@ -123,7 +123,7 @@ const PostAuthor = ({ user }: Props) => {
               style={{
                 fontSize: 22,
                 fontWeight: "700",
-                color: theme.primaryText,
+                color: theme.primaryText(),
               }}
             >
               {user.name}

@@ -41,7 +41,7 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
     return (
       <SkeletonLoader
         boneColor="#EEE"
-        highlightColor={theme.primary}
+        highlightColor={theme.primary()as string}
         duration={1000}
       >
         <SkeletonLoader.Item style={styles.videoContainer} />

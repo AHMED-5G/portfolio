@@ -28,6 +28,7 @@ const AddToCartButtonComponent = ({
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );
+
   const addCounterToCart = () => {
     if (isItemInCart.id != "0") {
       if (isItemInCart.counter < 999 && isItemInCart.counter + counter < 999) {

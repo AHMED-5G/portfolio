@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   searchResultText: {
     margin: 4,
-    color: theme.primaryText,
+    color: theme.primaryText(),
     fontSize: 20,
     fontWeight: "500",
   },
