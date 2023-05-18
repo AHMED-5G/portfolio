@@ -5,7 +5,7 @@ import { width } from "../../constants/Layout";
 // import { myColors } from "../../constants/myColors";
 
 import CommentComponent from "./CommentComponent";
-import { myColors } from "../../constants/myColors";
+import { myColors, theme } from "../../constants/myColors";
 
 type Props = { comments: PostComment[] };
 
@@ -13,7 +13,11 @@ const Comments = ({ comments }: Props) => {
   return (
     <View style={styles.commentsContainer}>
       <View style={styles.commentTitleContainer}>
-        <Text style={styles.commentTitleText}>Comments</Text>
+        <Text
+          style={[styles.commentTitleText, { color: theme.baseTextColor() }]}
+        >
+          Comments
+        </Text>
       </View>
       <FlatList
         initialNumToRender={3}

@@ -8,7 +8,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Platform, SafeAreaView } from "react-native";
+import { ColorSchemeName, Platform, SafeAreaView, Text } from "react-native";
 import useColorScheme from "../hooks/useColorScheme";
 import Colors from "../constants/Colors";
 import {
@@ -28,7 +28,10 @@ import YachtStackNavigation from "./YachtStackNavigation/YachtStackNavigation";
 import MarketStackNavigator from "./MarketStackNavigator/MarketStackNavigator";
 import { StatusBar } from "react-native";
 import HotelDetails from "../screens/HotelDetails";
-import { theme, userConfiguration } from "../constants/myColors";
+import { theme } from "../constants/myColors";
+import LoadingIndicator from "../components/mini/LoadingIndicator";
+import { View } from "../components/Themed";
+
 export default function Navigation({
   colorScheme,
 }: {
@@ -37,6 +40,7 @@ export default function Navigation({
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );
+  const [appIsReady, setAppIsReady] = React.useState(false);
 
   function setConfigures() {
     theme.readingTheme = state.settings.savedReadingTheme;
@@ -46,10 +50,29 @@ export default function Navigation({
       : false;
   }
 
-  setConfigures();
+  React.useEffect(() => {
+    async function prepare() {
+      try {
+        setConfigures();
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setAppIsReady(true);
+      }
+    }
 
+    prepare();
+  }, []);
+
+  if (!appIsReady) {
+    return <LoadingIndicator />;
+  }
   return (
     <NavigationContainer>
+      <StatusBar
+        barStyle={!theme.nightMood ? "dark-content" : "light-content"}
+      />
+
       <SafeAreaView
         style={{
           flex: 1,
@@ -101,11 +124,14 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="HomeStackNavigator"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
         headerShown: false,
       }}
       tabBar={(props) => {
-        return <MyTabBar {...props} />;
+        return (
+          <View style={{ backgroundColor: theme.tabBarBackground() }}>
+            <MyTabBar {...props} />
+          </View>
+        );
       }}
     >
       <BottomTab.Screen

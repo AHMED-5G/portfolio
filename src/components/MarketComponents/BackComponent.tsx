@@ -25,7 +25,12 @@ const BackComponent = ({ navigation }: Props) => {
         navigation.goBack();
       }}
     >
-      <AntDesign disabled name="arrowleft" size={38} color="black" />
+      <AntDesign
+        disabled
+        name="arrowleft"
+        size={38}
+        color={theme.iconColor()}
+      />
     </TouchableOpacity>
   );
 };

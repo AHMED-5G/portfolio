@@ -16,7 +16,7 @@ const DuringSevenDaysAgo = (props: Props) => {
   return (
     <View
       style={{
-        backgroundColor: theme.white,
+        backgroundColor: theme.cardBackground(),
         alignSelf: "flex-start",
         borderBottomLeftRadius: 15,
         borderBottomRightRadius: 15,
@@ -33,7 +33,7 @@ const DuringSevenDaysAgo = (props: Props) => {
       <View
         style={{ alignItems: "flex-start", marginLeft: 12, marginRight: 12 }}
       >
-        <Text style={{ fontWeight: "500", color: theme.primaryText() }}>
+        <Text style={{ fontWeight: "500", color: theme.baseTextColor() }}>
           {<TimeAgo time={new Date(duringSevenDaysAgo * 1000)} />}
         </Text>
       </View>

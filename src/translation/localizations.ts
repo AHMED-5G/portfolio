@@ -34,8 +34,8 @@ const en = {
   requestFailedToSend: "Request failed to send",
   addToCart: "Add to cart",
   remove: "Remove",
-  follow: "follow",
-  unFollow: "unFollow",
+  follow: "Follow",
+  unFollow: "Unfollow",
 };
 
 const ar = {

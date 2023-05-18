@@ -19,7 +19,12 @@ type Props = {
 const PostComponent = ({ post, isViewable, index }: Props) => {
   const [whoIsRunningIam, setWhoIsRunningIam] = useState<string | null>(null);
   return (
-    <View style={styles.postContainer}>
+    <View
+      style={[
+        styles.postContainer,
+        { backgroundColor: theme.cardBackground() },
+      ]}
+    >
       {post.type == PostTypes.Text ? (
         <TextPostComponent post={post} />
       ) : post.type == PostTypes.Image ? (
@@ -38,9 +43,6 @@ export { PostComponent };
 
 const styles = StyleSheet.create({
   postContainer: {
-    // flex: 1,
-    // backgroundColor: "#fffafa",
-    backgroundColor: "#fff",
     width: width - 10,
     justifyContent: "center",
     alignContent: "center",

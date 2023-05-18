@@ -30,7 +30,7 @@ const HotelCard = ({ hotel }: Props) => {
       style={{
         width: cardWidth,
         marginRight: 20,
-        backgroundColor: theme.white,
+        backgroundColor: theme.cardBackground(),
         borderRadius: theme.borderRadius,
         elevation: 1,
         shadowColor: "#EEE",
@@ -82,8 +82,13 @@ const HotelCard = ({ hotel }: Props) => {
             marginLeft: 5,
           }}
         >
-          <Text style={styles.title}>{hotel.name}</Text>
-          <Text numberOfLines={1} style={styles.secondlyTitle}>
+          <Text style={[styles.title, { color: theme.baseTextColor() }]}>
+            {hotel.name}
+          </Text>
+          <Text
+            numberOfLines={1}
+            style={[styles.secondlyTitle, { color: theme.baseTextColor() }]}
+          >
             {hotel.address}
           </Text>
         </View>
@@ -99,12 +104,10 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "700",
     lineHeight: 36,
-    color: theme.black,
   },
   secondlyTitle: {
     fontSize: 14,
     fontWeight: "bold",
-    color: theme.black,
   },
   image: {
     height: imageHeight,

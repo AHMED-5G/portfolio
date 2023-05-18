@@ -135,7 +135,7 @@ const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
                     width: inputWidth,
                     maxWidth: inputWidth,
                     height: 48,
-                    fontSize: 20,
+                    fontSize: 18,
                   },
                   props.style,
                 ]}

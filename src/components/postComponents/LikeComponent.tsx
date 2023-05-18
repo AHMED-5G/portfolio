@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import React, { useCallback, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
-import { myColors } from "../../constants/myColors";
+import { myColors, theme } from "../../constants/myColors";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -80,13 +80,17 @@ const LikeComponent = ({
             : favoriteCounter + "likes "
         }
       >
-        {localFavoriteCounter ? <Text>{localFavoriteCounter}</Text> : null}
+        {localFavoriteCounter ? (
+          <Text style={{ color: theme.baseTextColor() }}>
+            {localFavoriteCounter}
+          </Text>
+        ) : null}
         {favoriteState ? (
           <MaterialIcons
             disabled
             name="favorite-border"
             size={28}
-            color="black"
+            color={theme.iconColor()}
           />
         ) : (
           <MaterialIcons

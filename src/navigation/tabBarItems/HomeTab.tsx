@@ -12,8 +12,8 @@ type Props = {
 const HomeTab = (props: Props) => {
   return (
     <View style={tabContainerStyle}>
-      <AntDesign name="home" size={37} color={tabColor(props.isFocused)} />
-      <TabText isFocused={props.isFocused} />
+      <AntDesign disabled name="home" size={37} color={tabColor(props.isFocused)} />
+      {/* <TabText isFocused={props.isFocused} /> */}
     </View>
   );
 };

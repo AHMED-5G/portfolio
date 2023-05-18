@@ -11,7 +11,7 @@ import {
   FontAwesome,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { myColors } from "../../constants/myColors";
+import { myColors, theme } from "../../constants/myColors";
 import { width } from "../../constants/Layout";
 import FormTextInput from "../mini/FormTextInput";
 import { Post } from "../../types";
@@ -42,18 +42,21 @@ const WriteCommentSection = ({
     <View style={styles.commentContainer}>
       <FormTextInput
         placeholder="Write comment ..."
+        placeholderTextColor={theme.baseTextColor()}
         value={commentText}
         setText={(text: string) => {
           setCommentText(removeWhiteSpaceAtStart(text));
         }}
+        containerStyle={{ backgroundColor: theme.cardBackground() }}
         onFocus={() => setWriteCommentState(true)}
         width={writeCommentState ? 0.67 * width : undefined}
         multiline
         mainContainerStyle={{
           borderWidth: 0.5,
-          borderColor: "black",
+          borderColor: theme.borderColor,
           borderRadius: 10,
         }}
+ 
         icon={
           writeCommentState ? (
             <MaterialIcons
@@ -66,12 +69,11 @@ const WriteCommentSection = ({
               name="cancel"
               accessibilityHint="cancel add comment"
               size={34}
-              color={myColors.grey1}
+              color={theme.iconColor()}
             />
           ) : null
         }
         onBlur={() => setWriteCommentState(false)}
-        placeholderTextColor={myColors.grey1}
       />
       {commentText && (
         <TouchableOpacity
@@ -81,7 +83,7 @@ const WriteCommentSection = ({
             sendComment();
           }}
         >
-          <FontAwesome name="send" size={24} color="black" />
+          <FontAwesome name="send" size={24} color={theme.iconColor()} />
         </TouchableOpacity>
       )}
       <TouchableOpacity
@@ -99,7 +101,7 @@ const WriteCommentSection = ({
             disabled
             name="comment-eye-outline"
             size={28}
-            color="black"
+            color={theme.iconColor()}
             accessibilityHint={"show" + post.comments?.length + "comments"}
           />
         ) : (
@@ -107,12 +109,14 @@ const WriteCommentSection = ({
             disabled
             name="comment-off-outline"
             size={28}
+            color={theme.iconColor()}
             accessibilityHint={"hide comments"}
           />
         )}
         <Text
           accessibilityElementsHidden={true}
           importantForAccessibility="no-hide-descendants"
+          style={{ color: theme.baseTextColor() }}
         >
           {post.comments?.length}
         </Text>

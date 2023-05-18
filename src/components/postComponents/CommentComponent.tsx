@@ -1,12 +1,11 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React, { useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
-;
 import { width } from "../../constants/Layout";
 import { PostComment } from "../../types";
 import LikeComponent from "./LikeComponent";
 import { generateRandomBoolean } from "../../utils/helperFunctions";
-import { myColors } from "../../constants/myColors";
+import { myColors, theme } from "../../constants/myColors";
 
 type Props = { comment: PostComment };
 
@@ -19,7 +18,9 @@ const CommentComponent = ({ comment }: Props) => {
     <View style={styles.commentContainer}>
       <View style={styles.commentAuthorContainer}>
         <Image source={{ uri: comment.by?.image }} style={styles.authorImage} />
-        <Text style={styles.authorNameText}>{comment.by?.name}</Text>
+        <Text style={[styles.authorNameText, { color: theme.baseTextColor() }]}>
+          {comment.by?.name}
+        </Text>
       </View>
       <View
         style={{
@@ -33,7 +34,11 @@ const CommentComponent = ({ comment }: Props) => {
               setLengthOfLiens(event.nativeEvent.lines.length);
             }}
             numberOfLines={readMore ? undefined : NumberOfLiensToShow}
-            style={{ fontSize: 18, fontWeight: "400" }}
+            style={{
+              fontSize: 18,
+              fontWeight: "400",
+              color: theme.baseTextColor(),
+            }}
           >
             {comment.body}
           </Text>

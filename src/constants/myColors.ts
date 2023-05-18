@@ -77,6 +77,8 @@ interface ThemeInterface {
   primary: () => ColorValue;
   primaryText: () => ColorValue;
 
+  tabBarBackground: () => ColorValue;
+
   secondary: ColorValue;
   secondaryText: "#FFF";
 
@@ -96,8 +98,14 @@ interface ThemeInterface {
   cardBackgroundColorValue: ColorValue;
   cardText: () => ColorValue;
 
+  iconColor: () => ColorValue;
+  activeIconColor: () => ColorValue;
+
+  actionButtonBackground: () => ColorValue;
+  actionButtonTextColor: () => ColorValue;
+
   tabBarHeight: number;
-  tabBarBackground: ColorValue;
+
   tabBarTextColor: ColorValue;
   tabBarBorderRadius: number;
   tabBarLeftSectionColor: () => ColorValue;
@@ -135,10 +143,15 @@ export const theme: ThemeInterface = {
     return !this.nightMood ? "#000" : "#fff";
   },
 
+  tabBarBackground: function () {
+    return this.nightMood ? "#141414" : "#fff";
+  },
+
   secondary: "#6a154e",
   secondaryText: "#FFF",
 
-  actionColor: "#2331b4",
+  actionColor: "#0048BA",
+
   actionColorText: "#FFF",
 
   white: "white",
@@ -153,16 +166,34 @@ export const theme: ThemeInterface = {
   cardBackground: function () {
     return !this.nightMood ? "white" : "#282828";
   },
+
   cardText: function () {
     return this.baseTextColor();
   },
+
+  iconColor: function () {
+    return this.nightMood ? "#a79ea1" : "#000";
+  },
+
+  activeIconColor: function () {
+    return this.nightMood ? "#FFF" : "#0048BA";
+  },
+
+  actionButtonBackground: function () {
+    return this.nightMood ? "#282828" : "#0048BA";
+  },
+  
+  actionButtonTextColor: function () {
+    return this.nightMood ? "#c7d0e0" : "#FFF";
+  },
+
   borderColor: myColors.grey5,
   disableColor: myColors.grey5,
 
   warning: "#FF0000",
 
   tabBarHeight: 70,
-  tabBarBackground: "#FFF",
+  // tabBarBackground: "#FFF",
   tabBarTextColor: "#000",
   tabBarBorderRadius: 10,
   tabBarLeftSectionColor: function () {

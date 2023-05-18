@@ -25,24 +25,23 @@ const DrawerComponent = (props: Props) => {
           justifyContent: "flex-start",
           alignContent: "flex-start",
           alignItems: "flex-start",
-          flexDirection: theme.localizationFlexDirection,
+          flexDirection: "row",
           marginLeft: 20,
         }}
       >
         <DrawerProfileCard />
       </View>
       <MyLine />
-      <TouchableOpacity
-        style={[
-          styles.drawerItemContainer,
-          { flexDirection: theme.localizationFlexDirection },
-        ]}
-      >
+      <TouchableOpacity style={styles.drawerItemContainer}>
         <View style={styles.drawerIconContainer}>
-          <Feather name="user" color="black" size={37} />
+          <Feather name="user" color={theme.iconColor()} size={37} />
         </View>
         <View style={styles.drawerTextContainer}>
-          <Text style={styles.drawerItemText}>{i18n.t("profile")}</Text>
+          <Text
+            style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
+          >
+            {i18n.t("profile")}
+          </Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity
@@ -52,18 +51,17 @@ const DrawerComponent = (props: Props) => {
         ]}
       >
         <View style={styles.drawerIconContainer}>
-          <Feather name="mail" color="black" size={37} />
+          <Feather name="mail" color={theme.iconColor()} size={37} />
         </View>
         <View style={styles.drawerTextContainer}>
-          <Text style={styles.drawerItemText}>{i18n.t("messages")}</Text>
+          <Text
+            style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
+          >
+            {i18n.t("messages")}
+          </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={[
-          styles.drawerItemContainer,
-          { flexDirection: theme.localizationFlexDirection },
-        ]}
-      >
+      <TouchableOpacity style={[styles.drawerItemContainer]}>
         <View
           style={[
             styles.drawerIconContainer,
@@ -72,10 +70,14 @@ const DrawerComponent = (props: Props) => {
             },
           ]}
         >
-          <Feather name="users" size={37} color="black" />
+          <Feather name="users" size={37} color={theme.iconColor()} />
         </View>
         <View style={styles.drawerTextContainer}>
-          <Text style={styles.drawerItemText}>{i18n.t("friends")}</Text>
+          <Text
+            style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
+          >
+            {i18n.t("friends")}
+          </Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -88,6 +90,7 @@ const styles = StyleSheet.create({
   drawerItemContainer: {
     marginLeft: 10,
     marginBottom: 10,
+    flexDirection: "row",
   },
   drawerIconContainer: {
     justifyContent: "center",

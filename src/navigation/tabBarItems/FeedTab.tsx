@@ -12,17 +12,17 @@ type Props = {
 
 const FeedTab = (props: Props) => {
   return (
-    <View style={[tabContainerStyle]}>
+    <View style={tabContainerStyle}>
       <MaterialCommunityIcons
+        disabled
         name="newspaper-variant"
         size={37}
         style={{
           transform: theme.iconLocalizationTransform(),
-          // transform: [{ rotateY: theme.localizationRtl ? "180deg" : "0deg" }],
         }}
         color={tabColor(props.isFocused)}
       />
-      <TabText isFocused={props.isFocused} />
+      {/* <TabText isFocused={props.isFocused} /> */}
     </View>
   );
 };

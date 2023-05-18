@@ -75,7 +75,7 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
   }, [navigation]);
   const flatListRef = useRef<FlatList | null>(null);
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: theme.baseBackground() }}>
       <SimpleHeader title={i18n.t("timeLine")} />
       <View style={styles.postsContainer}>
         <FlatList

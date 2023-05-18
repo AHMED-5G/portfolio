@@ -41,7 +41,7 @@ const ContributorCard = ({ contributor }: Props) => {
           onLoadEnd={() => {
             setImageLoading(false);
           }}
-          resizeMode="center"
+          resizeMode="cover"
           style={styles.image}
           source={{ uri: contributor.image }}
         />

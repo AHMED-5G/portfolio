@@ -14,9 +14,9 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       Root: {
         screens: {
-          Home: {
+          HomeStackNavigator: {
             screens: {
-              TabOneScreen: "one",
+              TabOneScreen: "Home",
             },
           },
         },

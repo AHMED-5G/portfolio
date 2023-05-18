@@ -123,8 +123,8 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
       style={[
         {
           borderRadius: 10,
-          backgroundColor: "white",
-          flexDirection: theme.localizationFlexDirection,
+          backgroundColor: theme.tabBarBackground(),
+          flexDirection: "row",
           display: !keyboardStatus ? "flex" : "none",
           justifyContent: "center",
           alignContent: "center",
@@ -142,7 +142,6 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
           alignContent: "center",
           alignItems: "center",
           width: width * upButtonPercentage,
-
           backgroundColor: theme.tabBarLeftSectionColor(),
         }}
       >
@@ -170,8 +169,12 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
         <Animated.View
           style={[
             {
-              flexDirection: theme.localizationFlexDirection,
+              flexDirection: "row",
               overflow: "hidden",
+              justifyContent: "center",
+              alignContent: "center",
+              alignItems: "center",
+              height: 48,
             },
             tabBarTopSectionRStyle,
           ]}
@@ -220,9 +223,12 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
                 style={{
                   flex: 1,
                   alignItems: "center",
-                  width: 48,
-                  height: 48,
-                  marginTop: 10,
+                  alignContent: "center",
+                  justifyContent: "center",
+                  width: 58,
+                  height: 58,
+
+                  // backgroundColor: "pink",
                 }}
                 key={label.toString()}
               >

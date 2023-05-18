@@ -46,11 +46,9 @@ const TabBarFooter = (props: Props) => {
           offColor="black"
           label={i18n.t("nightMood")}
           icon={<Entypo name="moon" size={24} color="black" />}
-          labelStyle={styles.text}
+          labelStyle={[styles.text, { color: theme.baseTextColor() }]}
           size="large"
           onToggle={(isOn) => {
-            // setSwitchState(isOn);
-
             userConfiguration.nightMood = isOn;
             useDispatch(
               SET_USER_CONFIGURATIONS({
@@ -67,7 +65,7 @@ const TabBarFooter = (props: Props) => {
           justifyContent: "center",
           alignContent: "center",
           alignItems: "center",
-          flexDirection: theme.localizationFlexDirection,
+          flexDirection: "row",
         }}
       >
         <View
@@ -77,7 +75,9 @@ const TabBarFooter = (props: Props) => {
             alignItems: "center",
           }}
         >
-          <Text style={styles.text}>{i18n.t("logOut")}</Text>
+          <Text style={[styles.text, { color: theme.baseTextColor() }]}>
+            {i18n.t("logOut")}
+          </Text>
         </View>
         <View
           style={{
@@ -91,11 +91,9 @@ const TabBarFooter = (props: Props) => {
             disabled
             name="logout"
             size={40}
-            color="black"
+            color={theme.iconColor()}
             style={{
-              transform: [
-                { rotateY: theme.localizationRtl ? "180deg" : "0deg" },
-              ],
+              transform: theme.iconLocalizationTransform(),
             }}
           />
         </View>

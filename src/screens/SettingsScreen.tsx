@@ -7,10 +7,15 @@ import SettingsSectionTitle from "../components/settingsComponents/SettingsSecti
 import MyLine from "../components/MyLine";
 import { i18n } from "../translation/i18n";
 import SimpleHeader from "../components/SimpleHeader";
+import { theme } from "../constants/myColors";
 
 function SettingsScreen({ navigation }: RootTabScreenProps<"Settings">) {
   return (
-    <ScrollView style={{}}>
+    <ScrollView
+      style={{
+        backgroundColor: theme.baseBackground(),
+      }}
+    >
       <SimpleHeader title={i18n.t("settings")} />
       {/* <SettingsSectionTitle title="Select Language" /> */}
       {/* <ChangeLanguageComponent /> */}

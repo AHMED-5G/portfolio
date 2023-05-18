@@ -118,7 +118,6 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
             <Feather disabled name="play" size={74} color="white" />
           )}
         </TouchableOpacity>
-
         {showPauseButton && (
           <TouchableOpacity
             accessibilityHint="pause video"
