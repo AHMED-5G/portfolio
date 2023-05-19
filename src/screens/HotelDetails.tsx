@@ -56,7 +56,7 @@ function HotelDetails({ navigation, route }: Props) {
       }, 3000);
     }
     return (
-      <ScrollView style={{ flex: 1, backgroundColor: theme.baseBackground() }}>
+      <ScrollView style={{ flex: 1 }}>
         <ImageSliderComponent
           {...{ hotel, requestedIndex, setCurrentImageIndex }}
         />
@@ -173,7 +173,7 @@ function HotelDetails({ navigation, route }: Props) {
                       style={[
                         styles.myStarStyle,
                         {
-                          color: !theme.nightMood
+                          color: !theme.darkMood
                             ? theme.actionColor
                             : "#c7d0e0",
                         },

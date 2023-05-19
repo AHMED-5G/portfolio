@@ -94,8 +94,8 @@ const RemoveItemButton = ({
       <TouchableOpacity
         style={{
           backgroundColor: "white",
-          borderWidth: 0.5,
-          borderColor: theme.warning,
+          borderWidth: theme.darkMood ? 0.5 : 0,
+          borderColor: theme.darkMood ? undefined : theme.error,
           height: buttonHeight,
           borderRadius: 5,
           flexDirection: "row",
@@ -119,7 +119,7 @@ const RemoveItemButton = ({
           <Text
             style={{
               fontSize: 22,
-              color: theme.black,
+              color: theme.darkMood ? theme.error : theme.black,
               fontWeight: "bold",
             }}
           >
@@ -140,7 +140,7 @@ const RemoveItemButton = ({
               height: 40,
               margin: 5,
               borderRadius: 10,
-              backgroundColor: theme.secondary,
+              backgroundColor: theme.secondaryColor(),
               justifyContent: "center",
               alignContent: "center",
               alignItems: "center",
@@ -148,7 +148,7 @@ const RemoveItemButton = ({
           >
             <Text
               style={{
-                color: theme.secondaryText,
+                color: theme.secondaryColorText(),
                 fontSize: 20,
                 fontWeight: "bold",
                 margin: 5,

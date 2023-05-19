@@ -14,7 +14,10 @@ const LongestDetails = (props: Props) => {
         // alignItems: "center",
       }}
     >
-      <View style={styles.cardContainer}>
+      <View         style={[
+          styles.cardContainer,
+          { backgroundColor: theme.cardBackground() },
+        ]}>
         <View
           style={{
             flexDirection: "row",
@@ -22,7 +25,7 @@ const LongestDetails = (props: Props) => {
         >
           <Text
             style={{
-              color: theme.cardText,
+              color: theme.cardText(),
               fontSize: 22,
               fontWeight: "bold",
             }}
@@ -32,7 +35,7 @@ const LongestDetails = (props: Props) => {
           <Text
             style={{
               marginLeft: 4,
-              color: theme.cardText,
+              color: theme.cardText(),
               fontSize: 18,
               fontWeight: "500",
               lineHeight: 32,
@@ -44,7 +47,7 @@ const LongestDetails = (props: Props) => {
         <View>
           <Text
             style={{
-              color: theme.cardText,
+              color: theme.cardText(),
               fontSize: 18,
               fontWeight: "500",
             }}
@@ -53,7 +56,10 @@ const LongestDetails = (props: Props) => {
           </Text>
         </View>
       </View>
-      <View style={styles.cardContainer}>
+      <View         style={[
+          styles.cardContainer,
+          { backgroundColor: theme.cardBackground() },
+        ]}>
         <View
           style={{
             flexDirection: "row",
@@ -61,7 +67,7 @@ const LongestDetails = (props: Props) => {
         >
           <Text
             style={{
-              color: theme.cardText,
+              color: theme.cardText(),
               fontSize: 22,
               fontWeight: "bold",
             }}
@@ -72,7 +78,7 @@ const LongestDetails = (props: Props) => {
         <View>
           <Text
             style={{
-              color: theme.cardText,
+              color: theme.cardText(),
               fontSize: 18,
               fontWeight: "500",
             }}
@@ -81,7 +87,12 @@ const LongestDetails = (props: Props) => {
           </Text>
         </View>
       </View>
-      <View style={styles.cardContainer}>
+      <View
+        style={[
+          styles.cardContainer,
+          { backgroundColor: theme.cardBackground() },
+        ]}
+      >
         <View
           style={{
             flexDirection: "row",
@@ -89,7 +100,7 @@ const LongestDetails = (props: Props) => {
         >
           <Text
             style={{
-              color: theme.cardText,
+              color: theme.cardText(),
               fontSize: 22,
               fontWeight: "bold",
             }}
@@ -100,7 +111,7 @@ const LongestDetails = (props: Props) => {
         <View>
           <Text
             style={{
-              color: theme.cardText,
+              color: theme.cardText(),
               fontSize: 18,
               fontWeight: "500",
             }}
@@ -121,7 +132,7 @@ const styles = StyleSheet.create({
     height: 100,
     margin: 5,
     borderRadius: 10,
-    backgroundColor: theme.cardBackground,
+
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

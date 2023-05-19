@@ -1,6 +1,11 @@
-import { ColorValue, FlexStyle } from "react-native";
-import * as Localization from "expo-localization";
+import {
+  ColorValue,
+  FlexStyle,
+  I18nManager,
+  ShadowStyleIOS,
+} from "react-native";
 import { ReadingThemesCombo } from "../types";
+import { ViewStyle } from "react-native";
 
 export const myColors = {
   main: "#CD9575",
@@ -59,23 +64,16 @@ export const readingThemes: ReadingThemesCombo[] = [
     backGroundColor: "#000000",
   },
 ];
-
-export interface UserConfigurationInterface {
-  nightMood: boolean;
-}
-
-export const userConfiguration: UserConfigurationInterface = {
-  nightMood: true,
-};
-
 interface ThemeInterface {
-  nightMood: boolean;
+  darkMood: boolean;
 
   baseBackground: () => ColorValue;
   baseTextColor: () => ColorValue;
 
   primary: () => ColorValue;
   primaryText: () => ColorValue;
+  secondaryColor: () => ColorValue;
+  secondaryColorText: () => ColorValue;
 
   tabBarBackground: () => ColorValue;
 
@@ -116,7 +114,7 @@ interface ThemeInterface {
   borderColor: ColorValue;
   disableColor: ColorValue;
 
-  warning: ColorValue;
+  error: ColorValue;
 
   localizationRtl: boolean;
   localizationFlexDirection: FlexStyle["flexDirection"] | undefined;
@@ -124,31 +122,47 @@ interface ThemeInterface {
   localizationDirection?: "rtl" | "ltr";
   iconLocalizationTransform: () => [{ rotateY: string }];
   readingTheme: ReadingThemesCombo;
+
+  elevationAndShadow: () => {
+    elevation: ViewStyle["elevation"];
+    shadowColor: ShadowStyleIOS["shadowColor"];
+    shadowOffset: ShadowStyleIOS["shadowOffset"];
+    shadowOpacity: ShadowStyleIOS["shadowOpacity"];
+    shadowRadius: ShadowStyleIOS["shadowRadius"];
+  };
 }
 
 export const theme: ThemeInterface = {
-  nightMood: false,
+  darkMood: false,
 
   baseBackground: function () {
-    return this.nightMood ? "#141414" : "";
+    return this.darkMood ? "#141414" : "";
   },
   baseTextColor: function () {
-    return this.nightMood ? "#FFF" : "#000";
+    return this.darkMood ? "#FFF" : "#000";
   },
 
   primary: function () {
-    return !this.nightMood ? "#dddcec" : "#282828";
+    return !this.darkMood ? "#dddcec" : "#282828";
   },
   primaryText: function () {
-    return !this.nightMood ? "#000" : "#fff";
+    return !this.darkMood ? "#000" : "#fff";
   },
 
   tabBarBackground: function () {
-    return this.nightMood ? "#141414" : "#fff";
+    return this.darkMood ? "#141414" : "#fff";
   },
 
   secondary: "#6a154e",
   secondaryText: "#FFF",
+
+  secondaryColor: function () {
+    return this.darkMood ? "#e6dadd" : "#6a154e";
+  },
+
+  secondaryColorText: function () {
+    return this.darkMood ? "#000" : "#FFF";
+  },
 
   actionColor: "#0048BA",
 
@@ -164,7 +178,7 @@ export const theme: ThemeInterface = {
   alertTextColor: "#000",
 
   cardBackground: function () {
-    return !this.nightMood ? "white" : "#282828";
+    return !this.darkMood ? "white" : "#282828";
   },
 
   cardText: function () {
@@ -172,32 +186,32 @@ export const theme: ThemeInterface = {
   },
 
   iconColor: function () {
-    return this.nightMood ? "#a79ea1" : "#000";
+    return this.darkMood ? "#a79ea1" : "#000";
   },
 
   activeIconColor: function () {
-    return this.nightMood ? "#FFF" : "#0048BA";
+    return this.darkMood ? "#FFF" : "#0048BA";
   },
 
   actionButtonBackground: function () {
-    return this.nightMood ? "#282828" : "#0048BA";
+    return this.darkMood ? "#282828" : "#0048BA";
   },
-  
+
   actionButtonTextColor: function () {
-    return this.nightMood ? "#c7d0e0" : "#FFF";
+    return this.darkMood ? "#c7d0e0" : "#FFF";
   },
 
   borderColor: myColors.grey5,
   disableColor: myColors.grey5,
 
-  warning: "#FF0000",
+  error: "#b00020",
 
   tabBarHeight: 70,
   // tabBarBackground: "#FFF",
   tabBarTextColor: "#000",
   tabBarBorderRadius: 10,
   tabBarLeftSectionColor: function () {
-    return !this.nightMood ? this.primary() : "#282828";
+    return !this.darkMood ? this.primary() : "#282828";
   },
 
   cardBackgroundColorValue: "#FFF",
@@ -206,7 +220,7 @@ export const theme: ThemeInterface = {
   buttonBorderRadius: 5,
 
   localizationDirection: undefined,
-  localizationRtl: Localization.isRTL,
+  localizationRtl: I18nManager.isRTL,
   localizationFlexDirection: undefined,
   iconLocalizationTransform: function () {
     return [{ rotateY: this.localizationRtl ? "180deg" : "0deg" }];
@@ -216,4 +230,17 @@ export const theme: ThemeInterface = {
   },
 
   readingTheme: readingThemes[0],
+
+  elevationAndShadow: function () {
+    return {
+      elevation: 3,
+      shadowColor: this.darkMood ? "#463f41" : "#282828",
+      shadowOffset: {
+        width: 0,
+        height: 3,
+      },
+      shadowOpacity: 0.18,
+      shadowRadius: 1.0,
+    };
+  },
 };

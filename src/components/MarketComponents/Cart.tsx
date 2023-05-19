@@ -18,7 +18,7 @@ const Cart = (props: Props) => {
         transform: theme.iconLocalizationTransform(),
       }}
     >
-      <AntDesign name="shoppingcart" size={38} color="black" />
+      <AntDesign name="shoppingcart" size={38} color={theme.iconColor()} />
     </TouchableOpacity>
   );
 };

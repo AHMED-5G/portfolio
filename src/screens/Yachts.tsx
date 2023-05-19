@@ -292,7 +292,7 @@ function Yachts({ navigation }: Props) {
     function imageRotateValue(index: number): number {
       return (3 - index) * 2 - 2 * (generateRandomBoolean() ? -1 : 1);
     }
-// console.log(theme.localizationDirection )
+    // console.log(theme.localizationDirection )
     return (
       <View
         style={{
@@ -407,7 +407,7 @@ function Yachts({ navigation }: Props) {
             {
               fontSize: BarTitleFontSize,
               fontWeight: "800",
-              backgroundColor: "white",
+              color: theme.baseTextColor(),
               position: "absolute",
               top: theme.tabBarHeight / 2 - BarTitleFontSize / 2,
             },
@@ -423,6 +423,7 @@ function Yachts({ navigation }: Props) {
               fontWeight: "800",
               position: "absolute",
               top: theme.tabBarHeight / 2 - BarTitleFontSize / 2,
+              color: theme.baseTextColor(),
             },
             yachtNameRStyle,
           ]}

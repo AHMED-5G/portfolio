@@ -15,6 +15,7 @@ import {
 } from "./style";
 import { useSharedValue, withTiming } from "react-native-reanimated";
 import { useAppSelector } from "../../../redux/Hooks/hooks";
+import { theme } from "../../../constants/myColors";
 
 type Props = {
   product: Product;
@@ -28,7 +29,7 @@ const ProductCardParent = ({ product }: Props) => {
   } as ProductInCart);
 
   const [counter, setCounter] = useState(1);
-  
+
   const multiplyViewFadeInProgress = useSharedValue(
     product.type == ProductTypes.upTo100 ? 1 : 0
   );
@@ -86,7 +87,12 @@ const ProductCardParent = ({ product }: Props) => {
     }
   };
   return (
-    <View style={styles.cardContainer}>
+    <View
+      style={[
+        styles.cardContainer,
+        { backgroundColor: theme.cardBackground() },
+      ]}
+    >
       <TopSection {...{ product, counter, multiplyViewFadeInProgress }} />
       <BottomSection
         {...{
@@ -112,7 +118,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     width: productCardWidth,
-    backgroundColor: "white",
+    // backgroundColor: "white",
     marginTop: 20,
     // marginBottom: 20,
     borderRadius: productCardBorderRadius,

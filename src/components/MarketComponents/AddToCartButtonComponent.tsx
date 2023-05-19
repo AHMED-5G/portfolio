@@ -66,8 +66,8 @@ const AddToCartButtonComponent = ({
       accessibilityHint={"Add " + counter + "to Cart"}
       width={"100%"}
       borderRadius={5}
-      color={theme.actionColor}
-      textStyle={{ fontSize: 24 }}
+      color={theme.secondaryColor()}
+      textStyle={{ fontSize: 24 , color: theme.secondaryColorText() }}
       onPress={() => {
         addCounterToCart();
       }}

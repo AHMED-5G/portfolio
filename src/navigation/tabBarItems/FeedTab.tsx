@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { I18nManager, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { tabContainerStyle, tabColor, tabTextStyle } from "./styles";

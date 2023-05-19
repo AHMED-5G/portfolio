@@ -45,7 +45,7 @@ export default function Navigation({
   function setConfigures() {
     theme.readingTheme = state.settings.savedReadingTheme;
     loadLocale(state.language);
-    theme.nightMood = state.settings.userConfiguration?.nightMood
+    theme.darkMood = state.settings.userConfiguration?.darkMood
       ? true
       : false;
   }
@@ -70,7 +70,7 @@ export default function Navigation({
   return (
     <NavigationContainer>
       <StatusBar
-        barStyle={!theme.nightMood ? "dark-content" : "light-content"}
+        barStyle={!theme.darkMood ? "dark-content" : "light-content"}
       />
 
       <SafeAreaView

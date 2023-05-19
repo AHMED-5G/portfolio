@@ -9,7 +9,6 @@ import { shuffleArray } from "../../utils/helperFunctions";
 import HotelCard from "../HotelCard";
 import HomeSectionTitle from "./HomeSectionTitle";
 import { theme } from "../../constants/myColors";
-import { LocalizedFlatList } from "react-native-localized-flatlist-rtl-ltr";
 import HomeSectionContainer from "./HomeSectionContainer";
 
 type Props = {
@@ -22,7 +21,11 @@ const HotelsSection = ({ navigation }: Props) => {
       <FlatList
         data={hotels}
         horizontal
-        renderItem={({ item }) => <HotelCard hotel={item} />}
+        renderItem={({ item }) => (
+          <View style={{ paddingTop: 10, paddingBottom: 10 }}>
+            <HotelCard hotel={item} />
+          </View>
+        )}
         keyExtractor={(item: Hotel) => item.id.toString()}
         showsHorizontalScrollIndicator={false}
       />

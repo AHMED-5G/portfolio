@@ -39,7 +39,6 @@ const SetReadThemeComponent = (props: Props) => {
             color: selectedCombo.fontColor,
           }}
           selectable
-          
         >
           {i18n.t("iCanReadThisText")}
         </Text>
@@ -104,6 +103,7 @@ const SetReadThemeComponent = (props: Props) => {
               ? selectedCombo.fontSize
               : 18;
             dispatch(SET_READING_THEME(selectedCombo));
+            theme.readingTheme = selectedCombo;
           }}
           disabled={
             selectedCombo.fontSize == savedReadingTheme.fontSize &&

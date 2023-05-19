@@ -4,6 +4,7 @@ import CustomBottomTab from "./CustomBottomTab";
 import { StackNavigationProp } from "@react-navigation/stack";
 
 import { RootStackParamList } from "../types";
+import { theme } from "../constants/myColors";
 
 type Props = {
   CustomBottomTabComponents?: ReactNode[];
@@ -24,6 +25,7 @@ const ScreenWithCustomBottomTab = ({
         {
           flex: 1,
           justifyContent: "flex-end",
+          backgroundColor: theme.baseBackground(),
         },
         style,
       ]}

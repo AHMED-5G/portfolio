@@ -10,9 +10,7 @@ import React, { useState } from "react";
 import { Hotel } from "../types";
 import { theme } from "../constants/myColors";
 import { useNavigation } from "@react-navigation/native";
-import { getRandomOneItemFromList } from "../utils/helperFunctions";
 import MyCustomSkeleton from "./MyCustomSkeleton";
-import { height } from "../constants/Layout";
 
 type Props = {
   hotel: Hotel;
@@ -22,6 +20,7 @@ const HotelCard = ({ hotel }: Props) => {
   const navigation = useNavigation();
   const cardWidth = 200;
   const [imageLoading, setImageLoading] = useState(true);
+  
   return (
     <TouchableOpacity
       onPress={() => {
@@ -32,14 +31,8 @@ const HotelCard = ({ hotel }: Props) => {
         marginRight: 20,
         backgroundColor: theme.cardBackground(),
         borderRadius: theme.borderRadius,
-        elevation: 1,
-        shadowColor: "#EEE",
-        shadowOffset: {
-          width: 0,
-          height: 1,
-        },
-        shadowOpacity: 0.18,
-        shadowRadius: 1.0,
+        ...theme.elevationAndShadow(),
+        
       }}
     >
       {imageLoading && (
@@ -74,12 +67,12 @@ const HotelCard = ({ hotel }: Props) => {
         style={{
           marginLeft: 5,
           marginBottom: 10,
-          flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
+          // flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
         }}
       >
         <View
           style={{
-            marginLeft: 5,
+            // marginLeft: 5,/
           }}
         >
           <Text style={[styles.title, { color: theme.baseTextColor() }]}>
