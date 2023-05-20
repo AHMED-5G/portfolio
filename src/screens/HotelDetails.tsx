@@ -173,7 +173,7 @@ function HotelDetails({ navigation, route }: Props) {
                       style={[
                         styles.myStarStyle,
                         {
-                          color: !theme.darkMood
+                          color: !theme.darkTheme
                             ? theme.actionColor
                             : "#c7d0e0",
                         },

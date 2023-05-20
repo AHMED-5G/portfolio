@@ -18,7 +18,7 @@ const en = {
   yachts: "Yachts",
   market: "Market",
   version: "V",
-  darkMood: "Dark mood",
+  darkTheme: "Dark theme",
   logOut: "Log out",
   everydayEssentials: "Everyday essentials",
   timeLine: "Time line",
@@ -36,6 +36,7 @@ const en = {
   remove: "Remove",
   follow: "Follow",
   unFollow: "Unfollow",
+  thisFeatureIsCurrentlyUnavailable: 'This feature is currently unavailable'
 };
 
 const ar = {
@@ -59,7 +60,7 @@ const ar = {
   notifications: "الاشعارات",
   hotels: "الفنادق",
   version: "الاصدار",
-  darkMood: "داكن",
+  darkTheme: "داكن",
   logOut: "تسجيل الخروج",
   everydayEssentials: "مستلزمات يومية",
   timeLine: "جديد الأخبار",
@@ -77,6 +78,7 @@ const ar = {
   remove: "إزالة",
   follow: "متابعة",
   unFollow: "إلغاء المتابعة",
+  thisFeatureIsCurrentlyUnavailable: 'هذه الخاصية غير متوفرة في الوقت الحالي'
 };
 
 export { en, ar };

@@ -40,10 +40,10 @@ const TabBarFooter = (props: Props) => {
         }}
       >
         <ToggleSwitch
-          isOn={state.settings.userConfiguration?.darkMood ? false : true}
+          isOn={state.settings.userConfiguration?.darkTheme ? false : true}
           onColor={myColors.sky}
           offColor="black"
-          label={i18n.t("darkMood")}
+          label={i18n.t("darkTheme")}
           icon={<Entypo name="moon" size={24} color="black" />}
           labelStyle={[styles.text, { color: theme.baseTextColor() }]}
           size="large"
@@ -51,7 +51,7 @@ const TabBarFooter = (props: Props) => {
             useDispatch(
               SET_USER_CONFIGURATIONS({
                 ...state.settings.userConfiguration,
-                darkMood: !isOnn,
+                darkTheme: !isOnn,
               })
             );
             DevSettings.reload();

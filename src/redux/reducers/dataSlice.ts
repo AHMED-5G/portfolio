@@ -6,6 +6,7 @@ import {
   ReadingThemesCombo,
 } from "../../types";
 import { UserConfigurationInterface } from "../../constants/myColors";
+import { Appearance } from "react-native";
 
 const initialState: InitialStateInterface = {
   error: undefined,
@@ -16,6 +17,9 @@ const initialState: InitialStateInterface = {
       fontColor: "#000000",
       backGroundColor: "#FFFFFF",
       fontSize: 18,
+    },
+    userConfiguration: {
+      darkTheme: Appearance.getColorScheme() == "dark" ? true : false,
     },
   },
   itemsInCart: [],

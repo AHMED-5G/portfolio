@@ -81,9 +81,12 @@ const LikeComponent = ({
         }
       >
         {localFavoriteCounter ? (
-          <Text style={{ color: theme.baseTextColor() }}>
+          <Animated.Text
+            style={{ color: theme.baseTextColor(), overflow: "hidden" }}
+            key={localFavoriteCounter}
+          >
             {localFavoriteCounter}
-          </Text>
+          </Animated.Text>
         ) : null}
         {favoriteState ? (
           <MaterialIcons
@@ -117,5 +120,6 @@ const styles = StyleSheet.create({
     height: 56,
     width: 56,
     marginLeft: 6,
+    overflow: "hidden",
   },
 });

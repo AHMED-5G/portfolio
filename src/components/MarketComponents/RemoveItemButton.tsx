@@ -94,8 +94,8 @@ const RemoveItemButton = ({
       <TouchableOpacity
         style={{
           backgroundColor: "white",
-          borderWidth: theme.darkMood ? 0.5 : 0,
-          borderColor: theme.darkMood ? undefined : theme.error,
+          borderWidth: theme.darkTheme ? 0.5 : 0,
+          borderColor: theme.darkTheme ? undefined : theme.error,
           height: buttonHeight,
           borderRadius: 5,
           flexDirection: "row",
@@ -119,7 +119,7 @@ const RemoveItemButton = ({
           <Text
             style={{
               fontSize: 22,
-              color: theme.darkMood ? theme.error : theme.black,
+              color: theme.darkTheme ? theme.error : theme.black,
               fontWeight: "bold",
             }}
           >

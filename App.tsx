@@ -17,7 +17,6 @@ export default function App() {
   if (!isLoadingComplete) {
     return <LoadingIndicator />;
   }
-  
 
   return (
     <Provider store={store}>

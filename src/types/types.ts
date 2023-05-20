@@ -7,7 +7,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ColorValue, ImageSourcePropType } from "react-native";
 import {
   UserConfigurationInterface,
-  userConfiguration,
+
 } from "../constants/myColors";
 
 declare global {
@@ -146,7 +146,7 @@ export interface InitialStateInterface {
   language: Languages;
   settings: {
     savedReadingTheme: ReadingThemesCombo;
-    userConfiguration?: UserConfigurationInterface;
+    userConfiguration: UserConfigurationInterface;
   };
   itemsInCart: ProductInCart[];
 }

@@ -1,4 +1,5 @@
 import {
+  Appearance,
   ColorValue,
   FlexStyle,
   I18nManager,
@@ -65,7 +66,7 @@ export const readingThemes: ReadingThemesCombo[] = [
   },
 ];
 interface ThemeInterface {
-  darkMood: boolean;
+  darkTheme: boolean;
 
   baseBackground: () => ColorValue;
   baseTextColor: () => ColorValue;
@@ -131,37 +132,40 @@ interface ThemeInterface {
     shadowRadius: ShadowStyleIOS["shadowRadius"];
   };
 }
+export interface UserConfigurationInterface {
+  darkTheme: boolean;
+}
 
 export const theme: ThemeInterface = {
-  darkMood: false,
+  darkTheme: Appearance.getColorScheme() == "dark" ? true : false,
 
   baseBackground: function () {
-    return this.darkMood ? "#141414" : "";
+    return this.darkTheme ? "#141414" : "";
   },
   baseTextColor: function () {
-    return this.darkMood ? "#FFF" : "#000";
+    return this.darkTheme ? "#FFF" : "#000";
   },
 
   primary: function () {
-    return !this.darkMood ? "#dddcec" : "#282828";
+    return !this.darkTheme ? "#dddcec" : "#282828";
   },
   primaryText: function () {
-    return !this.darkMood ? "#000" : "#fff";
+    return !this.darkTheme ? "#000" : "#fff";
   },
 
   tabBarBackground: function () {
-    return this.darkMood ? "#141414" : "#fff";
+    return this.darkTheme ? "#141414" : "#fff";
   },
 
   secondary: "#6a154e",
   secondaryText: "#FFF",
 
   secondaryColor: function () {
-    return this.darkMood ? "#e6dadd" : "#6a154e";
+    return this.darkTheme ? "#e6dadd" : "#6a154e";
   },
 
   secondaryColorText: function () {
-    return this.darkMood ? "#000" : "#FFF";
+    return this.darkTheme ? "#000" : "#FFF";
   },
 
   actionColor: "#0048BA",
@@ -178,7 +182,7 @@ export const theme: ThemeInterface = {
   alertTextColor: "#000",
 
   cardBackground: function () {
-    return !this.darkMood ? "white" : "#282828";
+    return !this.darkTheme ? "white" : "#282828";
   },
 
   cardText: function () {
@@ -186,19 +190,19 @@ export const theme: ThemeInterface = {
   },
 
   iconColor: function () {
-    return this.darkMood ? "#a79ea1" : "#000";
+    return this.darkTheme ? "#a79ea1" : "#000";
   },
 
   activeIconColor: function () {
-    return this.darkMood ? "#FFF" : "#0048BA";
+    return this.darkTheme ? "#FFF" : "#0048BA";
   },
 
   actionButtonBackground: function () {
-    return this.darkMood ? "#282828" : "#0048BA";
+    return this.darkTheme ? "#282828" : "#0048BA";
   },
 
   actionButtonTextColor: function () {
-    return this.darkMood ? "#c7d0e0" : "#FFF";
+    return this.darkTheme ? "#c7d0e0" : "#FFF";
   },
 
   borderColor: myColors.grey5,
@@ -211,7 +215,7 @@ export const theme: ThemeInterface = {
   tabBarTextColor: "#000",
   tabBarBorderRadius: 10,
   tabBarLeftSectionColor: function () {
-    return !this.darkMood ? this.primary() : "#282828";
+    return !this.darkTheme ? this.primary() : "#282828";
   },
 
   cardBackgroundColorValue: "#FFF",
@@ -234,7 +238,7 @@ export const theme: ThemeInterface = {
   elevationAndShadow: function () {
     return {
       elevation: 3,
-      shadowColor: this.darkMood ? "#463f41" : "#282828",
+      shadowColor: this.darkTheme ? "#463f41" : "#282828",
       shadowOffset: {
         width: 0,
         height: 3,

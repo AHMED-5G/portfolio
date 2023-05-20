@@ -31,7 +31,7 @@ import HotelDetails from "../screens/HotelDetails";
 import { theme } from "../constants/myColors";
 import LoadingIndicator from "../components/mini/LoadingIndicator";
 import { View } from "../components/Themed";
-
+import { Appearance } from "react-native";
 export default function Navigation({
   colorScheme,
 }: {
@@ -43,12 +43,13 @@ export default function Navigation({
   const [appIsReady, setAppIsReady] = React.useState(false);
 
   function setConfigures() {
+    const darkUserConfig = state.settings.userConfiguration?.darkTheme;
     theme.readingTheme = state.settings.savedReadingTheme;
     loadLocale(state.language);
-    theme.darkMood = state.settings.userConfiguration?.darkMood
-      ? true
-      : false;
+    theme.darkTheme = state.settings.userConfiguration?.darkTheme;
   }
+
+  console.log("index.tsx -> ", Appearance.getColorScheme());
 
   React.useEffect(() => {
     async function prepare() {
@@ -70,7 +71,7 @@ export default function Navigation({
   return (
     <NavigationContainer>
       <StatusBar
-        barStyle={!theme.darkMood ? "dark-content" : "light-content"}
+        barStyle={!theme.darkTheme ? "dark-content" : "light-content"}
       />
 
       <SafeAreaView
