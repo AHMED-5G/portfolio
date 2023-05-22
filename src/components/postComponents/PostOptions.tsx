@@ -74,6 +74,7 @@ const PostOptions = ({ post }: Props) => {
             writeCommentState,
             setWriteCommentState,
             sendComment,
+            
           }}
         />
         {!writeCommentState && <ShareComponent {...{ shareCounter }} />}

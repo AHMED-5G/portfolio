@@ -9,7 +9,6 @@ import {
 } from "@react-navigation/native";
 import React, { useCallback, useEffect, useState } from "react";
 import {
-  Dimensions,
   Keyboard,
   StyleSheet,
   TouchableOpacity,
@@ -129,6 +128,12 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
           justifyContent: "center",
           alignContent: "center",
           overflow: "hidden",
+          borderWidth: 0.4,
+          borderColor: theme.borderColor,
+          borderLeftWidth: 0,
+          borderRightWidth: 0,
+          borderBottomWidth: 0,
+ 
         },
         tabReanimatedStyle,
       ]}

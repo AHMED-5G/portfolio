@@ -49,8 +49,6 @@ export default function Navigation({
     theme.darkTheme = state.settings.userConfiguration?.darkTheme;
   }
 
-  console.log("index.tsx -> ", Appearance.getColorScheme());
-
   React.useEffect(() => {
     async function prepare() {
       try {
@@ -119,7 +117,6 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
 
   return (
     <BottomTab.Navigator
@@ -129,7 +126,12 @@ function BottomTabNavigator() {
       }}
       tabBar={(props) => {
         return (
-          <View style={{ backgroundColor: theme.tabBarBackground() }}>
+          <View
+            style={{
+              backgroundColor: theme.tabBarBackground(),
+
+            }}
+          >
             <MyTabBar {...props} />
           </View>
         );

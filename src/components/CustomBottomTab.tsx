@@ -29,8 +29,7 @@ const CustomBottomTab = ({ navigation, components }: Props) => {
         borderLeftWidth: 0,
         borderRightWidth: 0,
         borderBottomWidth: 0,
-        // borderTopLeftRadius: 10,
-        // borderTopRightRadius: 10,
+
       }}
     >
       <View

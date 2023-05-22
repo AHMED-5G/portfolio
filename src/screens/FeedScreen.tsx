@@ -75,7 +75,13 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
   }, [navigation]);
   const flatListRef = useRef<FlatList | null>(null);
   return (
-    <View style={{ flex: 1, backgroundColor: theme.baseBackground() }}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: theme.baseBackground(),
+        // marginBottom: 5,
+      }}
+    >
       <SimpleHeader title={i18n.t("timeLine")} />
       <View style={styles.postsContainer}>
         <FlatList
@@ -124,13 +130,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    marginBottom: theme.tabBarHeight,
-  },
-  line: {
-    marginTop: 20,
-    width,
-    height: 1,
-    backgroundColor: myColors.black,
-    opacity: 0.7,
+    overflow: "hidden",
+    flex: 1,
+    marginBottom: 6,
   },
 });

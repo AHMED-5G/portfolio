@@ -21,6 +21,7 @@ import React, {
   FunctionComponent,
   ReactNode,
 } from "react";
+import { theme } from "../../constants/myColors";
 const height = Dimensions.get("screen").height;
 const width = Dimensions.get("screen").width;
 interface FormTextInputInterface {
@@ -28,7 +29,7 @@ interface FormTextInputInterface {
   containerStyle?: StyleProp<ViewStyle>;
   textInputContainer?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
-  
+
   placeholder?: string;
   value?: string | undefined;
   validations?: string | undefined;
@@ -136,6 +137,7 @@ const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
                     maxWidth: inputWidth,
                     height: 48,
                     fontSize: 18,
+                    color: theme.baseTextColor(),
                   },
                   props.style,
                 ]}

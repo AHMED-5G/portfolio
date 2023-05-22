@@ -237,11 +237,11 @@ export const theme: ThemeInterface = {
 
   elevationAndShadow: function () {
     return {
-      elevation: 3,
+      elevation: 2,
       shadowColor: this.darkTheme ? "#463f41" : "#282828",
       shadowOffset: {
         width: 0,
-        height: 3,
+        height: 1,
       },
       shadowOpacity: 0.18,
       shadowRadius: 1.0,

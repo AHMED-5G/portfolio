@@ -14,7 +14,7 @@ import {
 import { myColors, theme } from "../../constants/myColors";
 import { width } from "../../constants/Layout";
 import FormTextInput from "../mini/FormTextInput";
-import { Post } from "../../types";
+import { Post, PostComment } from "../../types";
 import { removeWhiteSpaceAtStart } from "../../utils/helperFunctions";
 
 type Props = {
@@ -56,7 +56,6 @@ const WriteCommentSection = ({
           borderColor: theme.borderColor,
           borderRadius: 10,
         }}
- 
         icon={
           writeCommentState ? (
             <MaterialIcons
@@ -86,6 +85,7 @@ const WriteCommentSection = ({
           <FontAwesome name="send" size={24} color={theme.iconColor()} />
         </TouchableOpacity>
       )}
+
       <TouchableOpacity
         style={styles.commentIconContainer}
         onPress={() => {
@@ -100,7 +100,7 @@ const WriteCommentSection = ({
           <MaterialCommunityIcons
             disabled
             name="comment-eye-outline"
-            size={28}
+            size={30}
             color={theme.iconColor()}
             accessibilityHint={"show" + post.comments?.length + "comments"}
           />

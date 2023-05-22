@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
-import { Ionicons } from "@expo/vector-icons";
+import { EvilIcons, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 import { theme } from "../../constants/myColors";
 import { Audio } from "expo-av";
 import { showToast } from "../../utils/helperFunctions";
@@ -48,10 +48,8 @@ const ShareComponent = ({ shareCounter }: Props) => {
           );
         }}
       >
-        <Ionicons
-          disabled
-          name="share-social"
-          size={28}
+      <SimpleLineIcons name="share"
+          size={25}
           color={theme.iconColor()}
         />
         <Text
