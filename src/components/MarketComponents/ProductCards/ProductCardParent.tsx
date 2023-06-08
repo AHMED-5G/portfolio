@@ -15,6 +15,7 @@ import {
 } from "./style";
 import { useSharedValue, withTiming } from "react-native-reanimated";
 import { useAppSelector } from "../../../redux/Hooks/hooks";
+import { theme } from "../../../constants/myColors";
 
 type Props = {
   product: Product;
@@ -28,14 +29,16 @@ const ProductCardParent = ({ product }: Props) => {
   } as ProductInCart);
 
   const [counter, setCounter] = useState(1);
+
   const multiplyViewFadeInProgress = useSharedValue(
     product.type == ProductTypes.upTo100 ? 1 : 0
   );
+
   const openRemoveButtonProgress = useSharedValue(0);
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );
-  
+
   //useEffects
   // on Component load multiplyView control listening to counter
   useEffect(() => {
@@ -48,16 +51,20 @@ const ProductCardParent = ({ product }: Props) => {
 
   //check if the product in cart
   useEffect(() => {
-    const thisProduct = state.itemsInCart.find((item) => item.id == product.id);
-    if (thisProduct != undefined) {
-      openRemoveButtonProgress.value = withTiming(1, { duration: 100 });
+    try {
+      const thisProduct = state.itemsInCart.find(
+        (item) => item.id == product.id
+      );
 
-      setTimeout(() => {
-        setIsItemInCart(thisProduct);
-      }, 100);
-    }
+      if (thisProduct != undefined) {
+        openRemoveButtonProgress.value = withTiming(1, { duration: 100 });
+
+        setTimeout(() => {
+          setIsItemInCart(thisProduct);
+        }, 100);
+      }
+    } catch (error) {}
   }, []);
-
 
   // functions
   const openMultiplyView = () => {
@@ -80,7 +87,12 @@ const ProductCardParent = ({ product }: Props) => {
     }
   };
   return (
-    <View style={styles.cardContainer}>
+    <View
+      style={[
+        styles.cardContainer,
+        { backgroundColor: theme.cardBackground() },
+      ]}
+    >
       <TopSection {...{ product, counter, multiplyViewFadeInProgress }} />
       <BottomSection
         {...{
@@ -106,7 +118,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     width: productCardWidth,
-    backgroundColor: "white",
+    // backgroundColor: "white",
     marginTop: 20,
     // marginBottom: 20,
     borderRadius: productCardBorderRadius,

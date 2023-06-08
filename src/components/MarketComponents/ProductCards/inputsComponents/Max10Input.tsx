@@ -171,7 +171,7 @@ const Max10Input = ({ setCounter, counter }: Props) => {
               disabled
               name="pluscircleo"
               size={iconSize}
-              color={theme.actionColor}
+              color={theme.actionButtonTextColor()}
             />
           </TouchableOpacity>
           <TouchableOpacity
@@ -184,15 +184,7 @@ const Max10Input = ({ setCounter, counter }: Props) => {
               justifyContent: "center",
               alignContent: "center",
               alignItems: "center",
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 1,
-              },
-              shadowOpacity: 0.22,
-              shadowRadius: 2.22,
-
-              elevation: 3,
+              ...theme.elevationAndShadow(),
             }}
             onPress={() => {
               openMiniNumPad();
@@ -232,7 +224,7 @@ const Max10Input = ({ setCounter, counter }: Props) => {
               disabled
               name="minuscircleo"
               size={iconSize}
-              color={counter == 1 ? theme.disableColor : "black"}
+              color={counter == 1 ? theme.disableColor : theme.iconColor()}
             />
           </TouchableOpacity>
         </Animated.View>

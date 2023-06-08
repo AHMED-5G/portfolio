@@ -1,29 +1,17 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  FlatList,
-  Platform,
-  SafeAreaView,
-  StatusBar,
-} from "react-native";
-import React, { useEffect, useState } from "react";
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
+import React from "react";
 import { RootStackParamList } from "../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { yachtImages, yachtInterior } from "../../dummy/yachtDummy/images";
-import { height, width, windowHeight } from "../constants/Layout";
+import { height, width } from "../constants/Layout";
 import Animated, {
   Extrapolation,
   interpolate,
-  runOnJS,
   SharedValue,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
   withDelay,
-  withSpring,
   withTiming,
 } from "react-native-reanimated";
 import LongestDetails from "../components/yachtComponents/LongestDetails";
@@ -81,11 +69,13 @@ function Yachts({ navigation }: Props) {
         [0, 1],
         [longestMarinTop, 0]
       );
+      const marginLeft = interpolate(openLongestProgress.value, [0, 1], [2, 0]);
 
       return {
         width: widthStyle,
         height: heightStyle,
         marginTop,
+        marginLeft,
         transform: [
           {
             rotate: longestRotate.value + "deg",
@@ -292,12 +282,12 @@ function Yachts({ navigation }: Props) {
     function imageRotateValue(index: number): number {
       return (3 - index) * 2 - 2 * (generateRandomBoolean() ? -1 : 1);
     }
-// console.log(theme.localizationDirection )
     return (
       <View
         style={{
           flex: 1,
           flexDirection: theme.localizationRtl ? "row-reverse" : "row",
+          // justifyContent: "space-evenly",
         }}
       >
         <Animated.View style={[styles.longestRStyle, longestRStyle]}>
@@ -407,7 +397,7 @@ function Yachts({ navigation }: Props) {
             {
               fontSize: BarTitleFontSize,
               fontWeight: "800",
-              backgroundColor: "white",
+              color: theme.baseTextColor(),
               position: "absolute",
               top: theme.tabBarHeight / 2 - BarTitleFontSize / 2,
             },
@@ -423,6 +413,7 @@ function Yachts({ navigation }: Props) {
               fontWeight: "800",
               position: "absolute",
               top: theme.tabBarHeight / 2 - BarTitleFontSize / 2,
+              color: theme.baseTextColor(),
             },
             yachtNameRStyle,
           ]}
@@ -447,6 +438,7 @@ const styles = StyleSheet.create({
     marginTop: longestMarinTop,
     height: leftContainerHeight,
     width: width / 2,
+    marginLeft: 2,
   },
   rightSide: {
     position: "absolute",

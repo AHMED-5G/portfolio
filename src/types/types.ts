@@ -5,6 +5,10 @@ import {
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ColorValue, ImageSourcePropType } from "react-native";
+import {
+  UserConfigurationInterface,
+
+} from "../constants/myColors";
 
 declare global {
   namespace ReactNavigation {
@@ -142,6 +146,7 @@ export interface InitialStateInterface {
   language: Languages;
   settings: {
     savedReadingTheme: ReadingThemesCombo;
+    userConfiguration: UserConfigurationInterface;
   };
   itemsInCart: ProductInCart[];
 }

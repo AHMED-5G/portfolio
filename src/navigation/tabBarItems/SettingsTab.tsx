@@ -12,8 +12,8 @@ type Props = {
 const SettingsTab = (props: Props) => {
   return (
     <View style={tabContainerStyle}>
-      <Feather name="settings" size={34} color={tabColor(props.isFocused)} />
-      <TabText isFocused={props.isFocused} />
+      <Feather disabled name="settings" size={34} color={tabColor(props.isFocused)} />
+      {/* <TabText isFocused={props.isFocused} /> */}
     </View>
   );
 };

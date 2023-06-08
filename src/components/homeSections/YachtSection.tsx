@@ -4,11 +4,11 @@ import { yachtImages } from "../../../dummy/yachtDummy/images";
 import { width } from "../../constants/Layout";
 import { RootStackParamList } from "../../types";
 import { StackNavigationProp } from "@react-navigation/stack";
-import HomeSectionTitle from "./HomeSectionTitle";
 import { i18n } from "../../translation/i18n";
 import { getRandomOneItemFromList } from "../../utils/helperFunctions";
 import HomeSingleImage from "./HomeSingleImage";
 import HomeSectionContainer from "./HomeSectionContainer";
+import HomeSectionTitle from "./HomeSectionTitle";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Home", undefined>;

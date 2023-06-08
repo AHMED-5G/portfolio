@@ -1,19 +1,31 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
+import {
+  Alert,
+  DevSettings,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React from "react";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import ToggleSwitch from "toggle-switch-react-native";
 import { myColors, theme } from "../../constants/myColors";
 import { i18n } from "../../translation/i18n";
+import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
+import { InitialStateInterface } from "../../types";
+import { SET_USER_CONFIGURATIONS } from "../../redux/reducers/dataSlice";
 
 type Props = {};
 
 const TabBarFooter = (props: Props) => {
-  const [switchState, setSwitchState] = useState(true);
-
+  const state: InitialStateInterface = useAppSelector(
+    (state) => state.dataSlice
+  );
+  const useDispatch = useAppDispatch();
   return (
     <View
       style={{
-        flexDirection: theme.localizationFlexDirection,
+        flexDirection: "row",
         marginLeft: 10,
         marginTop: 10,
         justifyContent: "space-evenly",
@@ -29,14 +41,23 @@ const TabBarFooter = (props: Props) => {
         }}
       >
         <ToggleSwitch
-          isOn={switchState}
+          isOn={state.settings.userConfiguration?.darkTheme ? false : true}
           onColor={myColors.sky}
           offColor="black"
-          label={i18n.t("nightMood")}
+          label={i18n.t("darkTheme")}
           icon={<Entypo name="moon" size={24} color="black" />}
-          labelStyle={styles.text}
+          labelStyle={[styles.text, { color: theme.baseTextColor() }]}
           size="large"
-          onToggle={(isOn) => setSwitchState(isOn)}
+          onToggle={(isOnn) => {
+            useDispatch(
+              SET_USER_CONFIGURATIONS({
+                ...state.settings.userConfiguration,
+                darkTheme: !isOnn,
+              })
+            );
+            Alert.alert(i18n.t("alert"), i18n.t("restartApplication"));
+            DevSettings.reload();
+          }}
         />
       </View>
       <TouchableOpacity
@@ -44,7 +65,7 @@ const TabBarFooter = (props: Props) => {
           justifyContent: "center",
           alignContent: "center",
           alignItems: "center",
-          flexDirection: theme.localizationFlexDirection,
+          flexDirection: "row",
         }}
       >
         <View
@@ -54,7 +75,9 @@ const TabBarFooter = (props: Props) => {
             alignItems: "center",
           }}
         >
-          <Text style={styles.text}>{i18n.t("logOut")}</Text>
+          <Text style={[styles.text, { color: theme.baseTextColor() }]}>
+            {i18n.t("logOut")}
+          </Text>
         </View>
         <View
           style={{
@@ -68,11 +91,9 @@ const TabBarFooter = (props: Props) => {
             disabled
             name="logout"
             size={40}
-            color="black"
+            color={theme.iconColor()}
             style={{
-              transform: [
-                { rotateY: theme.localizationRtl ? "180deg" : "0deg" },
-              ],
+              transform: theme.iconLocalizationTransform(),
             }}
           />
         </View>

@@ -1,20 +1,15 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { User } from "../types";
 import { Image } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { theme } from "../constants/myColors";
 
-type Props = {
-  //   userData: User;
-};
-
-const DrawerProfileCard = ({}: Props) => {
+const DrawerProfileCard = () => {
   return (
     <View
       style={{
         justifyContent: "space-between",
-        flexDirection: theme.localizationFlexDirection,
+        flexDirection: "row",
         width: "100%",
       }}
     >
@@ -26,26 +21,32 @@ const DrawerProfileCard = ({}: Props) => {
             uri: "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHJhbmRvbXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60u",
           }}
         />
-        <Text style={{ fontSize: 22, fontWeight: "bold" }}>
+        <Text
+          style={{
+            fontSize: 22,
+            fontWeight: "bold",
+            color: theme.baseTextColor(),
+          }}
+        >
           {"Gamal Baksh"}
         </Text>
-        <Text style={{ fontSize: 12 }}>{"@Gamal_Baksh"}</Text>
+        <Text style={{ fontSize: 12, color: theme.baseTextColor() }}>
+          {"@Gamal_Baksh"}
+        </Text>
       </View>
       <TouchableOpacity
         style={{
           justifyContent: "center",
           alignContent: "center",
           alignItems: "center",
-          //   marginRight: 20,
           width: 70,
-          //   backgroundColor: "pink",
-          flexDirection: theme.localizationFlexDirection,
+          flexDirection: "row",
         }}
       >
         <MaterialCommunityIcons
           name="dots-horizontal-circle-outline"
           size={37}
-          color="black"
+          color={theme.iconColor()}
           disabled
         />
       </TouchableOpacity>

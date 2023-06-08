@@ -28,6 +28,7 @@ const AddToCartButtonComponent = ({
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );
+
   const addCounterToCart = () => {
     if (isItemInCart.id != "0") {
       if (isItemInCart.counter < 999 && isItemInCart.counter + counter < 999) {
@@ -65,8 +66,8 @@ const AddToCartButtonComponent = ({
       accessibilityHint={"Add " + counter + "to Cart"}
       width={"100%"}
       borderRadius={5}
-      color={theme.actionColor}
-      textStyle={{ fontSize: 24 }}
+      color={theme.darkTheme ? theme.secondaryColor() : theme.actionColor}
+      textStyle={{ fontSize: 24, color: theme.secondaryColorText() }}
       onPress={() => {
         addCounterToCart();
       }}

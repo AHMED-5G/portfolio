@@ -48,7 +48,7 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
                   ? "#bdc6cf"
                   : props.color
                   ? props.color
-                  : theme.actionColor,
+                  : theme.actionButtonBackground(),
                 width: props.width ? props.width : props.circle ? 100 : 244,
                 height: props.height
                   ? props.height

@@ -1,6 +1,7 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { theme } from "../../constants/myColors";
 
 type Props = {};
 
@@ -17,7 +18,12 @@ const SearchComponent = ({}: Props) => {
       }}
       onPress={() => {}}
     >
-      <Ionicons disabled name="search-sharp" size={38} color="black" />
+      <Ionicons
+        disabled
+        name="search-sharp"
+        size={38}
+        color={theme.iconColor()}
+      />
     </TouchableOpacity>
   );
 };

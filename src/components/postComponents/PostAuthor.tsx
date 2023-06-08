@@ -59,7 +59,7 @@ const PostAuthor = ({ user }: Props) => {
         style={{
           flexDirection: "row",
           alignItems: "center",
-          backgroundColor: theme.white,
+          backgroundColor: theme.cardBackground(),
           width: "100%",
           borderRadius: 10,
           borderBottomLeftRadius: 0,
@@ -123,7 +123,7 @@ const PostAuthor = ({ user }: Props) => {
               style={{
                 fontSize: 22,
                 fontWeight: "700",
-                color: theme.primaryText,
+                color: theme.primaryText(),
               }}
             >
               {user.name}
@@ -149,11 +149,12 @@ const PostAuthor = ({ user }: Props) => {
                 style={{
                   height: 48,
                   borderRadius: 10,
+                  backgroundColor: theme.cardBackground(),
                 }}
                 textStyle={{
                   fontSize: 16,
                   fontWeight: "700",
-                  color: theme.actionColor,
+                  color: theme.baseTextColor(),
                 }}
               />
             ) : (
@@ -167,12 +168,12 @@ const PostAuthor = ({ user }: Props) => {
                 style={{
                   height: 48,
                   // borderRadius: 10,
-                  backgroundColor: theme.white,
+                  backgroundColor: theme.cardBackground(),
                 }}
                 textStyle={{
                   fontSize: 16,
                   fontWeight: "700",
-                  color: theme.actionColor,
+                  color: theme.baseTextColor(),
                 }}
               />
             )}

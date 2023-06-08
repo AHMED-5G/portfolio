@@ -51,7 +51,11 @@ const PostText = ({ text }: Props) => {
             justifyContent: "center",
           }}
         >
-          <Text style={styles.readMoreLessText}>{i18n.t("readLess")}</Text>
+          <Text
+            style={[styles.readMoreLessText, { color: theme.baseTextColor() }]}
+          >
+            {i18n.t("readLess")}
+          </Text>
         </TouchableOpacity>
       )}
       {lengthOfLiens > NumberOfLiensToShow && !readMore && (
@@ -59,7 +63,11 @@ const PostText = ({ text }: Props) => {
           onPress={() => setReadMore(true)}
           style={styles.readMoreLessContainer}
         >
-          <Text style={styles.readMoreLessText}>{i18n.t("readMore")}</Text>
+          <Text
+            style={[styles.readMoreLessText, { color: theme.baseTextColor() }]}
+          >
+            {i18n.t("readMore")}
+          </Text>
         </TouchableOpacity>
       )}
     </View>
@@ -72,7 +80,6 @@ const styles = StyleSheet.create({
   readMoreLessText: {
     fontSize: 15,
     fontWeight: "800",
-    color: theme.black,
   },
   readMoreLessContainer: {
     marginLeft: 10,

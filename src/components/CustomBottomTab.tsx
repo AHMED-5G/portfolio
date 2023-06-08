@@ -20,11 +20,25 @@ const CustomBottomTab = ({ navigation, components }: Props) => {
     Keyboard.addListener("keyboardDidHide", keyboardDidHide);
   }, []);
   return (
-    <>
+    <View
+      style={{
+        backgroundColor: theme.tabBarBackground(),
+        borderWidth: 0.4,
+        borderColor: theme.borderColor,
+        borderEndWidth: 0,
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+        borderBottomWidth: 0,
+
+      }}
+    >
       <View
         style={[
           styles.customBottomTab,
-          { display: !keyboardStatus ? "flex" : "none" },
+          {
+            display: !keyboardStatus ? "flex" : "none",
+            backgroundColor: theme.tabBarBackground(),
+          },
         ]}
       >
         <View
@@ -55,7 +69,7 @@ const CustomBottomTab = ({ navigation, components }: Props) => {
           ))}
         </View>
       </View>
-    </>
+    </View>
   );
 };
 
@@ -63,7 +77,6 @@ export default CustomBottomTab;
 
 const styles = StyleSheet.create({
   customBottomTab: {
-    backgroundColor: theme.tabBarBackground,
     height: theme.tabBarHeight,
     borderTopLeftRadius: theme.tabBarBorderRadius,
     borderTopRightRadius: theme.tabBarBorderRadius,

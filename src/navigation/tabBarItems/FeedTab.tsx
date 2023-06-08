@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { I18nManager, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { tabContainerStyle, tabColor, tabTextStyle } from "./styles";
@@ -12,17 +12,17 @@ type Props = {
 
 const FeedTab = (props: Props) => {
   return (
-    <View style={[tabContainerStyle]}>
+    <View style={tabContainerStyle}>
       <MaterialCommunityIcons
+        disabled
         name="newspaper-variant"
         size={37}
         style={{
           transform: theme.iconLocalizationTransform(),
-          // transform: [{ rotateY: theme.localizationRtl ? "180deg" : "0deg" }],
         }}
         color={tabColor(props.isFocused)}
       />
-      <TabText isFocused={props.isFocused} />
+      {/* <TabText isFocused={props.isFocused} /> */}
     </View>
   );
 };

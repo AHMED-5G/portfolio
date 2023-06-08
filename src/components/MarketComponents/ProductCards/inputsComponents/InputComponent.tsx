@@ -12,7 +12,7 @@ type Props = {
 
 const InputComponent = ({ product, setCounter, counter }: Props) => {
   return product.type == ProductTypes.upTo100 ? (
-    <SliderInput {...{ setCounter }} />
+    <SliderInput {...{ setCounter , counter }} />
   ) : product.type == ProductTypes.max10 ? (
     <Max10Input {...{ setCounter, counter }} />
   ) : (

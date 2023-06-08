@@ -7,13 +7,11 @@ type Props = { text: string };
 
 const HomeSectionTitle = ({ text }: Props) => {
   return (
-    <View
-      style={[
-        styles.hotelsTextContainer,
-        { flexDirection: theme.localizationFlexDirection },
-      ]}
-    >
-      <Text accessibilityRole="header" style={styles.sectionTitleText}>
+    <View style={[styles.hotelsTextContainer, { flexDirection: "row" }]}>
+      <Text
+        accessibilityRole="header"
+        style={[styles.sectionTitleText, { color: theme.baseTextColor() }]}
+      >
         {text}
       </Text>
     </View>
@@ -26,11 +24,8 @@ const styles = StyleSheet.create({
   hotelsTextContainer: {
     marginTop: 10,
     marginBottom: 5,
-    // marginLeft: 10,
-    // marginRight: 10,
     alignSelf: "flex-start",
     width: width,
-    // flexDirection: 'row-reverse',
   },
   sectionTitleText: {
     fontSize: 25,

@@ -9,7 +9,6 @@ import LoadingIndicator from "./src/components/mini/LoadingIndicator";
 import { Provider } from "react-redux";
 import { persistor, store } from "./src/redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { AppRegistry } from "react-native";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -24,7 +23,8 @@ export default function App() {
       <RootSiblingParent>
         <SafeAreaProvider>
           <PersistGate persistor={persistor}>
-            <StatusBar style="auto" />
+            <StatusBar style='auto' />
+        
             <Navigation colorScheme={colorScheme} />
           </PersistGate>
         </SafeAreaProvider>

@@ -10,11 +10,13 @@ import HorsesSection from "../components/homeSections/HorsesSection";
 import { i18n } from "../translation/i18n";
 import SimpleHeader from "../components/SimpleHeader";
 import HomeSectionContainer from "../components/homeSections/HomeSectionContainer";
+import { myColors, theme } from "../constants/myColors";
+import Slider from "@react-native-community/slider";
 type Props = StackScreenProps<RootStackParamList, "Home">;
 
 function Home({ navigation }: Props) {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: theme.baseBackground(), }}>
       <SimpleHeader title={i18n.t("home")} />
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -28,7 +30,11 @@ function Home({ navigation }: Props) {
         <HotelsSection navigation={navigation} />
         <HomeSectionContainer
           content={
-            <Text style={styles.versionText}>{i18n.t("version")} 0.6.0</Text>
+            <Text
+              style={[styles.versionText, { color: theme.baseTextColor() }]}
+            >
+              {i18n.t("version")} 0.7
+            </Text>
           }
           line={false}
         />

@@ -14,7 +14,9 @@ const ContributorCard = ({ contributor }: Props) => {
   const [imageLoading, setImageLoading] = useState(true);
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[styles.container, { backgroundColor: theme.cardBackground() }]}
+    >
       <View style={styles.imageContainer}>
         {imageLoading && (
           <View
@@ -29,7 +31,6 @@ const ContributorCard = ({ contributor }: Props) => {
             <MyCustomSkeleton style={styles.image} />
           </View>
         )}
-
         <Image
           onLoadStart={() => {
             setImageLoading(true);
@@ -40,16 +41,20 @@ const ContributorCard = ({ contributor }: Props) => {
           onLoadEnd={() => {
             setImageLoading(false);
           }}
-          resizeMode="center"
+          resizeMode="cover"
           style={styles.image}
           source={{ uri: contributor.image }}
         />
       </View>
       <View style={styles.nameContainer}>
-        <Text style={styles.nameText}>{contributor.name}</Text>
+        <Text style={[styles.nameText, { color: theme.cardText() }]}>
+          {contributor.name}
+        </Text>
       </View>
       <View style={styles.titleContainer}>
-        <Text style={styles.titleText}>{contributor.title}</Text>
+        <Text style={[styles.titleText, { color: theme.cardText() }]}>
+          {contributor.title}
+        </Text>
       </View>
       <View
         style={{
@@ -80,7 +85,7 @@ const styles = StyleSheet.create({
     width: cardWidth,
     marginRight: 10,
     borderRadius: theme.borderRadius,
-    backgroundColor: "white",
+
     alignItems: "center",
     alignContent: "center",
     justifyContent: "center",
@@ -99,7 +104,7 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontSize: 22,
-    color: "black",
+
     fontWeight: "800",
     textTransform: "uppercase",
   },
@@ -107,7 +112,6 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   titleText: {
-    color: "black",
     fontWeight: "700",
     textTransform: "uppercase",
     fontSize: 12,

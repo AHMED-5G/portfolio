@@ -162,7 +162,13 @@ const TopSection = ({
             flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
           }}
         >
-          <Text style={{ fontSize: 15, fontWeight: "bold" }}>
+          <Text
+            style={{
+              fontSize: 15,
+              fontWeight: "bold",
+              color: theme.baseTextColor(),
+            }}
+          >
             {product.name}
           </Text>
         </View>
@@ -173,7 +179,14 @@ const TopSection = ({
             flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
           }}
         >
-          <Text style={{ fontSize: 12, fontWeight: "400", marginRight: 5 }}>
+          <Text
+            style={{
+              fontSize: 12,
+              fontWeight: "400",
+              marginRight: 5,
+              color: theme.baseTextColor(),
+            }}
+          >
             {product.description}
           </Text>
         </View>
@@ -182,12 +195,22 @@ const TopSection = ({
             style={[styles.priceContainerStyle, priceContainerRStyle]}
           >
             <Animated.Text
-              style={[styles.priceCurrencyText, priceCurrencyRStyle]}
+              style={[
+                styles.priceCurrencyText,
+                { color: theme.secondaryColor() },
+                priceCurrencyRStyle,
+              ]}
             >
               $
             </Animated.Text>
             {
-              <Animated.Text style={[styles.priceText, priceTextRStyle]}>
+              <Animated.Text
+                style={[
+                  styles.priceText,
+                  { color: theme.secondaryColor() },
+                  priceTextRStyle,
+                ]}
+              >
                 {product.price.toFixed(2)}
               </Animated.Text>
             }
@@ -200,17 +223,32 @@ const TopSection = ({
           >
             <View style={styles.multiplicationSignText}>
               <Text
-                style={{ fontSize: 30, fontWeight: "400", marginRight: 20 }}
+                style={{
+                  fontSize: 30,
+                  fontWeight: "400",
+                  marginRight: 20,
+                  color: theme.baseTextColor(),
+                }}
               >
                 {"X"}
               </Text>
-              <Text style={styles.counterText}>{counter}</Text>
+              <Text
+                style={[styles.counterText, { color: theme.secondaryColor() }]}
+              >
+                {counter}
+              </Text>
             </View>
             <View
-              style={{ width: "100%", backgroundColor: "black", height: 2 }}
+              style={{
+                width: "100%",
+                backgroundColor: theme.baseTextColor(),
+                height: 2,
+              }}
             ></View>
-            <View style={{}}>
-              <Text style={styles.totalText}>
+            <View>
+              <Text
+                style={[styles.totalText, { color: theme.secondaryColor() }]}
+              >
                 ${(product.price * counter).toFixed(2)}
               </Text>
             </View>

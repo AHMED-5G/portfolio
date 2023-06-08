@@ -1,10 +1,11 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
-import { Ionicons } from "@expo/vector-icons";
-import { myColors } from "../../constants/myColors";
+import { EvilIcons, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+import { theme } from "../../constants/myColors";
 import { Audio } from "expo-av";
 import { showToast } from "../../utils/helperFunctions";
 import { noSound } from "../../../assets/sounds";
+import { i18n } from "../../translation/i18n";
 type Props = {
   shareCounter: number;
 };
@@ -41,18 +42,20 @@ const ShareComponent = ({ shareCounter }: Props) => {
         accessibilityHint="Share"
         onPress={() => {
           playSound();
-          showToast("This feature is currently unavailable", myColors.orange);
+          showToast(
+            i18n.t("thisFeatureIsCurrentlyUnavailable"),
+            theme.alertWarningColor as string
+          );
         }}
       >
-        <Ionicons
-          disabled
-          name="share-social"
-          size={28}
-          color={myColors.black}
+      <SimpleLineIcons name="share"
+          size={25}
+          color={theme.iconColor()}
         />
         <Text
           accessibilityRole="text"
-          accessibilityHint={shareCounter + "user shared this post"}
+          accessibilityHint={shareCounter + "users shared this post"}
+          style={{ color: theme.baseTextColor() }}
         >
           {shareCounter}
         </Text>

@@ -60,7 +60,12 @@ function HotelDetails({ navigation, route }: Props) {
         <ImageSliderComponent
           {...{ hotel, requestedIndex, setCurrentImageIndex }}
         />
-        <View style={styles.meddleCard}>
+        <View
+          style={[
+            styles.meddleCard,
+            { backgroundColor: theme.cardBackground() },
+          ]}
+        >
           <View style={{ margin: 15, maxWidth: 300, height: 105 }}>
             <FlatList
               horizontal={true}
@@ -97,7 +102,11 @@ function HotelDetails({ navigation, route }: Props) {
           </View>
           <View style={{ marginTop: 2, marginLeft: 15 }}>
             <View>
-              <Text style={styles.secondlyTitle}>{i18n.t("address")}</Text>
+              <Text
+                style={[styles.secondlyTitle, { color: theme.baseTextColor() }]}
+              >
+                {i18n.t("address")}
+              </Text>
             </View>
             <View
               style={{
@@ -108,20 +117,33 @@ function HotelDetails({ navigation, route }: Props) {
               }}
             >
               <Text>
-                <Entypo disabled name="map" size={24} color="black" />
+                <Entypo
+                  disabled
+                  name="map"
+                  size={24}
+                  color={theme.iconColor()}
+                />
               </Text>
               <View
                 style={{
                   marginLeft: 5,
                 }}
               >
-                <Text style={styles.smallText}>{hotel.address}</Text>
+                <Text
+                  style={[styles.smallText, { color: theme.baseTextColor() }]}
+                >
+                  {hotel.address}
+                </Text>
               </View>
             </View>
           </View>
           <View style={{ marginTop: 15, marginLeft: 15 }}>
             <View>
-              <Text style={styles.secondlyTitle}>{i18n.t("reviews")}</Text>
+              <Text
+                style={[styles.secondlyTitle, { color: theme.baseTextColor() }]}
+              >
+                {i18n.t("reviews")}
+              </Text>
             </View>
             <View
               style={{
@@ -132,7 +154,11 @@ function HotelDetails({ navigation, route }: Props) {
             >
               <View>
                 <Text>
-                  <FontAwesome5 name="smile" size={24} color="black" />{" "}
+                  <FontAwesome5
+                    name="smile"
+                    size={24}
+                    color={theme.iconColor()}
+                  />{" "}
                 </Text>
               </View>
               <View style={{ marginLeft: 5 }}>
@@ -144,14 +170,26 @@ function HotelDetails({ navigation, route }: Props) {
                     <AntDesign
                       accessibilityHint="1 filled star from 5"
                       name={"star"}
-                      style={[styles.myStarStyle]}
+                      style={[
+                        styles.myStarStyle,
+                        {
+                          color: !theme.darkTheme
+                            ? theme.actionColor
+                            : "#c7d0e0",
+                        },
+                      ]}
                     />
                   }
                   emptyStar={
                     <AntDesign
                       name={"staro"}
                       accessibilityHint="1 empty star from 5"
-                      style={[styles.myStarStyle, styles.myEmptyStarStyle]}
+                      style={[
+                        styles.myStarStyle,
+                        styles.myEmptyStarStyle,
+
+                        { color: theme.baseTextColor() },
+                      ]}
                     />
                   }
                 />
@@ -161,24 +199,26 @@ function HotelDetails({ navigation, route }: Props) {
         </View>
         <View style={{ marginLeft: 20, marginTop: height / 2 - 140 }}>
           <View style={{ margin: 20 }}>
-            <Text style={styles.title}>{hotel.name}</Text>
+            <Text style={[styles.title, { color: theme.baseTextColor() }]}>
+              {hotel.name}
+            </Text>
           </View>
           <View style={{ marginBottom: 20, marginLeft: 20 }}>
             <MedButton
               loading={loading}
-              textStyle={{ color: theme.actionColorText, fontSize: 20 }}
+              textStyle={{ color: theme.actionButtonTextColor(), fontSize: 20 }}
               style={{
                 width: 140,
                 height: 50,
                 marginTop: 10,
                 borderRadius: theme.buttonBorderRadius,
+                backgroundColor: theme.actionButtonBackground(),
               }}
               onPress={() => {
                 setLoading(true);
                 sendFakeRequest();
               }}
               title={i18n.t("bookNow")}
-              color={theme.actionColor}
             />
           </View>
         </View>
@@ -191,7 +231,15 @@ function HotelDetails({ navigation, route }: Props) {
       content={<Content />}
       navigation={navigation}
       CustomBottomTabComponents={[
-        <Text style={{ fontSize: 22, fontWeight: "700" }}>{hotel.name}</Text>,
+        <Text
+          style={{
+            fontSize: 22,
+            fontWeight: "700",
+            color: theme.baseTextColor(),
+          }}
+        >
+          {hotel.name}
+        </Text>,
       ]}
     />
   );

@@ -1,6 +1,12 @@
-import { ColorValue, FlexStyle } from "react-native";
-import * as Localization from "expo-localization";
+import {
+  Appearance,
+  ColorValue,
+  FlexStyle,
+  I18nManager,
+  ShadowStyleIOS,
+} from "react-native";
 import { ReadingThemesCombo } from "../types";
+import { ViewStyle } from "react-native";
 
 export const myColors = {
   main: "#CD9575",
@@ -59,10 +65,18 @@ export const readingThemes: ReadingThemesCombo[] = [
     backGroundColor: "#000000",
   },
 ];
-
 interface ThemeInterface {
-  primary: ColorValue;
-  primaryText: "#000";
+  darkTheme: boolean;
+
+  baseBackground: () => ColorValue;
+  baseTextColor: () => ColorValue;
+
+  primary: () => ColorValue;
+  primaryText: () => ColorValue;
+  secondaryColor: () => ColorValue;
+  secondaryColorText: () => ColorValue;
+
+  tabBarBackground: () => ColorValue;
 
   secondary: ColorValue;
   secondaryText: "#FFF";
@@ -79,12 +93,18 @@ interface ThemeInterface {
   alertFailColor: ColorValue;
   alertTextColor: "#000";
 
-  cardBackground: ColorValue;
+  cardBackground: () => ColorValue;
   cardBackgroundColorValue: ColorValue;
-  cardText: "#000";
+  cardText: () => ColorValue;
+
+  iconColor: () => ColorValue;
+  activeIconColor: () => ColorValue;
+
+  actionButtonBackground: () => ColorValue;
+  actionButtonTextColor: () => ColorValue;
 
   tabBarHeight: number;
-  tabBarBackground: ColorValue;
+
   tabBarTextColor: ColorValue;
   tabBarBorderRadius: number;
   tabBarLeftSectionColor: () => ColorValue;
@@ -95,25 +115,61 @@ interface ThemeInterface {
   borderColor: ColorValue;
   disableColor: ColorValue;
 
-  warning: ColorValue;
+  error: ColorValue;
 
   localizationRtl: boolean;
   localizationFlexDirection: FlexStyle["flexDirection"] | undefined;
   freezeInLeftWhenIsRTLTrue: () => FlexStyle["flexDirection"];
   localizationDirection?: "rtl" | "ltr";
   iconLocalizationTransform: () => [{ rotateY: string }];
-
   readingTheme: ReadingThemesCombo;
+
+  elevationAndShadow: () => {
+    elevation: ViewStyle["elevation"];
+    shadowColor: ShadowStyleIOS["shadowColor"];
+    shadowOffset: ShadowStyleIOS["shadowOffset"];
+    shadowOpacity: ShadowStyleIOS["shadowOpacity"];
+    shadowRadius: ShadowStyleIOS["shadowRadius"];
+  };
+}
+export interface UserConfigurationInterface {
+  darkTheme: boolean;
 }
 
 export const theme: ThemeInterface = {
-  primary: "#dddcec",
-  primaryText: "#000",
+  darkTheme: Appearance.getColorScheme() == "dark" ? true : false,
+
+  baseBackground: function () {
+    return this.darkTheme ? "#141414" : "";
+  },
+  baseTextColor: function () {
+    return this.darkTheme ? "#FFF" : "#000";
+  },
+
+  primary: function () {
+    return !this.darkTheme ? "#dddcec" : "#282828";
+  },
+  primaryText: function () {
+    return !this.darkTheme ? "#000" : "#fff";
+  },
+
+  tabBarBackground: function () {
+    return this.darkTheme ? "#141414" : "#fff";
+  },
 
   secondary: "#6a154e",
   secondaryText: "#FFF",
 
-  actionColor: "#2331b4",
+  secondaryColor: function () {
+    return this.darkTheme ? "#e6dadd" : "#6a154e";
+  },
+
+  secondaryColorText: function () {
+    return this.darkTheme ? "#000" : "#FFF";
+  },
+
+  actionColor: "#0048BA",
+
   actionColorText: "#FFF",
 
   white: "white",
@@ -125,19 +181,42 @@ export const theme: ThemeInterface = {
   alertFailColor: "#f2bac9",
   alertTextColor: "#000",
 
-  cardBackground: "white",
-  cardText: "#000",
+  cardBackground: function () {
+    return !this.darkTheme ? "white" : "#282828";
+  },
+
+  cardText: function () {
+    return this.baseTextColor();
+  },
+
+  iconColor: function () {
+    return this.darkTheme ? "#a79ea1" : "#000";
+  },
+
+  activeIconColor: function () {
+    return this.darkTheme ? "#FFF" : "#0048BA";
+  },
+
+  actionButtonBackground: function () {
+    return this.darkTheme ? "#282828" : "#0048BA";
+  },
+
+  actionButtonTextColor: function () {
+    return this.darkTheme ? "#c7d0e0" : "#FFF";
+  },
 
   borderColor: myColors.grey5,
   disableColor: myColors.grey5,
 
-  warning: "#FF0000",
+  error: "#b00020",
 
   tabBarHeight: 70,
-  tabBarBackground: "#FFF",
+  // tabBarBackground: "#FFF",
   tabBarTextColor: "#000",
   tabBarBorderRadius: 10,
-  tabBarLeftSectionColor: () => theme.primary,
+  tabBarLeftSectionColor: function () {
+    return !this.darkTheme ? this.primary() : "#282828";
+  },
 
   cardBackgroundColorValue: "#FFF",
   cardBorderRadiusWidthFactor: 0.05,
@@ -145,8 +224,8 @@ export const theme: ThemeInterface = {
   buttonBorderRadius: 5,
 
   localizationDirection: undefined,
-  localizationRtl: Localization.isRTL,
-  localizationFlexDirection: undefined,
+  localizationRtl: I18nManager.isRTL,
+  localizationFlexDirection: "row",
   iconLocalizationTransform: function () {
     return [{ rotateY: this.localizationRtl ? "180deg" : "0deg" }];
   },
@@ -155,4 +234,17 @@ export const theme: ThemeInterface = {
   },
 
   readingTheme: readingThemes[0],
+
+  elevationAndShadow: function () {
+    return {
+      elevation: 2,
+      shadowColor: this.darkTheme ? "#463f41" : "#282828",
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.18,
+      shadowRadius: 1.0,
+    };
+  },
 };

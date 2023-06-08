@@ -9,6 +9,7 @@ import { AccountTypes, ContributorAccount } from "../types";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import * as Linking from "expo-linking";
 import { getContributorAccountName } from "../utils/helperFunctions";
+import { theme } from "../constants/myColors";
 
 type Props = {
   account: ContributorAccount;
@@ -29,10 +30,10 @@ const getIconByAccountType = ({
           accessibilityRole="button"
           accessibilityLabel={"facebook" + account.name}
           size={size}
-          color="#4267B2"
+          // color="#4267B2"
+          color={theme.iconColor()}
         />
       );
-      break;
 
     case AccountTypes.Behance:
       return (
@@ -41,10 +42,10 @@ const getIconByAccountType = ({
           accessibilityLabel={"behance" + account.name}
           name="behance-square"
           size={size}
-          color="#053eff"
+          // color="#053eff"
+          color={theme.iconColor()}
         />
       );
-      break;
 
     case AccountTypes.Dribbble:
       return (
@@ -53,10 +54,11 @@ const getIconByAccountType = ({
           accessibilityLabel={"dribbble" + account.name}
           name="dribbble-square"
           size={size}
-          color="#ea4c89"
+          // color="#ea4c89"
+          color={theme.iconColor()}
         />
       );
-      break;
+
     case AccountTypes.Github:
       return (
         <FontAwesome
@@ -64,10 +66,11 @@ const getIconByAccountType = ({
           accessibilityLabel={"github" + account.name}
           name="github-square"
           size={size}
-          color="#171515"
+          // color="#171515"
+          color={theme.iconColor()}
         />
       );
-      break;
+
     case AccountTypes.LinkedIn:
       return (
         <AntDesign
@@ -75,10 +78,11 @@ const getIconByAccountType = ({
           accessibilityLabel={"linkedin" + account.name}
           name="linkedin-square"
           size={size}
-          color="#0A66C2"
+          // color="#0A66C2"
+          color={theme.iconColor()}
         />
       );
-      break;
+
     case AccountTypes.Twitter:
       return (
         <FontAwesome
@@ -86,10 +90,10 @@ const getIconByAccountType = ({
           accessibilityRole="button"
           accessibilityLabel={"twitter" + account.name}
           size={size}
-          color="#1DA1F2"
+          // color="#1DA1F2"
+          color={theme.iconColor()}
         />
       );
-      break;
 
     default:
       break;

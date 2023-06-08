@@ -8,13 +8,7 @@ import {
   TabNavigationState,
 } from "@react-navigation/native";
 import React, { useCallback, useEffect, useState } from "react";
-import {
-  Dimensions,
-  Keyboard,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Keyboard, StyleSheet, TouchableOpacity, View } from "react-native";
 import { FeedTab, HomeTab, SettingsTab } from "./tabBarItems";
 import { theme } from "../constants/myColors";
 import Animated, {
@@ -123,12 +117,17 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
       style={[
         {
           borderRadius: 10,
-          backgroundColor: "white",
-          flexDirection: theme.localizationFlexDirection,
+          backgroundColor: theme.tabBarBackground(),
+          flexDirection: "row",
           display: !keyboardStatus ? "flex" : "none",
           justifyContent: "center",
           alignContent: "center",
           overflow: "hidden",
+          borderWidth: 0.4,
+          borderColor: theme.borderColor,
+          borderLeftWidth: 0,
+          borderRightWidth: 0,
+          borderBottomWidth: 0,
         },
         tabReanimatedStyle,
       ]}
@@ -155,7 +154,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             upIconReanimatedStyle,
           ]}
         >
-          <AntDesign name="up" size={44} color={theme.primaryText} />
+          <AntDesign name="up" size={44} color={theme.primaryText()} />
         </Animated.View>
       </TouchableOpacity>
       <View
@@ -169,8 +168,12 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
         <Animated.View
           style={[
             {
-              flexDirection: theme.localizationFlexDirection,
+              flexDirection: "row",
               overflow: "hidden",
+              justifyContent: "center",
+              alignContent: "center",
+              alignItems: "center",
+              height: 48,
             },
             tabBarTopSectionRStyle,
           ]}
@@ -219,9 +222,12 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
                 style={{
                   flex: 1,
                   alignItems: "center",
-                  width: 48,
-                  height: 48,
-                  marginTop: 10,
+                  alignContent: "center",
+                  justifyContent: "center",
+                  width: 58,
+                  height: 58,
+
+                  // backgroundColor: "pink",
                 }}
                 key={label.toString()}
               >
@@ -240,7 +246,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
           style={[
             {
               marginTop: 10,
-              flexDirection: theme.localizationFlexDirection,
+              flexDirection: "row",
               justifyContent: "space-between",
             },
             drawerContainerRStyle,

@@ -14,6 +14,7 @@ export const showToast = (message: string, backgroundColor: string) => {
     textColor: "black",
     containerStyle: { height: 48 },
     opacity: 1,
+    
     onShow: () => {
       AccessibilityInfo.announceForAccessibility(message);
       // calls on toast\`s appear animation start

@@ -5,6 +5,8 @@ import {
   Languages,
   ReadingThemesCombo,
 } from "../../types";
+import { UserConfigurationInterface } from "../../constants/myColors";
+import { Appearance } from "react-native";
 
 const initialState: InitialStateInterface = {
   error: undefined,
@@ -15,6 +17,9 @@ const initialState: InitialStateInterface = {
       fontColor: "#000000",
       backGroundColor: "#FFFFFF",
       fontSize: 18,
+    },
+    userConfiguration: {
+      darkTheme: Appearance.getColorScheme() == "dark" ? true : false,
     },
   },
   itemsInCart: [],
@@ -27,23 +32,36 @@ export const dataSlice: Slice = createSlice({
     SET_LANGUAGE: (state = initialState, action: PayloadAction<Languages>) => {
       state.language = action.payload;
     },
+
     SET_READING_THEME: (
       state = initialState,
       action: PayloadAction<ReadingThemesCombo>
     ) => {
       state.settings.savedReadingTheme = action.payload;
     },
+
     SET_CART: (
       state = initialState,
       action: PayloadAction<InitialStateInterface["itemsInCart"]>
     ) => {
       state.itemsInCart = action.payload;
     },
+
+    SET_USER_CONFIGURATIONS: (
+      state = initialState,
+      action: PayloadAction<UserConfigurationInterface>
+    ) => {
+      state.settings.userConfiguration = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { SET_CART, SET_LANGUAGE, SET_READING_THEME } =
-  dataSlice.actions;
+export const {
+  SET_CART,
+  SET_LANGUAGE,
+  SET_READING_THEME,
+  SET_USER_CONFIGURATIONS,
+} = dataSlice.actions;
 
 export default dataSlice.reducer;

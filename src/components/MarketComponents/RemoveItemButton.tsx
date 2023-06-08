@@ -37,7 +37,6 @@ const RemoveItemButton = ({
   const RemoveTextContainerWidth = 1 - counterContainerWidth;
   const buttonWidth = productCardWidth * 0.45 - 10;
   const closeRemoveButtonTime = 900;
-
   const removeButtonRStyle = useAnimatedStyle(() => {
     const toWidth = interpolate(
       openRemoveButtonProgress.value,
@@ -95,7 +94,7 @@ const RemoveItemButton = ({
         style={{
           backgroundColor: "white",
           borderWidth: 0.5,
-          borderColor: theme.warning,
+          borderColor: theme.darkTheme ? "undefined" : theme.error,
           height: buttonHeight,
           borderRadius: 5,
           flexDirection: "row",
@@ -119,7 +118,7 @@ const RemoveItemButton = ({
           <Text
             style={{
               fontSize: 22,
-              color: theme.black,
+              color: theme.darkTheme ? theme.error : theme.black,
               fontWeight: "bold",
             }}
           >
@@ -140,7 +139,7 @@ const RemoveItemButton = ({
               height: 40,
               margin: 5,
               borderRadius: 10,
-              backgroundColor: theme.secondary,
+              backgroundColor: theme.secondaryColor(),
               justifyContent: "center",
               alignContent: "center",
               alignItems: "center",
@@ -148,7 +147,7 @@ const RemoveItemButton = ({
           >
             <Text
               style={{
-                color: theme.secondaryText,
+                color: theme.secondaryColorText(),
                 fontSize: 20,
                 fontWeight: "bold",
                 margin: 5,

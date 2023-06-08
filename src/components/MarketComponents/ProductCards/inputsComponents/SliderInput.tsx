@@ -1,19 +1,22 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
-import { theme, myColors } from "../../../../constants/myColors";
+import { myColors } from "../../../../constants/myColors";
 import Slider from "@react-native-community/slider";
 
-type Props = { setCounter: React.Dispatch<React.SetStateAction<number>> };
+type Props = {
+  setCounter: React.Dispatch<React.SetStateAction<number>>;
+  counter: number;
+};
 
-const SliderInput = ({ setCounter }: Props) => {
+const SliderInput = ({ setCounter, counter }: Props) => {
   useEffect(() => {
     setCounter(10);
   }, []);
 
   return (
-    <View>
+    <View style={styles.slierStyle}>
       <Slider
-        style={{ width: "100%", height: 70 , }}
+        style={{ width: "100%" }}
         minimumValue={10}
         maximumValue={100}
         step={10}
@@ -22,6 +25,7 @@ const SliderInput = ({ setCounter }: Props) => {
         onValueChange={(value) => {
           setCounter(value);
         }}
+        value={counter}
       />
     </View>
   );
@@ -31,11 +35,10 @@ export default SliderInput;
 
 const styles = StyleSheet.create({
   slierStyle: {
-    height: 70,
     padding: 10,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    zIndex: 2,
+
   },
 });
