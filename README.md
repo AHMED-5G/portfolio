@@ -1,4 +1,4 @@
-# Review my react native portfolio application v0.6
+# Review my react native portfolio application v0.7
 
 - for android devices download Expo Go application https://expo.dev/client
 
