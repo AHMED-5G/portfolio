@@ -13,7 +13,7 @@
 
 - or past link:
 
-  exp://u.expo.dev/update/3e3243a4-6e89-4861-8970-a04cd7d38770
+  exp://u.expo.dev/update/d777f2a5-3de0-43d4-ac36-f93ed7100f34
 
 # app in [Trello](https://trello.com/b/LCgVV444/portfolio)
 
