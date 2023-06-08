@@ -33,7 +33,7 @@ function Home({ navigation }: Props) {
             <Text
               style={[styles.versionText, { color: theme.baseTextColor() }]}
             >
-              {i18n.t("version")} 0.6
+              {i18n.t("version")} 0.7
             </Text>
           }
           line={false}
