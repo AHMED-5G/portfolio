@@ -8,12 +8,7 @@ import {
   TabNavigationState,
 } from "@react-navigation/native";
 import React, { useCallback, useEffect, useState } from "react";
-import {
-  Keyboard,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Keyboard, StyleSheet, TouchableOpacity, View } from "react-native";
 import { FeedTab, HomeTab, SettingsTab } from "./tabBarItems";
 import { theme } from "../constants/myColors";
 import Animated, {
@@ -133,7 +128,6 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
           borderLeftWidth: 0,
           borderRightWidth: 0,
           borderBottomWidth: 0,
- 
         },
         tabReanimatedStyle,
       ]}
@@ -252,7 +246,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
           style={[
             {
               marginTop: 10,
-              flexDirection: theme.localizationFlexDirection,
+              flexDirection: "row",
               justifyContent: "space-between",
             },
             drawerContainerRStyle,

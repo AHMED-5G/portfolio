@@ -36,7 +36,10 @@ const en = {
   remove: "Remove",
   follow: "Follow",
   unFollow: "Unfollow",
-  thisFeatureIsCurrentlyUnavailable: 'This feature is currently unavailable'
+  thisFeatureIsCurrentlyUnavailable: "This feature is currently unavailable",
+
+  restartApplication: "Restart Application",
+  alert: "Alert",
 };
 
 const ar = {
@@ -78,7 +81,10 @@ const ar = {
   remove: "إزالة",
   follow: "متابعة",
   unFollow: "إلغاء المتابعة",
-  thisFeatureIsCurrentlyUnavailable: 'هذه الخاصية غير متوفرة في الوقت الحالي'
+  thisFeatureIsCurrentlyUnavailable: "هذه الخاصية غير متوفرة في الوقت الحالي",
+
+  restartApplication: "أعد تشغيل التطبيق",
+  alert: "تنبيه",
 };
 
 export { en, ar };

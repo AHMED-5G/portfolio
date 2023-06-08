@@ -45,10 +45,7 @@ const DrawerComponent = (props: Props) => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[
-          styles.drawerItemContainer,
-          { flexDirection: theme.localizationFlexDirection },
-        ]}
+        style={[styles.drawerItemContainer, { flexDirection: "row" }]}
       >
         <View style={styles.drawerIconContainer}>
           <Feather name="mail" color={theme.iconColor()} size={37} />

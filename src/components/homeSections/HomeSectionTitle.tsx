@@ -7,12 +7,7 @@ type Props = { text: string };
 
 const HomeSectionTitle = ({ text }: Props) => {
   return (
-    <View
-      style={[
-        styles.hotelsTextContainer,
-        { flexDirection: theme.localizationFlexDirection },
-      ]}
-    >
+    <View style={[styles.hotelsTextContainer, { flexDirection: "row" }]}>
       <Text
         accessibilityRole="header"
         style={[styles.sectionTitleText, { color: theme.baseTextColor() }]}

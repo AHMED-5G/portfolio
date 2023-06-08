@@ -225,7 +225,7 @@ export const theme: ThemeInterface = {
 
   localizationDirection: undefined,
   localizationRtl: I18nManager.isRTL,
-  localizationFlexDirection: undefined,
+  localizationFlexDirection: "row",
   iconLocalizationTransform: function () {
     return [{ rotateY: this.localizationRtl ? "180deg" : "0deg" }];
   },

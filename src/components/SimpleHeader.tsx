@@ -11,7 +11,7 @@ const SimpleHeader = ({ title }: Props) => {
       <View
         style={{
           marginLeft: 10,
-          flexDirection: theme.localizationFlexDirection,
+          flexDirection: 'row'
         }}
       >
         <Text style={[styles.sectionHeadText, { color: theme.primaryText() }]}>

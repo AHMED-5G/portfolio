@@ -37,7 +37,6 @@ const RemoveItemButton = ({
   const RemoveTextContainerWidth = 1 - counterContainerWidth;
   const buttonWidth = productCardWidth * 0.45 - 10;
   const closeRemoveButtonTime = 900;
-
   const removeButtonRStyle = useAnimatedStyle(() => {
     const toWidth = interpolate(
       openRemoveButtonProgress.value,
@@ -94,8 +93,8 @@ const RemoveItemButton = ({
       <TouchableOpacity
         style={{
           backgroundColor: "white",
-          borderWidth: theme.darkTheme ? 0.5 : 0,
-          borderColor: theme.darkTheme ? undefined : theme.error,
+          borderWidth: 0.5,
+          borderColor: theme.darkTheme ? "undefined" : theme.error,
           height: buttonHeight,
           borderRadius: 5,
           flexDirection: "row",

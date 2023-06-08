@@ -1,4 +1,5 @@
 import {
+  Alert,
   DevSettings,
   StyleSheet,
   Text,
@@ -24,7 +25,7 @@ const TabBarFooter = (props: Props) => {
   return (
     <View
       style={{
-        flexDirection: theme.localizationFlexDirection,
+        flexDirection: "row",
         marginLeft: 10,
         marginTop: 10,
         justifyContent: "space-evenly",
@@ -54,6 +55,7 @@ const TabBarFooter = (props: Props) => {
                 darkTheme: !isOnn,
               })
             );
+            Alert.alert(i18n.t("alert"), i18n.t("restartApplication"));
             DevSettings.reload();
           }}
         />

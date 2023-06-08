@@ -10,9 +10,8 @@ export const loadLocale = (lang: Languages) => {
   i18n.translations = { en, ar };
   i18n.defaultLocale = Localization.locale.split("-")[0] == "ar" ? "ar" : "en";
   i18n.locale = Localization.locale.split("-")[0] == "ar" ? "ar" : "en";
-  theme.localizationFlexDirection = "row";
-  theme.localizationRtl = false;
-  // theme.localizationRtl = Localization.getLocales()[0].textDirection == "rtl";
+
+  theme.localizationRtl = Localization.getLocales()[0].textDirection == "rtl";
 };
 
 export { i18n };
