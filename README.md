@@ -19,7 +19,7 @@
 
 - or past link:
 
-  exp://u.expo.dev/update/d777f2a5-3de0-43d4-ac36-f93ed7100f34
+  exp://u.expo.dev/update/60adad97-a2d1-44d4-ba64-64f81d8eddaf
 
 # app in [Trello](https://trello.com/b/LCgVV444/portfolio)
 
