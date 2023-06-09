@@ -171,7 +171,9 @@ const Max10Input = ({ setCounter, counter }: Props) => {
               disabled
               name="pluscircleo"
               size={iconSize}
-              color={theme.actionButtonTextColor()}
+              color={
+                theme.darkTheme ? theme.secondaryColor() : theme.actionColor
+              }
             />
           </TouchableOpacity>
           <TouchableOpacity
