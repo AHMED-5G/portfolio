@@ -69,8 +69,6 @@ Improve UI and UX and test all app in all stages
 
 ## V 0.5 "Add To Cart" -- released
 
-Released and contains:
-
 <details>
 <summary>Details</summary>
 
@@ -84,7 +82,6 @@ Released and contains:
 
 ## V 0.4 "Yacht" -- released
 
-Released and have this features :
 
 <details>
 <summary>Details</summary>
@@ -104,7 +101,6 @@ Released and have this features :
 
 - add multi language.
 
-Released and have this features :
 
 <details>
   <summary>Details</summary>
@@ -129,7 +125,6 @@ Released and have this features :
 
 - add accessibility.
 
-Released and have this features :
 
 <details>
   <summary>Details</summary>

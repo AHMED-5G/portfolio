@@ -117,7 +117,6 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
-
   return (
     <BottomTab.Navigator
       initialRouteName="HomeStackNavigator"
@@ -128,8 +127,7 @@ function BottomTabNavigator() {
         return (
           <View
             style={{
-              backgroundColor: theme.tabBarBackground(),
-
+              backgroundColor: theme.darkTheme ? "#141414" : "#EEE",
             }}
           >
             <MyTabBar {...props} />

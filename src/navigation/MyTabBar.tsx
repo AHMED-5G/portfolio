@@ -42,7 +42,6 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
   }, []);
   const barOpenHeight = 370;
   let openTabProgress = useSharedValue(0);
-  const [tapOpenState, setTapOpenState] = useState(false);
   let iconRotate = useDerivedValue(() => {
     return interpolate(
       openTabProgress.value,
@@ -53,20 +52,13 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
   });
 
   const openTab = useCallback(() => {
-    openTabProgress.value = withTiming(
-      1,
-
-      { easing: Easing.bezier(0, 0, 0.1, 0.4) },
-      (isFinished) => {
-        runOnJS(setTapOpenState)(true);
-      }
-    );
+    openTabProgress.value = withTiming(1, {
+      easing: Easing.bezier(0, 0, 0.1, 0.4),
+    });
   }, []);
 
   const closTab = useCallback(() => {
-    openTabProgress.value = withTiming(0, undefined, (isFinished) => {
-      runOnJS(setTapOpenState)(false);
-    });
+    openTabProgress.value = withTiming(0, undefined);
   }, []);
 
   const tabReanimatedStyle = useAnimatedStyle(() => {
@@ -134,7 +126,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
     >
       <TouchableOpacity
         onPress={() => {
-          !tapOpenState ? openTab() : closTab();
+          openTabProgress.value < 1 ? openTab() : closTab();
         }}
         style={{
           justifyContent: "center",

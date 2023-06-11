@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import TopSection from "./TopSection";
 import {
   InitialStateInterface,
@@ -23,13 +23,13 @@ type Props = {
 
 const ProductCardParent = ({ product }: Props) => {
   const openMultiplyViewTime = 700;
+
   const [isItemInCart, setIsItemInCart] = useState({
     id: "0",
     counter: 0,
   } as ProductInCart);
 
   const [counter, setCounter] = useState(1);
-
   const multiplyViewFadeInProgress = useSharedValue(
     product.type == ProductTypes.upTo100 ? 1 : 0
   );
@@ -67,25 +67,26 @@ const ProductCardParent = ({ product }: Props) => {
   }, []);
 
   // functions
-  const openMultiplyView = () => {
+  function openMultiplyView() {
     multiplyViewFadeInProgress.value = withTiming(1, {
       duration: openMultiplyViewTime,
     });
-  };
+  }
 
-  const closeMultiplyView = () => {
+  function closeMultiplyView() {
     multiplyViewFadeInProgress.value = withTiming(0, {
       duration: openMultiplyViewTime,
     });
-  };
+  }
 
-  const openRemoveButton = () => {
+  const openRemoveButton = useCallback(() => {
     if (openRemoveButtonProgress.value == 0) {
       openRemoveButtonProgress.value = withTiming(1, {
         duration: 700,
       });
     }
-  };
+  }, []);
+
   return (
     <View
       style={[

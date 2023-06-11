@@ -25,12 +25,13 @@ type Props = {
 };
 
 const Max10Input = ({ setCounter, counter }: Props) => {
-  const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+
   const openMiniNumPadProgress = useSharedValue(0);
   const iconSize = 39;
   const initialContainerHeight = 60;
   const finalContainerHeight = 80;
   const plusMinusInitialWidth = productCardWidth / 2 + 30;
+
   const miniNumPadRStyle = useAnimatedStyle(() => {
     const toWidth = interpolate(
       openMiniNumPadProgress.value,
@@ -99,27 +100,14 @@ const Max10Input = ({ setCounter, counter }: Props) => {
       height: toHeight,
     };
   });
-  const XTextRStyle = useAnimatedStyle(() => {
-    const toOpacity = interpolate(openMiniNumPadProgress.value, [0, 1], [0, 1]);
-    const toHeight = interpolate(
-      openMiniNumPadProgress.value,
-      [0, 1],
-      [0, iconSize],
-      Extrapolate.CLAMP
-    );
-    return {
-      opacity: toOpacity,
-      height: toHeight,
-    };
-  });
 
-  const closeNumPad = () => {
+  function closeNumPad() {
     openMiniNumPadProgress.value = withSpring(0, { overshootClamping: false });
-  };
+  }
 
-  const openMiniNumPad = () => {
+  function openMiniNumPad() {
     openMiniNumPadProgress.value = withSpring(1, { overshootClamping: false });
-  };
+  }
 
   return (
     <View

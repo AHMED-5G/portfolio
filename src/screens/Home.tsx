@@ -16,7 +16,7 @@ type Props = StackScreenProps<RootStackParamList, "Home">;
 
 function Home({ navigation }: Props) {
   return (
-    <View style={{ flex: 1, backgroundColor: theme.baseBackground(), }}>
+    <View style={{ flex: 1, backgroundColor: theme.baseBackground() }}>
       <SimpleHeader title={i18n.t("home")} />
       <ScrollView
         showsVerticalScrollIndicator={false}

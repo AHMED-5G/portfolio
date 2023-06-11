@@ -51,7 +51,7 @@ const TopSection = ({
     }
   }
 
-  //reanimated style
+  //reanimated styles
   const imageContainerRStyle = useAnimatedStyle(() => {
     const toWidth = interpolate(
       showImageProgress.value,
@@ -134,6 +134,7 @@ const TopSection = ({
 
     return { zIndex: toIndex };
   });
+
   return (
     <Animated.View style={[styles.topSectionContainer, topSectionRStyle]}>
       <AnimatedTouchable

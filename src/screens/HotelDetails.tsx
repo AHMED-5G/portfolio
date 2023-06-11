@@ -203,12 +203,18 @@ function HotelDetails({ navigation, route }: Props) {
               {hotel.name}
             </Text>
           </View>
-          <View style={{ marginBottom: 20, marginLeft: 20 }}>
+          <View
+            style={{
+              marginBottom: 20,
+              marginLeft: 20,
+              width: 120,
+            }}
+          >
             <MedButton
               loading={loading}
               textStyle={{ color: theme.actionButtonTextColor(), fontSize: 20 }}
               style={{
-                width: 140,
+                width: "100%",
                 height: 50,
                 marginTop: 10,
                 borderRadius: theme.buttonBorderRadius,
