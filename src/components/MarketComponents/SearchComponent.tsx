@@ -2,6 +2,7 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { theme } from "../../constants/myColors";
+import { circularRatio, hwrosh, wwrosw } from "../../constants/Layout";
 
 type Props = {};
 
@@ -12,8 +13,8 @@ const SearchComponent = ({}: Props) => {
         justifyContent: "center",
         alignContent: "center",
         alignItems: "center",
-        width: 48,
-        height: 48,
+        width: wwrosw(48),
+        height: hwrosh(48),
         marginLeft: 10,
       }}
       onPress={() => {}}
@@ -21,7 +22,7 @@ const SearchComponent = ({}: Props) => {
       <Ionicons
         disabled
         name="search-sharp"
-        size={38}
+        size={circularRatio(38)}
         color={theme.iconColor()}
       />
     </TouchableOpacity>

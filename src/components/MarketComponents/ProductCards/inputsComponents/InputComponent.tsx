@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import { Product, ProductTypes } from "../../../../types";
 import SliderInput from "./SliderInput";
@@ -12,7 +12,7 @@ type Props = {
 
 const InputComponent = ({ product, setCounter, counter }: Props) => {
   return product.type == ProductTypes.upTo100 ? (
-    <SliderInput {...{ setCounter , counter }} />
+    <SliderInput {...{ setCounter, counter }} />
   ) : product.type == ProductTypes.max10 ? (
     <Max10Input {...{ setCounter, counter }} />
   ) : (

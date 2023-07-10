@@ -4,12 +4,19 @@ import { Contributor, ContributorAccount } from "../types";
 import ContributorAccountCard from "./ContributorAccountCard";
 import { theme } from "../constants/myColors";
 import MyCustomSkeleton from "./MyCustomSkeleton";
+import {
+  averageRatio,
+  circularRatio,
+  fontRatio,
+  hwrosh,
+  wwrosw,
+} from "../constants/Layout";
 
 type Props = {
   contributor: Contributor;
 };
-const imageSize = 80;
-const cardWidth = 160;
+const imageSize = circularRatio(80);
+const cardWidth = wwrosw(160);
 const ContributorCard = ({ contributor }: Props) => {
   const [imageLoading, setImageLoading] = useState(true);
 
@@ -83,47 +90,45 @@ export default ContributorCard;
 const styles = StyleSheet.create({
   container: {
     width: cardWidth,
-    marginRight: 10,
+    marginRight: wwrosw(10),
     borderRadius: theme.borderRadius,
-
     alignItems: "center",
     alignContent: "center",
     justifyContent: "center",
   },
   imageContainer: {
-    marginTop: 10,
+    marginTop: hwrosh(10),
     alignItems: "center",
     alignContent: "center",
     justifyContent: "center",
   },
   nameContainer: {
-    marginTop: 5,
+    marginTop: hwrosh(5),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
   },
   nameText: {
-    fontSize: 22,
-
+    fontSize: fontRatio(22),
     fontWeight: "800",
     textTransform: "uppercase",
   },
   titleContainer: {
-    marginBottom: 5,
+    marginBottom: hwrosh(5),
   },
   titleText: {
     fontWeight: "700",
     textTransform: "uppercase",
-    fontSize: 12,
+    fontSize: fontRatio(12),
   },
   socialContainer: {
-    height: 40,
-    marginTop: 10,
+    height: hwrosh(40),
+    marginTop: hwrosh(10),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    borderRadius: 12,
-    marginBottom: 5,
+    borderRadius: averageRatio(12),
+    marginBottom: hwrosh(5),
   },
   image: {
     height: imageSize,

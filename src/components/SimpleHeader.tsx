@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { theme } from "../constants/myColors";
 import MyLine from "./MyLine";
+import {  fontRatio, hwrosh, wwrosw } from "../constants/Layout";
 
 type Props = { title: string };
 
@@ -10,8 +11,8 @@ const SimpleHeader = ({ title }: Props) => {
     <View style={styles.container}>
       <View
         style={{
-          marginLeft: 10,
-          flexDirection: 'row'
+          marginLeft: wwrosw(10),
+          flexDirection: "row",
         }}
       >
         <Text style={[styles.sectionHeadText, { color: theme.primaryText() }]}>
@@ -29,14 +30,13 @@ const styles = StyleSheet.create({
   container: {
     alignContent: "flex-start",
     width: "100%",
-    height: 50,
+    height: hwrosh(50),
     justifyContent: "center",
-    borderBottomRightRadius: 5,
-    borderBottomLeftRadius: 5,
+    // borderBottomRightRadius: averageRatio(5),
+    // borderBottomLeftRadius: averageRatio(5),
   },
   sectionHeadText: {
-    fontSize: 22,
-
+    fontSize: fontRatio(22),
     fontWeight: "800",
   },
 });

@@ -21,6 +21,12 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import {
+  averageRatio,
+  fontRatio,
+  hwrosh,
+  wwrosw,
+} from "../../../constants/Layout";
 
 type Props = {
   product: Product;
@@ -28,7 +34,7 @@ type Props = {
   multiplyViewFadeInProgress: SharedValue<number>;
 };
 
-const priceInitialSize = 45;
+const priceInitialSize = fontRatio(45);
 const TopSection = ({
   product,
   counter,
@@ -91,11 +97,12 @@ const TopSection = ({
     };
   });
 
+  const priceContainerFinalMarginLeft = wwrosw(20);
   const priceContainerRStyle = useAnimatedStyle(() => {
     const toMarginLift = interpolate(
       multiplyViewFadeInProgress.value,
       [0, 1],
-      [0, 20]
+      [0, priceContainerFinalMarginLeft]
     );
     return {
       marginLeft: toMarginLift,
@@ -138,7 +145,7 @@ const TopSection = ({
   return (
     <Animated.View style={[styles.topSectionContainer, topSectionRStyle]}>
       <AnimatedTouchable
-        activeOpacity={1}
+        activeOpacity={0.5}
         style={[styles.productImageCard, imageContainerRStyle]}
         onPress={() => {
           showImageFullCard();
@@ -159,13 +166,13 @@ const TopSection = ({
       <View style={[styles.topRightSection]}>
         <View
           style={{
-            marginLeft: theme.localizationRtl ? 10 : 0,
+            marginLeft: theme.localizationRtl ? wwrosw(10) : 0,
             flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
           }}
         >
           <Text
             style={{
-              fontSize: 15,
+              fontSize: fontRatio(15),
               fontWeight: "bold",
               color: theme.baseTextColor(),
             }}
@@ -175,16 +182,16 @@ const TopSection = ({
         </View>
         <View
           style={{
-            marginTop: 5,
-            marginLeft: theme.localizationRtl ? 5 : 0,
+            marginTop: hwrosh(5),
+            marginLeft: theme.localizationRtl ? wwrosw(5) : 0,
             flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
           }}
         >
           <Text
             style={{
-              fontSize: 12,
+              fontSize: fontRatio(12),
               fontWeight: "400",
-              marginRight: 5,
+              marginRight: wwrosw(5),
               color: theme.baseTextColor(),
             }}
           >
@@ -225,9 +232,9 @@ const TopSection = ({
             <View style={styles.multiplicationSignText}>
               <Text
                 style={{
-                  fontSize: 30,
+                  fontSize: fontRatio(30),
                   fontWeight: "400",
-                  marginRight: 20,
+                  marginRight: wwrosw(20),
                   color: theme.baseTextColor(),
                 }}
               >
@@ -243,9 +250,9 @@ const TopSection = ({
               style={{
                 width: "100%",
                 backgroundColor: theme.baseTextColor(),
-                height: 2,
+                height: hwrosh(2),
               }}
-            ></View>
+            />
             <View>
               <Text
                 style={[styles.totalText, { color: theme.secondaryColor() }]}
@@ -300,7 +307,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 0,
   },
   topRightSection: {
-    margin: 5,
+    margin: averageRatio(5),
     position: "absolute",
     left: productCardWidth / 2,
     width: productCardWidth / 2,
@@ -310,14 +317,14 @@ const styles = StyleSheet.create({
   },
   priceContainerStyle: {
     //TODO:  check this width use set in constant
-    width: 120,
+    width: wwrosw(120),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
     flexDirection: "row",
   },
   multiplyViewContainerStyle: {
-    width: 120,
+    width: wwrosw(120),
     marginTop: 3,
     justifyContent: "center",
     alignContent: "center",
@@ -327,13 +334,13 @@ const styles = StyleSheet.create({
     fontSize: inCalculationTextSize,
     fontWeight: "bold",
     color: theme.secondary,
-    margin: 5,
+    margin: averageRatio(5),
   },
   totalText: {
-    fontSize: 30,
+    fontSize: fontRatio(30),
     fontWeight: "bold",
     color: theme.secondary,
-    margin: 5,
+    margin: averageRatio(5),
     direction: "rtl",
   },
   priceCurrencyText: {

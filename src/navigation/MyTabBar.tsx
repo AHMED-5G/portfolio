@@ -25,7 +25,20 @@ import { AntDesign } from "@expo/vector-icons";
 import DrawerComponent from "./tabBarItems/DrawerComponent";
 import TabBarFooter from "./tabBarItems/TabBarFooter";
 import MyLine from "../components/MyLine";
-import { width } from "../constants/Layout";
+import {
+  averageRatio,
+  circularRatio,
+  hwrosh,
+  width,
+  wwrosw,
+} from "../constants/Layout";
+import {
+  drawerProfileCardHeight,
+  drawerContentContainerHeight,
+  footerContentContainerHeight,
+  totalOpenTabBarHeight,
+  totalMarginTopTabBarHeight,
+} from "./constants";
 interface TabBarProps {
   state: TabNavigationState<ParamListBase>;
   descriptors: BottomTabDescriptorMap;
@@ -40,7 +53,8 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
     Keyboard.addListener("keyboardDidShow", keyboardDidShow);
     Keyboard.addListener("keyboardDidHide", keyboardDidHide);
   }, []);
-  const barOpenHeight = 370;
+
+  const barOpenHeight = totalOpenTabBarHeight;
   let openTabProgress = useSharedValue(0);
   let iconRotate = useDerivedValue(() => {
     return interpolate(
@@ -98,8 +112,14 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
 
   const drawerContainerRStyle = useAnimatedStyle(() => {
     const toOpacity = interpolate(openTabProgress.value, [1, 0], [1, 0]);
+    const toHeight = interpolate(
+      openTabProgress.value,
+      [0, 1],
+      [0, totalOpenTabBarHeight]
+    );
     return {
       opacity: toOpacity,
+      height: toHeight,
     };
   });
 
@@ -108,7 +128,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
     <Animated.View
       style={[
         {
-          borderRadius: 10,
+          borderRadius: averageRatio(10),
           backgroundColor: theme.tabBarBackground(),
           flexDirection: "row",
           display: !keyboardStatus ? "flex" : "none",
@@ -146,14 +166,18 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             upIconReanimatedStyle,
           ]}
         >
-          <AntDesign name="up" size={44} color={theme.primaryText()} />
+          <AntDesign
+            name="up"
+            size={circularRatio(44)}
+            color={theme.primaryText()}
+          />
         </Animated.View>
       </TouchableOpacity>
       <View
         style={[
           {
             width: width * (1 - upButtonPercentage),
-            marginBottom: 20,
+            marginBottom: hwrosh(20),
           },
         ]}
       >
@@ -165,7 +189,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
               justifyContent: "center",
               alignContent: "center",
               alignItems: "center",
-              height: 48,
+              // height: hwrosh(48),
             },
             tabBarTopSectionRStyle,
           ]}
@@ -216,10 +240,8 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
                   alignItems: "center",
                   alignContent: "center",
                   justifyContent: "center",
-                  width: 58,
-                  height: 58,
-
-                  // backgroundColor: "pink",
+                  width: wwrosw(58),
+                  height: hwrosh(58),
                 }}
                 key={label.toString()}
               >
@@ -237,17 +259,15 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
         <Animated.View
           style={[
             {
-              marginTop: 10,
-              flexDirection: "row",
-              justifyContent: "space-between",
+              marginTop: hwrosh(10),
             },
             drawerContainerRStyle,
           ]}
         >
           <DrawerComponent />
+          <MyLine lineStyle={{ marginTop: 0 }} />
+          <TabBarFooter />
         </Animated.View>
-        <MyLine lineStyle={{ marginTop: 0 }} />
-        <TabBarFooter />
       </View>
     </Animated.View>
   );

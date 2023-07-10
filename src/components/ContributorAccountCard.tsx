@@ -10,6 +10,7 @@ import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import * as Linking from "expo-linking";
 import { getContributorAccountName } from "../utils/helperFunctions";
 import { theme } from "../constants/myColors";
+import { circularRatio, hwrosh, wwrosw } from "../constants/Layout";
 
 type Props = {
   account: ContributorAccount;
@@ -20,7 +21,7 @@ type Props = {
 const getIconByAccountType = ({
   account,
   color = "black",
-  size = 38,
+  size = circularRatio(38),
 }: Props) => {
   switch (account.type) {
     case AccountTypes.Facebook:
@@ -103,8 +104,8 @@ const ContributorAccountCard = ({ account }: Props) => {
   return (
     <TouchableOpacity
       style={{
-        width: 48,
-        height: 48,
+        width: wwrosw(48),
+        height: hwrosh(48),
         // justifyContent: "center",
         alignContent: "center",
         alignItems: "center",

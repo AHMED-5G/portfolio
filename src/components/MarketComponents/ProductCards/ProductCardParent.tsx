@@ -16,6 +16,7 @@ import {
 import { useSharedValue, withTiming } from "react-native-reanimated";
 import { useAppSelector } from "../../../redux/Hooks/hooks";
 import { theme } from "../../../constants/myColors";
+import { hwrosh } from "../../../constants/Layout";
 
 type Props = {
   product: Product;
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: productCardWidth,
     // backgroundColor: "white",
-    marginTop: 20,
+    marginTop: hwrosh(20),
     // marginBottom: 20,
     borderRadius: productCardBorderRadius,
     height: productCardHeight,

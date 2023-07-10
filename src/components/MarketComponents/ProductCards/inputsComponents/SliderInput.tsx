@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import { myColors } from "../../../../constants/myColors";
 import Slider from "@react-native-community/slider";
+import { averageRatio } from "../../../../constants/Layout";
 
 type Props = {
   setCounter: React.Dispatch<React.SetStateAction<number>>;
@@ -35,10 +36,9 @@ export default SliderInput;
 
 const styles = StyleSheet.create({
   slierStyle: {
-    padding: 10,
+    padding: averageRatio(10),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-
   },
 });

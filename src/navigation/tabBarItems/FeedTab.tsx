@@ -4,6 +4,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { tabContainerStyle, tabColor, tabTextStyle } from "./styles";
 import TabText from "./TabText";
 import { theme } from "../../constants/myColors";
+import { circularRatio } from "../../constants/Layout";
 
 type Props = {
   isFocused: boolean;
@@ -16,7 +17,7 @@ const FeedTab = (props: Props) => {
       <MaterialCommunityIcons
         disabled
         name="newspaper-variant"
-        size={37}
+        size={circularRatio(37)}
         style={{
           transform: theme.iconLocalizationTransform(),
         }}

@@ -1,23 +1,23 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { Feather, Fontisto, FontAwesome5 } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import { myColors, theme } from "../../constants/myColors";
 import { i18n } from "../../translation/i18n";
-import {
-  getRandomOneItemFromList,
-  shuffleArray,
-} from "../../utils/helperFunctions";
-import { contributors } from "../../../dummy/Contributors";
 import DrawerProfileCard from "../../components/DrawerProfileCard";
-import { User } from "../../types";
 import MyLine from "../../components/MyLine";
-import { width } from "../../constants/Layout";
-import { transform } from "@babel/core";
+import {
+  circularRatio,
+  fontRatio,
+  hwrosh,
+  wwrosw,
+} from "../../constants/Layout";
+import {
+  drawerContentContainerHeight,
+  drawerProfileCardHeight,
+} from "../constants";
 
-type Props = {};
-
-const DrawerComponent = (props: Props) => {
-  // const userData = getRandomOneItemFromList(contributors) as User;
+const DrawerComponent = () => {
+  const iconRadius = circularRatio(37);
   return (
     <View style={{ width: "100%" }}>
       <View
@@ -26,57 +26,60 @@ const DrawerComponent = (props: Props) => {
           alignContent: "flex-start",
           alignItems: "flex-start",
           flexDirection: "row",
-          marginLeft: 20,
+          marginLeft: wwrosw(20),
+          height: drawerProfileCardHeight,
         }}
       >
         <DrawerProfileCard />
       </View>
       <MyLine />
-      <TouchableOpacity style={styles.drawerItemContainer}>
-        <View style={styles.drawerIconContainer}>
-          <Feather name="user" color={theme.iconColor()} size={37} />
-        </View>
-        <View style={styles.drawerTextContainer}>
-          <Text
-            style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
-          >
-            {i18n.t("profile")}
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.drawerItemContainer, { flexDirection: "row" }]}
-      >
-        <View style={styles.drawerIconContainer}>
-          <Feather name="mail" color={theme.iconColor()} size={37} />
-        </View>
-        <View style={styles.drawerTextContainer}>
-          <Text
-            style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
-          >
-            {i18n.t("messages")}
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity style={[styles.drawerItemContainer]}>
-        <View
-          style={[
-            styles.drawerIconContainer,
-            {
-              transform: theme.iconLocalizationTransform(),
-            },
-          ]}
+      <View style={styles.drawerContentContainer}>
+        <TouchableOpacity style={styles.drawerItemContainer}>
+          <View style={styles.drawerIconContainer}>
+            <Feather name="user" color={theme.iconColor()} size={iconRadius} />
+          </View>
+          <View style={styles.drawerTextContainer}>
+            <Text
+              style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
+            >
+              {i18n.t("profile")}
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.drawerItemContainer, { flexDirection: "row" }]}
         >
-          <Feather name="users" size={37} color={theme.iconColor()} />
-        </View>
-        <View style={styles.drawerTextContainer}>
-          <Text
-            style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
+          <View style={styles.drawerIconContainer}>
+            <Feather name="mail" color={theme.iconColor()} size={iconRadius} />
+          </View>
+          <View style={styles.drawerTextContainer}>
+            <Text
+              style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
+            >
+              {i18n.t("messages")}
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.drawerItemContainer]}>
+          <View
+            style={[
+              styles.drawerIconContainer,
+              {
+                transform: theme.iconLocalizationTransform(),
+              },
+            ]}
           >
-            {i18n.t("friends")}
-          </Text>
-        </View>
-      </TouchableOpacity>
+            <Feather name="users" size={iconRadius} color={theme.iconColor()} />
+          </View>
+          <View style={styles.drawerTextContainer}>
+            <Text
+              style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
+            >
+              {i18n.t("friends")}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -84,36 +87,37 @@ const DrawerComponent = (props: Props) => {
 export default DrawerComponent;
 
 const styles = StyleSheet.create({
+  drawerContentContainer: {
+    height: drawerContentContainerHeight,
+  },
   drawerItemContainer: {
-    marginLeft: 10,
-    marginBottom: 10,
+    marginLeft: wwrosw(10),
+    marginBottom: hwrosh(10),
     flexDirection: "row",
   },
   drawerIconContainer: {
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    width: 48,
-    height: 48,
+    width: wwrosw(48),
+    height: hwrosh(48),
   },
   drawerTextContainer: {
-    marginLeft: 10,
+    marginLeft: wwrosw(10),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
   },
   drawerItemText: {
-    fontSize: 22,
+    fontSize: fontRatio(22),
     color: myColors.black,
     fontWeight: "600",
   },
   drawerItemIconStyle: {
-    // fontSize: 32,
-    // color: myColors.black,
-    width: 40,
-    height: 40,
-    maxWidth: 40,
-    maxHeight: 40,
+    width: wwrosw(40),
+    height: hwrosh(40),
+    maxWidth: wwrosw(40),
+    maxHeight: hwrosh(40),
     overflow: "hidden",
   },
 });

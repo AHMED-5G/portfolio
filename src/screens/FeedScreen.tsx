@@ -2,16 +2,14 @@ import {
   FlatList,
   StyleSheet,
   View,
-  Text,
   RefreshControl,
   ViewToken,
 } from "react-native";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Post, RootTabScreenProps } from "../types";
 import { mergePosts } from "../../dummy/postsDummy/postsDummy";
-import { myColors, theme } from "../constants/myColors";
+import { theme } from "../constants/myColors";
 import { PostComponent } from "../components/postComponents/PostComponent";
-import { width } from "../constants/Layout";
 import { shuffleArray } from "../utils/helperFunctions";
 import { Audio } from "expo-av";
 import { refreshSound } from "../../assets/sounds";
@@ -79,7 +77,6 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
       style={{
         flex: 1,
         backgroundColor: theme.baseBackground(),
-        // marginBottom: 5,
       }}
     >
       <SimpleHeader title={i18n.t("timeLine")} />

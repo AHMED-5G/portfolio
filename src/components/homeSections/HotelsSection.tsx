@@ -1,15 +1,13 @@
 import { StyleSheet, View, FlatList } from "react-native";
 import React from "react";
-
 import { Hotel, RootStackParamList } from "../../types";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { hotels } from "../../../dummy/hotels";
 import { i18n } from "../../translation/i18n";
-import { shuffleArray } from "../../utils/helperFunctions";
 import HotelCard from "../HotelCard";
 import HomeSectionTitle from "./HomeSectionTitle";
-import { theme } from "../../constants/myColors";
 import HomeSectionContainer from "./HomeSectionContainer";
+import { hwrosh } from "../../constants/Layout";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Home", undefined>;
@@ -22,7 +20,7 @@ const HotelsSection = ({ navigation }: Props) => {
         data={hotels}
         horizontal
         renderItem={({ item }) => (
-          <View style={{ paddingTop: 10, paddingBottom: 10 }}>
+          <View style={{ paddingTop: hwrosh(10), paddingBottom: hwrosh(10) }}>
             <HotelCard hotel={item} />
           </View>
         )}
@@ -43,6 +41,6 @@ export default HotelsSection;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
+    marginTop: hwrosh(10),
   },
 });

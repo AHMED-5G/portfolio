@@ -1,6 +1,6 @@
 import { StyleSheet, View, Image } from "react-native";
 import React, { useState } from "react";
-import { width } from "../../constants/Layout";
+import { hwrosh, width } from "../../constants/Layout";
 import { theme } from "../../constants/myColors";
 import MyCustomSkeleton from "../MyCustomSkeleton";
 
@@ -13,8 +13,8 @@ const HomeSingleImage = ({ uri }: Props) => {
   return (
     <View
       style={{
-        marginTop: 5,
-        flexDirection: theme.localizationFlexDirection,
+        marginTop: hwrosh(5),
+        flexDirection: "row",
       }}
     >
       {imageLoading && (
@@ -51,7 +51,7 @@ export default HomeSingleImage;
 
 const styles = StyleSheet.create({
   image: {
-    height: 200,
+    height: hwrosh(200),
     width: imageWidth,
     borderRadius: theme.borderRadius,
   },

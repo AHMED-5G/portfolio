@@ -12,6 +12,12 @@ import {
 } from "react-native";
 import { theme } from "../../constants/myColors";
 import LoadingIndicator from "./LoadingIndicator";
+import {
+  circularRatio,
+  fontRatio,
+  hwrosh,
+  wwrosw,
+} from "../../constants/Layout";
 interface ButtonProps {
   onPress: (event: GestureResponderEvent) => void | undefined | Promise<void>;
   disabled?: boolean;
@@ -49,16 +55,20 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
                   : props.color
                   ? props.color
                   : theme.actionButtonBackground(),
-                width: props.width ? props.width : props.circle ? 100 : 244,
+                width: props.width
+                  ? props.width
+                  : props.circle
+                  ? wwrosw(100)
+                  : wwrosw(244),
                 height: props.height
                   ? props.height
                   : props.square || props.circle
                   ? props.width
                     ? props.width
                     : props.circle
-                    ? 100
-                    : 244
-                  : 55,
+                    ? hwrosh(100)
+                    : hwrosh(244)
+                  : hwrosh(55),
                 borderRadius: props.borderRadius
                   ? props.borderRadius
                   : props.circle
@@ -72,7 +82,9 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
               props.style,
             ]}
           >
-            <View style={[{ marginRight: 4 }, props.iconContainerStyle]}>
+            <View
+              style={[{ marginRight: wwrosw(4) }, props.iconContainerStyle]}
+            >
               <Text>{props.leftIcon}</Text>
             </View>
             <View>
@@ -80,7 +92,7 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
                 {props.title}
               </Text>
             </View>
-            <View style={[{ marginLeft: 4 }, props.iconContainerStyle]}>
+            <View style={[{ marginLeft: wwrosw(4) }, props.iconContainerStyle]}>
               <Text>{props.icon}</Text>
             </View>
           </View>
@@ -91,7 +103,7 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
         <LoadingIndicator
           color={props.color}
           containerStyle={props.style}
-          size={props.width ? +props.width / 2 : 40}
+          size={props.width ? +props.width / 2 : circularRatio(40)}
         />
       )}
     </View>
@@ -100,8 +112,8 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 244,
-    height: 55,
+    width: wwrosw(244),
+    height: hwrosh(55),
     alignItems: "center",
     justifyContent: "center",
     alignContent: "center",
@@ -111,7 +123,7 @@ const styles = StyleSheet.create({
   titleText: {
     color: theme.actionColorText,
     fontWeight: "bold",
-    fontSize: 28,
+    fontSize: fontRatio(28),
   },
 });
 

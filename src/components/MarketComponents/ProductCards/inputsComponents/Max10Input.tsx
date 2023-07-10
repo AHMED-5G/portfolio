@@ -6,7 +6,7 @@ import {
   Pressable,
   FlatList,
 } from "react-native";
-import React from "react";
+import React, { memo } from "react";
 import { theme } from "../../../../constants/myColors";
 import { AntDesign } from "@expo/vector-icons";
 import Animated, {
@@ -14,10 +14,16 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
-  withTiming,
 } from "react-native-reanimated";
 import { productCardWidth } from "../style";
 import { Extrapolate } from "react-native-reanimated";
+import {
+  averageRatio,
+  circularRatio,
+  fontRatio,
+  hwrosh,
+  wwrosw,
+} from "../../../../constants/Layout";
 
 type Props = {
   counter: number;
@@ -25,18 +31,17 @@ type Props = {
 };
 
 const Max10Input = ({ setCounter, counter }: Props) => {
-
   const openMiniNumPadProgress = useSharedValue(0);
-  const iconSize = 39;
-  const initialContainerHeight = 60;
-  const finalContainerHeight = 80;
-  const plusMinusInitialWidth = productCardWidth / 2 + 30;
-
+  const iconSize = circularRatio(39);
+  const initialContainerHeight = hwrosh(60);
+  const finalContainerHeight = hwrosh(80);
+  const plusMinusInitialWidth = productCardWidth / 2 + wwrosw(30);
+  const widthMargin = wwrosw(20);
   const miniNumPadRStyle = useAnimatedStyle(() => {
     const toWidth = interpolate(
       openMiniNumPadProgress.value,
       [0, 1],
-      [0, productCardWidth - 20],
+      [0, productCardWidth - widthMargin],
       Extrapolate.CLAMP
     );
     const toHeight = interpolate(
@@ -54,7 +59,7 @@ const Max10Input = ({ setCounter, counter }: Props) => {
     const toWidth = interpolate(
       openMiniNumPadProgress.value,
       [0, 1],
-      [plusMinusInitialWidth, productCardWidth - 20],
+      [plusMinusInitialWidth, productCardWidth - widthMargin],
       Extrapolate.CLAMP
     );
     const toHeight = interpolate(
@@ -122,7 +127,7 @@ const Max10Input = ({ setCounter, counter }: Props) => {
           {
             width: plusMinusInitialWidth,
             height: initialContainerHeight,
-            borderRadius: 10,
+            borderRadius: averageRatio(10),
             borderWidth: 0.7,
             borderColor: theme.borderColor,
             justifyContent: "center",
@@ -153,7 +158,7 @@ const Max10Input = ({ setCounter, counter }: Props) => {
               setCounter(10);
             }}
             accessibilityHint="add one or long Pres to add 10"
-            style={[styles.iconContainer, { marginLeft: 5 }]}
+            style={[styles.iconContainer, { marginLeft: wwrosw(5) }]}
           >
             <AntDesign
               disabled
@@ -166,11 +171,11 @@ const Max10Input = ({ setCounter, counter }: Props) => {
           </TouchableOpacity>
           <TouchableOpacity
             style={{
-              width: 48,
-              height: 48,
-              borderRadius: 10,
+              width: wwrosw(48),
+              height: hwrosh(48),
+              borderRadius: averageRatio(10),
               backgroundColor: "#EEE",
-              margin: 5,
+              margin: averageRatio(5),
               justifyContent: "center",
               alignContent: "center",
               alignItems: "center",
@@ -184,10 +189,10 @@ const Max10Input = ({ setCounter, counter }: Props) => {
               <Animated.Text
                 style={[
                   {
-                    fontSize: 24,
+                    fontSize: fontRatio(24),
                     fontWeight: "600",
-                    marginLeft: 10,
-                    marginRight: 10,
+                    marginLeft: wwrosw(10),
+                    marginRight: wwrosw(10),
                   },
                   oneTextRStyle,
                 ]}
@@ -208,7 +213,7 @@ const Max10Input = ({ setCounter, counter }: Props) => {
               setCounter(1);
             }}
             accessibilityHint="remove one or long Pres to reset to 1"
-            style={[styles.iconContainer, { marginRight: 5 }]}
+            style={[styles.iconContainer, { marginRight: wwrosw(5) }]}
           >
             <AntDesign
               disabled
@@ -223,7 +228,7 @@ const Max10Input = ({ setCounter, counter }: Props) => {
             {
               width: 0,
               height: 0,
-              borderRadius: 10,
+              borderRadius: averageRatio(10),
               borderWidth: 0.7,
               borderColor: theme.borderColor,
               justifyContent: "center",
@@ -253,7 +258,7 @@ const Max10Input = ({ setCounter, counter }: Props) => {
                     setCounter(item);
                   }}
                 >
-                  <Text style={{ fontSize: 26, fontWeight: "bold" }}>
+                  <Text style={{ fontSize: fontRatio(26), fontWeight: "bold" }}>
                     {item}
                   </Text>
                 </Pressable>
@@ -268,30 +273,26 @@ const Max10Input = ({ setCounter, counter }: Props) => {
   );
 };
 
-export default Max10Input;
+export default memo(Max10Input);
 
 const styles = StyleSheet.create({
   iconContainer: {
-    width: 48,
-    height: 48,
-
-    // backgroundColor: "pink",
+    width: wwrosw(48),
+    height: hwrosh(48),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-
-    // marginLeft: 15,
-    // marginRight: 15,
   },
   calculatorItem: {
-    width: 58,
-    height: 58,
-    borderRadius: 10,
+    width: wwrosw(58),
+    height: hwrosh(58),
+    borderRadius: averageRatio(10),
     backgroundColor: "#EEE",
-    margin: 5,
+    margin: averageRatio(5),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
+    
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -299,7 +300,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
-
     elevation: 3,
   },
 });

@@ -17,7 +17,7 @@ type Props = {
 };
 
 const PostComponent = ({ post, isViewable, index }: Props) => {
-  const [whoIsRunningIam, setWhoIsRunningIam] = useState<string | null>(null);
+
   return (
     <View
       style={[

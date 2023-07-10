@@ -12,6 +12,7 @@ import SimpleHeader from "../components/SimpleHeader";
 import HomeSectionContainer from "../components/homeSections/HomeSectionContainer";
 import { myColors, theme } from "../constants/myColors";
 import Slider from "@react-native-community/slider";
+import { fontRatio, hwrosh } from "../constants/Layout";
 type Props = StackScreenProps<RootStackParamList, "Home">;
 
 function Home({ navigation }: Props) {
@@ -21,7 +22,13 @@ function Home({ navigation }: Props) {
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{
-          marginBottom: 5,
+          marginBottom: hwrosh(5),
+        }}
+        contentContainerStyle={{
+          justifyContent: "center",
+          alignContent: "center",
+
+          // alignItems: "center",
         }}
       >
         <MarketSection navigation={navigation} />
@@ -46,5 +53,5 @@ function Home({ navigation }: Props) {
 export { Home };
 
 const styles = StyleSheet.create({
-  versionText: { fontSize: 18, fontWeight: "800" },
+  versionText: { fontSize: fontRatio(18), fontWeight: "800" },
 });

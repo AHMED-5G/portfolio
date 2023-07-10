@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { theme } from "../../constants/myColors";
-import { width } from "../../constants/Layout";
+import { fontRatio, hwrosh, width, wwrosw } from "../../constants/Layout";
 
 type Props = { text: string };
 
@@ -19,20 +19,20 @@ const HomeSectionTitle = ({ text }: Props) => {
 };
 
 export default HomeSectionTitle;
-const marginValue = 10;
+
 const styles = StyleSheet.create({
   hotelsTextContainer: {
-    marginTop: 10,
-    marginBottom: 5,
+    marginTop: hwrosh(10),
+    marginBottom: hwrosh(5),
     alignSelf: "flex-start",
     width: width,
   },
   sectionTitleText: {
-    fontSize: 25,
+    fontSize: fontRatio(25),
     fontWeight: "700",
     alignSelf: "flex-start",
-    marginTop: 10,
-    marginLeft: marginValue,
-    marginRight: marginValue,
+    marginTop: hwrosh(10),
+    marginLeft: wwrosw(10),
+    marginRight: wwrosw(10),
   },
 });

@@ -16,13 +16,13 @@ const ReadingThemComboComponent = ({
   setSelectedCombo,
   fontSize,
 }: Props) => {
+  
   return (
     <TouchableOpacity
       onPress={() => {
         setSelectedCombo
           ? setSelectedCombo({ ...colors, fontSize })
           : undefined;
-        // setSelectedCombo ? setSelectedCombo(colors) : undefined;
       }}
       disabled={setSelectedCombo ? false : true}
       style={[

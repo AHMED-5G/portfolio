@@ -1,6 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { theme } from "../../constants/myColors";
+import {
+  averageRatio,
+  fontRatio,
+  hwrosh,
+  wwrosw,
+} from "../../constants/Layout";
 
 type Props = {};
 
@@ -14,10 +20,12 @@ const LongestDetails = (props: Props) => {
         // alignItems: "center",
       }}
     >
-      <View         style={[
+      <View
+        style={[
           styles.cardContainer,
           { backgroundColor: theme.cardBackground() },
-        ]}>
+        ]}
+      >
         <View
           style={{
             flexDirection: "row",
@@ -26,7 +34,7 @@ const LongestDetails = (props: Props) => {
           <Text
             style={{
               color: theme.cardText(),
-              fontSize: 22,
+              fontSize: fontRatio(22),
               fontWeight: "bold",
             }}
           >
@@ -36,9 +44,9 @@ const LongestDetails = (props: Props) => {
             style={{
               marginLeft: 4,
               color: theme.cardText(),
-              fontSize: 18,
+              fontSize: fontRatio(18),
               fontWeight: "500",
-              lineHeight: 32,
+              lineHeight: fontRatio(32),
             }}
           >
             m
@@ -48,7 +56,7 @@ const LongestDetails = (props: Props) => {
           <Text
             style={{
               color: theme.cardText(),
-              fontSize: 18,
+              fontSize: fontRatio(18),
               fontWeight: "500",
             }}
           >
@@ -56,10 +64,12 @@ const LongestDetails = (props: Props) => {
           </Text>
         </View>
       </View>
-      <View         style={[
+      <View
+        style={[
           styles.cardContainer,
           { backgroundColor: theme.cardBackground() },
-        ]}>
+        ]}
+      >
         <View
           style={{
             flexDirection: "row",
@@ -68,7 +78,7 @@ const LongestDetails = (props: Props) => {
           <Text
             style={{
               color: theme.cardText(),
-              fontSize: 22,
+              fontSize: fontRatio(22),
               fontWeight: "bold",
             }}
           >
@@ -79,7 +89,7 @@ const LongestDetails = (props: Props) => {
           <Text
             style={{
               color: theme.cardText(),
-              fontSize: 18,
+              fontSize: fontRatio(18),
               fontWeight: "500",
             }}
           >
@@ -101,7 +111,7 @@ const LongestDetails = (props: Props) => {
           <Text
             style={{
               color: theme.cardText(),
-              fontSize: 22,
+              fontSize: fontRatio(22),
               fontWeight: "bold",
             }}
           >
@@ -112,7 +122,7 @@ const LongestDetails = (props: Props) => {
           <Text
             style={{
               color: theme.cardText(),
-              fontSize: 18,
+              fontSize: fontRatio(18),
               fontWeight: "500",
             }}
           >
@@ -128,11 +138,10 @@ export default LongestDetails;
 
 const styles = StyleSheet.create({
   cardContainer: {
-    width: 120,
-    height: 100,
-    margin: 5,
-    borderRadius: 10,
-
+    width: wwrosw(120),
+    height: hwrosh(100),
+    margin: averageRatio(5),
+    borderRadius: averageRatio(10),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

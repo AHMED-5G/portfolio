@@ -32,6 +32,7 @@ import { theme } from "../constants/myColors";
 import LoadingIndicator from "../components/mini/LoadingIndicator";
 import { View } from "../components/Themed";
 import { Appearance } from "react-native";
+import { windowHeight } from "../constants/Layout";
 export default function Navigation({
   colorScheme,
 }: {

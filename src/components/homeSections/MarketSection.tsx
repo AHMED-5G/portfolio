@@ -6,6 +6,7 @@ import HomeSectionTitle from "./HomeSectionTitle";
 import { i18n } from "../../translation/i18n";
 import HomeSingleImage from "./HomeSingleImage";
 import HomeSectionContainer from "./HomeSectionContainer";
+import { hwrosh } from "../../constants/Layout";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Home", undefined>;
@@ -36,6 +37,6 @@ export default MarketSection;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 5,
+    marginTop: hwrosh(5),
   },
 });

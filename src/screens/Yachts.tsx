@@ -3,7 +3,13 @@ import React from "react";
 import { RootStackParamList } from "../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { yachtImages, yachtInterior } from "../../dummy/yachtDummy/images";
-import { height, width } from "../constants/Layout";
+import {
+  averageRatio,
+  fontRatio,
+  height,
+  hwrosh,
+  width,
+} from "../constants/Layout";
 import Animated, {
   Extrapolation,
   interpolate,
@@ -22,18 +28,18 @@ import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 
 type Props = StackScreenProps<RootStackParamList, "Yachts">;
 
-const longestMarinTop = height * 0.15;
+const longestMarinTop = height * hwrosh(0.15);
 const leftContainerHeight = height * 0.7;
 const rightSideHeight = height;
-const imageSize = 210;
+const imageSize = averageRatio(210);
 const galleryScaleUpRatioNumber = 1.5;
 const galleryScaleUpRatio = imageSize * galleryScaleUpRatioNumber;
 const imageLeft = width / 2 - imageSize / 2;
 const bigImageLeft = width / 2 - galleryScaleUpRatio / 2;
-const informationCardContainerHeight = 120;
-const imageInTopHeight = height / 2 - 20;
+const informationCardContainerHeight = hwrosh(120);
+const imageInTopHeight = height / 2 - hwrosh(20);
 const galleryContainerHeight = imageSize;
-const BarTitleFontSize = 25;
+const BarTitleFontSize = fontRatio(25);
 
 function Yachts({ navigation }: Props) {
   const openLongestProgress = useSharedValue(0);
@@ -199,7 +205,7 @@ function Yachts({ navigation }: Props) {
     });
 
     function openCloseGallery(value = 1, duration = 300) {
-      openGalleryProgress.value = withTiming(value, { duration: duration });
+      openGalleryProgress.value = withTiming(value, { duration });
     }
 
     function lastStepForImageRStyle(
@@ -287,8 +293,7 @@ function Yachts({ navigation }: Props) {
         style={{
           flex: 1,
           flexDirection: theme.localizationRtl ? "row-reverse" : "row",
-          // justifyContent: "space-evenly",
-        }}
+       }}
       >
         <Animated.View style={[styles.longestRStyle, longestRStyle]}>
           <TouchableOpacity
@@ -423,6 +428,7 @@ function Yachts({ navigation }: Props) {
       </View>
     );
   };
+
   return (
     <ScreenWithCustomBottomTab
       content={<Content />}
@@ -439,6 +445,7 @@ const styles = StyleSheet.create({
     height: leftContainerHeight,
     width: width / 2,
     marginLeft: 2,
+    zIndex: 1,
   },
   rightSide: {
     position: "absolute",
@@ -474,6 +481,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     left: imageLeft,
     backgroundColor: "white",
-    borderRadius: 3,
+    borderRadius: averageRatio(3),
   },
 });
