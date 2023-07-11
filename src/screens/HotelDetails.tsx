@@ -64,7 +64,7 @@ function HotelDetails({ navigation, route }: Props) {
       }, 3000);
     }
     return (
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
         <ImageSliderComponent
           {...{ hotel, requestedIndex, setCurrentImageIndex }}
         />

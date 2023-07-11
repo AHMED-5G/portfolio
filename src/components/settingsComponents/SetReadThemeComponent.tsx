@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, FlatList } from "react-native";
 import React, { useState } from "react";
 import ReadingThemComboComponent from "./ReadingThemComboComponent";
 import { InitialStateInterface, ReadingThemesCombo } from "../../types";
-import { width } from "../../constants/Layout";
+import { averageRatio, hwrosh, width, wwrosw } from "../../constants/Layout";
 import { myColors, readingThemes, theme } from "../../constants/myColors";
 import MedButton from "../mini/MedButton";
 import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
@@ -89,7 +89,7 @@ const SetReadThemeComponent = (props: Props) => {
       </View>
       <View
         style={{
-          margin: 10,
+          margin: averageRatio(10),
           flexDirection: "row",
           justifyContent: "space-between",
           alignContent: "center",
@@ -109,10 +109,10 @@ const SetReadThemeComponent = (props: Props) => {
             selectedCombo.backGroundColor == savedReadingTheme.backGroundColor
           }
           title={i18n.t("save")}
-          width={100}
+          width={wwrosw(100)}
           color={theme.actionColor}
           textStyle={{ color: theme.actionColorText }}
-          style={{ borderRadius: 10 }}
+          style={{ borderRadius: averageRatio(10) }}
         />
         <View>
           <ReadingThemComboComponent
@@ -130,26 +130,26 @@ export default SetReadThemeComponent;
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 10,
+    borderRadius: averageRatio(10),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    marginTop: 10,
+    marginTop: hwrosh(10),
     overflow: "hidden",
   },
   exampleContainer: {
-    marginTop: 20,
-    width: width - 20,
-    height: 100,
+    marginTop: hwrosh(20),
+    width: width - wwrosw(20),
+    height: hwrosh(100),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    marginBottom: 3,
-    borderRadius: 10,
+    marginBottom: hwrosh(3),
+    borderRadius: averageRatio(10),
   },
   sliderContainer: {
-    marginTop: 20,
-    width: width - 20,
+    marginTop: hwrosh(20),
+    width: width - wwrosw(20),
     justifyContent: "center",
     alignContent: "center",
   },

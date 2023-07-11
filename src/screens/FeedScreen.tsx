@@ -15,6 +15,7 @@ import { Audio } from "expo-av";
 import { refreshSound } from "../../assets/sounds";
 import SimpleHeader from "../components/SimpleHeader";
 import { i18n } from "../translation/i18n";
+import { hwrosh } from "../constants/Layout";
 
 function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
   const [posts, setPosts] = useState<Post[]>(mergePosts.slice(0, 10));
@@ -129,6 +130,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     overflow: "hidden",
     flex: 1,
-    marginBottom: 6,
+    marginBottom: hwrosh(6),
   },
 });

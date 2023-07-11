@@ -8,11 +8,7 @@ import {
   ProductTypes,
 } from "../../../types";
 import BottomSection from "./BottomSection";
-import {
-  productCardWidth,
-  productCardBorderRadius,
-  productCardHeight,
-} from "./style";
+import { productCardWidth, productCardBorderRadius } from "./style";
 import { useSharedValue, withTiming } from "react-native-reanimated";
 import { useAppSelector } from "../../../redux/Hooks/hooks";
 import { theme } from "../../../constants/myColors";
@@ -124,6 +120,6 @@ const styles = StyleSheet.create({
     marginTop: hwrosh(20),
     // marginBottom: 20,
     borderRadius: productCardBorderRadius,
-    height: productCardHeight,
+    height: hwrosh(420),
   },
 });

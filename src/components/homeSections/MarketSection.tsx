@@ -25,6 +25,7 @@ const MarketSection = ({ navigation }: Props) => {
       </TouchableOpacity>
     );
   }
+
   return (
     <View style={styles.container}>
       <HomeSectionTitle text={i18n.t("market")} />

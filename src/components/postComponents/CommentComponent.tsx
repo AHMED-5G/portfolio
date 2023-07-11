@@ -1,14 +1,20 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React, { useState } from "react";
-import { MaterialIcons } from "@expo/vector-icons";
-import { width } from "../../constants/Layout";
+import {
+  averageRatio,
+  circularRatio,
+  fontRatio,
+  hwrosh,
+  width,
+  wwrosw,
+} from "../../constants/Layout";
 import { PostComment } from "../../types";
 import LikeComponent from "./LikeComponent";
-import { generateRandomBoolean } from "../../utils/helperFunctions";
 import { myColors, theme } from "../../constants/myColors";
 
 type Props = { comment: PostComment };
 
+const authImageRadius = circularRatio(50);
 const CommentComponent = ({ comment }: Props) => {
   const [readMore, setReadMore] = useState(false);
   const [lengthOfLiens, setLengthOfLiens] = useState(0);
@@ -28,14 +34,14 @@ const CommentComponent = ({ comment }: Props) => {
           alignItems: "center",
         }}
       >
-        <View style={{ marginLeft: 5 }}>
+        <View style={{ marginLeft: wwrosw(5) }}>
           <Text
             onTextLayout={(event) => {
               setLengthOfLiens(event.nativeEvent.lines.length);
             }}
             numberOfLines={readMore ? undefined : NumberOfLiensToShow}
             style={{
-              fontSize: 18,
+              fontSize: fontRatio(18),
               fontWeight: "400",
               color: theme.baseTextColor(),
             }}
@@ -75,42 +81,47 @@ const styles = StyleSheet.create({
   commentContainer: {
     justifyContent: "space-between",
     alignItems: "center",
-    width: width - 40,
+    width: width - wwrosw(40),
     borderWidth: 0.7,
     borderColor: myColors.black,
-    marginLeft: 3,
-    borderRadius: 5,
+    marginLeft: wwrosw(3),
+    borderRadius: averageRatio(5),
   },
   commentAuthorContainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
   },
-  authorImage: { width: 50, height: 50, borderRadius: 50, margin: 10 },
-  authorNameText: { fontSize: 22, fontWeight: "700" },
+  authorImage: {
+    width: authImageRadius,
+    height: authImageRadius,
+    borderRadius: authImageRadius,
+    margin: averageRatio(10),
+  },
+  authorNameText: { fontSize: fontRatio(22), fontWeight: "700" },
   readLessContainer: {
     alignItems: "flex-end",
-    marginRight: 25,
-    marginTop: 10,
-    height: 48,
+    marginRight: wwrosw(25),
+    marginTop: hwrosh(10),
+    height: hwrosh(48),
   },
   readMoreContainer: {
     alignItems: "flex-end",
-    marginRight: 25,
-    marginTop: 10,
+    marginRight: wwrosw(25),
+    marginTop: hwrosh(10),
     width: "100%",
-    height: 48,
+    height: hwrosh(48),
   },
   readMoreLessText: {
-    fontSize: 16,
+    fontSize: fontRatio(16),
     fontWeight: "800",
   },
   favoriteContainer: {
     flexDirection: "row",
-    marginRight: 10,
+    marginRight: wwrosw(10),
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
-    height: 48,
+    height: hwrosh(48),
   },
 });

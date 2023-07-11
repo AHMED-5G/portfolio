@@ -1,11 +1,18 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
-import { EvilIcons, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+import { SimpleLineIcons } from "@expo/vector-icons";
 import { theme } from "../../constants/myColors";
 import { Audio } from "expo-av";
 import { showToast } from "../../utils/helperFunctions";
 import { noSound } from "../../../assets/sounds";
 import { i18n } from "../../translation/i18n";
+import {
+  averageRatio,
+  circularRatio,
+  hwrosh,
+  wwrosw,
+} from "../../constants/Layout";
+
 type Props = {
   shareCounter: number;
 };
@@ -48,8 +55,9 @@ const ShareComponent = ({ shareCounter }: Props) => {
           );
         }}
       >
-      <SimpleLineIcons name="share"
-          size={25}
+        <SimpleLineIcons
+          name="share"
+          size={circularRatio(25)}
           color={theme.iconColor()}
         />
         <Text
@@ -69,11 +77,11 @@ export default ShareComponent;
 const styles = StyleSheet.create({
   shareContainer: {
     flexDirection: "row",
-    margin: 5,
+    margin: averageRatio(5),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    height: 48,
-    width: 48,
+    height: hwrosh(48),
+    width: wwrosw(48),
   },
 });

@@ -1,4 +1,4 @@
-import { ImageURISource, StyleSheet, Text, View } from "react-native";
+import { ImageURISource, StyleSheet, View } from "react-native";
 import React from "react";
 import { DataType } from "react-native-image-slider-banner/src";
 import { width, height, averageRatio } from "../../constants/Layout";

@@ -13,6 +13,7 @@ import WriteCommentSection from "./WriteCommentSection";
 import { users } from "../../../dummy/Users";
 import { Audio } from "expo-av";
 import { comment2Sound } from "../../../assets/sounds";
+import { hwrosh } from "../../constants/Layout";
 type Props = {
   post: Post;
 };
@@ -74,7 +75,6 @@ const PostOptions = ({ post }: Props) => {
             writeCommentState,
             setWriteCommentState,
             sendComment,
-            
           }}
         />
         {!writeCommentState && <ShareComponent {...{ shareCounter }} />}
@@ -91,11 +91,10 @@ export default PostOptions;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    // flexDirection: "row",
     justifyContent: "space-between",
     alignContent: "space-between",
     alignItems: "center",
-    marginTop: 20,
+    marginTop: hwrosh(20),
   },
   optionsContainer: {
     width: "100%",

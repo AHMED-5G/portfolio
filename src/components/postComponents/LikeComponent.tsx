@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import React, { useCallback, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { myColors, theme } from "../../constants/myColors";
@@ -10,6 +10,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { Audio } from "expo-av";
 import { like2Sound } from "../../../assets/sounds/index";
+import { circularRatio, hwrosh, wwrosw } from "../../constants/Layout";
 type Props = {
   favoriteCounter: number;
   favoriteState: boolean;
@@ -58,7 +59,7 @@ const LikeComponent = ({
 
   return (
     <TouchableOpacity
-      style={{ height: 56, width: 56 }}
+      style={{ height: hwrosh(56), width: wwrosw(56) }}
       onPress={() => {
         if (favoriteState) {
           setFavoriteState(false);
@@ -92,14 +93,14 @@ const LikeComponent = ({
           <MaterialIcons
             disabled
             name="favorite-border"
-            size={28}
+            size={circularRatio(28)}
             color={theme.iconColor()}
           />
         ) : (
           <MaterialIcons
             disabled
             name="favorite"
-            size={28}
+            size={circularRatio(28)}
             color={myColors.redFavorite}
           />
         )}
@@ -113,13 +114,13 @@ export default LikeComponent;
 const styles = StyleSheet.create({
   favoriteContainer: {
     flexDirection: "row",
-    marginRight: 10,
+    marginRight: wwrosw(10),
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
-    height: 56,
-    width: 56,
-    marginLeft: 6,
+    height: hwrosh(56),
+    width: wwrosw(56),
+    marginLeft: wwrosw(6),
     overflow: "hidden",
   },
 });

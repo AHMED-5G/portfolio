@@ -6,10 +6,9 @@ import {
   getRandomIntBetweenTow,
 } from "../../utils/helperFunctions";
 import { theme } from "../../constants/myColors";
+import { averageRatio, wwrosw } from "../../constants/Layout";
 
-type Props = {};
-
-const DuringSevenDaysAgo = (props: Props) => {
+const DuringSevenDaysAgo = () => {
   const [duringSevenDaysAgo, setDuringSevenDaysAgo] = useState(
     Math.floor(+new Date() / 1000) - getRandomIntBetweenTow(1, 7) * 24 * 60 * 60
   );
@@ -18,8 +17,8 @@ const DuringSevenDaysAgo = (props: Props) => {
       style={{
         backgroundColor: theme.cardBackground(),
         alignSelf: "flex-start",
-        borderBottomLeftRadius: 15,
-        borderBottomRightRadius: 15,
+        borderBottomLeftRadius: averageRatio(15),
+        borderBottomRightRadius: averageRatio(15),
         elevation: 1,
         shadowColor: "#000",
         shadowOffset: {
@@ -31,7 +30,11 @@ const DuringSevenDaysAgo = (props: Props) => {
       }}
     >
       <View
-        style={{ alignItems: "flex-start", marginLeft: 12, marginRight: 12 }}
+        style={{
+          alignItems: "flex-start",
+          marginLeft: wwrosw(12),
+          marginRight: wwrosw(12),
+        }}
       >
         <Text style={{ fontWeight: "500", color: theme.baseTextColor() }}>
           {<TimeAgo time={new Date(duringSevenDaysAgo * 1000)} />}

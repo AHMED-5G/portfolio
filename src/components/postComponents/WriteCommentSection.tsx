@@ -12,7 +12,13 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { myColors, theme } from "../../constants/myColors";
-import { width } from "../../constants/Layout";
+import {
+  averageRatio,
+  circularRatio,
+  hwrosh,
+  width,
+  wwrosw,
+} from "../../constants/Layout";
 import FormTextInput from "../mini/FormTextInput";
 import { Post, PostComment } from "../../types";
 import { removeWhiteSpaceAtStart } from "../../utils/helperFunctions";
@@ -54,8 +60,13 @@ const WriteCommentSection = ({
         mainContainerStyle={{
           borderWidth: 0.5,
           borderColor: theme.borderColor,
-          borderRadius: 10,
+          borderRadius: averageRatio(10),
+          height: hwrosh(48),
         }}
+        style={{
+          height: hwrosh(48),
+        }}
+        height={hwrosh(48)}
         icon={
           writeCommentState ? (
             <MaterialIcons
@@ -67,7 +78,7 @@ const WriteCommentSection = ({
               accessibilityRole="button"
               name="cancel"
               accessibilityHint="cancel add comment"
-              size={34}
+              size={circularRatio(34)}
               color={theme.iconColor()}
             />
           ) : null
@@ -82,7 +93,11 @@ const WriteCommentSection = ({
             sendComment();
           }}
         >
-          <FontAwesome name="send" size={24} color={theme.iconColor()} />
+          <FontAwesome
+            name="send"
+            size={circularRatio(24)}
+            color={theme.iconColor()}
+          />
         </TouchableOpacity>
       )}
 
@@ -100,7 +115,7 @@ const WriteCommentSection = ({
           <MaterialCommunityIcons
             disabled
             name="comment-eye-outline"
-            size={30}
+            size={circularRatio(30)}
             color={theme.iconColor()}
             accessibilityHint={"show" + post.comments?.length + "comments"}
           />
@@ -108,7 +123,7 @@ const WriteCommentSection = ({
           <MaterialCommunityIcons
             disabled
             name="comment-off-outline"
-            size={28}
+            size={circularRatio(28)}
             color={theme.iconColor()}
             accessibilityHint={"hide comments"}
           />
@@ -130,26 +145,26 @@ export default WriteCommentSection;
 const styles = StyleSheet.create({
   commentContainer: {
     flexDirection: "row",
-    margin: 5,
+    margin: averageRatio(5),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    height: 48,
+    height: hwrosh(48),
   },
   sendIconContainer: {
-    height: 48,
-    width: 48,
+    height: hwrosh(48),
+    width: wwrosw(48),
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: 3,
+    marginLeft: wwrosw(3),
   },
   commentIconContainer: {
     flexDirection: "row",
-    marginLeft: 5,
+    marginLeft: wwrosw(5),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    height: 48,
-    width: 48,
+    height: hwrosh(48),
+    width: wwrosw(48),
   },
 });
