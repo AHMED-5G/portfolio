@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Image, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import React, { useState } from "react";
 import { Contributor, ContributorAccount } from "../types";
 import ContributorAccountCard from "./ContributorAccountCard";
@@ -11,6 +18,8 @@ import {
   hwrosh,
   wwrosw,
 } from "../constants/Layout";
+import Animated from "react-native-reanimated";
+import { useNavigation } from "@react-navigation/native";
 
 type Props = {
   contributor: Contributor;
@@ -19,69 +28,79 @@ const imageSize = circularRatio(80);
 const cardWidth = wwrosw(160);
 const ContributorCard = ({ contributor }: Props) => {
   const [imageLoading, setImageLoading] = useState(true);
-
+  const navigation = useNavigation();
   return (
-    <View
+    <Animated.View
+      sharedTransitionTag={contributor.id.toString()}
       style={[styles.container, { backgroundColor: theme.cardBackground() }]}
     >
-      <View style={styles.imageContainer}>
-        {imageLoading && (
-          <View
-            style={[
-              styles.image,
-              {
-                position: "absolute",
-                zIndex: 1,
-              },
-            ]}
-          >
-            <MyCustomSkeleton style={styles.image} />
-          </View>
-        )}
-        <Image
-          onLoadStart={() => {
-            setImageLoading(true);
-          }}
-          onLoad={() => {
-            setImageLoading(false);
-          }}
-          onLoadEnd={() => {
-            setImageLoading(false);
-          }}
-          resizeMode="cover"
-          style={styles.image}
-          source={{ uri: contributor.image }}
-        />
-      </View>
-      <View style={styles.nameContainer}>
-        <Text style={[styles.nameText, { color: theme.cardText() }]}>
-          {contributor.name}
-        </Text>
-      </View>
-      <View style={styles.titleContainer}>
-        <Text style={[styles.titleText, { color: theme.cardText() }]}>
-          {contributor.title}
-        </Text>
-      </View>
-      <View
+      <TouchableOpacity
         style={{
-          height: 1,
-          backgroundColor: theme.borderColor,
-          width: "100%",
+          alignItems: "center",
+          alignContent: "center",
+          justifyContent: "center",
         }}
-      />
-      <View style={styles.socialContainer}>
-        <FlatList
-          data={contributor.accounts.slice(0, 3)}
-          numColumns={4}
-          renderItem={({ item }: { item: ContributorAccount }) => (
-            <ContributorAccountCard account={item} />
+        // onPress={() => navigation.navigate("ContributorsDetails", contributor)}
+      >
+        <View style={styles.imageContainer}>
+          {imageLoading && (
+            <View
+              style={[
+                styles.image,
+                {
+                  position: "absolute",
+                  zIndex: 1,
+                },
+              ]}
+            >
+              <MyCustomSkeleton style={styles.image} />
+            </View>
           )}
-          keyExtractor={(item, index) => index.toString()}
-          showsVerticalScrollIndicator={false}
+          <Image
+            onLoadStart={() => {
+              setImageLoading(true);
+            }}
+            onLoad={() => {
+              setImageLoading(false);
+            }}
+            onLoadEnd={() => {
+              setImageLoading(false);
+            }}
+            resizeMode="cover"
+            style={styles.image}
+            source={{ uri: contributor.image }}
+          />
+        </View>
+        <View style={styles.nameContainer}>
+          <Text style={[styles.nameText, { color: theme.cardText() }]}>
+            {contributor.name}
+          </Text>
+        </View>
+        <View style={styles.titleContainer}>
+          <Text style={[styles.titleText, { color: theme.cardText() }]}>
+            {contributor.title}
+          </Text>
+        </View>
+        <View
+          style={{
+            height: 1,
+            backgroundColor: theme.borderColor,
+            width: "100%",
+          }}
         />
-      </View>
-    </View>
+        <View style={styles.socialContainer}>
+          <FlatList
+            data={contributor.accounts.slice(0, 3)}
+            numColumns={4}
+            renderItem={({ item }: { item: ContributorAccount }) => (
+              <ContributorAccountCard account={item} />
+            )}
+            keyExtractor={(item, index) => index.toString()}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+      </TouchableOpacity>
+    </Animated.View>
   );
 };
 
@@ -92,6 +111,7 @@ const styles = StyleSheet.create({
     width: cardWidth,
     marginRight: wwrosw(10),
     borderRadius: theme.borderRadius,
+    overflow: "hidden",
     alignItems: "center",
     alignContent: "center",
     justifyContent: "center",

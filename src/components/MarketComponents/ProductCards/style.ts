@@ -12,6 +12,7 @@ export default StyleSheet.create({
 });
 
 export const productCardWidth = width - wwrosw(20);
+// export const productCardHeight = hwrosh(470);
 export const productCardHeight = hwrosh(470);
 // export const productCardBorderRadius = 20;
 export const productCardBorderRadius = theme.borderRadius;

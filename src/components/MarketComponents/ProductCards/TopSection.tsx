@@ -64,11 +64,13 @@ const TopSection = ({
       [0, 1],
       [productCardWidth / 2, productCardWidth]
     );
+    
     const toHeight = interpolate(
       showImageProgress.value,
       [0, 1],
       [productCardHeight / 2, productCardHeight]
     );
+
     const toBorderBottomLeftRadius = interpolate(
       showImageProgress.value,
       [0, 1],

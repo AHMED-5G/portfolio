@@ -5,10 +5,7 @@ import {
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ColorValue, ImageSourcePropType } from "react-native";
-import {
-  UserConfigurationInterface,
-
-} from "../constants/myColors";
+import { UserConfigurationInterface } from "../constants/myColors";
 
 declare global {
   namespace ReactNavigation {
@@ -20,6 +17,7 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   NotFound: undefined;
   HotelDetails: Hotel;
+  ContributorsDetails: Contributor;
   Home: undefined;
   Horses: Horse[];
   HorseDetails: Horse;

@@ -1,8 +1,7 @@
-import { StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
+import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 import React, { ReactNode } from "react";
 import CustomBottomTab from "./CustomBottomTab";
 import { StackNavigationProp } from "@react-navigation/stack";
-
 import { RootStackParamList } from "../types";
 import { theme } from "../constants/myColors";
 

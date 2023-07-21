@@ -8,16 +8,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Platform, SafeAreaView, Text } from "react-native";
-import useColorScheme from "../hooks/useColorScheme";
-import Colors from "../constants/Colors";
+import { Platform, SafeAreaView } from "react-native";
 import {
   InitialStateInterface,
   RootStackParamList,
   RootTabParamList,
   RootTabScreenProps,
 } from "../types";
-
 import MyTabBar from "./MyTabBar";
 import { FeedScreen } from "../screens/FeedScreen";
 import HomeStackNavigator from "./HomeStackNavigatior/HomeStackNavigator";
@@ -31,20 +28,14 @@ import HotelDetails from "../screens/HotelDetails";
 import { theme } from "../constants/myColors";
 import LoadingIndicator from "../components/mini/LoadingIndicator";
 import { View } from "../components/Themed";
-import { Appearance } from "react-native";
-import { windowHeight } from "../constants/Layout";
-export default function Navigation({
-  colorScheme,
-}: {
-  colorScheme: ColorSchemeName;
-}) {
+import ContributorsDetails from "../screens/ContributorsDetails";
+export default function Navigation({}: {}) {
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );
   const [appIsReady, setAppIsReady] = React.useState(false);
 
   function setConfigures() {
-    const darkUserConfig = state.settings.userConfiguration?.darkTheme;
     theme.readingTheme = state.settings.savedReadingTheme;
     loadLocale(state.language);
     theme.darkTheme = state.settings.userConfiguration?.darkTheme;
@@ -67,12 +58,12 @@ export default function Navigation({
   if (!appIsReady) {
     return <LoadingIndicator />;
   }
+
   return (
     <NavigationContainer>
       <StatusBar
         barStyle={!theme.darkTheme ? "dark-content" : "light-content"}
       />
-
       <SafeAreaView
         style={{
           flex: 1,
@@ -99,6 +90,11 @@ function RootNavigator() {
       <Stack.Screen
         name="HotelDetails"
         component={HotelDetails}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ContributorsDetails"
+        component={ContributorsDetails}
         options={{ headerShown: false }}
       />
       <Stack.Screen
@@ -163,9 +159,3 @@ function BottomTabNavigator() {
   );
 }
 
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
-}
