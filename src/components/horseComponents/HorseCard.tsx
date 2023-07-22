@@ -2,7 +2,6 @@ import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
 import { Horse, RootStackParamList } from "../../types";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { SharedElement } from "react-navigation-shared-element";
 
 type Props = {
   horse: Horse;
@@ -26,7 +25,7 @@ const HorseCard = ({ horse, navigation }: Props) => {
       }}
     >
       <View>
-        <SharedElement id={horse.id.toString()}>
+        {/* <SharedElement id={horse.id.toString()}> */}
           <Image
             source={{ uri: horse.image }}
             style={{
@@ -36,7 +35,7 @@ const HorseCard = ({ horse, navigation }: Props) => {
             }}
             resizeMode={"cover"}
           />
-        </SharedElement>
+        {/* </SharedElement> */}
       </View>
       <View style={{ marginTop: 10 }}>
         <Text

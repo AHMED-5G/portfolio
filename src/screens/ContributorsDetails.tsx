@@ -25,7 +25,6 @@ function ContributorsDetails({ navigation, route }: Props) {
 
     return (
       <View style={{ flex: 1 }}>
- 
         <Animated.View
           sharedTransitionTag={contributor.id.toString()}
           style={[

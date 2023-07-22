@@ -92,11 +92,7 @@ function RootNavigator() {
         component={HotelDetails}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="ContributorsDetails"
-        component={ContributorsDetails}
-        options={{ headerShown: false }}
-      />
+
       <Stack.Screen
         name="YachtStackNavigation"
         component={YachtStackNavigation}

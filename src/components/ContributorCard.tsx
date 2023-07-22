@@ -24,6 +24,7 @@ import { useNavigation } from "@react-navigation/native";
 type Props = {
   contributor: Contributor;
 };
+
 const imageSize = circularRatio(80);
 const cardWidth = wwrosw(160);
 const ContributorCard = ({ contributor }: Props) => {
@@ -40,7 +41,7 @@ const ContributorCard = ({ contributor }: Props) => {
           alignContent: "center",
           justifyContent: "center",
         }}
-        // onPress={() => navigation.navigate("ContributorsDetails", contributor)}
+        onPress={() => navigation.navigate("ContributorsDetails", contributor)}
       >
         <View style={styles.imageContainer}>
           {imageLoading && (

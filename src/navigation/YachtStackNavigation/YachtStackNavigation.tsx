@@ -1,13 +1,11 @@
-import { StyleSheet } from "react-native";
 import React from "react";
+import { StyleSheet } from "react-native";
 import { RootStackParamList } from "../../types";
-import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 import { Yachts } from "../../screens/Yachts";
-const Stack = createSharedElementStackNavigator<RootStackParamList>();
+import { createStackNavigator } from "@react-navigation/stack";
+const Stack = createStackNavigator<RootStackParamList>();
 
 const YachtStackNavigation = () => {
-
-
   return (
     <Stack.Navigator>
       <Stack.Screen
