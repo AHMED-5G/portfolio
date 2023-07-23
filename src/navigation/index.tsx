@@ -103,6 +103,11 @@ function RootNavigator() {
         component={MarketStackNavigator}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="ContributorsDetails"
+        component={ContributorsDetails}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
@@ -154,4 +159,3 @@ function BottomTabNavigator() {
     </BottomTab.Navigator>
   );
 }
-

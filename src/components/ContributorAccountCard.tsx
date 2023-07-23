@@ -11,6 +11,7 @@ import * as Linking from "expo-linking";
 import { getContributorAccountName } from "../utils/helperFunctions";
 import { theme } from "../constants/myColors";
 import { circularRatio, hwrosh, wwrosw } from "../constants/Layout";
+import Animated from "react-native-reanimated";
 
 type Props = {
   account: ContributorAccount;
@@ -106,7 +107,6 @@ const ContributorAccountCard = ({ account }: Props) => {
       style={{
         width: wwrosw(48),
         height: hwrosh(48),
-        // justifyContent: "center",
         alignContent: "center",
         alignItems: "center",
       }}
