@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Feather } from "@expo/vector-icons";
 import { myColors, theme } from "../../constants/myColors";
@@ -15,6 +15,7 @@ import {
   drawerContentContainerHeight,
   drawerProfileCardHeight,
 } from "../constants";
+import MyText from "../../components/MyText";
 
 const DrawerComponent = () => {
   const iconRadius = circularRatio(37);
@@ -39,11 +40,10 @@ const DrawerComponent = () => {
             <Feather name="user" color={theme.iconColor()} size={iconRadius} />
           </View>
           <View style={styles.drawerTextContainer}>
-            <Text
+            <MyText
               style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
-            >
-              {i18n.t("profile")}
-            </Text>
+              text={i18n.t("profile")}
+            />
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -53,11 +53,10 @@ const DrawerComponent = () => {
             <Feather name="mail" color={theme.iconColor()} size={iconRadius} />
           </View>
           <View style={styles.drawerTextContainer}>
-            <Text
+            <MyText
               style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
-            >
-              {i18n.t("messages")}
-            </Text>
+              text={i18n.t("messages")}
+            />
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.drawerItemContainer]}>
@@ -72,11 +71,10 @@ const DrawerComponent = () => {
             <Feather name="users" size={iconRadius} color={theme.iconColor()} />
           </View>
           <View style={styles.drawerTextContainer}>
-            <Text
+            <MyText
               style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
-            >
-              {i18n.t("friends")}
-            </Text>
+              text={i18n.t("friends")}
+            />
           </View>
         </TouchableOpacity>
       </View>

@@ -21,6 +21,14 @@ import {
   wwrosw,
 } from "../../constants/Layout";
 import { footerContentContainerHeight } from "../constants";
+import MyText from "../../components/MyText";
+import { useFonts } from "expo-font";
+import {
+  IBMPlexSansArabicRegular,
+  IBMPlexSansArabicMedium,
+  IBMPlexSansArabicBold,
+} from "../../../assets/fonts";
+import LoadingIndicator from "../../components/mini/LoadingIndicator";
 
 type Props = {};
 
@@ -29,6 +37,12 @@ const TabBarFooter = (props: Props) => {
     (state) => state.dataSlice
   );
   const useDispatch = useAppDispatch();
+  const [fontsLoaded] = useFonts({
+    IBMPlexSansArabicRegular: IBMPlexSansArabicRegular,
+    IBMPlexSansArabicMedium: IBMPlexSansArabicMedium,
+    IBMPlexSansArabicBold: IBMPlexSansArabicBold,
+  });
+  if (!fontsLoaded) return <LoadingIndicator />;
   return (
     <View
       style={{
@@ -54,7 +68,13 @@ const TabBarFooter = (props: Props) => {
           offColor="black"
           label={i18n.t("darkTheme")}
           icon={<Entypo name="moon" size={circularRatio(24)} color="black" />}
-          labelStyle={[styles.text, { color: theme.baseTextColor() }]}
+          labelStyle={[
+            styles.text,
+            {
+              color: theme.baseTextColor(),
+              fontFamily: "IBMPlexSansArabicMedium",
+            },
+          ]}
           size="large"
           onToggle={(isOnn) => {
             useDispatch(
@@ -83,9 +103,10 @@ const TabBarFooter = (props: Props) => {
             alignItems: "center",
           }}
         >
-          <Text style={[styles.text, { color: theme.baseTextColor() }]}>
-            {i18n.t("logOut")}
-          </Text>
+          <MyText
+            text={i18n.t("logOut")}
+            style={[styles.text, { color: theme.baseTextColor() }]}
+          />
         </View>
         <View
           style={{

@@ -20,6 +20,13 @@ import {
 } from "../constants/Layout";
 import Animated from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
+import { useFonts } from "expo-font";
+import {
+  IBMPlexSansArabicRegular,
+  IBMPlexSansArabicMedium,
+  IBMPlexSansArabicBold,
+} from "../../assets/fonts";
+import LoadingIndicator from "./mini/LoadingIndicator";
 
 type Props = {
   contributor: Contributor;
@@ -30,12 +37,18 @@ const cardWidth = wwrosw(160);
 const ContributorCard = ({ contributor }: Props) => {
   const [imageLoading, setImageLoading] = useState(true);
   const navigation = useNavigation();
+  const [fontsLoaded] = useFonts({
+    IBMPlexSansArabicRegular: IBMPlexSansArabicRegular,
+    IBMPlexSansArabicMedium: IBMPlexSansArabicMedium,
+    IBMPlexSansArabicBold: IBMPlexSansArabicBold,
+  });
+  if (!fontsLoaded) return <LoadingIndicator />;
   return (
     <Animated.View
       sharedTransitionTag={contributor.id.toString()}
       style={[styles.container, { backgroundColor: theme.cardBackground() }]}
     >
-      <TouchableOpacity
+      <TouchableOpacity 
         style={{
           alignItems: "center",
           alignContent: "center",
@@ -131,16 +144,17 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontSize: fontRatio(22),
-    fontWeight: "800",
+    fontWeight: "700",
     textTransform: "uppercase",
+    fontFamily: "IBMPlexSansArabicBold",
   },
   titleContainer: {
     marginBottom: hwrosh(5),
   },
   titleText: {
-    fontWeight: "700",
     textTransform: "uppercase",
     fontSize: fontRatio(12),
+    fontFamily: "IBMPlexSansArabicBold",
   },
   socialContainer: {
     height: hwrosh(40),

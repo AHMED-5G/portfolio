@@ -246,7 +246,7 @@ function Yachts({ navigation }: Props) {
       progressValue: SharedValue<number>,
       index: number
     ) {
-      if (index == 0) {
+      if (index === 0) {
         imagePastAwayProgress3.value = withTiming(0, {
           duration: 400,
         });
@@ -293,7 +293,7 @@ function Yachts({ navigation }: Props) {
         style={{
           flex: 1,
           flexDirection: theme.localizationRtl ? "row-reverse" : "row",
-       }}
+        }}
       >
         <Animated.View style={[styles.longestRStyle, longestRStyle]}>
           <TouchableOpacity

@@ -10059,6 +10059,13 @@ react-native-datepicker@^1.7.2:
   dependencies:
     moment "^2.22.0"
 
+react-native-flatlist-withindicator@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-flatlist-withindicator/-/react-native-flatlist-withindicator-0.1.1.tgz#45057979f5eb723c74eedaf29ac7eb338bd6fa42"
+  integrity sha512-TVZhu8Ie9prSnhCJm4jRJMwa9V4kyS+Tgrf1qV9JHX4HIpJJbhYUCtQPfiygB7twkmEeH3OUdC7RV/M40E/H4A==
+  dependencies:
+    react-native-reanimated "~3.3.0"
+
 react-native-gesture-handler@~2.12.0:
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.12.0.tgz#59ca9d97e4c71f70b9c258f14a1a081f4c689976"

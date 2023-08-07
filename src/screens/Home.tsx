@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, ScrollView, Button } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import React from "react";
 import { RootStackParamList } from "../types";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -10,11 +10,10 @@ import HorsesSection from "../components/homeSections/HorsesSection";
 import { i18n } from "../translation/i18n";
 import SimpleHeader from "../components/SimpleHeader";
 import HomeSectionContainer from "../components/homeSections/HomeSectionContainer";
-import { myColors, theme } from "../constants/myColors";
-import Slider from "@react-native-community/slider";
+import { theme } from "../constants/myColors";
 import { fontRatio, hwrosh } from "../constants/Layout";
-import Animated from "react-native-reanimated";
-import { contributors } from "../../dummy/Contributors";
+import MyText from "../components/MyText";
+
 type Props = StackScreenProps<RootStackParamList, "Home">;
 
 function Home({ navigation }: Props) {
@@ -31,27 +30,16 @@ function Home({ navigation }: Props) {
           alignContent: "center",
         }}
       >
-        {/* <Button
-        title="lets go "
-        onPress={() => {
-          navigation.navigate("ContributorsDetails", contributors[0]);
-        }}
-      />
-        <Animated.View
-          sharedTransitionTag="22"
-          style={{ width: 100, height: 100, backgroundColor: "green" }}
-        ></Animated.View> */}
         <MarketSection navigation={navigation} />
         <ContributesSection navigation={navigation} />
         <YachtSection navigation={navigation} />
         <HotelsSection navigation={navigation} />
         <HomeSectionContainer
           content={
-            <Text
+            <MyText
               style={[styles.versionText, { color: theme.baseTextColor() }]}
-            >
-              {i18n.t("version")} 0.7
-            </Text>
+              text={i18n.t("version") + "0.7"}
+            />
           }
           line={false}
         />
@@ -63,5 +51,5 @@ function Home({ navigation }: Props) {
 export { Home };
 
 const styles = StyleSheet.create({
-  versionText: { fontSize: fontRatio(18), fontWeight: "800" },
+  versionText: { fontSize: fontRatio(18), fontWeight: "400" },
 });

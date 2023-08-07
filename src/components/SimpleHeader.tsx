@@ -2,11 +2,25 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { theme } from "../constants/myColors";
 import MyLine from "./MyLine";
-import {  fontRatio, hwrosh, wwrosw } from "../constants/Layout";
+import { fontRatio, hwrosh, wwrosw } from "../constants/Layout";
+import MyText from "./MyText";
+import { useFonts } from "expo-font";
+import {
+  IBMPlexSansArabicRegular,
+  IBMPlexSansArabicMedium,
+  IBMPlexSansArabicBold,
+} from "../../assets/fonts";
+import LoadingIndicator from "./mini/LoadingIndicator";
 
 type Props = { title: string };
 
 const SimpleHeader = ({ title }: Props) => {
+  const [fontsLoaded] = useFonts({
+    IBMPlexSansArabicRegular: IBMPlexSansArabicRegular,
+    IBMPlexSansArabicMedium: IBMPlexSansArabicMedium,
+    IBMPlexSansArabicBold: IBMPlexSansArabicBold,
+  });
+  if (!fontsLoaded) return <LoadingIndicator />;
   return (
     <View style={styles.container}>
       <View
@@ -15,9 +29,14 @@ const SimpleHeader = ({ title }: Props) => {
           flexDirection: "row",
         }}
       >
-        <Text style={[styles.sectionHeadText, { color: theme.primaryText() }]}>
-          {title}
-        </Text>
+        {/* <Text>{title}</Text> */}
+        <MyText
+          text={title}
+          style={[
+            styles.sectionHeadText,
+            { color: theme.primaryText(), fontFamily: "IBMPlexSansArabicBold" },
+          ]}
+        />
       </View>
       <MyLine />
     </View>
@@ -37,6 +56,6 @@ const styles = StyleSheet.create({
   },
   sectionHeadText: {
     fontSize: fontRatio(22),
-    fontWeight: "800",
+    // fontWeight: "800",
   },
 });
