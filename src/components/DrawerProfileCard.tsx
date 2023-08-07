@@ -5,9 +5,16 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { theme } from "../constants/myColors";
 import { circularRatio, fontRatio, hwrosh, wwrosw } from "../constants/Layout";
 import MyText from "./MyText";
+import {
+  getRandomOneItemFromList,
+  randomIntNumber,
+} from "../utils/helperFunctions";
+import { users } from "../../dummy/Users";
+import { images } from "../../dummy/images";
 
 const DrawerProfileCard = () => {
   const imageRadius = circularRatio(60);
+  const userName = getRandomOneItemFromList(users).name;
   return (
     <View
       style={{
@@ -25,11 +32,11 @@ const DrawerProfileCard = () => {
             borderRadius: imageRadius,
           }}
           source={{
-            uri: "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHJhbmRvbXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60u",
+            uri: getRandomOneItemFromList(images),
           }}
         />
         <MyText
-          text={"@Gamal_Baksh"}
+          text={userName}
           style={{
             fontSize: fontRatio(22),
             fontWeight: "bold",
@@ -37,7 +44,7 @@ const DrawerProfileCard = () => {
           }}
         />
         <MyText
-          text={"@Gamal_Baksh"}
+          text={"@" + userName + "_" + randomIntNumber(88)}
           style={{ fontSize: fontRatio(12), color: theme.baseTextColor() }}
         />
       </View>

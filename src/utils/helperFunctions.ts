@@ -14,7 +14,7 @@ export const showToast = (message: string, backgroundColor: string) => {
     textColor: "black",
     containerStyle: { height: 48 },
     opacity: 1,
-    
+
     onShow: () => {
       AccessibilityInfo.announceForAccessibility(message);
       // calls on toast\`s appear animation start
@@ -71,15 +71,15 @@ export const getContributorAccountName = (accountType: AccountTypes) => {
   }
 };
 
-export const getRandomOneItemFromList = (list: Array<any>) => {
+export function getRandomOneItemFromList<T>(list: Array<T>): T {
   return list[Math.floor(Math.random() * list.length)];
-};
+}
 
-export function getRandomIntBetweenTow(min: number, max: number) {
+export function getRandomIntBetweenTow(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export function shuffleArray(array: any[]) {
+export function shuffleArray<T>(array: T[]): T[] {
   let currentIndex = array.length,
     randomIndex;
 
@@ -95,7 +95,6 @@ export function shuffleArray(array: any[]) {
       array[currentIndex],
     ];
   }
-
   return array;
 }
 
@@ -120,5 +119,3 @@ export const addMinutesToNowTimeStamp = (minutes: number) => {
   newTime.setTime(now.getTime() + minutes * 60 * 1000);
   return newTime.getTime();
 };
-
-
