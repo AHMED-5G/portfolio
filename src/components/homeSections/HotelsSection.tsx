@@ -7,7 +7,8 @@ import { i18n } from "../../translation/i18n";
 import HotelCard from "../HotelCard";
 import HomeSectionTitle from "./HomeSectionTitle";
 import HomeSectionContainer from "./HomeSectionContainer";
-import { hwrosh } from "../../constants/Layout";
+import { hwrosh, wwrosw } from "../../constants/Layout";
+import { FlatListWithRectangleIndicator } from "react-native-flatlist-withindicator";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Home", undefined>;
@@ -16,16 +17,16 @@ type Props = {
 const HotelsSection = ({ navigation }: Props) => {
   const Content = () => {
     return (
-      <FlatList
+      <FlatListWithRectangleIndicator
+        cardWidthPlusMarginValue={wwrosw(200) + wwrosw(20)}
         data={hotels}
-        horizontal
         renderItem={({ item }) => (
           <View style={{ paddingTop: hwrosh(10), paddingBottom: hwrosh(10) }}>
             <HotelCard hotel={item} />
           </View>
         )}
         keyExtractor={(item: Hotel) => item.id.toString()}
-        showsHorizontalScrollIndicator={false}
+        animationScaleFactor={0.5}
       />
     );
   };

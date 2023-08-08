@@ -38,7 +38,7 @@ function Home({ navigation }: Props) {
           content={
             <MyText
               style={[styles.versionText, { color: theme.baseTextColor() }]}
-              text={i18n.t("version") + "0.7"}
+              text={i18n.t("version") + "0.8"}
             />
           }
           line={false}
