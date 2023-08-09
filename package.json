@@ -13,7 +13,8 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "lint-and-test": "npm run lint && npm run test",
     "lint:fix": "eslint --fix --ext .js,.jsx .",
-    "pre-commit": "lint"
+    "lint-staged": "npm run lint",
+    "pre-commit": "lint-staged"
   },
   "jest": {
     "preset": "jest-expo"

@@ -1,7 +1,9 @@
 import { StyleSheet, View, ScrollView } from "react-native";
 import React from "react";
 import { RootStackParamList } from "../types";
-import { StackScreenProps } from "@react-navigation/stack";
+import { StackScreenProps 
+
+} from "@react-navigation/stack";
 import YachtSection from "../components/homeSections/YachtSection";
 import ContributesSection from "../components/homeSections/ContributesSection";
 import HotelsSection from "../components/homeSections/HotelsSection";
