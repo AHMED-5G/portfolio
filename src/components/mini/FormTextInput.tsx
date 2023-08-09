@@ -62,9 +62,9 @@ const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
     }
   }, [props.value]);
 
-  // const totalPadding = props.icon ? 40 + props?.icon.props.size  : 40;
+  // const totalPadding = props.icon ? 40 + props?.icon.props.size : 40;
+  const totalPadding = 40;
 
-  const totalPadding = props.icon ? 40 : 0;
   const inputWidth = props.width
     ? +props.width - totalPadding
     : width / 2 - totalPadding;
