@@ -13,7 +13,7 @@ import { theme } from "../constants/myColors";
 import { fontRatio, hwrosh } from "../constants/Layout";
 import MyText from "../components/MyText";
 
-type Props = StackScreenProps<RootStackParamList, "Home">;
+// type Props = StackScreenProps<RootStackParamList, "Home">;
 
 function Home({ navigation }: Props) {
   return (
@@ -30,9 +30,9 @@ function Home({ navigation }: Props) {
         }}
       >
         <MarketSection navigation={navigation} />
-        <ContributesSection navigation={navigation} />
+        <ContributesSection />
         <YachtSection navigation={navigation} />
-        <HotelsSection navigation={navigation} />
+        <HotelsSection />
         <HomeSectionContainer
           content={
             <MyText
