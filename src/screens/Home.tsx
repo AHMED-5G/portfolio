@@ -1,9 +1,7 @@
 import { StyleSheet, View, ScrollView } from "react-native";
 import React from "react";
 import { RootStackParamList } from "../types";
-import { StackScreenProps 
-
-} from "@react-navigation/stack";
+import { StackScreenProps } from "@react-navigation/stack";
 import YachtSection from "../components/homeSections/YachtSection";
 import ContributesSection from "../components/homeSections/ContributesSection";
 import HotelsSection from "../components/homeSections/HotelsSection";
@@ -15,7 +13,7 @@ import { theme } from "../constants/myColors";
 import { fontRatio, hwrosh } from "../constants/Layout";
 import MyText from "../components/MyText";
 
-// type Props = StackScreenProps<RootStackParamList, "Home">;
+type Props = StackScreenProps<RootStackParamList, "Home">;
 
 function Home({ navigation }: Props) {
   return (
