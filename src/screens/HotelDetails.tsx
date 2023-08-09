@@ -24,6 +24,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { FontAwesome5 } from "@expo/vector-icons";
 import MedButton from "../components/mini/MedButton";
 //import { DataType } from "react-native-image-slider-banner/src";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
 import Stars from "react-native-stars";
 import { showToast } from "../utils/helperFunctions";

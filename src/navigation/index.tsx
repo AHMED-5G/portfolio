@@ -3,7 +3,6 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -13,7 +12,6 @@ import {
   InitialStateInterface,
   RootStackParamList,
   RootTabParamList,
-  RootTabScreenProps,
 } from "../types";
 import MyTabBar from "./MyTabBar";
 import { FeedScreen } from "../screens/FeedScreen";
@@ -29,7 +27,7 @@ import { theme } from "../constants/myColors";
 import LoadingIndicator from "../components/mini/LoadingIndicator";
 import { View } from "../components/Themed";
 import ContributorsDetails from "../screens/ContributorsDetails";
-export default function Navigation({}: {}) {
+export default function Navigation() {
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );
@@ -136,9 +134,7 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="HomeStackNavigator"
         component={HomeStackNavigator}
-        options={({
-          navigation,
-        }: RootTabScreenProps<"HomeStackNavigator">) => ({
+        options={() => ({
           title: "Home",
         })}
       />

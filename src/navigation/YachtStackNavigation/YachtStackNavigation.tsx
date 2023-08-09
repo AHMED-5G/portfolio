@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { RootStackParamList } from "../../types";
 import { Yachts } from "../../screens/Yachts";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -21,4 +20,3 @@ const YachtStackNavigation = () => {
 
 export default YachtStackNavigation;
 
-const styles = StyleSheet.create({});

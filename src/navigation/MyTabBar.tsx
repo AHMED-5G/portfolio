@@ -8,13 +8,12 @@ import {
   TabNavigationState,
 } from "@react-navigation/native";
 import React, { useCallback, useEffect, useState } from "react";
-import { Keyboard, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Keyboard,  TouchableOpacity, View } from "react-native";
 import { FeedTab, HomeTab, SettingsTab } from "./tabBarItems";
 import { theme } from "../constants/myColors";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
-  runOnJS,
   interpolate,
   Extrapolation,
   useDerivedValue,
@@ -32,13 +31,7 @@ import {
   width,
   wwrosw,
 } from "../constants/Layout";
-import {
-  drawerProfileCardHeight,
-  drawerContentContainerHeight,
-  footerContentContainerHeight,
-  totalOpenTabBarHeight,
-  totalMarginTopTabBarHeight,
-} from "./constants";
+import { totalOpenTabBarHeight } from "./constants";
 interface TabBarProps {
   state: TabNavigationState<ParamListBase>;
   descriptors: BottomTabDescriptorMap;
@@ -273,11 +266,4 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
   );
 };
 
-const styles = StyleSheet.create({
-  tabContainer: {
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-  },
-});
 export default MyTabBar;

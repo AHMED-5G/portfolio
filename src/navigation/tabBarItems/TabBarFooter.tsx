@@ -2,7 +2,7 @@ import {
   Alert,
   DevSettings,
   StyleSheet,
-  Text,
+
   TouchableOpacity,
   View,
 } from "react-native";
@@ -30,9 +30,8 @@ import {
 } from "../../../assets/fonts";
 import LoadingIndicator from "../../components/mini/LoadingIndicator";
 
-type Props = {};
 
-const TabBarFooter = (props: Props) => {
+const TabBarFooter = () => {
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );

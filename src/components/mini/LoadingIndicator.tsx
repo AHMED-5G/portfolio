@@ -1,6 +1,4 @@
 import {
-  StyleSheet,
-  Text,
   View,
   ActivityIndicator,
   ColorValue,
@@ -31,5 +29,3 @@ const LoadingIndicator: FunctionComponent<LoadingIndicatorInterface> = (
 };
 
 export default LoadingIndicator;
-
-const styles = StyleSheet.create({});

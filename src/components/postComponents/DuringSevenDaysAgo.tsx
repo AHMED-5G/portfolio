@@ -1,17 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import React, { useState } from "react";
 import TimeAgo from "react-native-timeago";
 import {
-  getRandomInt,
   getRandomIntBetweenTow,
 } from "../../utils/helperFunctions";
 import { theme } from "../../constants/myColors";
 import { averageRatio, wwrosw } from "../../constants/Layout";
 
 const DuringSevenDaysAgo = () => {
-  const [duringSevenDaysAgo, setDuringSevenDaysAgo] = useState(
+  const [duringSevenDaysAgo] = useState(
     Math.floor(+new Date() / 1000) - getRandomIntBetweenTow(1, 7) * 24 * 60 * 60
   );
+  
   return (
     <View
       style={{
@@ -45,5 +45,3 @@ const DuringSevenDaysAgo = () => {
 };
 
 export default DuringSevenDaysAgo;
-
-const styles = StyleSheet.create({});

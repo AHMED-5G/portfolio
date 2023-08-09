@@ -1,11 +1,10 @@
-import { StyleSheet, Text, View, Image, ImageURISource } from "react-native";
+import {  Text, View, Image } from "react-native";
 import React, { useState } from "react";
 import { User } from "../../types";
 import MedButton from "../mini/MedButton";
-import { myColors, theme } from "../../constants/myColors";
+import { theme } from "../../constants/myColors";
 import DuringSevenDaysAgo from "./DuringSevenDaysAgo";
 import * as Notifications from "expo-notifications";
-import LoadingIndicator from "../mini/LoadingIndicator";
 import SkeletonLoader from "expo-skeleton-loader";
 import { i18n } from "../../translation/i18n";
 import {
@@ -199,5 +198,3 @@ const PostAuthor = ({ user }: Props) => {
 };
 
 export { PostAuthor };
-
-const styles = StyleSheet.create({});
