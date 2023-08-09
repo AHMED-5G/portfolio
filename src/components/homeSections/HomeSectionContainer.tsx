@@ -1,4 +1,4 @@
-import { StyleSheet,  View } from "react-native";
+import { View } from "react-native";
 import React, { ReactElement } from "react";
 import MyLine from "../MyLine";
 import { wwrosw } from "../../constants/Layout";
@@ -19,5 +19,3 @@ const HomeSectionContainer = ({ content, line = true }: Props) => {
 };
 
 export default HomeSectionContainer;
-
-const styles = StyleSheet.create({});

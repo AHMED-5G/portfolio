@@ -35,7 +35,7 @@ export default function Navigation() {
 
   function setConfigures() {
     theme.readingTheme = state.settings.savedReadingTheme;
-    loadLocale(state.language);
+    loadLocale();
     theme.darkTheme = state.settings.userConfiguration?.darkTheme;
   }
 

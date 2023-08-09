@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { Feather } from "@expo/vector-icons";
 import { tabContainerStyle, tabColor } from "./styles";
@@ -24,5 +24,3 @@ const SettingsTab = (props: Props) => {
 };
 
 export { SettingsTab };
-
-const styles = StyleSheet.create({});

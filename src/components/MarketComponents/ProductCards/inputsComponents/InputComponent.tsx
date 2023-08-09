@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { Product, ProductTypes } from "../../../../types";
 import SliderInput from "./SliderInput";
@@ -21,5 +21,3 @@ const InputComponent = ({ product, setCounter, counter }: Props) => {
 };
 
 export default InputComponent;
-
-const styles = StyleSheet.create({});

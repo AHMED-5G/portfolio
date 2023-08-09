@@ -1,6 +1,4 @@
 import { StyleSheet, View } from "react-native";
-import React, { useState } from "react";
-
 import { Post, PostTypes } from "../../types";
 import { TextPostComponent } from "./TextPostComponent";
 import { ImagePostComponent } from "./ImagePostComponent";
@@ -8,8 +6,8 @@ import { VideoPostComponent } from "./VideoPostComponent";
 import { hwrosh, width, wwrosw } from "../../constants/Layout";
 
 import PostOptions from "./PostOptions";
-import { Video } from "expo-av";
 import { theme } from "../../constants/myColors";
+import React from "react";
 type Props = {
   post: Post;
   isViewable: boolean;

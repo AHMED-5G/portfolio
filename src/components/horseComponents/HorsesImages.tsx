@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, Image } from "react-native";
+import { Text, View, FlatList, Image } from "react-native";
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
 import { myColors } from "../../constants/myColors";
@@ -69,4 +69,3 @@ const HorsesImages = ({ images, isModalActive }: Props) => {
 
 export default HorsesImages;
 
-const styles = StyleSheet.create({});

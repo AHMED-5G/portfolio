@@ -15,7 +15,7 @@ type Props = {
 
 const getIconByAccountType = ({
   account,
-  color = "black",
+  // color = "black",
   size = circularRatio(38),
 }: Props) => {
   switch (account.type) {

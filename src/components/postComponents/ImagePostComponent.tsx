@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { Post } from "../../types";
 import { PostAuthor } from "./PostAuthor";
@@ -29,5 +29,3 @@ const ImagePostComponent = ({ post }: Props) => {
 };
 
 export { ImagePostComponent };
-
-const styles = StyleSheet.create({});

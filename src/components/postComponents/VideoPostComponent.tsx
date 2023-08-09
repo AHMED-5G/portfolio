@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Post } from "../../types";
 import { Video, AVPlaybackStatus, ResizeMode } from "expo-av";
@@ -7,8 +7,6 @@ import { PostAuthor } from "./PostAuthor";
 import { PostText } from "./PostText";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import SkeletonLoader from "expo-skeleton-loader";
-import { theme } from "../../constants/myColors";
 import MyCustomSkeleton from "../MyCustomSkeleton";
 type Props = {
   post: Post;
@@ -16,7 +14,7 @@ type Props = {
   index: number;
 };
 
-const VideoPostComponent = ({ post, isViewable, index }: Props) => {
+const VideoPostComponent = ({ post, isViewable }: Props) => {
   const video = React.useRef<Video | null>(null);
 
   const [isPlaying, setIsPlaying] = useState<AVPlaybackStatus>();
@@ -35,17 +33,7 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
   }, [navigation]);
   const [videoLoading, setVideoLoading] = useState(false);
   const [showPauseButton, setShowPauseButton] = useState(false);
-  function SkeltonItem() {
-    return (
-      <SkeletonLoader
-        boneColor="#EEE"
-        highlightColor={theme.primary() as string}
-        duration={1000}
-      >
-        <SkeletonLoader.Item style={styles.videoContainer} />
-      </SkeletonLoader>
-    );
-  }
+
   return (
     <View
       style={{
@@ -80,7 +68,7 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
           ref={video}
           style={styles.video}
           source={{
-            uri: post?.video!,
+            uri: post?.video ?? "",
           }}
           onLoadStart={() => {
             setVideoLoading(true);
@@ -91,6 +79,7 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
           useNativeControls
           resizeMode={ResizeMode.CONTAIN}
           onPlaybackStatusUpdate={(status) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             //@ts-ignore
             setIsPlaying(status.isPlaying);
           }}

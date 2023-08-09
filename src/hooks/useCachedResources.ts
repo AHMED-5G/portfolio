@@ -1,8 +1,5 @@
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect, useState } from "react";
-import { loadLocale } from "../translation/i18n";
-
-import { useAppSelector } from "../redux/Hooks/hooks";
 // import { AsyncStorage } from '@react-native-async-storage/async-storage';
 
 export default function useCachedResources() {

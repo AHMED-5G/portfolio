@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import { Text, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
 import { Horse, RootStackParamList } from "../../types";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -54,4 +54,3 @@ const HorseCard = ({ horse, navigation }: Props) => {
 
 export default HorseCard;
 
-const styles = StyleSheet.create({});

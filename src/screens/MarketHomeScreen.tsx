@@ -1,7 +1,5 @@
 import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
-import { StackScreenProps } from "@react-navigation/stack";
-import { RootStackParamList } from "../types";
 import { averageRatio, fontRatio, hwrosh, width } from "../constants/Layout";
 import SearchComponent from "../components/MarketComponents/SearchComponent";
 import Cart from "../components/MarketComponents/Cart";
@@ -12,10 +10,10 @@ import SimpleHeader from "../components/SimpleHeader";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import { i18n } from "../translation/i18n";
 
-type Props = StackScreenProps<RootStackParamList, "MarketHomeScreen">;
+// type Props = StackScreenProps<RootStackParamList, "MarketHomeScreen">;
 
 const bottomNavigationHeight = theme.tabBarHeight;
-const MarketHomeScreen = ({ navigation }: Props) => {
+const MarketHomeScreen = () => {
   const Content = () => {
     return (
       <View style={styles.container}>
@@ -41,8 +39,10 @@ const MarketHomeScreen = ({ navigation }: Props) => {
   return (
     <ScreenWithCustomBottomTab
       content={<Content />}
-      navigation={navigation}
-      CustomBottomTabComponents={[<SearchComponent />, <Cart />]}
+      CustomBottomTabComponents={[
+        <SearchComponent key={"search"} />,
+        <Cart key={"cart"} />,
+      ]}
     />
   );
 };

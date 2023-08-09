@@ -1,7 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
-import { Hotel, RootStackParamList } from "../../types";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { Hotel } from "../../types";
 import { hotels } from "../../../dummy/hotels";
 import { i18n } from "../../translation/i18n";
 import HotelCard from "../HotelCard";
@@ -10,11 +9,11 @@ import HomeSectionContainer from "./HomeSectionContainer";
 import { hwrosh, wwrosw } from "../../constants/Layout";
 import { FlatListWithRectangleIndicator } from "react-native-flatlist-withindicator";
 
-type Props = {
-  navigation: StackNavigationProp<RootStackParamList, "Home", undefined>;
-};
+// type Props = {
+//   navigation: StackNavigationProp<RootStackParamList, "Home", undefined>;
+// };
 
-const HotelsSection = ({ navigation }: Props) => {
+const HotelsSection = () => {
   const Content = () => {
     return (
       <FlatListWithRectangleIndicator

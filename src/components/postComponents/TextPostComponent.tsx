@@ -1,5 +1,5 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useState } from "react";
+import { View } from "react-native";
+import React from "react";
 import { Post } from "../../types";
 import { PostAuthor } from "./PostAuthor";
 import { PostText } from "./PostText";
@@ -19,5 +19,3 @@ const TextPostComponent = ({ post }: Props) => {
 };
 
 export { TextPostComponent };
-
-const styles = StyleSheet.create({});

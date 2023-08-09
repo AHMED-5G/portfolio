@@ -8,9 +8,7 @@ import {
   wwrosw,
 } from "../../constants/Layout";
 
-type Props = {};
-
-const LongestDetails = (props: Props) => {
+const LongestDetails = () => {
   return (
     <View
       style={{

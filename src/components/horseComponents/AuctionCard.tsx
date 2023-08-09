@@ -17,7 +17,7 @@ const AuctionCard = ({ auction }: Props) => {
     startTimer(auction.timeRemindingInSeconds);
   }, []);
 
-  function startTimer(duration: any) {
+  function startTimer(duration: number) {
     let timer = duration;
     let minutes: number;
     let seconds: number;
