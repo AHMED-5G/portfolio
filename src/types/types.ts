@@ -8,6 +8,7 @@ import { ColorValue, ImageSourcePropType } from "react-native";
 import { UserConfigurationInterface } from "../constants/myColors";
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace ReactNavigation {
     interface RootParamList extends RootStackParamList {}
   }
@@ -27,7 +28,6 @@ export type RootStackParamList = {
   Yachts: undefined;
   MarketStackNavigator: undefined;
   MarketHomeScreen: undefined;
-
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

@@ -38,7 +38,7 @@ const LikeComponent = ({
       : undefined;
   }, [sound]);
 
-  let scale = useSharedValue(1);
+  const scale = useSharedValue(1);
   const [localFavoriteCounter, setLocalFavoriteCounter] =
     useState(favoriteCounter);
   const onTap = useCallback(() => {
@@ -48,7 +48,7 @@ const LikeComponent = ({
       }
     });
   }, []);
-  let rStyle = useAnimatedStyle(() => ({
+  const rStyle = useAnimatedStyle(() => ({
     transform: [
       {
         //Math.max to prevent with spring from flipping item because its going to negative

@@ -60,7 +60,9 @@ const ProductCardParent = ({ product }: Props) => {
           setIsItemInCart(thisProduct);
         }, 100);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.warn(error);
+    }
   }, []);
 
   // functions

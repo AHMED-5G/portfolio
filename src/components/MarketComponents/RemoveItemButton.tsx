@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { theme } from "../../constants/myColors";
 import { productCardWidth } from "./ProductCards/style";
@@ -170,4 +170,3 @@ const RemoveItemButton = ({
 
 export default RemoveItemButton;
 
-const styles = StyleSheet.create({});

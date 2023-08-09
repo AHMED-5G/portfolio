@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import React from "react";
 import { fontRatio, hwrosh, width, wwrosw } from "../../constants/Layout";
 import { theme } from "../../constants/myColors";
@@ -31,5 +31,3 @@ const SettingsSectionTitle = ({ title }: Props) => {
 };
 
 export default SettingsSectionTitle;
-
-const styles = StyleSheet.create({});

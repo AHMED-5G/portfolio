@@ -1,5 +1,5 @@
 export const validateSpecialCharacters = (text: string) => {
-  var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+  const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
   if (format.test(text)) {
     return "special characters not allowed";

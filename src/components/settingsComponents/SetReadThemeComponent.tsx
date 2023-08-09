@@ -9,13 +9,13 @@ import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
 import { SET_READING_THEME } from "../../redux/reducers/dataSlice";
 import { i18n } from "../../translation/i18n";
 import Slider from "@react-native-community/slider";
-type Props = {};
 
-const SetReadThemeComponent = (props: Props) => {
+
+const SetReadThemeComponent = () => {
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );
-  let savedReadingTheme = state.settings.savedReadingTheme;
+  const  savedReadingTheme = state.settings.savedReadingTheme;
   const [selectedCombo, setSelectedCombo] = useState<ReadingThemesCombo>(
     readingThemes[0]
   );

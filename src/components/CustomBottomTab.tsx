@@ -1,4 +1,4 @@
-import { Keyboard, StyleSheet, Text, View } from "react-native";
+import { Keyboard, StyleSheet,  View } from "react-native";
 import React, { ReactNode, useEffect, useState } from "react";
 import { theme } from "../constants/myColors";
 import { width } from "../constants/Layout";

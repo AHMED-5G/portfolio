@@ -1,10 +1,4 @@
-import {
-  FlatList,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  View,
-} from "react-native";
+import { FlatList, SafeAreaView, StatusBar, View } from "react-native";
 import React from "react";
 import { RootStackParamList } from "../types";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -49,5 +43,3 @@ const Horses = ({ navigation, route }: Props) => {
 };
 
 export default Horses;
-
-const styles = StyleSheet.create({});

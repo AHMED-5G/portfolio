@@ -1,11 +1,9 @@
-import {  StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import React from "react";
 import { yachtImages } from "../../../dummy/yachtDummy/images";
 import { width } from "../../constants/Layout";
 
-type Props = {};
-
-const RightSide = (props: Props) => {
+const RightSide = () => {
   return (
     <View
       style={{

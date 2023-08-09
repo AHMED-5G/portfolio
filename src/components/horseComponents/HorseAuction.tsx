@@ -4,7 +4,7 @@ import React from "react";
 import {  HorseInAuction } from "../../types";
 import AuctionCard from "./AuctionCard";
 import AuctionIcon from "../../../assets/icons";
-import { myColors } from "../../constants/myColors";;
+import { myColors } from "../../constants/myColors";
 
 type Props = {
   auctions: HorseInAuction[];

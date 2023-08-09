@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text } from "react-native";
 import React from "react";
 import { tabTextStyle } from "./styles";
 type Props = {
@@ -10,5 +10,3 @@ const TabText = ({ isFocused }: Props) => {
 };
 
 export default TabText;
-
-const styles = StyleSheet.create({});

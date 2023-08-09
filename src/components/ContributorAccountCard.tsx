@@ -1,9 +1,4 @@
-import {
-  OpaqueColorValue,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { ColorValue, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { AccountTypes, ContributorAccount } from "../types";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
@@ -11,11 +6,10 @@ import * as Linking from "expo-linking";
 import { getContributorAccountName } from "../utils/helperFunctions";
 import { theme } from "../constants/myColors";
 import { circularRatio, hwrosh, wwrosw } from "../constants/Layout";
-import Animated from "react-native-reanimated";
 
 type Props = {
   account: ContributorAccount;
-  color?: string | OpaqueColorValue;
+  color?: string | ColorValue;
   size?: number | undefined;
 };
 
@@ -122,5 +116,3 @@ const ContributorAccountCard = ({ account }: Props) => {
 };
 
 export default ContributorAccountCard;
-
-const styles = StyleSheet.create({});

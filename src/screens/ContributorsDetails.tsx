@@ -1,40 +1,28 @@
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { FlatList, StyleSheet, Text, View, Image } from "react-native";
 import React, { useState } from "react";
 import { ContributorAccount, RootStackParamList } from "../types";
-import {
-  averageRatio,
-  circularRatio,
-  fontRatio,
-  hwrosh,
-  width,
-  wwrosw,
-} from "../constants/Layout";
+import { circularRatio, fontRatio, hwrosh, width } from "../constants/Layout";
 import { theme } from "../constants/myColors";
 import { StackScreenProps } from "@react-navigation/stack";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import ContributorAccountCard from "../components/ContributorAccountCard";
 import MyCustomSkeleton from "../components/MyCustomSkeleton";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
-import ContributorCardInDetailsScreen from "../components/ContributorCardInDetailsScreen";
+import { RouteProp } from "@react-navigation/native";
 
-type Props = StackScreenProps<RootStackParamList, "ContributorsDetails">;
+interface Props {
+  navigation: StackScreenProps<RootStackParamList, "ContributorsDetails">;
+  route: RouteProp<RootStackParamList, "ContributorsDetails">;
+}
 const imageSize = circularRatio(80);
-
 const socialContainerHeight = hwrosh(40);
-function ContributorsDetails({ navigation, route }: Props) {
+
+function ContributorsDetails({ route }: Props) {
   const contributor = route.params;
   const Content = () => {
     const [imageLoading, setImageLoading] = useState(true);
     const imageContainerInitialTop = hwrosh(20);
     const marginHeight10 = hwrosh(10);
-    const imageContainerFinalTop = hwrosh(10);
     const nameAndTitleContainerHeight = hwrosh(60);
     const nameAndTitleContainerRStyleInitialTop =
       imageContainerInitialTop + imageSize + marginHeight10;
@@ -47,7 +35,9 @@ function ContributorsDetails({ navigation, route }: Props) {
     const headerContainerRStyle = useAnimatedStyle(() => {
       return {
         height:
-          socialContainerRStyleInitialTop + socialContainerHeight + marginHeight10,
+          socialContainerRStyleInitialTop +
+          socialContainerHeight +
+          marginHeight10,
       };
     });
 
@@ -165,16 +155,16 @@ function ContributorsDetails({ navigation, route }: Props) {
   return (
     <ScreenWithCustomBottomTab
       content={<Content />}
-      navigation={navigation}
+      // navigation={navigation}
       CustomBottomTabComponents={[
-        <View>
+        <View key={"accounts"}>
           <FlatList
             data={contributor.accounts.slice(0, 3)}
             numColumns={4}
             renderItem={({ item }: { item: ContributorAccount }) => (
               <ContributorAccountCard account={item} />
             )}
-            keyExtractor={(item, index) => index.toString()}
+            keyExtractor={(_item, index) => index.toString()}
             showsVerticalScrollIndicator={false}
           />
         </View>,

@@ -1,8 +1,6 @@
 import * as React from "react";
 import renderer from "react-test-renderer";
 import App from "../../../App";
-import { Home } from "../../screens/Home";
-import { useNavigation } from '@react-navigation/native';
 
 it("renders correctly", async () => {
   renderer.create(<App />);
@@ -16,4 +14,3 @@ it("renders correctly", async () => {
 //   const tree = renderer.create(<Home  />).toJSON();
 //   // expect(tree).toMatchSnapshot();
 // });
-

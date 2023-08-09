@@ -8,7 +8,6 @@ import {
 import React, { useEffect, useState } from "react";
 import { RootStackParamList } from "../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { SharedElement } from "react-navigation-shared-element";
 import { height, width } from "../constants/Layout";
 import { myColors } from "../constants/myColors";
 import Animated, {
@@ -48,7 +47,7 @@ const inactiveModalIndex = 0;
 
 const selectedModalWidth = width * 0.85;
 const unselectedModalWidth = width;
-const Horses = ({ navigation, route }: Props) => {
+const Horses = ({ route }: Props) => {
   const horse = route.params;
 
   const leftToRightProgress = useSharedValue(0);
@@ -141,7 +140,7 @@ const Horses = ({ navigation, route }: Props) => {
   });
 
   const secondModalReanimatedStyle = useAnimatedStyle(() => {
-    let width = interpolate(
+    const  width = interpolate(
       leftToRightProgress.value,
       [0, 1],
       [100, unselectedModalWidth]
@@ -234,18 +233,16 @@ const Horses = ({ navigation, route }: Props) => {
           alignItems: "center",
         }}
       >
-        <SharedElement id={horse.id.toString()}>
-          <Image
-            resizeMethod="scale"
-            source={{ uri: horse.image }}
-            style={{
-              width: width * 0.9,
-              height: imageContainerHeight,
-              borderRadius: 10,
-            }}
-            resizeMode={"cover"}
-          />
-        </SharedElement>
+        <Image
+          resizeMethod="scale"
+          source={{ uri: horse.image }}
+          style={{
+            width: width * 0.9,
+            height: imageContainerHeight,
+            borderRadius: 10,
+          }}
+          resizeMode={"cover"}
+        />
       </View>
       <View style={{ marginTop: 20 }}>
         <Animated.View style={[styles.firstModal, firstModalReanimatedStyle]}>

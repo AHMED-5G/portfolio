@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+
 import React from "react";
 import { RootStackParamList } from "../../types";
 
@@ -19,5 +19,3 @@ const MarketStackNavigator = () => {
 };
 
 export default MarketStackNavigator;
-
-const styles = StyleSheet.create({});

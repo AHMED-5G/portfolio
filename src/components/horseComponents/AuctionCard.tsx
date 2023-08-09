@@ -21,9 +21,9 @@ const AuctionCard = ({ auction }: Props) => {
     let timer = duration;
     let minutes: number;
     let seconds: number;
-    let interval = setInterval(function () {
-      let mm = (timer / 60) as unknown as string;
-      let ss = (timer % 60) as unknown as string;
+    const interval = setInterval(function () {
+      const mm = (timer / 60) as unknown as string;
+      const ss = (timer % 60) as unknown as string;
       minutes = parseInt(mm, 10);
       seconds = parseInt(ss, 10);
 

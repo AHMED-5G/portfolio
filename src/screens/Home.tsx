@@ -6,7 +6,6 @@ import YachtSection from "../components/homeSections/YachtSection";
 import ContributesSection from "../components/homeSections/ContributesSection";
 import HotelsSection from "../components/homeSections/HotelsSection";
 import MarketSection from "../components/homeSections/MarketSection";
-import HorsesSection from "../components/homeSections/HorsesSection";
 import { i18n } from "../translation/i18n";
 import SimpleHeader from "../components/SimpleHeader";
 import HomeSectionContainer from "../components/homeSections/HomeSectionContainer";

@@ -16,7 +16,7 @@ type Props = {
 };
 
 const HorsesSection = ({ navigation }: Props) => {
-  let imagesForSlider: DataType[] = horsesImages.map((item) => {
+  const imagesForSlider: DataType[] = horsesImages.map((item) => {
     return { img: item as ImageURISource };
   });
 

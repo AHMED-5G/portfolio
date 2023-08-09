@@ -1,8 +1,8 @@
 import {
   FlexStyle,
   StyleProp,
-  StyleSheet,
-  Text,
+
+
   View,
   ViewStyle,
 } from "react-native";
@@ -36,4 +36,3 @@ const MyLine = ({ width = "100%", containerStyle, lineStyle }: Props) => {
 
 export default MyLine;
 
-const styles = StyleSheet.create({});

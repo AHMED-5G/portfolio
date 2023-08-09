@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextProps } from "react-native";
+import {  Text, TextProps } from "react-native";
 import React from "react";
 import { useFonts } from "expo-font";
 import {
@@ -56,4 +56,3 @@ const MyText = ({ text, ...props }: MyTextInterface) => {
 
 export default MyText;
 
-const styles = StyleSheet.create({});

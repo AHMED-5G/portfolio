@@ -1,4 +1,4 @@
-import { ImageURISource, StyleSheet, View } from "react-native";
+import { ImageURISource, View } from "react-native";
 import React from "react";
 import { DataType } from "react-native-image-slider-banner/src";
 import { width, height, averageRatio } from "../../constants/Layout";
@@ -16,7 +16,7 @@ const ImageSliderComponent = ({
   requestedIndex,
   setCurrentImageIndex,
 }: Props) => {
-  let imagesForSlider: DataType[] = hotel.images.map((item) => {
+  const imagesForSlider: DataType[] = hotel.images.map((item) => {
     return { img: item as ImageURISource };
   });
 
@@ -45,5 +45,3 @@ const ImageSliderComponent = ({
 };
 
 export default ImageSliderComponent;
-
-const styles = StyleSheet.create({});

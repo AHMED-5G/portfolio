@@ -11,7 +11,7 @@ import {
   FontAwesome,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { myColors, theme } from "../../constants/myColors";
+import { theme } from "../../constants/myColors";
 import {
   averageRatio,
   circularRatio,
@@ -20,7 +20,7 @@ import {
   wwrosw,
 } from "../../constants/Layout";
 import FormTextInput from "../mini/FormTextInput";
-import { Post, PostComment } from "../../types";
+import { Post } from "../../types";
 import { removeWhiteSpaceAtStart } from "../../utils/helperFunctions";
 
 type Props = {

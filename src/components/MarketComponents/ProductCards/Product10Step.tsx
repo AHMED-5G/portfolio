@@ -1,15 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Product } from "../../../types";
 
-type Props = {
-  product: Product;
-};
-
-const Product10Step = ({ product }: Props) => {
+const Product10Step = () => {
   return (
     <View>
-      <Text>ProductEvery10</Text>
+      <Text>Product10Step</Text>
     </View>
   );
 };

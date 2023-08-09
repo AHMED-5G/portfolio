@@ -1,6 +1,6 @@
 import { AccessibilityInfo } from "react-native";
 import Toast from "react-native-root-toast";
-import { AccountTypes, User } from "../types";
+import { AccountTypes } from "../types";
 
 export const showToast = (message: string, backgroundColor: string) => {
   Toast.show(message, {
@@ -114,8 +114,8 @@ export function removeWhiteSpaceAtStart(text: string) {
 }
 
 export const addMinutesToNowTimeStamp = (minutes: number) => {
-  let now = new Date();
-  let newTime = new Date();
+  const now = new Date();
+  const newTime = new Date();
   newTime.setTime(now.getTime() + minutes * 60 * 1000);
   return newTime.getTime();
 };

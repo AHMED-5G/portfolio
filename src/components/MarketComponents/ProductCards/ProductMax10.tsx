@@ -1,31 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
-import { Product, ProductTypes } from "../../../types";
-import ProductCardParent from "./ProductCardParent";
-import SliderInput from "./inputsComponents/SliderInput";
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 
-type Props = {
-  product: Product;
-};
+type Props = {}
 
-// const ProductMax10 = ({ product }: Props) => {
-//   const [counter, setCounter] = useState(1);
-//   return (
-//     <ProductCardParent
-//       product={product}
-//       // InputComponent={
-//       //   product.type == ProductTypes.upTo100 ? (
-//       //     <SliderInput {...{ setCounter }} />
-//       //   ) : (
-//       //     <View></View>
-//       //   )
-//       // }
-//       counter={counter}
-//       setCounter={setCounter}
-//     />
-//   );
-// };
+const ProductMax10 = (props: Props) => {
+  return (
+    <View>
+      <Text>ProductMax10</Text>
+    </View>
+  )
+}
 
-// export default ProductMax10;
+export default ProductMax10
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({})

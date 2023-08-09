@@ -5,9 +5,7 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
-  ImageURISource,
   ScrollView,
-  Platform,
 } from "react-native";
 import React, { useState } from "react";
 import { RootStackParamList } from "../types";
@@ -25,25 +23,28 @@ import { AntDesign, Entypo } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FontAwesome5 } from "@expo/vector-icons";
 import MedButton from "../components/mini/MedButton";
-import { DataType } from "react-native-image-slider-banner/src";
+//import { DataType } from "react-native-image-slider-banner/src";
 //@ts-ignore
 import Stars from "react-native-stars";
 import { showToast } from "../utils/helperFunctions";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import ImageSliderComponent from "../components/HotelDetailsComponents/ImageSliderComponent";
-import DateTimePicker from "@react-native-community/datetimepicker";
+// import DateTimePicker from "@react-native-community/datetimepicker";
 import { i18n } from "../translation/i18n";
 // import DatePicker from "react-native-datepicker";
-type Props = StackScreenProps<RootStackParamList, "HotelDetails">;
-
-function HotelDetails({ navigation, route }: Props) {
-  const [date, setDate] = useState("09-10-2020");
+import { RouteProp } from "@react-navigation/native";
+interface Props {
+  navigation: StackScreenProps<RootStackParamList, "HotelDetails">;
+  route: RouteProp<RootStackParamList, "HotelDetails">;
+}
+function HotelDetails({ route }: Props) {
+  // const [date, setDate] = useState("09-10-2020");
 
   const hotel = route.params;
   const Content = () => {
-    let imagesForSlider: DataType[] = hotel.images.map((item) => {
-      return { img: item as ImageURISource };
-    });
+    // const imagesForSlider: DataType[] = hotel.images.map((item) => {
+    //   return { img: item as ImageURISource };
+    // });
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [requestedIndex, setRequestedIndex] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -261,9 +262,9 @@ function HotelDetails({ navigation, route }: Props) {
   return (
     <ScreenWithCustomBottomTab
       content={<Content />}
-      navigation={navigation}
       CustomBottomTabComponents={[
         <Text
+          key={hotel.name}
           style={{
             fontSize: fontRatio(22),
             fontWeight: "700",

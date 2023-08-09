@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import { Hotel, RootStackParamList } from "../../types";
 import { StackNavigationProp } from "@react-navigation/stack";

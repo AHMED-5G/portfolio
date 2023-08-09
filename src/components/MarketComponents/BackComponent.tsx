@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -37,5 +37,3 @@ const BackComponent = ({ navigation }: Props) => {
 };
 
 export default BackComponent;
-
-const styles = StyleSheet.create({});

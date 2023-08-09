@@ -46,7 +46,7 @@ const BottomSection = ({
               setIsItemInCart,
               openRemoveButton,
             }}
-            callBack={(lastValue) => {
+            callBack={() => {
               if (multiplyViewFadeInProgress.value == 0 && counter != 1) {
                 // openMultiplyView();
               }

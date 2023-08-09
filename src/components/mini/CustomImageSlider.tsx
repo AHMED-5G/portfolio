@@ -65,7 +65,7 @@ export const ImageSlider = ({
   const onViewRef = React.useRef(({ viewableItems }) => {
     // Use viewable items in state or as intended
     if (viewableItems.length > 0) {
-      let index = viewableItems[0].index;
+      const index = viewableItems[0].index;
       onItemChanged(viewableItems[0].item);
       onItemChangedWithIndex(viewableItems[0].item, index);
       setSelectedIndex(index);
@@ -132,7 +132,7 @@ export const ImageSlider = ({
   const startAutoPlay = (isViewer: boolean) => {
     if (!imageViewer) {
       ((viewer) => {
-        let viewBool = viewer;
+        const viewBool = viewer;
         timerRef.current = setTimeout(() => {
           if (!viewBool) {
             changeSliderListIndex();

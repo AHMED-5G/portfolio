@@ -55,8 +55,8 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
   }, []);
 
   const barOpenHeight = totalOpenTabBarHeight;
-  let openTabProgress = useSharedValue(0);
-  let iconRotate = useDerivedValue(() => {
+  const openTabProgress = useSharedValue(0);
+  const iconRotate = useDerivedValue(() => {
     return interpolate(
       openTabProgress.value,
       [0, 1],
