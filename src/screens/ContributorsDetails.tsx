@@ -1,4 +1,11 @@
-import { FlatList, StyleSheet, Text, View, Image } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+} from "react-native";
 import React, { useState } from "react";
 import { ContributorAccount, RootStackParamList } from "../types";
 import { circularRatio, fontRatio, hwrosh, width } from "../constants/Layout";
@@ -9,13 +16,13 @@ import ContributorAccountCard from "../components/ContributorAccountCard";
 import MyCustomSkeleton from "../components/MyCustomSkeleton";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
 import { RouteProp } from "@react-navigation/native";
+import AAContent from "../components/ContributorsContant/AAContent/AAContent";
 
 interface Props {
   navigation: StackScreenProps<RootStackParamList, "ContributorsDetails">;
   route: RouteProp<RootStackParamList, "ContributorsDetails">;
 }
 const imageSize = circularRatio(80);
-const socialContainerHeight = hwrosh(40);
 
 function ContributorsDetails({ route }: Props) {
   const contributor = route.params;
@@ -33,11 +40,10 @@ function ContributorsDetails({ route }: Props) {
       nameAndTitleContainerHeight;
 
     const headerContainerRStyle = useAnimatedStyle(() => {
+      const initialHeight = socialContainerRStyleInitialTop + marginHeight10;
+
       return {
-        height:
-          socialContainerRStyleInitialTop +
-          socialContainerHeight +
-          marginHeight10,
+        height: initialHeight,
       };
     });
 
@@ -46,14 +52,17 @@ function ContributorsDetails({ route }: Props) {
     });
 
     const nameAndTitleContainerRStyle = useAnimatedStyle(() => {
+      const initialTop = nameAndTitleContainerRStyleInitialTop;
       return {
-        top: nameAndTitleContainerRStyleInitialTop,
+        top: initialTop,
       };
     });
 
-    const socialContainerRStyle = useAnimatedStyle(() => {
+    const imageAnimatedView = useAnimatedStyle(() => {
+      const imageStartLeft = width / 2 - imageSize / 2;
       return {
-        top: socialContainerRStyleInitialTop,
+        position: "absolute",
+        left: imageStartLeft,
       };
     });
 
@@ -77,34 +86,36 @@ function ContributorsDetails({ route }: Props) {
             <Animated.View
               style={[styles.imageContainer, imageContainerRStyle]}
             >
-              {imageLoading && (
-                <View
-                  style={[
-                    styles.image,
-                    {
-                      position: "absolute",
-                      zIndex: 1,
-                      overflow: "hidden",
-                    },
-                  ]}
-                >
-                  <MyCustomSkeleton style={styles.image} />
-                </View>
-              )}
-              <Image
-                onLoadStart={() => {
-                  setImageLoading(true);
-                }}
-                onLoad={() => {
-                  setImageLoading(false);
-                }}
-                onLoadEnd={() => {
-                  setImageLoading(false);
-                }}
-                resizeMode="cover"
-                style={styles.image}
-                source={{ uri: contributor.image }}
-              />
+              <Animated.View style={imageAnimatedView}>
+                {imageLoading && (
+                  <View
+                    style={[
+                      styles.image,
+                      {
+                        position: "absolute",
+                        zIndex: 1,
+                        overflow: "hidden",
+                      },
+                    ]}
+                  >
+                    <MyCustomSkeleton style={styles.image} />
+                  </View>
+                )}
+                <Image
+                  onLoadStart={() => {
+                    setImageLoading(true);
+                  }}
+                  onLoad={() => {
+                    setImageLoading(false);
+                  }}
+                  onLoadEnd={() => {
+                    setImageLoading(false);
+                  }}
+                  resizeMode="cover"
+                  style={styles.image}
+                  source={{ uri: contributor.image }}
+                />
+              </Animated.View>
             </Animated.View>
             <Animated.View
               style={[
@@ -126,28 +137,18 @@ function ContributorsDetails({ route }: Props) {
                 </Text>
               </View>
             </Animated.View>
-            <View
-              style={{
-                height: 1,
-                backgroundColor: theme.borderColor,
-                width: "100%",
-              }}
-            />
-            <Animated.View
-              style={[styles.socialContainer, socialContainerRStyle]}
-            >
-              <FlatList
-                data={contributor.accounts.slice(0, 3)}
-                numColumns={4}
-                renderItem={({ item }: { item: ContributorAccount }) => (
-                  <ContributorAccountCard account={item} />
-                )}
-                keyExtractor={(item, index) => index.toString()}
-                showsVerticalScrollIndicator={false}
-              />
-            </Animated.View>
           </View>
         </Animated.View>
+        <ScrollView
+          contentContainerStyle={{
+            // justifyContent: "center",
+            alignContent: "center",
+            flex: 1,
+            alignItems: "center",
+          }}
+        >
+          {contributor.name == "AA" && <AAContent />}
+        </ScrollView>
       </View>
     );
   };
@@ -183,10 +184,12 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 0,
   },
   imageContainer: {
-    alignItems: "center",
-    alignContent: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    // alignContent: "center",
+    // justifyContent: "center",
     position: "absolute",
+    width: "100%",
+    backgroundColor: "pink",
   },
   nameContainer: {
     justifyContent: "center",
@@ -206,13 +209,7 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     fontSize: fontRatio(12),
   },
-  socialContainer: {
-    height: socialContainerHeight,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    position: "absolute",
-  },
+
   image: {
     height: imageSize,
     width: imageSize,

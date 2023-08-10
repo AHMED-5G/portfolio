@@ -33,6 +33,8 @@
     "@types/jest": "^29.4.0",
     "@types/react-native-star-rating": "^1.1.2",
     "@types/react-test-renderer": "^18.0.0",
+    "axios": "^1.4.0",
+    "cheerio": "^1.0.0-rc.12",
     "deprecated-react-native-prop-types": "^4.0.0",
     "eslint": "^8.46.0",
     "expo": "^49.0.0",

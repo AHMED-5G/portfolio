@@ -21,7 +21,7 @@ const HomeSectionTitle = ({ text }: Props) => {
   });
   if (!fontsLoaded) return <LoadingIndicator />;
   return (
-    <View style={[styles.hotelsTextContainer, { flexDirection: "row" }]}>
+    <View style={[styles.hotelsTextContainer]}>
       <MyText
         accessibilityRole="header"
         style={[styles.sectionTitleText, { color: theme.baseTextColor() }]}

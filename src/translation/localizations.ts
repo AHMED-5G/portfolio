@@ -40,6 +40,7 @@ const en = {
 
   restartApplication: "Restart Application",
   alert: "Alert",
+  openSource: "Open source",
 };
 
 const ar = {
@@ -85,6 +86,7 @@ const ar = {
 
   restartApplication: "أعد تشغيل التطبيق",
   alert: "تنبيه",
+  openSource: "مفتوح المصدر",
 };
 
 export { en, ar };
