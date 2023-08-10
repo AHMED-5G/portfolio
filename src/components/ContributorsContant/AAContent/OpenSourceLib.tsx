@@ -1,4 +1,10 @@
-import { Linking, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  Linking,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Image,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import MyCustomSkeleton from "../../MyCustomSkeleton";
 import { hwrosh, width } from "../../../constants/Layout";
@@ -25,24 +31,42 @@ const OpenSourceLib = () => {
   }, []);
   const Content = () => {
     return (
-      <TouchableOpacity
-        onPress={() => Linking.openURL(osRepoUrl)}
-        style={{ marginTop: hwrosh(5) }}
-      >
-        {repoImage ? (
+      <View>
+        <TouchableOpacity
+          onPress={() => Linking.openURL(osRepoUrl)}
+          style={{ marginTop: hwrosh(5) }}
+        >
+          {repoImage ? (
+            <Image
+              resizeMode="cover"
+              source={{
+                uri: repoImage,
+              }}
+              style={styles.repoImageStyle}
+            />
+          ) : (
+            <MyCustomSkeleton
+              style={{ width: 0.9 * width, height: hwrosh(200) }}
+            />
+          )}
+        </TouchableOpacity>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
           <Image
-            resizeMode="cover"
             source={{
-              uri: repoImage,
+              uri: "https://raster.shields.io/npm/dw/react-native-flatlist-withindicator.png",
             }}
-            style={styles.repoImageStyle}
+            resizeMethod="resize"
+            resizeMode="contain"
+            style={{ width: 100, height: 50 }}
           />
-        ) : (
-          <MyCustomSkeleton
-            style={{ width: 0.9 * width, height: hwrosh(200) }}
-          />
-        )}
-      </TouchableOpacity>
+        </View>
+      </View>
     );
   };
   return <SectionContainer title="Open Source Library" content={<Content />} />;
