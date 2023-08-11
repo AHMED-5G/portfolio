@@ -1,15 +1,22 @@
-import { StyleSheet, Text, View, Image, ImageURISource } from "react-native";
+import {  Text, View, Image } from "react-native";
 import React, { useState } from "react";
 import { User } from "../../types";
 import MedButton from "../mini/MedButton";
-import { myColors, theme } from "../../constants/myColors";
+import { theme } from "../../constants/myColors";
 import DuringSevenDaysAgo from "./DuringSevenDaysAgo";
 import * as Notifications from "expo-notifications";
-import LoadingIndicator from "../mini/LoadingIndicator";
 import SkeletonLoader from "expo-skeleton-loader";
 import { i18n } from "../../translation/i18n";
+import {
+  averageRatio,
+  circularRatio,
+  fontRatio,
+  hwrosh,
+  wwrosw,
+} from "../../constants/Layout";
 type Props = { user: User };
 const PostAuthor = ({ user }: Props) => {
+  const authImageRadius = circularRatio(50);
   const [followState, setFollowState] = useState(Math.random() < 0.5);
   const [authImageLoading, setAuthImageLoading] = useState(false);
   Notifications.setNotificationHandler({
@@ -39,10 +46,10 @@ const PostAuthor = ({ user }: Props) => {
       <SkeletonLoader boneColor="#EEE" highlightColor="#acc7d2" duration={1000}>
         <SkeletonLoader.Item
           style={{
-            width: 50,
-            height: 50,
-            borderRadius: 50 / 2,
-            marginRight: 20,
+            width: authImageRadius,
+            height: authImageRadius,
+            borderRadius: authImageRadius / 2,
+            marginRight: wwrosw(20),
           }}
         />
       </SkeletonLoader>
@@ -61,7 +68,7 @@ const PostAuthor = ({ user }: Props) => {
           alignItems: "center",
           backgroundColor: theme.cardBackground(),
           width: "100%",
-          borderRadius: 10,
+          borderRadius: averageRatio(10),
           borderBottomLeftRadius: 0,
           elevation: 1,
           shadowColor: "#000",
@@ -94,9 +101,9 @@ const PostAuthor = ({ user }: Props) => {
                 <View
                   style={{
                     position: "absolute",
-                    width: 50,
-                    height: 50,
-                    borderRadius: 50,
+                    width: authImageRadius,
+                    height: authImageRadius,
+                    borderRadius: authImageRadius,
                     margin: 10,
                     zIndex: 1,
                   }}
@@ -114,14 +121,19 @@ const PostAuthor = ({ user }: Props) => {
                 onLoadEnd={() => {
                   setAuthImageLoading(false);
                 }}
-                style={{ width: 50, height: 50, borderRadius: 50, margin: 10 }}
+                style={{
+                  width: authImageRadius,
+                  height: authImageRadius,
+                  borderRadius: authImageRadius,
+                  margin: averageRatio(10),
+                }}
                 source={{ uri: user.image }}
               />
             </View>
             <Text
               accessibilityRole="header"
               style={{
-                fontSize: 22,
+                fontSize: fontRatio(22),
                 fontWeight: "700",
                 color: theme.primaryText(),
               }}
@@ -131,7 +143,7 @@ const PostAuthor = ({ user }: Props) => {
           </View>
           <View
             style={{
-              marginRight: 10,
+              marginRight: wwrosw(10),
               justifyContent: "center",
               alignItems: "center",
             }}
@@ -145,14 +157,14 @@ const PostAuthor = ({ user }: Props) => {
                 }}
                 color={theme.white}
                 accessibilityHint={"Follow" + user.name}
-                width={100}
+                width={wwrosw(100)}
                 style={{
-                  height: 48,
-                  borderRadius: 10,
+                  height: hwrosh(48),
+                  borderRadius: averageRatio(10),
                   backgroundColor: theme.cardBackground(),
                 }}
                 textStyle={{
-                  fontSize: 16,
+                  fontSize: fontRatio(16),
                   fontWeight: "700",
                   color: theme.baseTextColor(),
                 }}
@@ -164,14 +176,14 @@ const PostAuthor = ({ user }: Props) => {
                   setFollowState(false);
                 }}
                 accessibilityHint={"unfollow" + user.name}
-                width={100}
+                width={wwrosw(100)}
                 style={{
-                  height: 48,
+                  height: hwrosh(48),
                   // borderRadius: 10,
                   backgroundColor: theme.cardBackground(),
                 }}
                 textStyle={{
-                  fontSize: 16,
+                  fontSize: fontRatio(16),
                   fontWeight: "700",
                   color: theme.baseTextColor(),
                 }}
@@ -186,5 +198,3 @@ const PostAuthor = ({ user }: Props) => {
 };
 
 export { PostAuthor };
-
-const styles = StyleSheet.create({});

@@ -3,21 +3,16 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { ColorSchemeName, Platform, SafeAreaView, Text } from "react-native";
-import useColorScheme from "../hooks/useColorScheme";
-import Colors from "../constants/Colors";
+import { Platform, SafeAreaView } from "react-native";
 import {
   InitialStateInterface,
   RootStackParamList,
   RootTabParamList,
-  RootTabScreenProps,
 } from "../types";
-
 import MyTabBar from "./MyTabBar";
 import { FeedScreen } from "../screens/FeedScreen";
 import HomeStackNavigator from "./HomeStackNavigatior/HomeStackNavigator";
@@ -31,21 +26,16 @@ import HotelDetails from "../screens/HotelDetails";
 import { theme } from "../constants/myColors";
 import LoadingIndicator from "../components/mini/LoadingIndicator";
 import { View } from "../components/Themed";
-import { Appearance } from "react-native";
-export default function Navigation({
-  colorScheme,
-}: {
-  colorScheme: ColorSchemeName;
-}) {
+import ContributorsDetails from "../screens/ContributorsDetails";
+export default function Navigation() {
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice
   );
   const [appIsReady, setAppIsReady] = React.useState(false);
 
   function setConfigures() {
-    const darkUserConfig = state.settings.userConfiguration?.darkTheme;
     theme.readingTheme = state.settings.savedReadingTheme;
-    loadLocale(state.language);
+    loadLocale();
     theme.darkTheme = state.settings.userConfiguration?.darkTheme;
   }
 
@@ -66,12 +56,12 @@ export default function Navigation({
   if (!appIsReady) {
     return <LoadingIndicator />;
   }
+
   return (
     <NavigationContainer>
       <StatusBar
         barStyle={!theme.darkTheme ? "dark-content" : "light-content"}
       />
-
       <SafeAreaView
         style={{
           flex: 1,
@@ -100,6 +90,7 @@ function RootNavigator() {
         component={HotelDetails}
         options={{ headerShown: false }}
       />
+
       <Stack.Screen
         name="YachtStackNavigation"
         component={YachtStackNavigation}
@@ -110,6 +101,11 @@ function RootNavigator() {
         component={MarketStackNavigator}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="ContributorsDetails"
+        component={ContributorsDetails}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
@@ -117,7 +113,6 @@ function RootNavigator() {
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
-
   return (
     <BottomTab.Navigator
       initialRouteName="HomeStackNavigator"
@@ -128,8 +123,7 @@ function BottomTabNavigator() {
         return (
           <View
             style={{
-              backgroundColor: theme.tabBarBackground(),
-
+              backgroundColor: theme.darkTheme ? "#141414" : "#EEE",
             }}
           >
             <MyTabBar {...props} />
@@ -140,9 +134,7 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="HomeStackNavigator"
         component={HomeStackNavigator}
-        options={({
-          navigation,
-        }: RootTabScreenProps<"HomeStackNavigator">) => ({
+        options={() => ({
           title: "Home",
         })}
       />
@@ -162,11 +154,4 @@ function BottomTabNavigator() {
       />
     </BottomTab.Navigator>
   );
-}
-
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }

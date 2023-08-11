@@ -1,16 +1,12 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Post } from "../../types";
 import { Video, AVPlaybackStatus, ResizeMode } from "expo-av";
-import { width } from "../../constants/Layout";
+import { circularRatio, hwrosh, width, wwrosw } from "../../constants/Layout";
 import { PostAuthor } from "./PostAuthor";
 import { PostText } from "./PostText";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
-
 import { useNavigation } from "@react-navigation/native";
-import LoadingIndicator from "../mini/LoadingIndicator";
-import SkeletonLoader from "expo-skeleton-loader";
-import { theme } from "../../constants/myColors";
 import MyCustomSkeleton from "../MyCustomSkeleton";
 type Props = {
   post: Post;
@@ -18,7 +14,7 @@ type Props = {
   index: number;
 };
 
-const VideoPostComponent = ({ post, isViewable, index }: Props) => {
+const VideoPostComponent = ({ post, isViewable }: Props) => {
   const video = React.useRef<Video | null>(null);
 
   const [isPlaying, setIsPlaying] = useState<AVPlaybackStatus>();
@@ -37,17 +33,7 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
   }, [navigation]);
   const [videoLoading, setVideoLoading] = useState(false);
   const [showPauseButton, setShowPauseButton] = useState(false);
-  function SkeltonItem() {
-    return (
-      <SkeletonLoader
-        boneColor="#EEE"
-        highlightColor={theme.primary()as string}
-        duration={1000}
-      >
-        <SkeletonLoader.Item style={styles.videoContainer} />
-      </SkeletonLoader>
-    );
-  }
+
   return (
     <View
       style={{
@@ -60,7 +46,7 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
       <View>
         <PostAuthor user={post.by!} />
       </View>
-      <View style={{ marginTop: 10 }}>
+      <View style={{ marginTop: hwrosh(10) }}>
         <PostText text={post.text} />
       </View>
       <View style={[styles.videoContainer]}>
@@ -82,7 +68,7 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
           ref={video}
           style={styles.video}
           source={{
-            uri: post?.video!,
+            uri: post?.video ?? "",
           }}
           onLoadStart={() => {
             setVideoLoading(true);
@@ -90,10 +76,10 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
           onLoad={() => {
             setVideoLoading(false);
           }}
-
           useNativeControls
           resizeMode={ResizeMode.CONTAIN}
           onPlaybackStatusUpdate={(status) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             //@ts-ignore
             setIsPlaying(status.isPlaying);
           }}
@@ -115,7 +101,12 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
           }}
         >
           {!isPlaying && (
-            <Feather disabled name="play" size={74} color="white" />
+            <Feather
+              disabled
+              name="play"
+              size={circularRatio(74)}
+              color="white"
+            />
           )}
         </TouchableOpacity>
         {showPauseButton && (
@@ -130,7 +121,7 @@ const VideoPostComponent = ({ post, isViewable, index }: Props) => {
             <MaterialIcons
               disabled
               name="pause-circle-outline"
-              size={74}
+              size={circularRatio(74)}
               color="white"
             />
           </TouchableOpacity>
@@ -144,17 +135,16 @@ export { VideoPostComponent };
 
 const styles = StyleSheet.create({
   video: {
-    height: 240,
+    height: hwrosh(240),
     width: "100%",
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
   },
   videoContainer: {
-    marginTop: 10,
-    height: 250,
-    width: width - 20,
-
+    marginTop: hwrosh(10),
+    height: hwrosh(250),
+    width: width - wwrosw(20),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

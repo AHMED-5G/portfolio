@@ -1,15 +1,13 @@
 import { StyleSheet, View } from "react-native";
-import React, { useState } from "react";
-
 import { Post, PostTypes } from "../../types";
 import { TextPostComponent } from "./TextPostComponent";
 import { ImagePostComponent } from "./ImagePostComponent";
 import { VideoPostComponent } from "./VideoPostComponent";
-import { width } from "../../constants/Layout";
+import { hwrosh, width, wwrosw } from "../../constants/Layout";
 
 import PostOptions from "./PostOptions";
-import { Video } from "expo-av";
 import { theme } from "../../constants/myColors";
+import React from "react";
 type Props = {
   post: Post;
   isViewable: boolean;
@@ -17,7 +15,6 @@ type Props = {
 };
 
 const PostComponent = ({ post, isViewable, index }: Props) => {
-  const [whoIsRunningIam, setWhoIsRunningIam] = useState<string | null>(null);
   return (
     <View
       style={[
@@ -43,11 +40,11 @@ export { PostComponent };
 
 const styles = StyleSheet.create({
   postContainer: {
-    width: width - 10,
+    width: width - wwrosw(10),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
     borderRadius: theme.borderRadius,
-    marginTop: 20,
+    marginTop: hwrosh(20),
   },
 });

@@ -1,9 +1,8 @@
-import { PostTypes, User, PostComment } from "../../src/types";
+import { PostTypes, User } from "../../src/types";
 import {
   getRandomOneItemFromList,
   shuffleArray,
   randomIntNumber,
-  getRandomIntBetweenTow,
   getRandomInt,
 } from "../../src/utils/helperFunctions";
 import { images, profileImages } from "../images";
@@ -49,7 +48,7 @@ postsCloneForVideos.map((post) => {
 export const postsWithImages = postsCloneForImages;
 export const postsWithVideos = postsCloneForVideos;
 
-let firsPost = posts[0];
+const firsPost = posts[0];
 posts.shift();
 
 export const mergePosts = shuffleArray([

@@ -1,13 +1,11 @@
-import { DevSettings, StyleSheet, View } from "react-native";
+import { DevSettings, View } from "react-native";
 import React from "react";
 import { InitialStateInterface, Languages } from "../../types";
 import MedButton from "../mini/MedButton";
 import { SET_LANGUAGE } from "../../redux/reducers/dataSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
 
-type Props = {};
-
-const ChangeLanguageComponent = (props: Props) => {
+const ChangeLanguageComponent = () => {
   const handelChangeLanguage = (lang: Languages) => {
     dispatch(SET_LANGUAGE(lang));
     restartApp();
@@ -58,5 +56,3 @@ const ChangeLanguageComponent = (props: Props) => {
 };
 
 export default ChangeLanguageComponent;
-
-const styles = StyleSheet.create({});

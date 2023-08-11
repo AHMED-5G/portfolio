@@ -1,9 +1,13 @@
 import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import { RootStackParamList } from "../types";
-import { StackScreenProps } from "@react-navigation/stack";
 import { yachtImages, yachtInterior } from "../../dummy/yachtDummy/images";
-import { height, width } from "../constants/Layout";
+import {
+  averageRatio,
+  fontRatio,
+  height,
+  hwrosh,
+  width,
+} from "../constants/Layout";
 import Animated, {
   Extrapolation,
   interpolate,
@@ -20,22 +24,22 @@ import { generateRandomBoolean } from "../utils/helperFunctions";
 import RightSide from "../components/yachtComponents/RightSide";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 
-type Props = StackScreenProps<RootStackParamList, "Yachts">;
+// type Props = StackScreenProps<RootStackParamList, "Yachts">;
 
-const longestMarinTop = height * 0.15;
+const longestMarinTop = height * hwrosh(0.15);
 const leftContainerHeight = height * 0.7;
 const rightSideHeight = height;
-const imageSize = 210;
+const imageSize = averageRatio(210);
 const galleryScaleUpRatioNumber = 1.5;
 const galleryScaleUpRatio = imageSize * galleryScaleUpRatioNumber;
 const imageLeft = width / 2 - imageSize / 2;
 const bigImageLeft = width / 2 - galleryScaleUpRatio / 2;
-const informationCardContainerHeight = 120;
-const imageInTopHeight = height / 2 - 20;
+const informationCardContainerHeight = hwrosh(120);
+const imageInTopHeight = height / 2 - hwrosh(20);
 const galleryContainerHeight = imageSize;
-const BarTitleFontSize = 25;
+const BarTitleFontSize = fontRatio(25);
 
-function Yachts({ navigation }: Props) {
+function Yachts() {
   const openLongestProgress = useSharedValue(0);
   const openGalleryProgress = useSharedValue(0);
   const imagePastAwayProgress = useSharedValue(0);
@@ -124,7 +128,11 @@ function Yachts({ navigation }: Props) {
         [-width, 0],
         Extrapolation.CLAMP
       );
-      let toOpacity = interpolate(openLongestProgress.value, [1, 0.5], [1, 0]);
+      const toOpacity = interpolate(
+        openLongestProgress.value,
+        [1, 0.5],
+        [1, 0]
+      );
 
       return {
         left,
@@ -133,7 +141,7 @@ function Yachts({ navigation }: Props) {
     });
 
     const detailsRStyleWithGallery = useAnimatedStyle(() => {
-      let toOpacityWithGallery = interpolate(
+      const toOpacityWithGallery = interpolate(
         openGalleryProgress.value,
         [0, 1],
         [1, 0.5]
@@ -199,7 +207,7 @@ function Yachts({ navigation }: Props) {
     });
 
     function openCloseGallery(value = 1, duration = 300) {
-      openGalleryProgress.value = withTiming(value, { duration: duration });
+      openGalleryProgress.value = withTiming(value, { duration });
     }
 
     function lastStepForImageRStyle(
@@ -240,7 +248,7 @@ function Yachts({ navigation }: Props) {
       progressValue: SharedValue<number>,
       index: number
     ) {
-      if (index == 0) {
+      if (index === 0) {
         imagePastAwayProgress3.value = withTiming(0, {
           duration: 400,
         });
@@ -265,6 +273,7 @@ function Yachts({ navigation }: Props) {
       switch (index) {
         case 0:
           refactorKillImage(imagePastAwayProgress, index);
+          break;
         case 1:
           refactorKillImage(imagePastAwayProgress1, index);
           break;
@@ -282,12 +291,12 @@ function Yachts({ navigation }: Props) {
     function imageRotateValue(index: number): number {
       return (3 - index) * 2 - 2 * (generateRandomBoolean() ? -1 : 1);
     }
+
     return (
       <View
         style={{
           flex: 1,
           flexDirection: theme.localizationRtl ? "row-reverse" : "row",
-          // justifyContent: "space-evenly",
         }}
       >
         <Animated.View style={[styles.longestRStyle, longestRStyle]}>
@@ -295,7 +304,7 @@ function Yachts({ navigation }: Props) {
             activeOpacity={1}
             style={{}}
             onPress={() => {
-              let value = openLongestProgress.value == 1 ? 0 : 1;
+              const value = openLongestProgress.value == 1 ? 0 : 1;
               value == 0 && openCloseGallery(0);
               openLongestProgress.value = withTiming(value, {
                 duration: 600,
@@ -423,11 +432,11 @@ function Yachts({ navigation }: Props) {
       </View>
     );
   };
+
   return (
     <ScreenWithCustomBottomTab
       content={<Content />}
-      navigation={navigation}
-      CustomBottomTabComponents={[<BarTitle />]}
+      CustomBottomTabComponents={[<BarTitle key={"bar"} />]}
     />
   );
 }
@@ -439,6 +448,7 @@ const styles = StyleSheet.create({
     height: leftContainerHeight,
     width: width / 2,
     marginLeft: 2,
+    zIndex: 1,
   },
   rightSide: {
     position: "absolute",
@@ -474,6 +484,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     left: imageLeft,
     backgroundColor: "white",
-    borderRadius: 3,
+    borderRadius: averageRatio(3),
   },
 });

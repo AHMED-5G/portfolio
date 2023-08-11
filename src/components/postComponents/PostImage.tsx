@@ -1,7 +1,7 @@
 import { StyleSheet, View, Image } from "react-native";
 import React, { useState } from "react";
 import { Post } from "../../types";
-import { width } from "../../constants/Layout";
+import { averageRatio, hwrosh, width, wwrosw } from "../../constants/Layout";
 import MyCustomSkeleton from "../MyCustomSkeleton";
 
 type Props = { image: Post["image"] };
@@ -44,10 +44,14 @@ export { PostImage };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 5,
+    marginTop: hwrosh(5),
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
   },
-  image: { height: 190, borderRadius: 10, width: width - 20 },
+  image: {
+    height: hwrosh(190),
+    borderRadius: averageRatio(10),
+    width: width - wwrosw(20),
+  },
 });

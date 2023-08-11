@@ -1,30 +1,30 @@
 import React from "react";
-import { FlatList, StyleSheet, View } from "react-native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { StyleSheet, View } from "react-native";
 import { contributors } from "../../../dummy/Contributors";
 import { i18n } from "../../translation/i18n";
-import { RootStackParamList, Contributor } from "../../types";
+import { Contributor } from "../../types";
 import { shuffleArray } from "../../utils/helperFunctions";
 import ContributorCard from "../ContributorCard";
 import HomeSectionTitle from "./HomeSectionTitle";
 import HomeSectionContainer from "./HomeSectionContainer";
+import { FlatListWithRectangleIndicator } from "react-native-flatlist-withindicator";
+import { wwrosw } from "../../constants/Layout";
+// type Props = {
+//   navigation: StackNavigationProp<RootStackParamList, "Home">;
+// };
 
-type Props = {
-  navigation: StackNavigationProp<RootStackParamList, "Home">;
-};
-
-const ContributesSection = ({ navigation }: Props) => {
+const ContributesSection = () => {
   const Content = () => {
     return (
       <View>
-        <FlatList
+        <FlatListWithRectangleIndicator
           data={shuffleArray(contributors)}
           renderItem={({ item }: { item: Contributor }) => {
             return <ContributorCard contributor={item} />;
           }}
           keyExtractor={(item: Contributor) => item.id.toString()}
-          showsHorizontalScrollIndicator={false}
-          horizontal
+          cardWidthPlusMarginValue={wwrosw(160) + wwrosw(10)}
+          animationScaleFactor={0.5}
         />
       </View>
     );

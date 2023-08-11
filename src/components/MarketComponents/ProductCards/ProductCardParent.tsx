@@ -1,5 +1,5 @@
 import { StyleSheet, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import TopSection from "./TopSection";
 import {
   InitialStateInterface,
@@ -8,14 +8,11 @@ import {
   ProductTypes,
 } from "../../../types";
 import BottomSection from "./BottomSection";
-import {
-  productCardWidth,
-  productCardBorderRadius,
-  productCardHeight,
-} from "./style";
+import { productCardWidth, productCardBorderRadius } from "./style";
 import { useSharedValue, withTiming } from "react-native-reanimated";
 import { useAppSelector } from "../../../redux/Hooks/hooks";
 import { theme } from "../../../constants/myColors";
+import { hwrosh } from "../../../constants/Layout";
 
 type Props = {
   product: Product;
@@ -23,13 +20,13 @@ type Props = {
 
 const ProductCardParent = ({ product }: Props) => {
   const openMultiplyViewTime = 700;
+
   const [isItemInCart, setIsItemInCart] = useState({
     id: "0",
     counter: 0,
   } as ProductInCart);
 
   const [counter, setCounter] = useState(1);
-
   const multiplyViewFadeInProgress = useSharedValue(
     product.type == ProductTypes.upTo100 ? 1 : 0
   );
@@ -63,29 +60,32 @@ const ProductCardParent = ({ product }: Props) => {
           setIsItemInCart(thisProduct);
         }, 100);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.warn(error);
+    }
   }, []);
 
   // functions
-  const openMultiplyView = () => {
+  function openMultiplyView() {
     multiplyViewFadeInProgress.value = withTiming(1, {
       duration: openMultiplyViewTime,
     });
-  };
+  }
 
-  const closeMultiplyView = () => {
+  function closeMultiplyView() {
     multiplyViewFadeInProgress.value = withTiming(0, {
       duration: openMultiplyViewTime,
     });
-  };
+  }
 
-  const openRemoveButton = () => {
+  const openRemoveButton = useCallback(() => {
     if (openRemoveButtonProgress.value == 0) {
       openRemoveButtonProgress.value = withTiming(1, {
         duration: 700,
       });
     }
-  };
+  }, []);
+
   return (
     <View
       style={[
@@ -119,9 +119,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: productCardWidth,
     // backgroundColor: "white",
-    marginTop: 20,
+    marginTop: hwrosh(20),
     // marginBottom: 20,
     borderRadius: productCardBorderRadius,
-    height: productCardHeight,
+    height: hwrosh(420),
   },
 });

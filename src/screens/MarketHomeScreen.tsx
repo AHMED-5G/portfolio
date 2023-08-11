@@ -1,8 +1,6 @@
 import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
-import { StackScreenProps } from "@react-navigation/stack";
-import { RootStackParamList } from "../types";
-import { width } from "../constants/Layout";
+import { averageRatio, fontRatio, hwrosh, width } from "../constants/Layout";
 import SearchComponent from "../components/MarketComponents/SearchComponent";
 import Cart from "../components/MarketComponents/Cart";
 import { productsData } from "../../dummy/marketDummy/ProductsDummy";
@@ -12,10 +10,10 @@ import SimpleHeader from "../components/SimpleHeader";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import { i18n } from "../translation/i18n";
 
-type Props = StackScreenProps<RootStackParamList, "MarketHomeScreen">;
+// type Props = StackScreenProps<RootStackParamList, "MarketHomeScreen">;
 
 const bottomNavigationHeight = theme.tabBarHeight;
-const MarketHomeScreen = ({ navigation }: Props) => {
+const MarketHomeScreen = () => {
   const Content = () => {
     return (
       <View style={styles.container}>
@@ -41,8 +39,10 @@ const MarketHomeScreen = ({ navigation }: Props) => {
   return (
     <ScreenWithCustomBottomTab
       content={<Content />}
-      navigation={navigation}
-      CustomBottomTabComponents={[<SearchComponent />, <Cart />]}
+      CustomBottomTabComponents={[
+        <SearchComponent key={"search"} />,
+        <Cart key={"cart"} />,
+      ]}
     />
   );
 };
@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
   customBottomTab: {
     backgroundColor: "white",
     height: bottomNavigationHeight,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
+    borderTopLeftRadius: averageRatio(15),
+    borderTopRightRadius: averageRatio(15),
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignContent: "center",
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    marginBottom: 10,
+    marginBottom: hwrosh(10),
   },
 
   searchInputContainer: {
@@ -82,9 +82,9 @@ const styles = StyleSheet.create({
     width,
   },
   searchResultText: {
-    margin: 4,
+    margin: averageRatio(4),
     color: theme.primaryText(),
-    fontSize: 20,
+    fontSize: fontRatio(20),
     fontWeight: "500",
   },
 });

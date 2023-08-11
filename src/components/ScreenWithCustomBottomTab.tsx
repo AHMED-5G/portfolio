@@ -1,24 +1,24 @@
-import { StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 import React, { ReactNode } from "react";
 import CustomBottomTab from "./CustomBottomTab";
 import { StackNavigationProp } from "@react-navigation/stack";
-
 import { RootStackParamList } from "../types";
 import { theme } from "../constants/myColors";
+import { useNavigation } from "@react-navigation/native";
 
 type Props = {
   CustomBottomTabComponents?: ReactNode[];
-  navigation: StackNavigationProp<RootStackParamList>;
+  // navigation: StackNavigationProp<RootStackParamList>;
   content?: ReactNode;
   style?: StyleProp<ViewStyle>;
 };
 
 const ScreenWithCustomBottomTab = ({
-  navigation,
   CustomBottomTabComponents,
   content,
   style,
 }: Props) => {
+  const navigation: StackNavigationProp<RootStackParamList> = useNavigation();
   return (
     <View
       style={[
@@ -40,5 +40,3 @@ const ScreenWithCustomBottomTab = ({
 };
 
 export default ScreenWithCustomBottomTab;
-
-const styles = StyleSheet.create({});

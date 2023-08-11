@@ -1,11 +1,10 @@
-import { StyleSheet } from "react-native";
+
 import React from "react";
 import { RootStackParamList } from "../../types";
-import { Home } from "../../screens/Home";
 
-import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 import MarketHomeScreen from "../../screens/MarketHomeScreen";
-const Stack = createSharedElementStackNavigator<RootStackParamList>();
+import { createStackNavigator } from "@react-navigation/stack";
+const Stack = createStackNavigator<RootStackParamList>();
 
 const MarketStackNavigator = () => {
   return (
@@ -20,5 +19,3 @@ const MarketStackNavigator = () => {
 };
 
 export default MarketStackNavigator;
-
-const styles = StyleSheet.create({});

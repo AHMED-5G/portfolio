@@ -1,7 +1,7 @@
-import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { yachtImages } from "../../../dummy/yachtDummy/images";
-import { width } from "../../constants/Layout";
+import { hwrosh } from "../../constants/Layout";
 import { RootStackParamList } from "../../types";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { i18n } from "../../translation/i18n";
@@ -39,6 +39,6 @@ export default YachtSection;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
+    marginTop: hwrosh(10),
   },
 });

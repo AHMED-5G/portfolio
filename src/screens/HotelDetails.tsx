@@ -5,37 +5,47 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
-  ImageURISource,
   ScrollView,
-  Platform,
 } from "react-native";
 import React, { useState } from "react";
 import { RootStackParamList } from "../types";
-import { height, width } from "../constants/Layout";
+import {
+  averageRatio,
+  circularRatio,
+  fontRatio,
+  height,
+  hwrosh,
+  width,
+  wwrosw,
+} from "../constants/Layout";
 import { myColors, theme } from "../constants/myColors";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FontAwesome5 } from "@expo/vector-icons";
 import MedButton from "../components/mini/MedButton";
-import { DataType } from "react-native-image-slider-banner/src";
+//import { DataType } from "react-native-image-slider-banner/src";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
 import Stars from "react-native-stars";
 import { showToast } from "../utils/helperFunctions";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import ImageSliderComponent from "../components/HotelDetailsComponents/ImageSliderComponent";
-import DateTimePicker from "@react-native-community/datetimepicker";
+// import DateTimePicker from "@react-native-community/datetimepicker";
 import { i18n } from "../translation/i18n";
 // import DatePicker from "react-native-datepicker";
-type Props = StackScreenProps<RootStackParamList, "HotelDetails">;
-
-function HotelDetails({ navigation, route }: Props) {
-  const [date, setDate] = useState("09-10-2020");
+import { RouteProp } from "@react-navigation/native";
+interface Props {
+  navigation: StackScreenProps<RootStackParamList, "HotelDetails">;
+  route: RouteProp<RootStackParamList, "HotelDetails">;
+}
+function HotelDetails({ route }: Props) {
+  // const [date, setDate] = useState("09-10-2020");
 
   const hotel = route.params;
   const Content = () => {
-    let imagesForSlider: DataType[] = hotel.images.map((item) => {
-      return { img: item as ImageURISource };
-    });
+    // const imagesForSlider: DataType[] = hotel.images.map((item) => {
+    //   return { img: item as ImageURISource };
+    // });
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [requestedIndex, setRequestedIndex] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -56,7 +66,7 @@ function HotelDetails({ navigation, route }: Props) {
       }, 3000);
     }
     return (
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
         <ImageSliderComponent
           {...{ hotel, requestedIndex, setCurrentImageIndex }}
         />
@@ -66,14 +76,23 @@ function HotelDetails({ navigation, route }: Props) {
             { backgroundColor: theme.cardBackground() },
           ]}
         >
-          <View style={{ margin: 15, maxWidth: 300, height: 105 }}>
+          <View
+            style={{
+              margin: averageRatio(15),
+              maxWidth: wwrosw(300),
+              height: hwrosh(105),
+            }}
+          >
             <FlatList
               horizontal={true}
               data={hotel.images}
               renderItem={({ item, index }) => (
-                <View style={{ width: 100 }}>
+                <View style={{ width: wwrosw(100) }}>
                   <TouchableOpacity
-                    style={[styles.miniImageContainerStyle, { margin: 5 }]}
+                    style={[
+                      styles.miniImageContainerStyle,
+                      { margin: averageRatio(5) },
+                    ]}
                     disabled={index == currentImageIndex}
                     onPress={() => {
                       setCurrentImageIndex(index);
@@ -85,7 +104,8 @@ function HotelDetails({ navigation, route }: Props) {
                       style={[
                         styles.miniImageStyle,
                         {
-                          borderWidth: index == currentImageIndex ? 1 : 0,
+                          borderWidth:
+                            index == currentImageIndex ? averageRatio(1) : 0,
                           borderColor:
                             index == currentImageIndex
                               ? theme.secondary
@@ -100,7 +120,7 @@ function HotelDetails({ navigation, route }: Props) {
               showsHorizontalScrollIndicator={false}
             />
           </View>
-          <View style={{ marginTop: 2, marginLeft: 15 }}>
+          <View style={{ marginTop: hwrosh(2), marginLeft: wwrosw(15) }}>
             <View>
               <Text
                 style={[styles.secondlyTitle, { color: theme.baseTextColor() }]}
@@ -113,20 +133,20 @@ function HotelDetails({ navigation, route }: Props) {
                 alignItems: "center",
                 alignContent: "center",
                 flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
-                marginLeft: 5,
+                marginLeft: wwrosw(5),
               }}
             >
               <Text>
                 <Entypo
                   disabled
                   name="map"
-                  size={24}
+                  size={circularRatio(24)}
                   color={theme.iconColor()}
                 />
               </Text>
               <View
                 style={{
-                  marginLeft: 5,
+                  marginLeft: wwrosw(5),
                 }}
               >
                 <Text
@@ -137,7 +157,7 @@ function HotelDetails({ navigation, route }: Props) {
               </View>
             </View>
           </View>
-          <View style={{ marginTop: 15, marginLeft: 15 }}>
+          <View style={{ marginTop: hwrosh(15), marginLeft: wwrosw(15) }}>
             <View>
               <Text
                 style={[styles.secondlyTitle, { color: theme.baseTextColor() }]}
@@ -156,16 +176,16 @@ function HotelDetails({ navigation, route }: Props) {
                 <Text>
                   <FontAwesome5
                     name="smile"
-                    size={24}
+                    size={circularRatio(24)}
                     color={theme.iconColor()}
-                  />{" "}
+                  />
                 </Text>
               </View>
-              <View style={{ marginLeft: 5 }}>
+              <View style={{ marginLeft: wwrosw(5) }}>
                 <Stars
                   default={hotel.rate}
                   count={5}
-                  starSize={50}
+                  starSize={circularRatio(50)}
                   fullStar={
                     <AntDesign
                       accessibilityHint="1 filled star from 5"
@@ -197,20 +217,34 @@ function HotelDetails({ navigation, route }: Props) {
             </View>
           </View>
         </View>
-        <View style={{ marginLeft: 20, marginTop: height / 2 - 140 }}>
-          <View style={{ margin: 20 }}>
+        <View
+          style={{
+            marginLeft: wwrosw(20),
+            marginTop: height / 2 - hwrosh(140),
+          }}
+        >
+          <View style={{ margin: averageRatio(20) }}>
             <Text style={[styles.title, { color: theme.baseTextColor() }]}>
               {hotel.name}
             </Text>
           </View>
-          <View style={{ marginBottom: 20, marginLeft: 20 }}>
+          <View
+            style={{
+              marginBottom: hwrosh(20),
+              marginLeft: wwrosw(20),
+              width: wwrosw(120),
+            }}
+          >
             <MedButton
               loading={loading}
-              textStyle={{ color: theme.actionButtonTextColor(), fontSize: 20 }}
+              textStyle={{
+                color: theme.actionButtonTextColor(),
+                fontSize: fontRatio(20),
+              }}
               style={{
-                width: 140,
-                height: 50,
-                marginTop: 10,
+                width: "100%",
+                height: hwrosh(50),
+                marginTop: hwrosh(10),
                 borderRadius: theme.buttonBorderRadius,
                 backgroundColor: theme.actionButtonBackground(),
               }}
@@ -229,11 +263,11 @@ function HotelDetails({ navigation, route }: Props) {
   return (
     <ScreenWithCustomBottomTab
       content={<Content />}
-      navigation={navigation}
       CustomBottomTabComponents={[
         <Text
+          key={hotel.name}
           style={{
-            fontSize: 22,
+            fontSize: fontRatio(22),
             fontWeight: "700",
             color: theme.baseTextColor(),
           }}
@@ -249,25 +283,25 @@ export default HotelDetails;
 
 const styles = StyleSheet.create({
   miniImageContainerStyle: {
-    width: 90,
-    height: 90,
-    borderRadius: 10,
+    width: wwrosw(90),
+    height: hwrosh(90),
+    borderRadius: averageRatio(10),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
   },
   miniImageStyle: {
-    width: 90,
-    height: 90,
-    borderRadius: 10,
+    width: wwrosw(90),
+    height: hwrosh(90),
+    borderRadius: averageRatio(10),
   },
   title: {
-    fontSize: 28,
+    fontSize: fontRatio(28),
     fontWeight: "700",
-    lineHeight: 36,
+    lineHeight: fontRatio(36),
   },
   secondlyTitle: {
-    fontSize: 22,
+    fontSize: fontRatio(22),
     color: myColors.black,
     fontWeight: "bold",
   },
@@ -277,25 +311,25 @@ const styles = StyleSheet.create({
     textShadowColor: "black",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
-    fontSize: 22,
+    fontSize: fontRatio(22),
   },
   myEmptyStarStyle: {
     color: "white",
-    fontSize: 22,
+    fontSize: fontRatio(22),
   },
   smallText: {
-    fontSize: 14,
-    lineHeight: 17,
+    fontSize: fontRatio(14),
+    lineHeight: fontRatio(17),
     fontWeight: "700",
     color: "#505050",
   },
   meddleCard: {
     position: "absolute",
     top: height / 2 - 40,
-    width: 316,
-    height: 300,
-    left: (width - 316) / 2,
-    borderRadius: 20,
+    width: wwrosw(316),
+    height: hwrosh(300),
+    left: (width - wwrosw(316)) / 2,
+    borderRadius: averageRatio(20),
     backgroundColor: "#FAFAFA",
     zIndex: 999,
     overflow: "hidden",

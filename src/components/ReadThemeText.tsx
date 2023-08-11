@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import React from "react";
 import { useAppSelector } from "../redux/Hooks/hooks";
 import { InitialStateInterface } from "../types";
@@ -31,4 +31,3 @@ const ReadThemeText = ({text}: Props) => {
 
 export default ReadThemeText;
 
-const styles = StyleSheet.create({});

@@ -1,38 +1,51 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import { theme } from "../../constants/myColors";
-import { width } from "../../constants/Layout";
+import { fontRatio, hwrosh, width, wwrosw } from "../../constants/Layout";
+import MyText from "../MyText";
+import { useFonts } from "expo-font";
+import {
+  IBMPlexSansArabicRegular,
+  IBMPlexSansArabicMedium,
+  IBMPlexSansArabicBold,
+} from "../../../assets/fonts";
+import LoadingIndicator from "../mini/LoadingIndicator";
 
 type Props = { text: string };
 
 const HomeSectionTitle = ({ text }: Props) => {
+  const [fontsLoaded] = useFonts({
+    IBMPlexSansArabicRegular: IBMPlexSansArabicRegular,
+    IBMPlexSansArabicMedium: IBMPlexSansArabicMedium,
+    IBMPlexSansArabicBold: IBMPlexSansArabicBold,
+  });
+  if (!fontsLoaded) return <LoadingIndicator />;
   return (
-    <View style={[styles.hotelsTextContainer, { flexDirection: "row" }]}>
-      <Text
+    <View style={[styles.hotelsTextContainer]}>
+      <MyText
         accessibilityRole="header"
         style={[styles.sectionTitleText, { color: theme.baseTextColor() }]}
-      >
-        {text}
-      </Text>
+        text={text}
+      />
     </View>
   );
 };
 
 export default HomeSectionTitle;
-const marginValue = 10;
+
 const styles = StyleSheet.create({
   hotelsTextContainer: {
-    marginTop: 10,
-    marginBottom: 5,
+    marginTop: hwrosh(10),
+    marginBottom: hwrosh(5),
     alignSelf: "flex-start",
     width: width,
   },
   sectionTitleText: {
-    fontSize: 25,
-    fontWeight: "700",
+    fontSize: fontRatio(20),
     alignSelf: "flex-start",
-    marginTop: 10,
-    marginLeft: marginValue,
-    marginRight: marginValue,
+    marginTop: hwrosh(10),
+    marginLeft: wwrosw(10),
+    marginRight: wwrosw(10),
+    fontFamily: "IBMPlexSansArabicBold",
   },
 });

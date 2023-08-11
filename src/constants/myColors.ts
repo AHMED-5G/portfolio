@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import { ReadingThemesCombo } from "../types";
 import { ViewStyle } from "react-native";
+import { averageRatio, hwrosh } from "./Layout";
 
 export const myColors = {
   main: "#CD9575",
@@ -210,18 +211,18 @@ export const theme: ThemeInterface = {
 
   error: "#b00020",
 
-  tabBarHeight: 70,
+  tabBarHeight: hwrosh(70),
   // tabBarBackground: "#FFF",
   tabBarTextColor: "#000",
-  tabBarBorderRadius: 10,
+  tabBarBorderRadius: averageRatio(10),
   tabBarLeftSectionColor: function () {
     return !this.darkTheme ? this.primary() : "#282828";
   },
 
   cardBackgroundColorValue: "#FFF",
   cardBorderRadiusWidthFactor: 0.05,
-  borderRadius: 10,
-  buttonBorderRadius: 5,
+  borderRadius: averageRatio(10),
+  buttonBorderRadius: averageRatio(5),
 
   localizationDirection: undefined,
   localizationRtl: I18nManager.isRTL,

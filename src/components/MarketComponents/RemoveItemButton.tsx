@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { theme } from "../../constants/myColors";
 import { productCardWidth } from "./ProductCards/style";
@@ -12,8 +12,13 @@ import { InitialStateInterface, Product, ProductInCart } from "../../types";
 import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
 import { SET_CART } from "../../redux/reducers/dataSlice";
 import { Extrapolate } from "react-native-reanimated";
-import { withSpring } from "react-native-reanimated";
 import { i18n } from "../../translation/i18n";
+import {
+  averageRatio,
+  fontRatio,
+  hwrosh,
+  wwrosw,
+} from "../../constants/Layout";
 
 type Props = {
   isItemInCart: ProductInCart;
@@ -32,10 +37,10 @@ const RemoveItemButton = ({
   callBack,
   openRemoveButtonProgress,
 }: Props) => {
-  const buttonHeight = 55;
+  const buttonHeight = hwrosh(55);
   const counterContainerWidth = allButtonWidth * 0.3;
   const RemoveTextContainerWidth = 1 - counterContainerWidth;
-  const buttonWidth = productCardWidth * 0.45 - 10;
+  const buttonWidth = productCardWidth * 0.45 - wwrosw(10);
   const closeRemoveButtonTime = 900;
   const removeButtonRStyle = useAnimatedStyle(() => {
     const toWidth = interpolate(
@@ -96,7 +101,7 @@ const RemoveItemButton = ({
           borderWidth: 0.5,
           borderColor: theme.darkTheme ? "undefined" : theme.error,
           height: buttonHeight,
-          borderRadius: 5,
+          borderRadius: averageRatio(5),
           flexDirection: "row",
           justifyContent: "space-around",
         }}
@@ -110,14 +115,14 @@ const RemoveItemButton = ({
               justifyContent: "center",
               alignContent: "center",
               alignItems: "center",
-              margin: 2,
+              margin: averageRatio(2),
             },
             RemoveTextContainerRStyle,
           ]}
         >
           <Text
             style={{
-              fontSize: 22,
+              fontSize: fontRatio(22),
               color: theme.darkTheme ? theme.error : theme.black,
               fontWeight: "bold",
             }}
@@ -130,15 +135,15 @@ const RemoveItemButton = ({
             justifyContent: "center",
             alignContent: "center",
             alignItems: "center",
-            width: 60,
+            width: wwrosw(60),
           }}
         >
           <View
             style={{
               width: counterContainerWidth,
-              height: 40,
-              margin: 5,
-              borderRadius: 10,
+              height: hwrosh(40),
+              margin: averageRatio(5),
+              borderRadius: averageRatio(10),
               backgroundColor: theme.secondaryColor(),
               justifyContent: "center",
               alignContent: "center",
@@ -148,9 +153,9 @@ const RemoveItemButton = ({
             <Text
               style={{
                 color: theme.secondaryColorText(),
-                fontSize: 20,
+                fontSize: fontRatio(20),
                 fontWeight: "bold",
-                margin: 5,
+                margin: averageRatio(5),
               }}
               numberOfLines={1}
             >
@@ -165,4 +170,3 @@ const RemoveItemButton = ({
 
 export default RemoveItemButton;
 
-const styles = StyleSheet.create({});

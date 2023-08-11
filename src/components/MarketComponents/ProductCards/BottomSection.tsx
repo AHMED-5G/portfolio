@@ -4,10 +4,9 @@ import AddToCartButtonComponent from "../AddToCartButtonComponent";
 import RemoveItemButton from "../RemoveItemButton";
 import { Product, ProductInCart } from "../../../types";
 import { productCardHeight, productCardWidth } from "./style";
-import {
-  SharedValue,
-} from "react-native-reanimated";
+import { SharedValue } from "react-native-reanimated";
 import InputComponent from "./inputsComponents/InputComponent";
+import { hwrosh, wwrosw } from "../../../constants/Layout";
 
 type Props = {
   product: Product;
@@ -17,10 +16,10 @@ type Props = {
   setIsItemInCart: React.Dispatch<React.SetStateAction<ProductInCart>>;
   openRemoveButtonProgress: SharedValue<number>;
   multiplyViewFadeInProgress: SharedValue<number>;
-  openRemoveButton: ()=> void
+  openRemoveButton: () => void;
 };
 
-const actionButtonWidth = productCardWidth * 0.45 - 10;
+const actionButtonWidth = productCardWidth * 0.45 - wwrosw(10);
 
 const BottomSection = ({
   product,
@@ -30,9 +29,8 @@ const BottomSection = ({
   setIsItemInCart,
   openRemoveButtonProgress,
   multiplyViewFadeInProgress,
-  openRemoveButton
+  openRemoveButton,
 }: Props) => {
-
   return (
     <View style={styles.bottomSection}>
       <View style={styles.inputContainer}>
@@ -46,9 +44,9 @@ const BottomSection = ({
               product,
               isItemInCart,
               setIsItemInCart,
-              openRemoveButton
+              openRemoveButton,
             }}
-            callBack={(lastValue) => {
+            callBack={() => {
               if (multiplyViewFadeInProgress.value == 0 && counter != 1) {
                 // openMultiplyView();
               }
@@ -78,13 +76,14 @@ const BottomSection = ({
 export default BottomSection;
 const styles = StyleSheet.create({
   inputContainer: {
-    height: 30,
-    marginTop: 35,
+    height: hwrosh(30),
+    marginTop: hwrosh(35),
     width: productCardWidth * 0.9,
+    // justifyContent: 'center' ,alignContent: 'center' ,alignItems :'center'
   },
   buttonsContainer: {
     width: productCardWidth * 0.9,
-    marginTop: 50,
+    marginTop: hwrosh(50),
     flexDirection: "row",
     justifyContent: "space-between",
     alignContent: "center",

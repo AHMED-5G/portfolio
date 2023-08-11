@@ -1,26 +1,20 @@
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React, { useState } from "react";
 import { Hotel } from "../types";
 import { theme } from "../constants/myColors";
 import { useNavigation } from "@react-navigation/native";
 import MyCustomSkeleton from "./MyCustomSkeleton";
+import { fontRatio, hwrosh, wwrosw } from "../constants/Layout";
 
 type Props = {
   hotel: Hotel;
 };
-const imageHeight = 200;
+const imageHeight = hwrosh(200);
 const HotelCard = ({ hotel }: Props) => {
   const navigation = useNavigation();
-  const cardWidth = 200;
+  const cardWidth = wwrosw(200);
   const [imageLoading, setImageLoading] = useState(true);
-  
+
   return (
     <TouchableOpacity
       onPress={() => {
@@ -28,11 +22,10 @@ const HotelCard = ({ hotel }: Props) => {
       }}
       style={{
         width: cardWidth,
-        marginRight: 20,
+        marginRight: wwrosw(20),
         backgroundColor: theme.cardBackground(),
         borderRadius: theme.borderRadius,
         ...theme.elevationAndShadow(),
-        
       }}
     >
       {imageLoading && (
@@ -65,15 +58,17 @@ const HotelCard = ({ hotel }: Props) => {
 
       <View
         style={{
-          marginLeft: 5,
-          marginBottom: 10,
+          marginLeft: wwrosw(5),
+          marginBottom: hwrosh(10),
           // flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
         }}
       >
         <View
-          style={{
-            // marginLeft: 5,/
-          }}
+          style={
+            {
+              // marginLeft: 5,
+            }
+          }
         >
           <Text style={[styles.title, { color: theme.baseTextColor() }]}>
             {hotel.name}
@@ -94,12 +89,12 @@ export default HotelCard;
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 22,
+    fontSize: fontRatio(22),
     fontWeight: "700",
-    lineHeight: 36,
+    lineHeight: fontRatio(36),
   },
   secondlyTitle: {
-    fontSize: 14,
+    fontSize: fontRatio(14),
     fontWeight: "bold",
   },
   image: {

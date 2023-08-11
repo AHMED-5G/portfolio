@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useRef, useEffect } from "react";
 import {
   Dimensions,
   Platform,
-  ImageSourcePropType,
   Animated,
   Modal,
   View,
@@ -18,7 +20,7 @@ import { SliderHeader } from "react-native-image-slider-banner/src/sliderHeader"
 
 import { Image, StyleSheet } from "react-native";
 
-const { width, height } = Dimensions.get("screen");
+const { width, } = Dimensions.get("screen");
 const Os = Platform.OS;
 interface MyCustomProps extends PropsTypes {
   onItemChangedWithIndex?: (itemData: DataType, index: number) => void;
@@ -43,10 +45,10 @@ export const ImageSlider = ({
   activeIndicatorStyle = {},
   inActiveIndicatorStyle = {},
   indicatorContainerStyle = {},
-  onItemChanged = (itemData) => {},
-  onItemChangedWithIndex = (itemData, index) => {},
+  onItemChanged = () => {},
+  onItemChangedWithIndex = (_itemData) => {},
   localImg = false,
-  onClick = (item: DataType, index: number) => {},
+  onClick = (_item: DataType) => {},
   preview = true,
   children,
   closeIconColor = "#000",
@@ -56,16 +58,17 @@ export const ImageSlider = ({
 }: MyCustomProps) => {
   const scrollX = React.useRef(new Animated.Value(0)).current;
   const imageW = width * 0.7;
-  const imageH = imageW * 1.54;
+
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [imageViewer, setImageViewer] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const slider = useRef(null);
   const timerRef = useRef<any>(null);
+  //@ts-ignore
   const onViewRef = React.useRef(({ viewableItems }) => {
     // Use viewable items in state or as intended
     if (viewableItems.length > 0) {
-      let index = viewableItems[0].index;
+      const index = viewableItems[0].index;
       onItemChanged(viewableItems[0].item);
       onItemChangedWithIndex(viewableItems[0].item, index);
       setSelectedIndex(index);
@@ -132,7 +135,7 @@ export const ImageSlider = ({
   const startAutoPlay = (isViewer: boolean) => {
     if (!imageViewer) {
       ((viewer) => {
-        let viewBool = viewer;
+        const viewBool = viewer;
         timerRef.current = setTimeout(() => {
           if (!viewBool) {
             changeSliderListIndex();

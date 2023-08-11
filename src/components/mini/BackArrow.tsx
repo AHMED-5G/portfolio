@@ -1,10 +1,4 @@
-import {
-  OpaqueColorValue,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { OpaqueColorValue, TouchableOpacity, ViewStyle } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -15,7 +9,7 @@ type Props = {
   color?: string | OpaqueColorValue | undefined;
   size?: number;
   position?: "absolute" | "relative" | undefined;
-  top?: string | number;
+  top?: ViewStyle["top"];
 };
 
 const BackArrow = ({ color, size, position, top }: Props) => {
@@ -38,11 +32,13 @@ const BackArrow = ({ color, size, position, top }: Props) => {
         alignItems: "center",
       }}
     >
-      <Ionicons name="arrow-back" size={size ?? 38} color={theme.actionColor} />
+      <Ionicons
+        name="arrow-back"
+        size={size ?? 38}
+        color={color ?? theme.actionColor}
+      />
     </TouchableOpacity>
   );
 };
 
 export default BackArrow;
-
-const styles = StyleSheet.create({});

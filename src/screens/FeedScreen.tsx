@@ -2,21 +2,20 @@ import {
   FlatList,
   StyleSheet,
   View,
-  Text,
   RefreshControl,
   ViewToken,
 } from "react-native";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Post, RootTabScreenProps } from "../types";
 import { mergePosts } from "../../dummy/postsDummy/postsDummy";
-import { myColors, theme } from "../constants/myColors";
+import { theme } from "../constants/myColors";
 import { PostComponent } from "../components/postComponents/PostComponent";
-import { width } from "../constants/Layout";
 import { shuffleArray } from "../utils/helperFunctions";
 import { Audio } from "expo-av";
 import { refreshSound } from "../../assets/sounds";
 import SimpleHeader from "../components/SimpleHeader";
 import { i18n } from "../translation/i18n";
+import { hwrosh } from "../constants/Layout";
 
 function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
   const [posts, setPosts] = useState<Post[]>(mergePosts.slice(0, 10));
@@ -79,7 +78,6 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
       style={{
         flex: 1,
         backgroundColor: theme.baseBackground(),
-        // marginBottom: 5,
       }}
     >
       <SimpleHeader title={i18n.t("timeLine")} />
@@ -132,6 +130,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     overflow: "hidden",
     flex: 1,
-    marginBottom: 6,
+    marginBottom: hwrosh(6),
   },
 });

@@ -1,4 +1,4 @@
-import { ColorValue, StyleSheet } from "react-native";
+import { ColorValue } from "react-native";
 import React from "react";
 import SkeletonLoader from "expo-skeleton-loader";
 import { theme } from "../constants/myColors";
@@ -29,5 +29,3 @@ const MyCustomSkeleton = ({
 };
 
 export default MyCustomSkeleton;
-
-const styles = StyleSheet.create({});

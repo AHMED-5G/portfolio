@@ -1,5 +1,4 @@
 import {
-  StyleSheet,
   Text,
   View,
   TextInput,
@@ -10,8 +9,6 @@ import {
   KeyboardTypeOptions,
   NativeSyntheticEvent,
   TextInputSubmitEditingEventData,
-  TextStyle,
-  TextInputComponent,
   TouchableOpacity,
   ColorValue,
 } from "react-native";
@@ -22,7 +19,6 @@ import React, {
   ReactNode,
 } from "react";
 import { theme } from "../../constants/myColors";
-const height = Dimensions.get("screen").height;
 const width = Dimensions.get("screen").width;
 interface FormTextInputInterface {
   mainContainerStyle?: StyleProp<ViewStyle>;
@@ -33,9 +29,9 @@ interface FormTextInputInterface {
   placeholder?: string;
   value?: string | undefined;
   validations?: string | undefined;
-  width?: number | string | undefined;
-  height?: number | string | undefined;
-  icon?: ReactNode | any;
+  width?: ViewStyle["width"];
+  height?: ViewStyle["height"];
+  icon?: ReactNode;
   secure?: boolean;
   keyboardType?: KeyboardTypeOptions | undefined;
   onSubmitEditing?:
@@ -66,7 +62,9 @@ const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
     }
   }, [props.value]);
 
-  const totalPadding = props.icon ? 40 + props?.icon.props.size : 40;
+  // const totalPadding = props.icon ? 40 + props?.icon.props.size : 40;
+  const totalPadding = 40;
+
   const inputWidth = props.width
     ? +props.width - totalPadding
     : width / 2 - totalPadding;
@@ -168,5 +166,3 @@ const FormTextInput: FunctionComponent<FormTextInputInterface> = ({
 };
 
 export default FormTextInput;
-
-const styles = StyleSheet.create({});

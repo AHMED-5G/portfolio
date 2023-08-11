@@ -1,13 +1,9 @@
-import { StyleSheet } from "react-native";
 import React from "react";
 import { RootStackParamList } from "../../types";
 import { Home } from "../../screens/Home";
-import HotelDetails from "../../screens/HotelDetails";
 import Horses from "../../screens/Horses";
-import HorseDetails from "../../screens/HorseDetails";
-import { createSharedElementStackNavigator } from "react-navigation-shared-element";
-import MarketStackNavigator from "../MarketStackNavigator/MarketStackNavigator";
-const Stack = createSharedElementStackNavigator<RootStackParamList>();
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const HomeStackNavigator = () => {
   return (
@@ -22,18 +18,16 @@ const HomeStackNavigator = () => {
         component={Horses}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="HorseDetails"
         component={HorseDetails}
         sharedElements={(route) => {
           return [route.params.id];
         }}
         options={{ headerShown: false }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 };
 
 export default HomeStackNavigator;
-
-const styles = StyleSheet.create({});

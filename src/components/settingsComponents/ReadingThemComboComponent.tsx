@@ -2,6 +2,12 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { ReadingThemesCombo } from "../../types";
 import { myColors } from "../../constants/myColors";
+import {
+  averageRatio,
+  circularRatio,
+  fontRatio,
+  wwrosw,
+} from "../../constants/Layout";
 
 type Props = {
   colors: ReadingThemesCombo;
@@ -22,14 +28,13 @@ const ReadingThemComboComponent = ({
         setSelectedCombo
           ? setSelectedCombo({ ...colors, fontSize })
           : undefined;
-        // setSelectedCombo ? setSelectedCombo(colors) : undefined;
       }}
       disabled={setSelectedCombo ? false : true}
       style={[
         styles.comboContainer,
         {
           borderColor: isSelected ? myColors.redFavorite : myColors.black,
-          borderWidth: isSelected ? 2.4 : 0,
+          borderWidth: isSelected ? averageRatio(2.4) : 0,
           backgroundColor: colors.backGroundColor,
         },
       ]}
@@ -43,7 +48,11 @@ const ReadingThemComboComponent = ({
         }}
       >
         <Text
-          style={{ fontWeight: "bold", color: colors.fontColor, fontSize: 22 }}
+          style={{
+            fontWeight: "bold",
+            color: colors.fontColor,
+            fontSize: fontRatio(22),
+          }}
         >
           {colors.fontSize ?? "F"}
         </Text>
@@ -53,34 +62,35 @@ const ReadingThemComboComponent = ({
 };
 
 export default ReadingThemComboComponent;
-
+const backgroundColorContainerRadius = circularRatio(40);
+const comboContainerRadius = circularRatio(70);
 const styles = StyleSheet.create({
   comboContainer: {
-    width: 70,
-    height: 70,
-    borderRadius: 70,
+    width: comboContainerRadius,
+    height: comboContainerRadius,
+    borderRadius: comboContainerRadius,
     borderWidth: 0.5,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    margin: 10,
+    margin: averageRatio(10),
   },
   backgroundColorContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 40,
+    width: backgroundColorContainerRadius,
+    height: backgroundColorContainerRadius,
+    borderRadius: backgroundColorContainerRadius,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    marginLeft: 5,
+    marginLeft: wwrosw(5),
   },
   fontColorContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 40,
+    width: backgroundColorContainerRadius,
+    height: backgroundColorContainerRadius,
+    borderRadius: backgroundColorContainerRadius,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    marginLeft: 5,
+    marginLeft: wwrosw(5),
   },
 });

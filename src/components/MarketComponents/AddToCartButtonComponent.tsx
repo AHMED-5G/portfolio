@@ -1,4 +1,3 @@
-import { StyleSheet } from "react-native";
 import React from "react";
 import MedButton from "../mini/MedButton";
 import { theme } from "../../constants/myColors";
@@ -6,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
 import { SET_CART } from "../../redux/reducers/dataSlice";
 import { InitialStateInterface, Product, ProductInCart } from "../../types";
 import { i18n } from "../../translation/i18n";
+import { averageRatio, fontRatio } from "../../constants/Layout";
 
 type Props = {
   counter: number;
@@ -65,9 +65,9 @@ const AddToCartButtonComponent = ({
       title={i18n.t("addToCart")}
       accessibilityHint={"Add " + counter + "to Cart"}
       width={"100%"}
-      borderRadius={5}
+      borderRadius={averageRatio(5)}
       color={theme.darkTheme ? theme.secondaryColor() : theme.actionColor}
-      textStyle={{ fontSize: 24, color: theme.secondaryColorText() }}
+      textStyle={{ fontSize: fontRatio(24), color: theme.secondaryColorText() }}
       onPress={() => {
         addCounterToCart();
       }}
@@ -76,5 +76,3 @@ const AddToCartButtonComponent = ({
 };
 
 export default AddToCartButtonComponent;
-
-const styles = StyleSheet.create({});

@@ -6,6 +6,7 @@ import HomeSectionTitle from "./HomeSectionTitle";
 import { i18n } from "../../translation/i18n";
 import HomeSingleImage from "./HomeSingleImage";
 import HomeSectionContainer from "./HomeSectionContainer";
+import { hwrosh } from "../../constants/Layout";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Home", undefined>;
@@ -24,6 +25,7 @@ const MarketSection = ({ navigation }: Props) => {
       </TouchableOpacity>
     );
   }
+
   return (
     <View style={styles.container}>
       <HomeSectionTitle text={i18n.t("market")} />
@@ -36,6 +38,6 @@ export default MarketSection;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 5,
+    marginTop: hwrosh(5),
   },
 });

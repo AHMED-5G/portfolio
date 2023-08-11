@@ -1,7 +1,7 @@
-import { ImageURISource, StyleSheet, Text, View } from "react-native";
+import { ImageURISource, View } from "react-native";
 import React from "react";
 import { DataType } from "react-native-image-slider-banner/src";
-import { width, height } from "../../constants/Layout";
+import { width, height, averageRatio } from "../../constants/Layout";
 import { Hotel } from "../../types";
 import { ImageSlider } from "../mini/CustomImageSlider";
 
@@ -16,7 +16,7 @@ const ImageSliderComponent = ({
   requestedIndex,
   setCurrentImageIndex,
 }: Props) => {
-  let imagesForSlider: DataType[] = hotel.images.map((item) => {
+  const imagesForSlider: DataType[] = hotel.images.map((item) => {
     return { img: item as ImageURISource };
   });
 
@@ -35,8 +35,8 @@ const ImageSliderComponent = ({
         }}
         caroselImageStyle={{
           height: height / 2,
-          borderBottomLeftRadius: 40,
-          borderBottomRightRadius: 40,
+          borderBottomLeftRadius: averageRatio(40),
+          borderBottomRightRadius: averageRatio(40),
         }}
         closeIconColor="#fff"
       />
@@ -45,5 +45,3 @@ const ImageSliderComponent = ({
 };
 
 export default ImageSliderComponent;
-
-const styles = StyleSheet.create({});

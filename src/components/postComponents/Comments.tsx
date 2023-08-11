@@ -1,7 +1,7 @@
 import { StyleSheet, View, FlatList, Text } from "react-native";
 import React from "react";
 import { PostComment } from "../../types";
-import { width } from "../../constants/Layout";
+import { fontRatio, hwrosh, width, wwrosw } from "../../constants/Layout";
 import CommentComponent from "./CommentComponent";
 import { myColors, theme } from "../../constants/myColors";
 
@@ -19,7 +19,7 @@ const Comments = ({ comments }: Props) => {
       </View>
       <FlatList
         initialNumToRender={2}
-        style={{ flexGrow: 0, marginTop: 10 }}
+        style={{ flexGrow: 0, marginTop: hwrosh(10) }}
         horizontal={true}
         data={comments}
         renderItem={({ item }) => <CommentComponent comment={item} />}
@@ -38,9 +38,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   commentTitleContainer: {
-    marginTop: 10,
-    width: width - 20,
+    marginTop: hwrosh(10),
+    width: width - wwrosw(20),
     alignContent: "flex-start",
   },
-  commentTitleText: { fontSize: 18, color: myColors.black, fontWeight: "700" },
+  commentTitleText: {
+    fontSize: fontRatio(18),
+    color: myColors.black,
+    fontWeight: "700",
+  },
 });

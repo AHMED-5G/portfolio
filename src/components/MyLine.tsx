@@ -1,12 +1,13 @@
 import {
   FlexStyle,
   StyleProp,
-  StyleSheet,
-  Text,
+
+
   View,
   ViewStyle,
 } from "react-native";
 import React from "react";
+import { hwrosh } from "../constants/Layout";
 
 type Props = {
   containerStyle?: StyleProp<ViewStyle>;
@@ -16,21 +17,11 @@ type Props = {
 
 const MyLine = ({ width = "100%", containerStyle, lineStyle }: Props) => {
   return (
-    <View
-      style={[
-        {
-          justifyContent: "center",
-          alignContent: "center",
-          alignItems: "center",
-        },
-        ,
-        containerStyle,
-      ]}
-    >
+    <View style={[{}, containerStyle]}>
       <View
         style={[
           {
-            marginTop: 10,
+            marginTop: hwrosh(10),
             height: 1,
             backgroundColor: "grey",
             opacity: 0.2,
@@ -38,14 +29,10 @@ const MyLine = ({ width = "100%", containerStyle, lineStyle }: Props) => {
           },
           lineStyle,
         ]}
-      >
-  
-      </View>
-
+      />
     </View>
   );
 };
 
 export default MyLine;
 
-const styles = StyleSheet.create({});

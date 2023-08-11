@@ -1,9 +1,9 @@
-import { I18nManager, StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
 import React from "react";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { tabContainerStyle, tabColor, tabTextStyle } from "./styles";
-import TabText from "./TabText";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { tabContainerStyle, tabColor } from "./styles";
 import { theme } from "../../constants/myColors";
+import { circularRatio } from "../../constants/Layout";
 
 type Props = {
   isFocused: boolean;
@@ -16,7 +16,7 @@ const FeedTab = (props: Props) => {
       <MaterialCommunityIcons
         disabled
         name="newspaper-variant"
-        size={37}
+        size={circularRatio(37)}
         style={{
           transform: theme.iconLocalizationTransform(),
         }}
@@ -28,5 +28,3 @@ const FeedTab = (props: Props) => {
 };
 
 export { FeedTab };
-
-const styles = StyleSheet.create({});

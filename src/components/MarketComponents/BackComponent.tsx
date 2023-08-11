@@ -1,9 +1,10 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../types";
 import { theme } from "../../constants/myColors";
+import { circularRatio, hwrosh, wwrosw } from "../../constants/Layout";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -16,8 +17,8 @@ const BackComponent = ({ navigation }: Props) => {
         justifyContent: "center",
         alignContent: "center",
         alignItems: "center",
-        width: 48,
-        height: 48,
+        width: wwrosw(48),
+        height: hwrosh(48),
         transform: theme.iconLocalizationTransform(),
       }}
       accessibilityHint="navigation back"
@@ -28,7 +29,7 @@ const BackComponent = ({ navigation }: Props) => {
       <AntDesign
         disabled
         name="arrowleft"
-        size={38}
+        size={circularRatio(38)}
         color={theme.iconColor()}
       />
     </TouchableOpacity>
@@ -36,5 +37,3 @@ const BackComponent = ({ navigation }: Props) => {
 };
 
 export default BackComponent;
-
-const styles = StyleSheet.create({});
