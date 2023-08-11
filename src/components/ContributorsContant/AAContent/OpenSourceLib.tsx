@@ -11,6 +11,7 @@ import { hwrosh, width } from "../../../constants/Layout";
 import axios from "axios";
 import cheerio from "cheerio";
 import SectionContainer from "./SectionContainer";
+import { i18n } from "../../../translation/i18n";
 
 const OpenSourceLib = () => {
   const osRepoUrl =
@@ -69,7 +70,12 @@ const OpenSourceLib = () => {
       </View>
     );
   };
-  return <SectionContainer title="Open Source Library" content={<Content />} />;
+  return (
+    <SectionContainer
+      title={i18n.t("openSourceLibrary")}
+      content={<Content />}
+    />
+  );
 };
 
 export default OpenSourceLib;

@@ -5,7 +5,6 @@
       src="./assets/images/sh.png">
 </a>
 
-
 - for android devices download Expo Go application https://expo.dev/client
 
 - for IOS devices maybe later .
@@ -22,7 +21,6 @@
   exp://u.expo.dev/update/60adad97-a2d1-44d4-ba64-64f81d8eddaf
 
 # app in [Trello](https://trello.com/b/LCgVV444/portfolio)
-
 
 # app in [![wakatime](https://wakatime.com/badge/user/2b8d577c-8421-4136-96aa-e15e59c6a7d8/project/4b9ac203-6a0d-4fb1-a6c7-cbf7318bd9e4.svg)](https://wakatime.com/@Ahmed5g/projects/kxvjbhoeuc?start=2023-04-29&end=2023-05-05)
 
@@ -46,7 +44,6 @@ Improve UI and UX and test all app in all stages
 
 <details>
 <summary>Details</summary>
-
 - Add dark theme
 - Improve theme
 - Fix bugs
@@ -82,7 +79,6 @@ Improve UI and UX and test all app in all stages
 
 ## V 0.4 "Yacht" -- released
 
-
 <details>
 <summary>Details</summary>
 
@@ -100,7 +96,6 @@ Improve UI and UX and test all app in all stages
 - repeat v 0.1
 
 - add multi language.
-
 
 <details>
   <summary>Details</summary>
@@ -124,7 +119,6 @@ Improve UI and UX and test all app in all stages
 - repeat v 0.1.
 
 - add accessibility.
-
 
 <details>
   <summary>Details</summary>

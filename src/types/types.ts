@@ -6,6 +6,7 @@ import {
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ColorValue, ImageSourcePropType } from "react-native";
 import { UserConfigurationInterface } from "../constants/myColors";
+import { ReactElement } from "react";
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -169,4 +170,9 @@ export interface Product {
 
 export interface ProductInCart extends Product {
   counter: number;
+}
+
+export interface SectionContainerInterface {
+  title: string;
+  content: ReactElement;
 }

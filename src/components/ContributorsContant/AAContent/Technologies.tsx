@@ -3,6 +3,7 @@ import React from "react";
 import { technologies } from "./data";
 import { fontRatio, hwrosh, wwrosw } from "../../../constants/Layout";
 import SectionContainer from "./SectionContainer";
+import { i18n } from "../../../translation/i18n";
 
 const Technologies = () => {
   const Content = () => {
@@ -36,7 +37,9 @@ const Technologies = () => {
     );
   };
 
-  return <SectionContainer title="Technologies" content={<Content />} />;
+  return (
+    <SectionContainer title={i18n.t("technologies")} content={<Content />} />
+  );
 };
 
 export default Technologies;

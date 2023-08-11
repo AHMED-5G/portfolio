@@ -1,4 +1,11 @@
-import { FlatList, StyleSheet, Text, View, Image } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  I18nManager,
+} from "react-native";
 import React, { useState } from "react";
 import { ContributorAccount, RootStackParamList } from "../types";
 import {
@@ -97,6 +104,7 @@ function ContributorsDetails({ route }: Props) {
           onScrollProgress.value,
           [0, finalHeight],
           [initialTop, nameAndTitleContainerRStyleFinalTop],
+          Extrapolate.CLAMP,
         ),
       };
     });
@@ -110,11 +118,12 @@ function ContributorsDetails({ route }: Props) {
       },
     });
 
+    const rotateOutput = I18nManager.isRTL ? [-360, 0] : [0, -360];
     const imageRotate = useDerivedValue(() => {
       return interpolate(
         onScrollProgress.value,
         [0, finalHeight * 0.8],
-        [0, -360],
+        rotateOutput,
         Extrapolation.CLAMP,
       );
     });
@@ -195,12 +204,9 @@ function ContributorsDetails({ route }: Props) {
               </Text>
             </View>
           </Animated.View>
-          {/* </View> */}
         </Animated.View>
-
         <Animated.ScrollView
           contentContainerStyle={{
-            // justifyContent: "center",
             alignContent: "center",
             alignItems: "center",
           }}
