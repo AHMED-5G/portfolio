@@ -2,7 +2,7 @@
 
 <img
      width=375 height= 800
-      src="./assets/images/sh.png">
+      src="./assets/images/sh2.png">
 </a>
 
 - For android devices download Expo Go application https://expo.dev/client
