@@ -7,3 +7,8 @@ export interface TechnologiesInterface {
   logo: ImageURISource["uri"];
   fontColor: ColorValue;
 }
+
+export interface MyGame {
+  name: string;
+  image: ImageURISource["uri"];
+}

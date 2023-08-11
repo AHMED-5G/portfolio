@@ -1,7 +1,7 @@
 import { FlatList, View, Text } from "react-native";
 import React from "react";
 import { technologies } from "./data";
-import { hwrosh, wwrosw } from "../../../constants/Layout";
+import { fontRatio, hwrosh, wwrosw } from "../../../constants/Layout";
 import SectionContainer from "./SectionContainer";
 
 const Technologies = () => {
@@ -25,7 +25,7 @@ const Technologies = () => {
               marginRight: wwrosw(10),
             }}
           >
-            <Text style={{ color: item.fontColor, fontSize: 10 }}>
+            <Text style={{ color: item.fontColor, fontSize: fontRatio(14) }}>
               {item.name}
             </Text>
           </View>

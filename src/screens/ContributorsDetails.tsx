@@ -1,20 +1,28 @@
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-} from "react-native";
+import { FlatList, StyleSheet, Text, View, Image } from "react-native";
 import React, { useState } from "react";
 import { ContributorAccount, RootStackParamList } from "../types";
-import { circularRatio, fontRatio, hwrosh, width } from "../constants/Layout";
+import {
+  circularRatio,
+  fontRatio,
+  hwrosh,
+  width,
+  wwrosw,
+} from "../constants/Layout";
 import { theme } from "../constants/myColors";
 import { StackScreenProps } from "@react-navigation/stack";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import ContributorAccountCard from "../components/ContributorAccountCard";
 import MyCustomSkeleton from "../components/MyCustomSkeleton";
-import Animated, { useAnimatedStyle } from "react-native-reanimated";
+import Animated, {
+  Extrapolate,
+  Extrapolation,
+  interpolate,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
+  withSpring,
+} from "react-native-reanimated";
 import { RouteProp } from "@react-navigation/native";
 import AAContent from "../components/ContributorsContant/AAContent/AAContent";
 
@@ -26,7 +34,9 @@ const imageSize = circularRatio(80);
 
 function ContributorsDetails({ route }: Props) {
   const contributor = route.params;
+
   const Content = () => {
+    const onScrollProgress = useSharedValue(0);
     const [imageLoading, setImageLoading] = useState(true);
     const imageContainerInitialTop = hwrosh(20);
     const marginHeight10 = hwrosh(10);
@@ -38,117 +48,166 @@ function ContributorsDetails({ route }: Props) {
       imageContainerInitialTop +
       nameAndTitleContainerRStyleInitialTop +
       nameAndTitleContainerHeight;
+    const finalHeight = imageSize + marginHeight10 * 3;
 
     const headerContainerRStyle = useAnimatedStyle(() => {
       const initialHeight = socialContainerRStyleInitialTop + marginHeight10;
 
+      const toHeight = interpolate(
+        onScrollProgress.value,
+        [0, finalHeight],
+        [initialHeight, finalHeight],
+        Extrapolate.CLAMP,
+      );
+
       return {
-        height: initialHeight,
+        height: toHeight,
       };
     });
 
+    const imageFinalPaddingLeft = wwrosw(20);
     const imageContainerRStyle = useAnimatedStyle(() => {
-      return { top: imageContainerInitialTop };
+      return {
+        // top: imageContainerInitialTop,
+        left: interpolate(
+          onScrollProgress.value,
+          [0, finalHeight * 0.8],
+          [width / 2 - imageSize / 2, imageFinalPaddingLeft],
+          Extrapolate.CLAMP,
+        ),
+        top: interpolate(
+          onScrollProgress.value,
+          [0, finalHeight / 2, finalHeight],
+          [
+            imageContainerInitialTop,
+            imageContainerInitialTop * 2,
+            imageContainerInitialTop,
+          ],
+          Extrapolate.CLAMP,
+        ),
+      };
     });
 
+    const nameAndTitleContainerRStyleFinalTop =
+      imageContainerInitialTop + imageSize / 2 - marginHeight10 * hwrosh(2.5);
     const nameAndTitleContainerRStyle = useAnimatedStyle(() => {
       const initialTop = nameAndTitleContainerRStyleInitialTop;
       return {
-        top: initialTop,
+        top: interpolate(
+          onScrollProgress.value,
+          [0, finalHeight],
+          [initialTop, nameAndTitleContainerRStyleFinalTop],
+        ),
       };
     });
 
-    const imageAnimatedView = useAnimatedStyle(() => {
-      const imageStartLeft = width / 2 - imageSize / 2;
+    const scrollHandler = useAnimatedScrollHandler({
+      onScroll: (event) => {
+        if (event.contentOffset.y == 0) {
+          onScrollProgress.value = withSpring(0);
+        }
+        onScrollProgress.value = event.contentOffset.y;
+      },
+    });
+
+    const imageRotate = useDerivedValue(() => {
+      return interpolate(
+        onScrollProgress.value,
+        [0, finalHeight * 0.8],
+        [0, -360],
+        Extrapolation.CLAMP,
+      );
+    });
+
+    const imageRStyle = useAnimatedStyle(() => {
       return {
+        transform: [
+          {
+            rotate: imageRotate.value + "deg",
+          },
+        ],
         position: "absolute",
-        left: imageStartLeft,
       };
     });
 
     return (
       <View style={{ flex: 1 }}>
         <Animated.View
-          sharedTransitionTag={contributor.id.toString()}
           style={[
-            styles.container,
             { backgroundColor: theme.cardBackground() },
+            styles.container,
             headerContainerRStyle,
           ]}
         >
-          <View
-            style={{
-              alignItems: "center",
-              alignContent: "center",
-              justifyContent: "center",
-            }}
+          <Animated.View style={[styles.imageContainer, imageContainerRStyle]}>
+            <Animated.View style={imageRStyle}>
+              {imageLoading && (
+                <View
+                  style={[
+                    styles.image,
+                    {
+                      position: "absolute",
+                      zIndex: 1,
+                      overflow: "hidden",
+                    },
+                  ]}
+                >
+                  <MyCustomSkeleton style={styles.image} />
+                </View>
+              )}
+              <Image
+                onLoadStart={() => {
+                  setImageLoading(true);
+                }}
+                onLoad={() => {
+                  setImageLoading(false);
+                }}
+                onLoadEnd={() => {
+                  setImageLoading(false);
+                }}
+                resizeMode="cover"
+                style={styles.image}
+                source={{ uri: contributor.image }}
+              />
+            </Animated.View>
+          </Animated.View>
+          <Animated.View
+            style={[
+              {
+                position: "absolute",
+                height: nameAndTitleContainerHeight,
+                justifyContent: "center",
+                alignContent: "center",
+                alignItems: "center",
+                width,
+              },
+              nameAndTitleContainerRStyle,
+            ]}
           >
-            <Animated.View
-              style={[styles.imageContainer, imageContainerRStyle]}
-            >
-              <Animated.View style={imageAnimatedView}>
-                {imageLoading && (
-                  <View
-                    style={[
-                      styles.image,
-                      {
-                        position: "absolute",
-                        zIndex: 1,
-                        overflow: "hidden",
-                      },
-                    ]}
-                  >
-                    <MyCustomSkeleton style={styles.image} />
-                  </View>
-                )}
-                <Image
-                  onLoadStart={() => {
-                    setImageLoading(true);
-                  }}
-                  onLoad={() => {
-                    setImageLoading(false);
-                  }}
-                  onLoadEnd={() => {
-                    setImageLoading(false);
-                  }}
-                  resizeMode="cover"
-                  style={styles.image}
-                  source={{ uri: contributor.image }}
-                />
-              </Animated.View>
-            </Animated.View>
-            <Animated.View
-              style={[
-                {
-                  position: "absolute",
-                  height: nameAndTitleContainerHeight,
-                },
-                nameAndTitleContainerRStyle,
-              ]}
-            >
-              <View style={styles.nameContainer}>
-                <Text style={[styles.nameText, { color: theme.cardText() }]}>
-                  {contributor.name}
-                </Text>
-              </View>
-              <View style={styles.titleContainer}>
-                <Text style={[styles.titleText, { color: theme.cardText() }]}>
-                  {contributor.title}
-                </Text>
-              </View>
-            </Animated.View>
-          </View>
+            <View style={styles.nameContainer}>
+              <Text style={[styles.nameText, { color: theme.cardText() }]}>
+                {contributor.name}
+              </Text>
+            </View>
+            <View style={styles.titleContainer}>
+              <Text style={[styles.titleText, { color: theme.cardText() }]}>
+                {contributor.title}
+              </Text>
+            </View>
+          </Animated.View>
+          {/* </View> */}
         </Animated.View>
-        <ScrollView
+
+        <Animated.ScrollView
           contentContainerStyle={{
             // justifyContent: "center",
             alignContent: "center",
-            flex: 1,
             alignItems: "center",
           }}
+          onScroll={scrollHandler}
         >
           {contributor.name == "AA" && <AAContent />}
-        </ScrollView>
+        </Animated.ScrollView>
       </View>
     );
   };
@@ -156,7 +215,6 @@ function ContributorsDetails({ route }: Props) {
   return (
     <ScreenWithCustomBottomTab
       content={<Content />}
-      // navigation={navigation}
       CustomBottomTabComponents={[
         <View key={"accounts"}>
           <FlatList
@@ -182,14 +240,13 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius,
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
+    // backgroundColor: "red",
+    overflow: "hidden",
   },
   imageContainer: {
-    // alignItems: "center",
-    // alignContent: "center",
-    // justifyContent: "center",
     position: "absolute",
     width: "100%",
-    backgroundColor: "pink",
+    // backgroundColor: "pink",
   },
   nameContainer: {
     justifyContent: "center",
