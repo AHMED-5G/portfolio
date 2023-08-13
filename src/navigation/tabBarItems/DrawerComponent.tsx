@@ -1,5 +1,5 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React  from "react";
 import { Feather } from "@expo/vector-icons";
 import { myColors, theme } from "../../constants/myColors";
 import { i18n } from "../../translation/i18n";
@@ -31,7 +31,7 @@ const DrawerComponent = () => {
           height: drawerProfileCardHeight,
         }}
       >
-        <DrawerProfileCard />
+        <DrawerProfileCard  />
       </View>
       <MyLine />
       <View style={styles.drawerContentContainer}>

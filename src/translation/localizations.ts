@@ -41,10 +41,10 @@ const en = {
   restartApplication: "Restart Application",
   alert: "Alert",
   openSource: "Open source",
-  technologies: 'Technologies',
-  mySimulators: 'My Simulators',
-  openSourceLibrary: 'Open Source Library',
-
+  technologies: "Technologies",
+  mySimulators: "My Simulators",
+  openSourceLibrary: "Open Source Library",
+  logIn: "LogIn",
 };
 
 const ar = {
@@ -91,10 +91,10 @@ const ar = {
   restartApplication: "أعد تشغيل التطبيق",
   alert: "تنبيه",
   openSource: "مفتوح المصدر",
-  technologies: 'التقنيات',
-  mySimulators: 'المحاكيات الخاصة بي',
-  openSourceLibrary: 'مكتبة مفتوحة المصدر',
-
+  technologies: "التقنيات",
+  mySimulators: "المحاكيات الخاصة بي",
+  openSourceLibrary: "مكتبة مفتوحة المصدر",
+  logIn: "تسجيل الدخول",
 };
 
 export { en, ar };

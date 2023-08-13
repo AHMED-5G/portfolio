@@ -27,13 +27,26 @@ import {
   IBMPlexSansArabicBold,
 } from "../../../assets/fonts";
 import LoadingIndicator from "../../components/mini/LoadingIndicator";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { Session } from "@supabase/supabase-js";
+import { supabase } from "../../../lib/supabase";
 
 const TabBarFooter = () => {
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice,
   );
+  const [session, setSession] = useState<Session | null>(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
 
   const useDispatch = useAppDispatch();
   const [fontsLoaded] = useFonts({
@@ -41,7 +54,9 @@ const TabBarFooter = () => {
     IBMPlexSansArabicMedium: IBMPlexSansArabicMedium,
     IBMPlexSansArabicBold: IBMPlexSansArabicBold,
   });
+
   const navigation = useNavigation();
+
   if (!fontsLoaded) return <LoadingIndicator />;
   return (
     <View
@@ -96,7 +111,7 @@ const TabBarFooter = () => {
           flexDirection: "row",
         }}
         onPress={() => {
-          navigation.navigate("Login");
+          !session ? navigation.navigate("Login") : supabase.auth.signOut();
         }}
       >
         <View
@@ -107,7 +122,7 @@ const TabBarFooter = () => {
           }}
         >
           <MyText
-            text={i18n.t("logOut")}
+            text={session ? i18n.t("logOut") : i18n.t("logIn")}
             style={[styles.text, { color: theme.baseTextColor() }]}
           />
         </View>
