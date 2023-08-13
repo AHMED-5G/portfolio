@@ -25,7 +25,6 @@ interface FormTextInputInterface {
   containerStyle?: StyleProp<ViewStyle>;
   textInputContainer?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
-
   placeholder?: string;
   value?: string | undefined;
   validations?: string | undefined;

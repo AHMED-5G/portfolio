@@ -2,11 +2,9 @@ import {
   Alert,
   DevSettings,
   StyleSheet,
-
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import ToggleSwitch from "toggle-switch-react-native";
 import { myColors, theme } from "../../constants/myColors";
@@ -29,18 +27,21 @@ import {
   IBMPlexSansArabicBold,
 } from "../../../assets/fonts";
 import LoadingIndicator from "../../components/mini/LoadingIndicator";
-
+import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const TabBarFooter = () => {
   const state: InitialStateInterface = useAppSelector(
-    (state) => state.dataSlice
+    (state) => state.dataSlice,
   );
+
   const useDispatch = useAppDispatch();
   const [fontsLoaded] = useFonts({
     IBMPlexSansArabicRegular: IBMPlexSansArabicRegular,
     IBMPlexSansArabicMedium: IBMPlexSansArabicMedium,
     IBMPlexSansArabicBold: IBMPlexSansArabicBold,
   });
+  const navigation = useNavigation();
   if (!fontsLoaded) return <LoadingIndicator />;
   return (
     <View
@@ -63,8 +64,8 @@ const TabBarFooter = () => {
       >
         <ToggleSwitch
           isOn={state.settings.userConfiguration?.darkTheme ? false : true}
-          onColor={myColors.sky}
-          offColor="black"
+          onColor={"black"}
+          offColor={myColors.sky}
           label={i18n.t("darkTheme")}
           icon={<Entypo name="moon" size={circularRatio(24)} color="black" />}
           labelStyle={[
@@ -80,7 +81,7 @@ const TabBarFooter = () => {
               SET_USER_CONFIGURATIONS({
                 ...state.settings.userConfiguration,
                 darkTheme: !isOnn,
-              })
+              }),
             );
             Alert.alert(i18n.t("alert"), i18n.t("restartApplication"));
             DevSettings.reload();
@@ -93,6 +94,9 @@ const TabBarFooter = () => {
           alignContent: "center",
           alignItems: "center",
           flexDirection: "row",
+        }}
+        onPress={() => {
+          navigation.navigate("Login");
         }}
       >
         <View

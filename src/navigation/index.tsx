@@ -27,9 +27,10 @@ import { theme } from "../constants/myColors";
 import LoadingIndicator from "../components/mini/LoadingIndicator";
 import { View } from "../components/Themed";
 import ContributorsDetails from "../screens/ContributorsDetails";
+import LoginScreen from "../screens/LoginScreen";
 export default function Navigation() {
   const state: InitialStateInterface = useAppSelector(
-    (state) => state.dataSlice
+    (state) => state.dataSlice,
   );
   const [appIsReady, setAppIsReady] = React.useState(false);
 
@@ -90,7 +91,6 @@ function RootNavigator() {
         component={HotelDetails}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen
         name="YachtStackNavigation"
         component={YachtStackNavigation}
@@ -104,6 +104,11 @@ function RootNavigator() {
       <Stack.Screen
         name="ContributorsDetails"
         component={ContributorsDetails}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

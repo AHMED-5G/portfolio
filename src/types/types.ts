@@ -29,6 +29,7 @@ export type RootStackParamList = {
   Yachts: undefined;
   MarketStackNavigator: undefined;
   MarketHomeScreen: undefined;
+  Login: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
