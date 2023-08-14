@@ -23,8 +23,8 @@ interface ButtonProps {
   disabled?: boolean;
   loading?: boolean | ReactElement;
   style?: StyleProp<ViewStyle> | undefined;
-  width?: number | string | undefined;
-  height?: number | string | undefined;
+  width?: ViewStyle["width"];
+  height?: ViewStyle["height"];
   square?: boolean;
   circle?: boolean;
   color?: ColorValue;

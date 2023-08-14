@@ -1,20 +1,16 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Button,
-  ScrollView,
-  Alert,
-} from "react-native";
+import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import React, { useState } from "react";
-
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
-import { fontRatio } from "../constants/Layout";
+import { fontRatio, hwrosh } from "../constants/Layout";
 import { theme } from "../constants/myColors";
 import CustomTextInput from "../components/mini/CustomTextInput";
 import { supabase } from "../../lib/supabase";
-import FormTextInput from "../components/mini/FormTextInput";
-import { validateEmail } from "../components/mini/validations";
+import {
+  validateEmail,
+  validateShortTextLength,
+} from "../components/mini/validations";
+import MedButton from "../components/mini/MedButton";
+import LoadingIndicator from "../components/mini/LoadingIndicator";
 
 const LoginScreen = () => {
   const Title = () => {
@@ -53,7 +49,7 @@ const LoginScreen = () => {
 
     return (
       <ScrollView style={styles.container}>
-        <View style={[styles.verticallySpaced, styles.mt20]}>
+        <View style={[styles.verticallySpaced]}>
           <CustomTextInput
             placeholder="Email"
             onChangeText={(text) => setEmail(text)}
@@ -62,27 +58,24 @@ const LoginScreen = () => {
             autoCapitalize="none"
           />
         </View>
-        <View style={styles.verticallySpaced}>
-          <FormTextInput
-            placeholder="password"
-            setText={setPassword}
-            value={password}
-            secure
+        <View style={[styles.verticallySpaced]}>
+          <CustomTextInput
+            placeholder="Password"
+            onChangeText={(text) => setPassword(text)}
+            keyboardType="email-address"
+            validationFunctions={[() => validateShortTextLength(email, 6)]}
+            autoCapitalize="none"
           />
         </View>
-        <View style={[styles.verticallySpaced, styles.mt20]}>
-          <Button
-            title="Sign in"
-            disabled={loading}
-            onPress={() => signInWithEmail()}
-          />
-        </View>
-        <View style={styles.verticallySpaced}>
-          <Button
-            title="Sign up"
-            disabled={loading}
-            onPress={() => signUpWithEmail()}
-          />
+        <View style={{ marginTop: hwrosh(40) }}>
+          {!loading ? (
+            <View style={{ flexDirection: "row" }}>
+              <MedButton title="Login" onPress={() => signInWithEmail()} />
+              <MedButton title="Sign Up" onPress={() => signUpWithEmail()} />
+            </View>
+          ) : (
+            <LoadingIndicator />
+          )}
         </View>
       </ScrollView>
     );
@@ -90,7 +83,7 @@ const LoginScreen = () => {
   return (
     <ScreenWithCustomBottomTab
       content={<Content />}
-      CustomBottomTabComponents={[<Title key={"title"} />]}
+      CustomBottomTabComponents={<Title key={"title"} />}
     />
   );
 };
@@ -104,8 +97,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignContent: "center",
     marginTop: 40,
-  },
-  mt20: {
-    marginTop: 20,
   },
 });
