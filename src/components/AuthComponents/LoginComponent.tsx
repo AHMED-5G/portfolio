@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Alert, Button, StyleSheet, View } from "react-native";
+import { Alert, Button, ScrollView, StyleSheet, View } from "react-native";
 import { supabase } from "../../../lib/supabase";
 import FormTextInput from "../mini/FormTextInput";
+import CustomTextInput from "../mini/CustomTextInput";
+import { validateEmail } from "../mini/validations";
 
 export default function LoginComponent() {
   const [email, setEmail] = useState("");
@@ -14,7 +16,6 @@ export default function LoginComponent() {
       email: email,
       password: password,
     });
-
     if (error) Alert.alert(error.message);
     setLoading(false);
   }
@@ -29,11 +30,18 @@ export default function LoginComponent() {
     if (error) Alert.alert(error.message);
     setLoading(false);
   }
+  const [validationsErrors, setValidationsErrors] = useState(["error"]);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <FormTextInput placeholder="email" setText={setEmail} value={email} />
+        <CustomTextInput
+          placeholder="Email"
+          onChangeText={(text) => setEmail(text)}
+          keyboardType="email-address"
+          validations={[() => setValidationsErrors([validateEmail(email)])]}
+          validationErrors={validationsErrors}
+        />
       </View>
       <View style={styles.verticallySpaced}>
         <FormTextInput
@@ -57,19 +65,17 @@ export default function LoginComponent() {
           onPress={() => signUpWithEmail()}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 40,
-    padding: 12,
-  },
+  container: {},
   verticallySpaced: {
-    paddingTop: 4,
-    paddingBottom: 4,
-    alignSelf: "stretch",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
   },
   mt20: {
     marginTop: 20,

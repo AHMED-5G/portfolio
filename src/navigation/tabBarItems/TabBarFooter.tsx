@@ -28,9 +28,9 @@ import {
 } from "../../../assets/fonts";
 import LoadingIndicator from "../../components/mini/LoadingIndicator";
 import React, { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 import { Session } from "@supabase/supabase-js";
 import { supabase } from "../../../lib/supabase";
+import { useNavigation } from "@react-navigation/native";
 
 const TabBarFooter = () => {
   const state: InitialStateInterface = useAppSelector(
@@ -54,7 +54,6 @@ const TabBarFooter = () => {
     IBMPlexSansArabicMedium: IBMPlexSansArabicMedium,
     IBMPlexSansArabicBold: IBMPlexSansArabicBold,
   });
-
   const navigation = useNavigation();
 
   if (!fontsLoaded) return <LoadingIndicator />;
@@ -111,6 +110,10 @@ const TabBarFooter = () => {
           flexDirection: "row",
         }}
         onPress={() => {
+          // openCustomModalProgress.value = withTiming(
+          //   openCustomModalProgress.value == 1 ? 0 : 1,
+          //   {},
+          // );
           !session ? navigation.navigate("Login") : supabase.auth.signOut();
         }}
       >

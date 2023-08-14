@@ -220,7 +220,6 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
                 target: route.key,
               });
             };
-
             return (
               <TouchableOpacity
                 accessibilityRole="button"
@@ -251,14 +250,8 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             );
           })}
         </Animated.View>
-        <Animated.View
-          style={[
-            {
-              marginTop: hwrosh(10),
-            },
-            drawerContainerRStyle,
-          ]}
-        >
+
+        <Animated.View style={[drawerContainerRStyle]}>
           <DrawerComponent />
           <MyLine lineStyle={{ marginTop: 0 }} />
           <TabBarFooter />

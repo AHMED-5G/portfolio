@@ -117,6 +117,7 @@ interface ThemeInterface {
   disableColor: ColorValue;
 
   error: ColorValue;
+  textError: () => ColorValue;
 
   localizationRtl: boolean;
   localizationFlexDirection: FlexStyle["flexDirection"] | undefined;
@@ -210,6 +211,10 @@ export const theme: ThemeInterface = {
   disableColor: myColors.grey5,
 
   error: "#b00020",
+
+  textError: function () {
+    return this.darkTheme ? "#dddcec" : this.error;
+  },
 
   tabBarHeight: hwrosh(70),
   // tabBarBackground: "#FFF",

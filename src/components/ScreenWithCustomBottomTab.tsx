@@ -7,7 +7,7 @@ import { theme } from "../constants/myColors";
 import { useNavigation } from "@react-navigation/native";
 
 type Props = {
-  CustomBottomTabComponents?: ReactNode[];
+  CustomBottomTabComponents?: ReactNode;
   // navigation: StackNavigationProp<RootStackParamList>;
   content?: ReactNode;
   style?: StyleProp<ViewStyle>;

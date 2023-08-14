@@ -436,7 +436,7 @@ function Yachts() {
   return (
     <ScreenWithCustomBottomTab
       content={<Content />}
-      CustomBottomTabComponents={[<BarTitle key={"bar"} />]}
+      CustomBottomTabComponents={<BarTitle key={"bar"} />}
     />
   );
 }

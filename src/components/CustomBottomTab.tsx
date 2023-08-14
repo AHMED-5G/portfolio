@@ -1,4 +1,4 @@
-import { Keyboard, StyleSheet,  View } from "react-native";
+import { Keyboard, StyleSheet, View } from "react-native";
 import React, { ReactNode, useEffect, useState } from "react";
 import { theme } from "../constants/myColors";
 import { width } from "../constants/Layout";
@@ -7,7 +7,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../types";
 
 type Props = {
-  components?: ReactNode[];
+  components?: ReactNode;
   navigation: StackNavigationProp<RootStackParamList>;
 };
 
@@ -29,7 +29,6 @@ const CustomBottomTab = ({ navigation, components }: Props) => {
         borderLeftWidth: 0,
         borderRightWidth: 0,
         borderBottomWidth: 0,
-
       }}
     >
       <View
@@ -64,9 +63,10 @@ const CustomBottomTab = ({ navigation, components }: Props) => {
             flex: 1,
           }}
         >
-          {components?.map((component, index) => (
+          {components}
+          {/* {components?.map((component, index) => (
             <View key={index}>{component}</View>
-          ))}
+          ))} */}
         </View>
       </View>
     </View>

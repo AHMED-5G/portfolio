@@ -221,7 +221,7 @@ function ContributorsDetails({ route }: Props) {
   return (
     <ScreenWithCustomBottomTab
       content={<Content />}
-      CustomBottomTabComponents={[
+      CustomBottomTabComponents={
         <View key={"accounts"}>
           <FlatList
             data={contributor.accounts.slice(0, 3)}
@@ -232,8 +232,8 @@ function ContributorsDetails({ route }: Props) {
             keyExtractor={(_item, index) => index.toString()}
             showsVerticalScrollIndicator={false}
           />
-        </View>,
-      ]}
+        </View>
+      }
     />
   );
 }
@@ -246,13 +246,11 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius,
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
-    // backgroundColor: "red",
     overflow: "hidden",
   },
   imageContainer: {
     position: "absolute",
     width: "100%",
-    // backgroundColor: "pink",
   },
   nameContainer: {
     justifyContent: "center",
