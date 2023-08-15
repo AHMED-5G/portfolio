@@ -8,6 +8,11 @@ import LoadingIndicator from "./src/components/mini/LoadingIndicator";
 import { Provider } from "react-redux";
 import { persistor, store } from "./src/redux";
 import { PersistGate } from "redux-persist/integration/react";
+import { LogBox } from "react-native";
+
+LogBox.ignoreLogs([
+  "@supabase/gotrue-js: Stack guards not supported in this environment",
+]);
 
 export default function App() {
   const isLoadingComplete = useCachedResources();

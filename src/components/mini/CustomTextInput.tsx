@@ -22,12 +22,15 @@ const CustomTextInput = ({
   ...props
 }: CustomTextInputInterface) => {
   const [validationErrors, setValidationsError] = useState<string[]>([]);
+
   const handleBlur = () => {
     if (validationFunctions) {
       const errors = validationFunctions.map((fun) => fun()).filter(Boolean);
       setValidationsError(errors);
     }
   };
+
+  const [comeBack, setComeBack] = useState(false);
   return (
     <View
       style={[
@@ -35,6 +38,7 @@ const CustomTextInput = ({
           width: 0.8 * width,
           height: hwrosh(85),
           borderRadius: averageRatio(8),
+          marginBottom: hwrosh(5),
         },
         containerStyle,
       ]}
@@ -44,7 +48,7 @@ const CustomTextInput = ({
           {...props}
           style={[
             {
-              height: hwrosh(85),
+              height: hwrosh(55),
               backgroundColor: theme.cardBackground(),
               borderRadius: averageRatio(8),
               borderWidth: 1,
@@ -54,7 +58,19 @@ const CustomTextInput = ({
             },
             props.style,
           ]}
+          placeholderTextColor={theme.baseTextColor()}
           onBlur={handleBlur}
+          onFocus={() => {
+            if (props.value)
+              if (props.value?.length > 1) {
+                setComeBack(true);
+              }
+          }}
+          onTextInput={() => {
+            if (comeBack) {
+              handleBlur();
+            }
+          }}
         />
       </KeyboardAvoidingView>
       <View style={{ flexDirection: "row" }}>

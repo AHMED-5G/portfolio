@@ -45,6 +45,7 @@ const en = {
   mySimulators: "My Simulators",
   openSourceLibrary: "Open Source Library",
   logIn: "LogIn",
+  loginSuccess: 'Logged in successfully'
 };
 
 const ar = {
@@ -95,6 +96,7 @@ const ar = {
   mySimulators: "المحاكيات الخاصة بي",
   openSourceLibrary: "مكتبة مفتوحة المصدر",
   logIn: "تسجيل الدخول",
+  loginSuccess: 'تم تسجيل الدخول بنجاح'
 };
 
 export { en, ar };

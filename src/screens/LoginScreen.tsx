@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
-import { fontRatio, hwrosh } from "../constants/Layout";
+import { fontRatio, hwrosh, width, wwrosw } from "../constants/Layout";
 import { theme } from "../constants/myColors";
 import CustomTextInput from "../components/mini/CustomTextInput";
 import { supabase } from "../../lib/supabase";
@@ -11,12 +11,23 @@ import {
 } from "../components/mini/validations";
 import MedButton from "../components/mini/MedButton";
 import LoadingIndicator from "../components/mini/LoadingIndicator";
+import FormComponentWithLabel from "../components/FormComponentWithLabel";
+import { showToast } from "../utils/helperFunctions";
+import { useNavigation } from "@react-navigation/native";
+import { i18n } from "../translation/i18n";
 
 const LoginScreen = () => {
+  const navigation = useNavigation();
   const Title = () => {
     return (
       <View>
-        <Text style={{ fontSize: fontRatio(18), color: theme.baseTextColor() }}>
+        <Text
+          style={{
+            fontSize: fontRatio(18),
+            fontWeight: "bold",
+            color: theme.baseTextColor(),
+          }}
+        >
           Login
         </Text>
       </View>
@@ -33,8 +44,12 @@ const LoginScreen = () => {
         email: email,
         password: password,
       });
-      if (error) Alert.alert(error.message);
+
       setLoading(false);
+      if (error)
+        return showToast(error.message, theme.alertWarningColor as string);
+      showToast(i18n.t("loginSuccess"), theme.alertSuccessColor as string);
+      navigation.navigate("Home");
     }
     async function signUpWithEmail() {
       setLoading(true);
@@ -47,31 +62,83 @@ const LoginScreen = () => {
       setLoading(false);
     }
 
+    const [disableAction, setDisableAction] = useState(true);
+
+    useEffect(() => {
+      const emailValidationResult = validateEmail(email);
+      const passwordValidationResult = validateShortTextLength(password, 6);
+      const disableAction =
+        emailValidationResult == "" && passwordValidationResult == "";
+
+      if (disableAction) {
+        setDisableAction(false);
+      } else setDisableAction(true);
+    }, [email, password]);
+
     return (
-      <ScrollView style={styles.container}>
-        <View style={[styles.verticallySpaced]}>
-          <CustomTextInput
-            placeholder="Email"
-            onChangeText={(text) => setEmail(text)}
-            keyboardType="email-address"
-            validationFunctions={[() => validateEmail(email)]}
-            autoCapitalize="none"
+      <ScrollView contentContainerStyle={styles.container}>
+        <View
+          style={{
+            // marginTop: hwrosh(5),
+            justifyContent: "center",
+            alignItems: "center",
+            alignContent: "center",
+          }}
+        >
+          <FormComponentWithLabel
+            label="Email"
+            CustomTextInput={
+              <CustomTextInput
+                placeholder="Email"
+                onChangeText={(text) => setEmail(text)}
+                keyboardType="email-address"
+                validationFunctions={[() => validateEmail(email)]}
+                autoCapitalize="none"
+                value={email}
+              />
+            }
           />
         </View>
         <View style={[styles.verticallySpaced]}>
-          <CustomTextInput
-            placeholder="Password"
-            onChangeText={(text) => setPassword(text)}
-            keyboardType="email-address"
-            validationFunctions={[() => validateShortTextLength(email, 6)]}
-            autoCapitalize="none"
+          <FormComponentWithLabel
+            label="Password"
+            CustomTextInput={
+              <CustomTextInput
+                placeholder="Password"
+                onChangeText={(text) => setPassword(text)}
+                validationFunctions={[
+                  () => validateShortTextLength(password, 6),
+                ]}
+                autoCapitalize="none"
+                secureTextEntry={true}
+                value={password}
+              />
+            }
           />
         </View>
-        <View style={{ marginTop: hwrosh(40) }}>
+        <View style={{ marginTop: hwrosh(40), width: 0.8 * width }}>
           {!loading ? (
-            <View style={{ flexDirection: "row" }}>
-              <MedButton title="Login" onPress={() => signInWithEmail()} />
-              <MedButton title="Sign Up" onPress={() => signUpWithEmail()} />
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: "100%",
+              }}
+            >
+              <MedButton
+                disabled={disableAction}
+                style={styles.btnStyle}
+                title="Login"
+                onPress={() => signInWithEmail()}
+                textStyle={{ fontSize: fontRatio(18) }}
+              />
+              <MedButton
+                disabled={disableAction}
+                style={styles.btnStyle}
+                title="Sign Up"
+                onPress={() => signUpWithEmail()}
+                textStyle={{ fontSize: fontRatio(18) }}
+              />
             </View>
           ) : (
             <LoadingIndicator />
@@ -90,12 +157,19 @@ const LoginScreen = () => {
 
 export default LoginScreen;
 const styles = StyleSheet.create({
-  container: {},
-  verticallySpaced: {
+  container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
-    marginTop: 40,
+  },
+  verticallySpaced: {
+    justifyContent: "center",
+    alignItems: "center",
+    alignContent: "center",
+  },
+  btnStyle: {
+    width: wwrosw(120),
+    borderRadius: theme.borderRadius,
   },
 });
