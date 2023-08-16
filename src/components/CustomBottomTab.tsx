@@ -1,6 +1,6 @@
 import { Keyboard, StyleSheet, View } from "react-native";
 import React, { ReactNode, useEffect, useState } from "react";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import { width } from "../constants/Layout";
 import BackComponent from "./MarketComponents/BackComponent";
 import { StackNavigationProp } from "@react-navigation/stack";

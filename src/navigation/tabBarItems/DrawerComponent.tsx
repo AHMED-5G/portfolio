@@ -1,7 +1,7 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import React  from "react";
 import { Feather } from "@expo/vector-icons";
-import { myColors, theme } from "../../constants/myColors";
+import { myColors, theme } from "../../constants/theme";
 import { i18n } from "../../translation/i18n";
 import DrawerProfileCard from "../../components/DrawerProfileCard";
 import MyLine from "../../components/MyLine";

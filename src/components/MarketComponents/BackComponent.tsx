@@ -3,7 +3,7 @@ import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../types";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import { circularRatio, hwrosh, wwrosw } from "../../constants/Layout";
 import Animated, {
   Extrapolation,
@@ -13,6 +13,7 @@ import Animated, {
   useDerivedValue,
   withTiming,
 } from "react-native-reanimated";
+import { ModalCloseEasing } from "../myCustomModal/constants";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
@@ -54,7 +55,9 @@ const BackComponent = ({ navigation, sharedValue }: Props) => {
       accessibilityHint="navigation back"
       onPress={() => {
         if (sharedValue && sharedValue.value > 0) {
-          sharedValue.value = withTiming(0);
+          sharedValue.value = withTiming(0, {
+            easing: ModalCloseEasing,
+          });
         } else {
           navigation.goBack();
         }
@@ -72,7 +75,9 @@ const BackComponent = ({ navigation, sharedValue }: Props) => {
           sharedValue.value !== undefined &&
           sharedValue.value !== 0
         ) {
-          sharedValue.value = withTiming(0);
+          sharedValue.value = withTiming(0, {
+            easing: ModalCloseEasing,
+          });
         }
       }}
     >

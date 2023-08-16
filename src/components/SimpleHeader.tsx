@@ -1,6 +1,6 @@
 import { StyleSheet,  View } from "react-native";
 import React from "react";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import MyLine from "./MyLine";
 import { fontRatio, hwrosh, wwrosw } from "../constants/Layout";
 import MyText from "./MyText";

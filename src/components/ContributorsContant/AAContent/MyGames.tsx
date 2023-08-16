@@ -2,7 +2,7 @@ import { Image, View } from "react-native";
 import React from "react";
 import { myGames } from "./data";
 import SectionContainer from "./SectionContainer";
-import { theme } from "../../../constants/myColors";
+import { theme } from "../../../constants/theme";
 import { averageRatio, hwrosh, width } from "../../../constants/Layout";
 import { FlatListWithCircularIndicator } from "react-native-flatlist-withindicator";
 import { i18n } from "../../../translation/i18n";

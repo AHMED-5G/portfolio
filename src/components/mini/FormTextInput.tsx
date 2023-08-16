@@ -18,7 +18,7 @@ import React, {
   FunctionComponent,
   ReactNode,
 } from "react";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 const width = Dimensions.get("screen").width;
 interface FormTextInputInterface {
   mainContainerStyle?: StyleProp<ViewStyle>;

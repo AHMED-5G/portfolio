@@ -10,7 +10,7 @@ import {
 } from "../../constants/Layout";
 import { PostComment } from "../../types";
 import LikeComponent from "./LikeComponent";
-import { myColors, theme } from "../../constants/myColors";
+import { myColors, theme } from "../../constants/theme";
 
 type Props = { comment: PostComment };
 

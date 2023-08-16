@@ -38,14 +38,15 @@ const en = {
   unFollow: "Unfollow",
   thisFeatureIsCurrentlyUnavailable: "This feature is currently unavailable",
 
-  restartApplication: "Restart Application",
+  restartApplication: "Restart application",
   alert: "Alert",
   openSource: "Open source",
   technologies: "Technologies",
   mySimulators: "My Simulators",
-  openSourceLibrary: "Open Source Library",
+  openSourceLibrary: "Open source library",
   logIn: "LogIn",
-  loginSuccess: 'Logged in successfully'
+  loginSuccess: 'Logged in successfully',
+  help: 'Help'
 };
 
 const ar = {
@@ -96,7 +97,8 @@ const ar = {
   mySimulators: "المحاكيات الخاصة بي",
   openSourceLibrary: "مكتبة مفتوحة المصدر",
   logIn: "تسجيل الدخول",
-  loginSuccess: 'تم تسجيل الدخول بنجاح'
+  loginSuccess: 'تم تسجيل الدخول بنجاح',
+  help: 'مساعدة'
 };
 
 export { en, ar };

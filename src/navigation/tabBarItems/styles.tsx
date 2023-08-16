@@ -1,4 +1,4 @@
-import {  theme } from "../../constants/myColors";
+import {  theme } from "../../constants/theme";
 import { StyleProp, ViewStyle } from "react-native";
 
 export const tabContainerStyle: StyleProp<ViewStyle> = {

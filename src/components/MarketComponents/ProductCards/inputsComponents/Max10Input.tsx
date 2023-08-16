@@ -7,7 +7,7 @@ import {
   FlatList,
 } from "react-native";
 import React, { memo } from "react";
-import { theme } from "../../../../constants/myColors";
+import { theme } from "../../../../constants/theme";
 import { AntDesign } from "@expo/vector-icons";
 import Animated, {
   interpolate,

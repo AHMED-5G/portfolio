@@ -6,7 +6,7 @@ import { VideoPostComponent } from "./VideoPostComponent";
 import { hwrosh, width, wwrosw } from "../../constants/Layout";
 
 import PostOptions from "./PostOptions";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import React from "react";
 type Props = {
   post: Post;

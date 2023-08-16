@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { ReadingThemesCombo } from "../../types";
-import { myColors } from "../../constants/myColors";
+import { myColors } from "../../constants";
 import {
   averageRatio,
   circularRatio,

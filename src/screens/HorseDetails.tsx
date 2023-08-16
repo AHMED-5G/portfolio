@@ -9,7 +9,7 @@ import React, { useEffect, useState } from "react";
 import { RootStackParamList } from "../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { height, width } from "../constants/Layout";
-import { myColors } from "../constants/myColors";
+import { myColors } from "../constants";
 import Animated, {
   interpolate,
   runOnJS,

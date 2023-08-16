@@ -9,7 +9,7 @@ import {
 import React, { useState } from "react";
 import { Contributor, ContributorAccount } from "../types";
 import ContributorAccountCard from "./ContributorAccountCard";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import MyCustomSkeleton from "./MyCustomSkeleton";
 import {
   averageRatio,

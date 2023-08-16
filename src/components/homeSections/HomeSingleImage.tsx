@@ -1,7 +1,7 @@
 import { StyleSheet, View, Image } from "react-native";
 import React, { useState } from "react";
 import { hwrosh, width } from "../../constants/Layout";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import MyCustomSkeleton from "../MyCustomSkeleton";
 
 type Props = { uri: string };

@@ -2,7 +2,7 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Image } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import { circularRatio, fontRatio, hwrosh, wwrosw } from "../constants/Layout";
 import MyText from "./MyText";
 import {

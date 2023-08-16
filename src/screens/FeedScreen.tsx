@@ -8,7 +8,7 @@ import {
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Post, RootTabScreenProps } from "../types";
 import { mergePosts } from "../../dummy/postsDummy/postsDummy";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import { PostComponent } from "../components/postComponents/PostComponent";
 import { shuffleArray } from "../utils/helperFunctions";
 import { Audio } from "expo-av";

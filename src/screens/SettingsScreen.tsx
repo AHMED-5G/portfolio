@@ -5,7 +5,7 @@ import SettingsSectionTitle from "../components/settingsComponents/SettingsSecti
 import MyLine from "../components/MyLine";
 import { i18n } from "../translation/i18n";
 import SimpleHeader from "../components/SimpleHeader";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 
 function SettingsScreen() {
   return (

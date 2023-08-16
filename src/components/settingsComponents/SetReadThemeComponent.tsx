@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ReadingThemComboComponent from "./ReadingThemComboComponent";
 import { InitialStateInterface, ReadingThemesCombo } from "../../types";
 import { averageRatio, hwrosh, width, wwrosw } from "../../constants/Layout";
-import { myColors, readingThemes, theme } from "../../constants/myColors";
+import { myColors, readingThemes, theme } from "../../constants/theme";
 import MedButton from "../mini/MedButton";
 import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
 import { SET_READING_THEME } from "../../redux/reducers/dataSlice";

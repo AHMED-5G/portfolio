@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { fontRatio, hwrosh, width, wwrosw } from "../../../constants/Layout";
-import { theme } from "../../../constants/myColors";
+import { theme } from "../../../constants/theme";
 
 export default StyleSheet.create({
   container: {

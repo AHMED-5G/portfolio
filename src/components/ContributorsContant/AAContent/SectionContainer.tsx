@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import React from "react";
 import { fontRatio, hwrosh, width } from "../../../constants/Layout";
 import { SectionContainerInterface } from "../../../types";
-import { theme } from "../../../constants/myColors";
+import { theme } from "../../../constants/theme";
 
 const SectionContainer = ({ title, content }: SectionContainerInterface) => {
   return (

@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import { fontRatio, height, hwrosh, width, wwrosw } from "../constants/Layout";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import CustomTextInput from "../components/mini/CustomTextInput";
 import { supabase } from "../../lib/supabase";
 import {
@@ -23,7 +23,7 @@ const LoginScreen = () => {
       <View>
         <Text
           style={{
-            fontSize: fontRatio(18),
+            fontSize: theme.fontSize.s18,
             fontWeight: "bold",
             color: theme.baseTextColor(),
           }}

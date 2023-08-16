@@ -1,7 +1,7 @@
 import {  TouchableOpacity } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import { circularRatio, hwrosh, wwrosw } from "../../constants/Layout";
 
 

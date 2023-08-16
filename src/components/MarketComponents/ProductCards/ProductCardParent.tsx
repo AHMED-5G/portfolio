@@ -11,7 +11,7 @@ import BottomSection from "./BottomSection";
 import { productCardWidth, productCardBorderRadius } from "./style";
 import { useSharedValue, withTiming } from "react-native-reanimated";
 import { useAppSelector } from "../../../redux/Hooks/hooks";
-import { theme } from "../../../constants/myColors";
+import { theme } from "../../../constants/theme";
 import { hwrosh } from "../../../constants/Layout";
 
 type Props = {

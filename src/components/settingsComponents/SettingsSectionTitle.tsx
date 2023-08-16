@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import React from "react";
 import { fontRatio, hwrosh, width, wwrosw } from "../../constants/Layout";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 
 type Props = { title: string };
 

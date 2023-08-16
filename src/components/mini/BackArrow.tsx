@@ -3,7 +3,7 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { height } from "../../constants/Layout";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 
 type Props = {
   color?: string | OpaqueColorValue | undefined;

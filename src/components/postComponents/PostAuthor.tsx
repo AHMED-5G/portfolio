@@ -2,7 +2,7 @@ import {  Text, View, Image } from "react-native";
 import React, { useState } from "react";
 import { User } from "../../types";
 import MedButton from "../mini/MedButton";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import DuringSevenDaysAgo from "./DuringSevenDaysAgo";
 import * as Notifications from "expo-notifications";
 import SkeletonLoader from "expo-skeleton-loader";

@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import { productCardWidth } from "./ProductCards/style";
 import Animated, {
   SharedValue,

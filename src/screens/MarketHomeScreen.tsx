@@ -5,7 +5,7 @@ import SearchComponent from "../components/MarketComponents/SearchComponent";
 import Cart from "../components/MarketComponents/Cart";
 import { productsData } from "../../dummy/marketDummy/ProductsDummy";
 import ProductCardParent from "../components/MarketComponents/ProductCards/ProductCardParent";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import SimpleHeader from "../components/SimpleHeader";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import { i18n } from "../translation/i18n";

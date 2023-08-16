@@ -1,7 +1,7 @@
 import { I18n } from "i18n-js";
 
 import { en, ar } from "./localizations";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import * as Localization from "expo-localization";
 
 const i18n = new I18n();

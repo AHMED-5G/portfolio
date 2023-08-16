@@ -12,7 +12,7 @@ import {
   productCardHeight,
   productCardWidth,
 } from "./style";
-import { theme } from "../../../constants/myColors";
+import { theme } from "../../../constants/theme";
 import { Product } from "../../../types";
 import Animated, {
   SharedValue,

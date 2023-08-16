@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import {
   averageRatio,
   fontRatio,

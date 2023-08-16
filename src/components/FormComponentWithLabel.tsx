@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import React, { ReactNode } from "react";
 import { fontRatio, hwrosh } from "../constants/Layout";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 
 type Props = {
   CustomTextInput: ReactNode;

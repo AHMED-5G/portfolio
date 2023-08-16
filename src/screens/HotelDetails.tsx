@@ -18,7 +18,7 @@ import {
   width,
   wwrosw,
 } from "../constants/Layout";
-import { myColors, theme } from "../constants/myColors";
+import { myColors, theme } from "../constants/theme";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FontAwesome5 } from "@expo/vector-icons";

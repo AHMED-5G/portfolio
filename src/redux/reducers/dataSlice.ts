@@ -5,7 +5,7 @@ import {
   Languages,
   ReadingThemesCombo,
 } from "../../types";
-import { UserConfigurationInterface } from "../../constants/myColors";
+import { UserConfigurationInterface } from "../../constants/theme";
 import { Appearance } from "react-native";
 
 const initialState: InitialStateInterface = {

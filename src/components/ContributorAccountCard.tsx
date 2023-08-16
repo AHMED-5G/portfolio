@@ -4,7 +4,7 @@ import { AccountTypes, ContributorAccount } from "../types";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 import * as Linking from "expo-linking";
 import { getContributorAccountName } from "../utils/helperFunctions";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import { circularRatio, hwrosh, wwrosw } from "../constants/Layout";
 
 type Props = {

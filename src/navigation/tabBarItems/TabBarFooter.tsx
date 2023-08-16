@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import ToggleSwitch from "toggle-switch-react-native";
-import { myColors, theme } from "../../constants/myColors";
+import { myColors, theme } from "../../constants/theme";
 import { i18n } from "../../translation/i18n";
 import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
 import { InitialStateInterface } from "../../types";

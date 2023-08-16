@@ -10,7 +10,7 @@ import {
   TextStyle,
   StyleProp,
 } from "react-native";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import LoadingIndicator from "./LoadingIndicator";
 import {
   circularRatio,

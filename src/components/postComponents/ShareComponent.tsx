@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { SimpleLineIcons } from "@expo/vector-icons";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import { Audio } from "expo-av";
 import { showToast } from "../../utils/helperFunctions";
 import { noSound } from "../../../assets/sounds";

@@ -23,7 +23,7 @@ import YachtStackNavigation from "./YachtStackNavigation/YachtStackNavigation";
 import MarketStackNavigator from "./MarketStackNavigator/MarketStackNavigator";
 import { StatusBar } from "react-native";
 import HotelDetails from "../screens/HotelDetails";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import LoadingIndicator from "../components/mini/LoadingIndicator";
 import { View } from "../components/Themed";
 import ContributorsDetails from "../screens/ContributorsDetails";

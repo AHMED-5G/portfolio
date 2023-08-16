@@ -11,7 +11,7 @@ import {
   FontAwesome,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import {
   averageRatio,
   circularRatio,

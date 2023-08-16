@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { averageRatio, hwrosh, width } from "../../constants/Layout";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 
 interface CustomTextInputInterface extends TextInputProps {
   validationFunctions?: (() => string)[];

@@ -5,7 +5,7 @@ import {
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ColorValue, ImageSourcePropType } from "react-native";
-import { UserConfigurationInterface } from "../constants/myColors";
+import { UserConfigurationInterface } from "../constants/theme";
 import { ReactElement } from "react";
 
 declare global {

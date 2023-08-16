@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import React, { useState } from "react";
 import { Hotel } from "../types";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import { useNavigation } from "@react-navigation/native";
 import MyCustomSkeleton from "./MyCustomSkeleton";
 import { fontRatio, hwrosh, wwrosw } from "../constants/Layout";

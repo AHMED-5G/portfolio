@@ -10,7 +10,7 @@ import {
 import React, { useCallback, useEffect, useState } from "react";
 import { Keyboard, TouchableOpacity, View } from "react-native";
 import { FeedTab, HomeTab, SettingsTab } from "./tabBarItems";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,

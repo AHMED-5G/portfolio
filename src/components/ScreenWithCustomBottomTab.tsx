@@ -1,10 +1,10 @@
-import { StyleProp, Text, View, ViewStyle } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 import React, { ReactNode } from "react";
 import CustomBottomTab from "./CustomBottomTab";
-import { theme } from "../constants/myColors";
-import MyCustomModal from "./MyCustomModal";
+import { theme } from "../constants/theme";
+
 import { useSharedValue } from "react-native-reanimated";
-import { fontRatio } from "../constants/Layout";
+import MyCustomModal from "./myCustomModal/MyCustomModal";
 
 type Props = {
   CustomBottomTabComponents?: ReactNode;
@@ -34,24 +34,7 @@ const ScreenWithCustomBottomTab = ({
     >
       {content}
       {sv && (
-        <MyCustomModal
-          title={
-            <View>
-              <Text
-                style={{
-                  fontSize: fontRatio(18),
-                  fontWeight: "bold",
-                  color: theme.baseTextColor(),
-                }}
-              >
-                Help
-              </Text>
-            </View>
-          }
-          sharedValue={sv}
-          finalTop={0}
-          Content={backUpContent}
-        />
+        <MyCustomModal sharedValue={sv} finalTop={0} Content={backUpContent} />
       )}
       <CustomBottomTab
         sharedValue={backUpContent ? sv : undefined}

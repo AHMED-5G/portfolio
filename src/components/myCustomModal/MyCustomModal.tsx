@@ -1,15 +1,18 @@
 import { TouchableOpacity, View, ViewStyle } from "react-native";
 import React, { ReactNode } from "react";
 import Animated, {
-  Easing,
   SharedValue,
   interpolate,
   useAnimatedStyle,
   withTiming,
 } from "react-native-reanimated";
-import { height } from "../constants/Layout";
+
 import { AntDesign } from "@expo/vector-icons";
-import { theme } from "../constants/myColors";
+import { height } from "../../constants/Layout";
+import { theme } from "../../constants/theme";
+import StandardModalTitle from "./components/StandardModalTitle";
+import { ModalCloseEasing } from "./constants";
+import MyLine from "../MyLine";
 
 type Props = {
   sharedValue: SharedValue<number>;
@@ -24,7 +27,7 @@ const MyCustomModal = ({
   finalTop,
   Content,
   style,
-  title,
+  title = <StandardModalTitle />,
 }: Props) => {
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -66,7 +69,7 @@ const MyCustomModal = ({
         <TouchableOpacity
           onPress={() =>
             (sharedValue.value = withTiming(0, {
-              easing: Easing.inOut(Easing.back(1.8)),
+              easing: ModalCloseEasing,
             }))
           }
           style={{
@@ -76,6 +79,7 @@ const MyCustomModal = ({
           <AntDesign name="closesquareo" size={24} color={theme.iconColor()} />
         </TouchableOpacity>
       </View>
+      <MyLine />
       {Content}
     </Animated.View>
   );

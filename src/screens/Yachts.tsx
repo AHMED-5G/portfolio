@@ -19,7 +19,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import LongestDetails from "../components/yachtComponents/LongestDetails";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import { generateRandomBoolean } from "../utils/helperFunctions";
 import RightSide from "../components/yachtComponents/RightSide";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";

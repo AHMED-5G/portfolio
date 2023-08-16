@@ -1,6 +1,6 @@
 import React from "react";
 import MedButton from "../mini/MedButton";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
 import { SET_CART } from "../../redux/reducers/dataSlice";
 import { InitialStateInterface, Product, ProductInCart } from "../../types";

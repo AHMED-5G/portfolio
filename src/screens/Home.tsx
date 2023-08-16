@@ -9,7 +9,7 @@ import MarketSection from "../components/homeSections/MarketSection";
 import { i18n } from "../translation/i18n";
 import SimpleHeader from "../components/SimpleHeader";
 import HomeSectionContainer from "../components/homeSections/HomeSectionContainer";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import { fontRatio, hwrosh } from "../constants/Layout";
 import MyText from "../components/MyText";
 

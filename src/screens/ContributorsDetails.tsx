@@ -15,7 +15,7 @@ import {
   width,
   wwrosw,
 } from "../constants/Layout";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import { StackScreenProps } from "@react-navigation/stack";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import ContributorAccountCard from "../components/ContributorAccountCard";

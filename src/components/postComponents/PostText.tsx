@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { Post } from "../../types";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import { i18n } from "../../translation/i18n";
 
 type Props = { text: Post["text"] };
