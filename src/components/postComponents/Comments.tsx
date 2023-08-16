@@ -3,7 +3,7 @@ import React from "react";
 import { PostComment } from "../../types";
 import { fontRatio, hwrosh, width, wwrosw } from "../../constants/Layout";
 import CommentComponent from "./CommentComponent";
-import { myColors, theme } from "../../constants/theme";
+import { myColors, theme } from "../../constants";
 
 type Props = { comments: PostComment[] };
 

@@ -39,7 +39,7 @@ interface ThemeInterface {
   darkTheme: boolean;
 
   baseBackground: () => ColorValue;
-  baseTextColor: () => ColorValue;
+  baseTextColor: (opacity?: number) => ColorValue;
 
   primary: () => ColorValue;
   primaryText: () => ColorValue;
@@ -108,15 +108,18 @@ interface ThemeInterface {
 export interface UserConfigurationInterface {
   darkTheme: boolean;
 }
-
+1;
 export const theme: ThemeInterface = {
   darkTheme: Appearance.getColorScheme() == "dark" ? true : false,
 
   baseBackground: function () {
     return this.darkTheme ? "#141414" : "";
   },
-  baseTextColor: function () {
-    return this.darkTheme ? "#FFF" : "#000";
+
+  baseTextColor: function (opacity = 1) {
+    return this.darkTheme
+      ? `rgba(255, 255, 255, ${opacity}})`
+      : `rgba(0, 0, 0, ${opacity})`;
   },
 
   primary: function () {

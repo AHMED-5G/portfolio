@@ -1,7 +1,7 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 import React, { useCallback, useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
-import { myColors, theme } from "../../constants/theme";
+import { myColors, theme } from "../../constants";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,

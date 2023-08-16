@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
-import { fontRatio, height, hwrosh, width, wwrosw } from "../constants/Layout";
+import { height, hwrosh, width, wwrosw } from "../constants/Layout";
 import { theme } from "../constants/theme";
 import CustomTextInput from "../components/mini/CustomTextInput";
 import { supabase } from "../../lib/supabase";
@@ -100,7 +100,13 @@ const LoginScreen = () => {
             }
           />
         </View>
-        <View style={[styles.verticallySpaced]}>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            alignContent: "center",
+          }}
+        >
           <FormComponentWithLabel
             label="Password"
             CustomTextInput={
@@ -131,14 +137,14 @@ const LoginScreen = () => {
                 style={styles.btnStyle}
                 title="Login"
                 onPress={() => signInWithEmail()}
-                textStyle={{ fontSize: fontRatio(18) }}
+                textStyle={{ fontSize: theme.fontSize.s18 }}
               />
               <MedButton
                 disabled={disableAction}
                 style={styles.btnStyle}
                 title="Sign Up"
                 onPress={() => signUpWithEmail()}
-                textStyle={{ fontSize: fontRatio(18) }}
+                textStyle={{ fontSize: theme.fontSize.s18 }}
               />
             </View>
           ) : (
@@ -169,11 +175,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignContent: "center",
   },
-  verticallySpaced: {
-    justifyContent: "center",
-    alignItems: "center",
-    alignContent: "center",
-  },
+
   btnStyle: {
     width: wwrosw(120),
     borderRadius: theme.borderRadius,

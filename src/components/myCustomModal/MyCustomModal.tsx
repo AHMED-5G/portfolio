@@ -10,7 +10,7 @@ import Animated, {
 import { AntDesign } from "@expo/vector-icons";
 import { height } from "../../constants/Layout";
 import { theme } from "../../constants/theme";
-import StandardModalTitle from "./components/StandardModalTitle";
+import ModalTitle from "./components/ModalTitle";
 import { ModalCloseEasing } from "./constants";
 import MyLine from "../MyLine";
 
@@ -27,7 +27,7 @@ const MyCustomModal = ({
   finalTop,
   Content,
   style,
-  title = <StandardModalTitle />,
+  title = <ModalTitle />,
 }: Props) => {
   const animatedStyle = useAnimatedStyle(() => {
     return {

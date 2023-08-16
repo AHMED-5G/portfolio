@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import ToggleSwitch from "toggle-switch-react-native";
-import { myColors, theme } from "../../constants/theme";
+import { myColors, theme } from "../../constants";
 import { i18n } from "../../translation/i18n";
 import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
 import { InitialStateInterface } from "../../types";
@@ -110,10 +110,6 @@ const TabBarFooter = () => {
           flexDirection: "row",
         }}
         onPress={() => {
-          // openCustomModalProgress.value = withTiming(
-          //   openCustomModalProgress.value == 1 ? 0 : 1,
-          //   {},
-          // );
           !session ? navigation.navigate("Login") : supabase.auth.signOut();
         }}
       >
@@ -137,15 +133,17 @@ const TabBarFooter = () => {
             alignItems: "center",
           }}
         >
-          <MaterialCommunityIcons
-            disabled
-            name="logout"
-            size={circularRatio(40)}
-            color={theme.iconColor()}
-            style={{
-              transform: theme.iconLocalizationTransform(),
-            }}
-          />
+          {session && (
+            <MaterialCommunityIcons
+              disabled
+              name="logout"
+              size={circularRatio(40)}
+              color={theme.iconColor()}
+              style={{
+                transform: theme.iconLocalizationTransform(),
+              }}
+            />
+          )}
         </View>
       </TouchableOpacity>
     </View>

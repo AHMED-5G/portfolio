@@ -8,9 +8,15 @@ type Props = {
   title?: string;
 };
 
-const StandardModalTitle = ({ title = i18n.t("help") }: Props) => {
+const ModalTitle = ({ title = i18n.t("help") }: Props) => {
   return (
-    <View>
+    <View
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+        alignContent: "center",
+      }}
+    >
       <Text
         style={{
           fontSize: fontRatio(18),
@@ -24,4 +30,4 @@ const StandardModalTitle = ({ title = i18n.t("help") }: Props) => {
   );
 };
 
-export default StandardModalTitle;
+export default ModalTitle;

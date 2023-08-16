@@ -1,6 +1,5 @@
 import {
   KeyboardAvoidingView,
-  StyleSheet,
   Text,
   TextInput,
   TextInputProps,
@@ -54,11 +53,10 @@ const CustomTextInput = ({
               borderWidth: 1,
               borderColor: theme.borderColor,
               padding: averageRatio(5),
-              color: theme.baseTextColor(),
             },
             props.style,
           ]}
-          placeholderTextColor={theme.baseTextColor()}
+          placeholderTextColor={theme.baseTextColor(0.7)}
           onBlur={handleBlur}
           onFocus={() => {
             if (props.value)
@@ -79,11 +77,14 @@ const CustomTextInput = ({
             return (
               <View key={index} style={{ flexDirection: "row" }}>
                 {index > 0 && (
-                  <Text key={index.toString() + ","} style={styles.warnText}>
+                  <Text
+                    key={index.toString() + ","}
+                    style={{ color: theme.textError() }}
+                  >
                     {", "}
                   </Text>
                 )}
-                <Text key={index} style={styles.warnText}>
+                <Text key={index} style={{ color: theme.textError() }}>
                   {error}
                 </Text>
               </View>
@@ -95,8 +96,3 @@ const CustomTextInput = ({
 };
 
 export default CustomTextInput;
-const styles = StyleSheet.create({
-  warnText: {
-    color: theme.textError(),
-  },
-});
