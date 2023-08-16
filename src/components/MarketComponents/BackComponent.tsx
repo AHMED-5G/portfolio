@@ -5,12 +5,42 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../types";
 import { theme } from "../../constants/myColors";
 import { circularRatio, hwrosh, wwrosw } from "../../constants/Layout";
+import Animated, {
+  Extrapolation,
+  SharedValue,
+  interpolate,
+  useAnimatedStyle,
+  useDerivedValue,
+  withTiming,
+} from "react-native-reanimated";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList>;
+  sharedValue?: SharedValue<number>;
 };
 
-const BackComponent = ({ navigation }: Props) => {
+const BackComponent = ({ navigation, sharedValue }: Props) => {
+  const backArrowRotate = useDerivedValue(() => {
+    if (sharedValue && sharedValue.value !== undefined) {
+      return interpolate(
+        sharedValue.value,
+        [0, 1],
+        [0, 90],
+        Extrapolation.CLAMP,
+      );
+    }
+    return 0;
+  });
+
+  const backArrowAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          rotate: backArrowRotate.value + "deg",
+        },
+      ],
+    };
+  });
   return (
     <TouchableOpacity
       style={{
@@ -23,15 +53,37 @@ const BackComponent = ({ navigation }: Props) => {
       }}
       accessibilityHint="navigation back"
       onPress={() => {
-        navigation.goBack();
+        if (sharedValue && sharedValue.value > 0) {
+          sharedValue.value = withTiming(0);
+        } else {
+          navigation.goBack();
+        }
+      }}
+      onLongPress={() => {
+        if (
+          sharedValue &&
+          sharedValue.value !== undefined &&
+          sharedValue.value !== 1
+        ) {
+          sharedValue.value = withTiming(1);
+        }
+        if (
+          sharedValue &&
+          sharedValue.value !== undefined &&
+          sharedValue.value !== 0
+        ) {
+          sharedValue.value = withTiming(0);
+        }
       }}
     >
-      <AntDesign
-        disabled
-        name="arrowleft"
-        size={circularRatio(38)}
-        color={theme.iconColor()}
-      />
+      <Animated.View style={[backArrowAnimatedStyle]}>
+        <AntDesign
+          disabled
+          name="arrowleft"
+          size={circularRatio(38)}
+          color={theme.iconColor()}
+        />
+      </Animated.View>
     </TouchableOpacity>
   );
 };

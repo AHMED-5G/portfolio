@@ -5,13 +5,15 @@ import { width } from "../constants/Layout";
 import BackComponent from "./MarketComponents/BackComponent";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../types";
+import { useNavigation } from "@react-navigation/native";
+import { SharedValue } from "react-native-reanimated";
 
 type Props = {
   components?: ReactNode;
-  navigation: StackNavigationProp<RootStackParamList>;
+  sharedValue?: SharedValue<number>;
 };
 
-const CustomBottomTab = ({ navigation, components }: Props) => {
+const CustomBottomTab = ({ components, sharedValue }: Props) => {
   const [keyboardStatus, setKeyboardStatus] = useState(false);
   const keyboardDidShow = () => setKeyboardStatus(true);
   const keyboardDidHide = () => setKeyboardStatus(false);
@@ -19,10 +21,12 @@ const CustomBottomTab = ({ navigation, components }: Props) => {
     Keyboard.addListener("keyboardDidShow", keyboardDidShow);
     Keyboard.addListener("keyboardDidHide", keyboardDidHide);
   }, []);
+  const navigation: StackNavigationProp<RootStackParamList> = useNavigation();
+
   return (
     <View
       style={{
-        backgroundColor: theme.tabBarBackground(),
+        // backgroundColor: theme.tabBarBackground(),
         borderWidth: 0.4,
         borderColor: theme.borderColor,
         borderEndWidth: 0,
@@ -52,7 +56,7 @@ const CustomBottomTab = ({ navigation, components }: Props) => {
             borderTopLeftRadius: theme.tabBarBorderRadius,
           }}
         >
-          <BackComponent navigation={navigation} />
+          <BackComponent sharedValue={sharedValue} navigation={navigation} />
         </View>
         <View
           style={{
@@ -64,9 +68,6 @@ const CustomBottomTab = ({ navigation, components }: Props) => {
           }}
         >
           {components}
-          {/* {components?.map((component, index) => (
-            <View key={index}>{component}</View>
-          ))} */}
         </View>
       </View>
     </View>

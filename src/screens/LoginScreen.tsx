@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
-import { fontRatio, hwrosh, width, wwrosw } from "../constants/Layout";
+import { fontRatio, height, hwrosh, width, wwrosw } from "../constants/Layout";
 import { theme } from "../constants/myColors";
 import CustomTextInput from "../components/mini/CustomTextInput";
 import { supabase } from "../../lib/supabase";
@@ -33,6 +33,7 @@ const LoginScreen = () => {
       </View>
     );
   };
+
   const Content = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -51,6 +52,7 @@ const LoginScreen = () => {
       showToast(i18n.t("loginSuccess"), theme.alertSuccessColor as string);
       navigation.navigate("Home");
     }
+
     async function signUpWithEmail() {
       setLoading(true);
       const { error } = await supabase.auth.signUp({
@@ -79,7 +81,6 @@ const LoginScreen = () => {
       <ScrollView contentContainerStyle={styles.container}>
         <View
           style={{
-            // marginTop: hwrosh(5),
             justifyContent: "center",
             alignItems: "center",
             alignContent: "center",
@@ -149,6 +150,11 @@ const LoginScreen = () => {
   };
   return (
     <ScreenWithCustomBottomTab
+      backUpContent={
+        <View style={{ height: height / 3 }}>
+          <Text>Login help</Text>
+        </View>
+      }
       content={<Content />}
       CustomBottomTabComponents={<Title key={"title"} />}
     />

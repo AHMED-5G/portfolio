@@ -1,5 +1,5 @@
-import {  TouchableOpacity, View, ViewStyle } from "react-native";
-import React, { ReactElement } from "react";
+import { TouchableOpacity, View, ViewStyle } from "react-native";
+import React, { ReactNode } from "react";
 import Animated, {
   Easing,
   SharedValue,
@@ -14,9 +14,9 @@ import { theme } from "../constants/myColors";
 type Props = {
   sharedValue: SharedValue<number>;
   finalTop: number;
-  Content: ReactElement;
+  Content: ReactNode;
   style?: ViewStyle;
-  title?: ReactElement;
+  title?: ReactNode;
 };
 
 const MyCustomModal = ({

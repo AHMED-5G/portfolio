@@ -41,8 +41,8 @@ const MarketHomeScreen = () => {
       content={<Content />}
       CustomBottomTabComponents={
         <View style={{ flexDirection: "row" }}>
-          <SearchComponent key={"search"} />,
-          <Cart key={"cart"} />,
+          <SearchComponent key={"search"} />
+          <Cart key={"cart"} />
         </View>
       }
     />

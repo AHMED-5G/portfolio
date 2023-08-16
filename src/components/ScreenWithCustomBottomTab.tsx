@@ -1,24 +1,26 @@
-import { StyleProp, View, ViewStyle } from "react-native";
+import { StyleProp, Text, View, ViewStyle } from "react-native";
 import React, { ReactNode } from "react";
 import CustomBottomTab from "./CustomBottomTab";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../types";
 import { theme } from "../constants/myColors";
-import { useNavigation } from "@react-navigation/native";
+import MyCustomModal from "./MyCustomModal";
+import { useSharedValue } from "react-native-reanimated";
+import { fontRatio } from "../constants/Layout";
 
 type Props = {
   CustomBottomTabComponents?: ReactNode;
-  // navigation: StackNavigationProp<RootStackParamList>;
   content?: ReactNode;
   style?: StyleProp<ViewStyle>;
+  backUpContent?: ReactNode;
 };
 
 const ScreenWithCustomBottomTab = ({
   CustomBottomTabComponents,
   content,
   style,
+  backUpContent,
 }: Props) => {
-  const navigation: StackNavigationProp<RootStackParamList> = useNavigation();
+  const sv = backUpContent ? useSharedValue(0) : undefined;
+
   return (
     <View
       style={[
@@ -31,8 +33,28 @@ const ScreenWithCustomBottomTab = ({
       ]}
     >
       {content}
+      {sv && (
+        <MyCustomModal
+          title={
+            <View>
+              <Text
+                style={{
+                  fontSize: fontRatio(18),
+                  fontWeight: "bold",
+                  color: theme.baseTextColor(),
+                }}
+              >
+                Help
+              </Text>
+            </View>
+          }
+          sharedValue={sv}
+          finalTop={0}
+          Content={backUpContent}
+        />
+      )}
       <CustomBottomTab
-        navigation={navigation}
+        sharedValue={backUpContent ? sv : undefined}
         components={CustomBottomTabComponents}
       />
     </View>
