@@ -181,8 +181,8 @@ export const theme: ThemeInterface = {
     return this.darkTheme ? "#c7d0e0" : "#FFF";
   },
 
-  borderColor: myColors.grey5,
-  disableColor: myColors.grey5,
+  borderColor: myColors.grey4,
+  disableColor: myColors.grey3,
 
   error: "#b00020",
 

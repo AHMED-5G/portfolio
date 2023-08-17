@@ -54,6 +54,7 @@ const TabBarFooter = () => {
     IBMPlexSansArabicMedium: IBMPlexSansArabicMedium,
     IBMPlexSansArabicBold: IBMPlexSansArabicBold,
   });
+  
   const navigation = useNavigation();
 
   if (!fontsLoaded) return <LoadingIndicator />;
@@ -108,6 +109,11 @@ const TabBarFooter = () => {
           alignContent: "center",
           alignItems: "center",
           flexDirection: "row",
+          borderWidth: 0.4,
+          borderColor: theme.borderColor,
+          width: wwrosw(100),
+          height: hwrosh(60),
+          borderRadius: theme.borderRadius,
         }}
         onPress={() => {
           !session ? navigation.navigate("Login") : supabase.auth.signOut();
@@ -133,10 +139,20 @@ const TabBarFooter = () => {
             alignItems: "center",
           }}
         >
-          {session && (
+          {session ? (
             <MaterialCommunityIcons
               disabled
               name="logout"
+              size={circularRatio(40)}
+              color={theme.iconColor()}
+              style={{
+                transform: theme.iconLocalizationTransform(),
+              }}
+            />
+          ) : (
+            <MaterialCommunityIcons
+              name="login"
+              disabled
               size={circularRatio(40)}
               color={theme.iconColor()}
               style={{

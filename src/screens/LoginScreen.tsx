@@ -16,6 +16,7 @@ import { showToast } from "../utils/helperFunctions";
 import { useNavigation } from "@react-navigation/native";
 import { i18n } from "../translation/i18n";
 import PasswordInputIconsComponent from "../components/loginComponents/PasswordInputIconsComponent";
+import LoginBackUpComponent from "../components/loginComponents/LoginBackUpComponent";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -172,7 +173,9 @@ const LoginScreen = () => {
     <ScreenWithCustomBottomTab
       backUpContent={
         <View style={{ height: height / 3 }}>
-          <Text>Login help</Text>
+          <ScrollView style={{ marginBottom: hwrosh(80) }}>
+            <LoginBackUpComponent />
+          </ScrollView>
         </View>
       }
       content={<Content />}
@@ -189,7 +192,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignContent: "center",
   },
-
   btnStyle: {
     width: wwrosw(120),
     borderRadius: theme.borderRadius,

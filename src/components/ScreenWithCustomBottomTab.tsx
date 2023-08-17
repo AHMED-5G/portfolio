@@ -2,9 +2,9 @@ import { StyleProp, View, ViewStyle } from "react-native";
 import React, { ReactNode } from "react";
 import CustomBottomTab from "./CustomBottomTab";
 import { theme } from "../constants/theme";
-
 import { useSharedValue } from "react-native-reanimated";
 import MyCustomModal from "./myCustomModal/MyCustomModal";
+
 
 type Props = {
   CustomBottomTabComponents?: ReactNode;

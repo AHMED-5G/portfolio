@@ -19,13 +19,12 @@ const PasswordInputIconsComponent = ({
   setPassword,
 }: Props) => {
   const iconSize = circularRatio(24);
-  const containerWidth = averageRatio(55);
+  const containerWidth = averageRatio(45);
   const containerHeight = hwrosh(55);
   const borderRadius = averageRatio(10);
   const iconColor = theme.iconColor();
 
   // fun to generate password length > 8 and contain at least 1 uppercase, 1 lowercase, 1 number and 1 special character
-
   const generatePassword = () => {
     const passwordLength = 8;
     const characters =
@@ -52,13 +51,16 @@ const PasswordInputIconsComponent = ({
   };
 
   const handlePassword = () => {
-    const removePasswordAndSetNew = async () => {
-      setPassword("");
-      await new Promise((resolve) => setTimeout(resolve, 100));
+    if (password) {
+      const removePasswordAndSetNew = async () => {
+        setPassword("");
+        await new Promise((resolve) => setTimeout(resolve, 200));
+        setPassword(generatePassword());
+      };
+      removePasswordAndSetNew();
+    } else {
       setPassword(generatePassword());
-    };
-
-    removePasswordAndSetNew();
+    }
   };
 
   return (

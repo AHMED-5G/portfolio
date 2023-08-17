@@ -8,7 +8,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { AntDesign } from "@expo/vector-icons";
-import { height } from "../../constants/Layout";
+import { circularRatio, height } from "../../constants/Layout";
 import { theme } from "../../constants/theme";
 import ModalTitle from "./components/ModalTitle";
 import { ModalCloseEasing } from "./constants";
@@ -45,22 +45,31 @@ const MyCustomModal = ({
   return (
     <Animated.View
       style={[
-        animatedStyle,
         {
           position: "absolute",
           width: "100%",
           backgroundColor: theme.cardBackground(),
         },
+        animatedStyle,
         style,
       ]}
     >
-      <View style={{ flexDirection: "row", width: "100%" }}>
+      <View
+        style={{
+          flexDirection: "row",
+          width: "100%",
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
         <View
           style={{
             flex: 3,
             justifyContent: "center",
             alignContent: "center",
             alignItems: "center",
+
             margin: 5,
           }}
         >
@@ -76,10 +85,14 @@ const MyCustomModal = ({
             margin: 5,
           }}
         >
-          <AntDesign name="closesquareo" size={24} color={theme.iconColor()} />
+          <AntDesign
+            name="closesquareo"
+            size={circularRatio(24)}
+            color={theme.iconColor()}
+          />
         </TouchableOpacity>
       </View>
-      <MyLine />
+      <MyLine lineStyle={{ marginTop: 0 }} />
       {Content}
     </Animated.View>
   );
