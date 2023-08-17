@@ -2,10 +2,20 @@ import { AccessibilityInfo } from "react-native";
 import Toast from "react-native-root-toast";
 import { AccountTypes } from "../types";
 
-export const showToast = (message: string, backgroundColor: string) => {
+export enum ToastPositions {
+  Top = Toast.positions.TOP,
+  Bottom = Toast.positions.BOTTOM,
+  Center = Toast.positions.CENTER,
+}
+
+export const showToast = (
+  message: string,
+  backgroundColor: string,
+  position: ToastPositions = Toast.positions.BOTTOM,
+) => {
   Toast.show(message, {
     duration: Toast.durations.SHORT,
-    position: Toast.positions.BOTTOM,
+    position: position,
     shadow: true,
     animation: true,
     hideOnPress: true,

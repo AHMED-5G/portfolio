@@ -5,18 +5,32 @@ import { theme } from "../constants/theme";
 
 type Props = {
   CustomTextInput: ReactNode;
+  iconsView?: ReactNode;
   label: string;
 };
 
-const FormComponentWithLabel = ({ CustomTextInput, label }: Props) => {
+const FormComponentWithLabel = ({
+  CustomTextInput,
+  label,
+  iconsView,
+}: Props) => {
   return (
-    <View style={{ marginTop: hwrosh(5) }}>
+    <View style={{ marginTop: hwrosh(5), width: "100%" }}>
       <View>
         <Text style={{ fontSize: fontRatio(18), color: theme.baseTextColor() }}>
           {label}
         </Text>
       </View>
-      <View style={{ marginTop: hwrosh(5) }}>{CustomTextInput}</View>
+      <View
+        style={{
+          marginTop: hwrosh(5),
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        {CustomTextInput}
+        {iconsView}
+      </View>
     </View>
   );
 };

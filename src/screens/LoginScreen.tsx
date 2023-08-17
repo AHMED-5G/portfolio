@@ -15,6 +15,7 @@ import FormComponentWithLabel from "../components/FormComponentWithLabel";
 import { showToast } from "../utils/helperFunctions";
 import { useNavigation } from "@react-navigation/native";
 import { i18n } from "../translation/i18n";
+import PasswordInputIconsComponent from "../components/loginComponents/PasswordInputIconsComponent";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -38,6 +39,7 @@ const LoginScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(true);
 
     async function signInWithEmail() {
       setLoading(true);
@@ -78,50 +80,62 @@ const LoginScreen = () => {
     }, [email, password]);
 
     return (
-      <ScrollView contentContainerStyle={styles.container}>
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            alignContent: "center",
-          }}
-        >
-          <FormComponentWithLabel
-            label="Email"
-            CustomTextInput={
-              <CustomTextInput
-                placeholder="Email"
-                onChangeText={(text) => setEmail(text)}
-                keyboardType="email-address"
-                validationFunctions={[() => validateEmail(email)]}
-                autoCapitalize="none"
-                value={email}
-              />
-            }
-          />
-        </View>
-        <View
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            alignContent: "center",
-          }}
-        >
-          <FormComponentWithLabel
-            label="Password"
-            CustomTextInput={
-              <CustomTextInput
-                placeholder="Password"
-                onChangeText={(text) => setPassword(text)}
-                validationFunctions={[
-                  () => validateShortTextLength(password, 6),
-                ]}
-                autoCapitalize="none"
-                secureTextEntry={true}
-                value={password}
-              />
-            }
-          />
+      <ScrollView
+        contentContainerStyle={styles.container}
+        keyboardShouldPersistTaps="always"
+      >
+        <View style={{ width: width * 0.8 }}>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              alignContent: "center",
+            }}
+          >
+            <FormComponentWithLabel
+              label="Email"
+              CustomTextInput={
+                <CustomTextInput
+                  placeholder="Email"
+                  onChangeText={(text) => setEmail(text)}
+                  keyboardType="email-address"
+                  validationFunctions={[() => validateEmail(email)]}
+                  autoCapitalize="none"
+                  value={email}
+                />
+              }
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+            }}
+          >
+            <FormComponentWithLabel
+              label="Password"
+              iconsView={
+                <PasswordInputIconsComponent
+                  {...{ showPassword, setShowPassword, password, setPassword }}
+                />
+              }
+              CustomTextInput={
+                <CustomTextInput
+                  containerStyle={{
+                    width: (width * 0.8) / 2,
+                  }}
+                  placeholder="Password"
+                  onChangeText={(text) => setPassword(text)}
+                  validationFunctions={[
+                    () => validateShortTextLength(password, 6),
+                  ]}
+                  autoCapitalize="none"
+                  secureTextEntry={showPassword}
+                  value={password}
+                  style={{ width: (width * 0.8) / 2 }}
+                />
+              }
+            />
+          </View>
         </View>
         <View style={{ marginTop: hwrosh(40), width: 0.8 * width }}>
           {!loading ? (

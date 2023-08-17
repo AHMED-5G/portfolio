@@ -30,12 +30,15 @@ const CustomTextInput = ({
   };
 
   const [comeBack, setComeBack] = useState(false);
+
+  const textInputHeight = hwrosh(55);
+  const validationErrorSpace = hwrosh(35);
   return (
     <View
       style={[
         {
           width: 0.8 * width,
-          height: hwrosh(85),
+          height: validationErrorSpace + textInputHeight,
           borderRadius: averageRatio(8),
           marginBottom: hwrosh(5),
         },
