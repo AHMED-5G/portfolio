@@ -46,7 +46,9 @@ const en = {
   openSourceLibrary: "Open source library",
   logIn: "LogIn",
   loginSuccess: 'Logged in successfully',
-  help: 'Help'
+  help: 'Help',
+  emailNotValid: 'Email not valid',
+  emailSent:"Email sent"
 };
 
 const ar = {
@@ -98,7 +100,9 @@ const ar = {
   openSourceLibrary: "مكتبة مفتوحة المصدر",
   logIn: "تسجيل الدخول",
   loginSuccess: 'تم تسجيل الدخول بنجاح',
-  help: 'مساعدة'
+  help: 'مساعدة',
+  emailNotValid: 'البريد الإلكتروني غير صالح ',
+  emailSent:"تم ارسال البريد الإلكتروني"
 };
 
 export { en, ar };

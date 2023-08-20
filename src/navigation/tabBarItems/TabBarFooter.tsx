@@ -49,12 +49,13 @@ const TabBarFooter = () => {
   }, []);
 
   const useDispatch = useAppDispatch();
+
   const [fontsLoaded] = useFonts({
     IBMPlexSansArabicRegular: IBMPlexSansArabicRegular,
     IBMPlexSansArabicMedium: IBMPlexSansArabicMedium,
     IBMPlexSansArabicBold: IBMPlexSansArabicBold,
   });
-  
+
   const navigation = useNavigation();
 
   if (!fontsLoaded) return <LoadingIndicator />;

@@ -1,4 +1,12 @@
-import { View, Text, StyleSheet, ScrollView, Alert } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  Alert,
+  Text,
+  TouchableOpacity,
+} from "react-native";
+import * as Linking from "expo-linking";
 import React, { useEffect, useState } from "react";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import { height, hwrosh, width, wwrosw } from "../constants/Layout";
@@ -17,24 +25,10 @@ import { useNavigation } from "@react-navigation/native";
 import { i18n } from "../translation/i18n";
 import PasswordInputIconsComponent from "../components/loginComponents/PasswordInputIconsComponent";
 import LoginBackUpComponent from "../components/loginComponents/LoginBackUpComponent";
+import LoginTitle from "../components/AuthComponents/LoginTitle";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
-  const Title = () => {
-    return (
-      <View>
-        <Text
-          style={{
-            fontSize: theme.fontSize.s18,
-            fontWeight: "bold",
-            color: theme.baseTextColor(),
-          }}
-        >
-          Login
-        </Text>
-      </View>
-    );
-  };
 
   const Content = () => {
     const [email, setEmail] = useState("");
@@ -80,12 +74,54 @@ const LoginScreen = () => {
       } else setDisableAction(true);
     }, [email, password]);
 
+    const [data, setData] = useState<Linking.ParsedURL>();
+    const handelDeepLink = (event: Linking.EventType) => {
+      const myData = Linking.parse(event.url);
+      setData(myData);
+    };
+
+    useEffect(() => {
+      // async function getInitialUrl() {
+      //   const initialUrl = await Linking.getInitialURL();
+      //   console.log("LoginScreen.tsx -> iniital ", initialUrl);
+      // }
+      // getInitialUrl();
+
+      Linking.addEventListener("url", handelDeepLink);
+
+      console.log("LoginScreen.tsx -> ", Linking.createURL("login"));
+      return () => {};
+    }, []);
+
+    //https://bbrkeceesipzffkdvfpd.supabase.co/auth/v1/verify?token=138297d64c7fec7e69b923e9b603e75fc745b2eef030a8669e46d9d3&type=recovery&redirect_to=exp://192.168.1.4:8081/--/login
+
+    const resetPassword = async (email: string) => {
+      const resetPasswordURL = Linking.createURL("login");
+
+      const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: resetPasswordURL,
+      });
+
+      if (error)
+        return showToast(error.message, theme.alertWarningColor as string);
+
+      console.log("LoginScreen.tsx -> ", data);
+
+      // return { data, error };
+    };
+
+    const formWidth = 0.8 * width;
     return (
       <ScrollView
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps="always"
       >
-        <View style={{ width: width * 0.8 }}>
+        <TouchableOpacity
+          onPress={() => Linking.openURL("exp://192.168.1.4:8081/")}
+        >
+          <Text>{data ? JSON.stringify(data) : "App not open deep "}</Text>
+        </TouchableOpacity>
+        <View style={{ width: formWidth }}>
           <View
             style={{
               justifyContent: "center",
@@ -122,7 +158,7 @@ const LoginScreen = () => {
               CustomTextInput={
                 <CustomTextInput
                   containerStyle={{
-                    width: (width * 0.8) / 2,
+                    width: formWidth / 2,
                   }}
                   placeholder="Password"
                   onChangeText={(text) => setPassword(text)}
@@ -132,7 +168,7 @@ const LoginScreen = () => {
                   autoCapitalize="none"
                   secureTextEntry={showPassword}
                   value={password}
-                  style={{ width: (width * 0.8) / 2 }}
+                  style={{ width: formWidth / 2 }}
                 />
               }
             />
@@ -166,6 +202,37 @@ const LoginScreen = () => {
             <LoadingIndicator />
           )}
         </View>
+        <TouchableOpacity
+          style={{ marginTop: hwrosh(16) }}
+          onPress={async () => {
+            if (validateEmail(email)) {
+              return showToast(
+                i18n.t("emailNotValid"),
+                theme.alertWarningColor as string,
+              );
+            }
+            const { error } = resetPassword(email);
+
+            if (error) {
+              return showToast(
+                error.message,
+                theme.alertWarningColor as string,
+              );
+            } else {
+              showToast(i18n.t("emailSent"), theme.alertSuccessColor as string);
+            }
+          }}
+        >
+          <Text
+            style={{
+              fontSize: theme.fontSize.medium,
+              fontWeight: "500",
+              color: theme.actionColor,
+            }}
+          >
+            Reset Password
+          </Text>
+        </TouchableOpacity>
       </ScrollView>
     );
   };
@@ -173,13 +240,13 @@ const LoginScreen = () => {
     <ScreenWithCustomBottomTab
       backUpContent={
         <View style={{ height: height / 3 }}>
-          <ScrollView style={{ marginBottom: hwrosh(80) }}>
+          <ScrollView style={{ marginBottom: hwrosh(theme.tabBarHeight) }}>
             <LoginBackUpComponent />
           </ScrollView>
         </View>
       }
       content={<Content />}
-      CustomBottomTabComponents={<Title key={"title"} />}
+      CustomBottomTabComponents={<LoginTitle key={"title"} />}
     />
   );
 };
