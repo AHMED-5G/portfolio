@@ -29,6 +29,7 @@ import { View } from "../components/Themed";
 import ContributorsDetails from "../screens/ContributorsDetails";
 import LoginScreen from "../screens/LoginScreen";
 import linking from "./LinkingConfiguration";
+
 export default function Navigation() {
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice,
@@ -59,8 +60,12 @@ export default function Navigation() {
     return <LoadingIndicator />;
   }
 
+  const AppInsideNavigation = () => {
+    return <RootNavigator />;
+  };
+
   return (
-    <NavigationContainer linking={linking} >
+    <NavigationContainer linking={linking}>
       <StatusBar
         barStyle={!theme.darkTheme ? "dark-content" : "light-content"}
       />
@@ -71,7 +76,8 @@ export default function Navigation() {
           backgroundColor: theme.baseBackground(),
         }}
       >
-        <RootNavigator />
+        <AppInsideNavigation />
+        {/* <RootNavigator /> */}
       </SafeAreaView>
     </NavigationContainer>
   );
@@ -81,7 +87,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator >
+    <Stack.Navigator>
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}

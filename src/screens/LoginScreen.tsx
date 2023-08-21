@@ -1,3 +1,9 @@
+//https://blog.theodo.com/2023/03/supabase-reset-password-rn/
+//https://github.com/supabase/supabase/issues/5663
+//npx uri-scheme open exp://10.0.2.2:8081/--/login --android
+
+// npx uri-scheme open "exp://10.0.2.2:8081/--/login#access_token=eyJhbGciOiJIUzI1NiIsImtpZCI6ImtUOUpCOGhHN1RFN1NKZlEiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdVYvMU&expires_in=3600&refresh_token=hFEuaYjXLOW2uszlOFexCg&token_type=bearer&type=recovery" --android
+
 import {
   View,
   StyleSheet,
@@ -74,23 +80,28 @@ const LoginScreen = () => {
       } else setDisableAction(true);
     }, [email, password]);
 
-    const [data, setData] = useState<Linking.ParsedURL>();
+    const parseSupabaseUrl = (url: string) => {
+      let parsedUrl = url;
+      if (url.includes("#")) {
+        parsedUrl = url.replace("#", "?");
+      }
+
+      console.log("LoginScreen.tsx -> parseSupabaseUrl -> ", parsedUrl);
+      // return parsedUrl;
+    };
     const handelDeepLink = (event: Linking.EventType) => {
-      const myData = Linking.parse(event.url);
-      setData(myData);
+      console.log("LoginScreen.tsx -> handelDeepLink -> ", event.url);
+
+      const { hostname, path, queryParams } = Linking.parse(event.url);
+
+      console.log("LoginScreen.tsx -> ", hostname, path, queryParams);
+      parseSupabaseUrl(event.url);
     };
 
     useEffect(() => {
-      // async function getInitialUrl() {
-      //   const initialUrl = await Linking.getInitialURL();
-      //   console.log("LoginScreen.tsx -> iniital ", initialUrl);
-      // }
-      // getInitialUrl();
+      console.log("LoginScreen.tsx ->fire ");
 
       Linking.addEventListener("url", handelDeepLink);
-
-      console.log("LoginScreen.tsx -> ", Linking.createURL("login"));
-      return () => {};
     }, []);
 
     //https://bbrkeceesipzffkdvfpd.supabase.co/auth/v1/verify?token=138297d64c7fec7e69b923e9b603e75fc745b2eef030a8669e46d9d3&type=recovery&redirect_to=exp://192.168.1.4:8081/--/login
@@ -107,7 +118,7 @@ const LoginScreen = () => {
 
       console.log("LoginScreen.tsx -> ", data);
 
-      // return { data, error };
+      return { data, error };
     };
 
     const formWidth = 0.8 * width;
@@ -116,11 +127,6 @@ const LoginScreen = () => {
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps="always"
       >
-        <TouchableOpacity
-          onPress={() => Linking.openURL("exp://192.168.1.4:8081/")}
-        >
-          <Text>{data ? JSON.stringify(data) : "App not open deep "}</Text>
-        </TouchableOpacity>
         <View style={{ width: formWidth }}>
           <View
             style={{
