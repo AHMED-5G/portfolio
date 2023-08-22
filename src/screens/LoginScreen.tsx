@@ -2,7 +2,7 @@
 //https://github.com/supabase/supabase/issues/5663
 //npx uri-scheme open exp://10.0.2.2:8081/--/login --android
 
-// npx uri-scheme open "exp://10.0.2.2:8081/--/login#access_token=eyJhbGciOiJIUzI1NiIsImtpZCI6ImtUOUpCOGhHN1RFN1NKZlEiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdVYvMU&expires_in=3600&refresh_token=hFEuaYjXLOW2uszlOFexCg&token_type=bearer&type=recovery" --android
+// npx uri-scheme open "exp://10.0.2.2:8081/--/login#access_token=eyJhU&expires_in=3600&refresh_token=hFEuaYjXLOW2uszlOFexCg&token_type=bearer&type=recovery" --android
 
 import {
   View,
@@ -86,15 +86,15 @@ const LoginScreen = () => {
         parsedUrl = url.replace("#", "?");
       }
 
-      console.log("LoginScreen.tsx -> parseSupabaseUrl -> ", parsedUrl);
-      // return parsedUrl;
+      // console.log("LoginScreen.tsx -> parseSupabaseUrl -> ", parsedUrl);
+      return parsedUrl;
     };
     const handelDeepLink = (event: Linking.EventType) => {
-      console.log("LoginScreen.tsx -> handelDeepLink -> ", event.url);
+      // console.log("LoginScreen.tsx -> handelDeepLink -> ", event.url);
 
-      const { hostname, path, queryParams } = Linking.parse(event.url);
+      // const { hostname, path, queryParams } = Linking.parse(event.url);
 
-      console.log("LoginScreen.tsx -> ", hostname, path, queryParams);
+      // console.log("LoginScreen.tsx -> ", hostname, path, queryParams);
       parseSupabaseUrl(event.url);
     };
 
@@ -107,7 +107,9 @@ const LoginScreen = () => {
     //https://bbrkeceesipzffkdvfpd.supabase.co/auth/v1/verify?token=138297d64c7fec7e69b923e9b603e75fc745b2eef030a8669e46d9d3&type=recovery&redirect_to=exp://192.168.1.4:8081/--/login
 
     const resetPassword = async (email: string) => {
-      const resetPasswordURL = Linking.createURL("login");
+      const resetPasswordURL = Linking.createURL("resetPassword");
+
+      console.log("LoginScreen.tsx ->reset password  ", resetPasswordURL);
 
       const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: resetPasswordURL,
@@ -116,7 +118,7 @@ const LoginScreen = () => {
       if (error)
         return showToast(error.message, theme.alertWarningColor as string);
 
-      console.log("LoginScreen.tsx -> ", data);
+      // console.log("LoginScreen.tsx -> ", data);
 
       return { data, error };
     };

@@ -9,7 +9,7 @@ import * as Linking from "expo-linking";
 import { RootStackParamList } from "../types";
 
 const linking: LinkingOptions<RootStackParamList> = {
-  prefixes: [Linking.createURL("/"), "myapp://"],
+  prefixes: [Linking.createURL("/")],
   async getInitialURL() {
     // First, you would need to get the initial URL from your third-party integration
     // The exact usage depend on the third-party SDK you use
@@ -18,34 +18,30 @@ const linking: LinkingOptions<RootStackParamList> = {
     const initialLink = await Linking.getInitialURL();
     // const { hostname, path, queryParams } =  Linking.parse(initialLink);
 
-    // if (initialLink) return initialLink;
-    const parseSupabaseUrl = (url: string) => {
-      let parsedUrl = url;
-      if (url.includes("#")) {
-        parsedUrl = url.replace("#", "?");
-      }
-      const newparsedUrl = new URL(parsedUrl);
+    console.log("LinkingConfiguration.ts initialLink -> ", initialLink);
 
+    const parseSupabaseUrl = (url: string) => {
+      // let parsedUrl = url;
+      // if (url.includes("#")) {
+      //   parsedUrl = url.replace("#", "?");
+      // }
+      // const newparsedUrl = new URL(url);
+
+      // console.log(
+      //   "LinkingConfiguration.ts -> getInitialURL -> newwwwwwwwwwwwwwwww -> ",
+      //   newparsedUrl,url
+      // );
+
+
+      // console.log(
+      //   "LinkingConfiguration.ts -> getInitialURL -> parseSupabaseUrl -> ",
+      //   Linking.parse(url),
+      // );
+      const { path } = Linking.parse(url);
+      if (path) return Linking.createURL(path);
       // Extract the pathname and query parameters from the URL
 
-      const searchParams = newparsedUrl.searchParams;
-
       // Get the values from the query parameters
-      const error = searchParams.get("error");
-      const errorCode = searchParams.get("error_code");
-      const errorDescription = searchParams.get("error_description");
-      const { path } = Linking.parse(url);
-      console.log(path); // "/--/login"
-      console.log(error); // "unauthorized_client"
-      console.log(errorCode); // "401"
-      console.log(errorDescription);
-      if (path) {
-        console.log(
-          "LinkingConfiguration.ts -> parseSupabaseUrl -> ",
-          Linking.createURL(path),
-        );
-        return Linking.createURL(path);
-      }
       // return parsedUrl;
     };
     // Create a new URL object
@@ -66,6 +62,7 @@ const linking: LinkingOptions<RootStackParamList> = {
         },
       },
       Login: "login",
+      ResetPassword: "resetPassword",
 
       NotFound: "*",
     },

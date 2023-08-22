@@ -29,6 +29,7 @@ import { View } from "../components/Themed";
 import ContributorsDetails from "../screens/ContributorsDetails";
 import LoginScreen from "../screens/LoginScreen";
 import linking from "./LinkingConfiguration";
+import ResetPassword from "../screens/ResetPassword";
 
 export default function Navigation() {
   const state: InitialStateInterface = useAppSelector(
@@ -116,6 +117,11 @@ function RootNavigator() {
       <Stack.Screen
         name="Login"
         component={LoginScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ResetPassword"
+        component={ResetPassword}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
