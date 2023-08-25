@@ -44,14 +44,17 @@ const ShareComponent = ({ shareCounter }: Props) => {
       }}
     >
       <TouchableOpacity
-        style={styles.shareContainer}
+        style={[
+          styles.shareContainer,
+          { margin: averageRatio(5), height: hwrosh(48), width: wwrosw(48) },
+        ]}
         accessibilityRole="button"
         accessibilityHint="Share"
         onPress={() => {
           playSound();
           showToast(
             i18n.t("thisFeatureIsCurrentlyUnavailable"),
-            theme.alertWarningColor as string
+            theme.alertWarningColor as string,
           );
         }}
       >
@@ -77,11 +80,9 @@ export default ShareComponent;
 const styles = StyleSheet.create({
   shareContainer: {
     flexDirection: "row",
-    margin: averageRatio(5),
+
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    height: hwrosh(48),
-    width: wwrosw(48),
   },
 });

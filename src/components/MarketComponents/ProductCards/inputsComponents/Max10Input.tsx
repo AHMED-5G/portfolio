@@ -42,12 +42,12 @@ const Max10Input = ({ setCounter, counter }: Props) => {
       openMiniNumPadProgress.value,
       [0, 1],
       [0, productCardWidth - widthMargin],
-      Extrapolate.CLAMP
+      Extrapolate.CLAMP,
     );
     const toHeight = interpolate(
       openMiniNumPadProgress.value,
       [0, 1],
-      [0, finalContainerHeight]
+      [0, finalContainerHeight],
     );
     return {
       width: toWidth,
@@ -60,12 +60,12 @@ const Max10Input = ({ setCounter, counter }: Props) => {
       openMiniNumPadProgress.value,
       [0, 1],
       [plusMinusInitialWidth, productCardWidth - widthMargin],
-      Extrapolate.CLAMP
+      Extrapolate.CLAMP,
     );
     const toHeight = interpolate(
       openMiniNumPadProgress.value,
       [0, 1],
-      [initialContainerHeight, finalContainerHeight]
+      [initialContainerHeight, finalContainerHeight],
     );
     return {
       width: toWidth,
@@ -77,7 +77,7 @@ const Max10Input = ({ setCounter, counter }: Props) => {
     const toHeight = interpolate(
       openMiniNumPadProgress.value,
       [0, 1],
-      [initialContainerHeight, 0]
+      [initialContainerHeight, 0],
     );
 
     const toOpacity = interpolate(openMiniNumPadProgress.value, [0, 1], [1, 0]);
@@ -92,13 +92,13 @@ const Max10Input = ({ setCounter, counter }: Props) => {
     const toOpacity = interpolate(
       openMiniNumPadProgress.value,
       [0.5, 1],
-      [1, 0]
+      [1, 0],
     );
     const toHeight = interpolate(
       openMiniNumPadProgress.value,
       [0, 1],
       [iconSize, 0],
-      Extrapolate.CLAMP
+      Extrapolate.CLAMP,
     );
     return {
       opacity: toOpacity,
@@ -213,7 +213,10 @@ const Max10Input = ({ setCounter, counter }: Props) => {
               setCounter(1);
             }}
             accessibilityHint="remove one or long Pres to reset to 1"
-            style={[styles.iconContainer, { marginRight: wwrosw(5) }]}
+            style={[
+              styles.iconContainer,
+              { width: wwrosw(48), height: hwrosh(48), marginRight: wwrosw(5) },
+            ]}
           >
             <AntDesign
               disabled
@@ -243,15 +246,32 @@ const Max10Input = ({ setCounter, counter }: Props) => {
           <FlatList
             horizontal
             data={[3, 4, 5, 6, 7, 8, 9, 10].filter(
-              (number) => number != counter
+              (number) => number != counter,
             )}
             renderItem={({ item }) => {
               return (
                 <Pressable
                   style={({ pressed }) => [
                     pressed
-                      ? [styles.calculatorItem, { opacity: 0.5 }]
-                      : styles.calculatorItem,
+                      ? [
+                          styles.calculatorItem,
+                          { opacity: 0.5 },
+                          {
+                            width: wwrosw(58),
+                            height: hwrosh(58),
+                            borderRadius: averageRatio(10),
+                            margin: averageRatio(5),
+                          },
+                        ]
+                      : [
+                          styles.calculatorItem,
+                          {
+                            width: wwrosw(58),
+                            height: hwrosh(58),
+                            borderRadius: averageRatio(10),
+                            margin: averageRatio(5),
+                          },
+                        ],
                   ]}
                   onPress={() => {
                     closeNumPad();
@@ -277,22 +297,16 @@ export default memo(Max10Input);
 
 const styles = StyleSheet.create({
   iconContainer: {
-    width: wwrosw(48),
-    height: hwrosh(48),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
   },
   calculatorItem: {
-    width: wwrosw(58),
-    height: hwrosh(58),
-    borderRadius: averageRatio(10),
     backgroundColor: "#EEE",
-    margin: averageRatio(5),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    
+
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

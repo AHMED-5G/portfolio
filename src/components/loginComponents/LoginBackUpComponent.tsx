@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { Entypo, Ionicons } from "@expo/vector-icons";
-import { circularRatio, hwrosh, theme, wwrosw } from "../../constants";
+import { circularRatio, hwrosh, theme, wwrosw, wwroww } from "../../constants";
 import HelpSectionContainer from "../HelpSectionContainer";
 import MedButton from "../mini/MedButton";
 import Checkbox from "expo-checkbox";
@@ -78,7 +78,10 @@ const LoginBackUpComponent = () => {
               />
               <MedButton
                 disabled={false}
-                style={[styles.btnStyle, { marginLeft: 10 }]}
+                style={[
+                  styles.btnStyle,
+                  { width: wwrosw(120), marginLeft: wwroww(10) },
+                ]}
                 title="Login"
                 onPress={() => {}}
                 textStyle={{ fontSize: theme.fontSize.s18 }}
@@ -124,7 +127,6 @@ const styles = StyleSheet.create({
   },
   contentText: { fontSize: theme.fontSize.medium, fontWeight: "400" },
   btnStyle: {
-    width: wwrosw(120),
     borderRadius: theme.borderRadius,
   },
 });

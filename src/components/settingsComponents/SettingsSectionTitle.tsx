@@ -11,9 +11,9 @@ const SettingsSectionTitle = ({ title }: Props) => {
       style={{
         justifyContent: "center",
         height: hwrosh(40),
-        width: width,
-        backgroundColor: theme.primary(),
         marginTop: hwrosh(10),
+        backgroundColor: theme.primary(),
+        width: width,
       }}
     >
       <Text

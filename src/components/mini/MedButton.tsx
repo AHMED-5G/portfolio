@@ -49,6 +49,7 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
           <View
             style={[
               styles.container,
+              { width: wwrosw(244), height: hwrosh(55) },
               {
                 backgroundColor: props.disabled
                   ? "#bdc6cf"
@@ -88,7 +89,13 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
               <Text>{props.leftIcon}</Text>
             </View>
             <View>
-              <Text style={[styles.titleText, props.textStyle]}>
+              <Text
+                style={[
+                  styles.titleText,
+                  { fontSize: fontRatio(28) },
+                  props.textStyle,
+                ]}
+              >
                 {props.title}
               </Text>
             </View>
@@ -112,8 +119,6 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: wwrosw(244),
-    height: hwrosh(55),
     alignItems: "center",
     justifyContent: "center",
     alignContent: "center",
@@ -123,7 +128,6 @@ const styles = StyleSheet.create({
   titleText: {
     color: theme.actionColorText,
     fontWeight: "bold",
-    fontSize: fontRatio(28),
   },
 });
 

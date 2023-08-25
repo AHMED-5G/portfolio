@@ -24,7 +24,7 @@ const PostOptions = ({ post }: Props) => {
   const shareCounter = useMemo(() => randomIntNumber(200), []);
   const favoriteCounter = useMemo(() => randomIntNumber(300), []);
   const [favoriteState, setFavoriteState] = useState<boolean>(
-    generateRandomBoolean()
+    generateRandomBoolean(),
   );
   const [showComments, setShowComments] = useState(false);
 
@@ -54,7 +54,7 @@ const PostOptions = ({ post }: Props) => {
     playSound();
   };
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { marginTop: hwrosh(20) }]}>
       <View style={styles.optionsContainer}>
         {!writeCommentState && (
           <LikeComponent
@@ -94,7 +94,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignContent: "space-between",
     alignItems: "center",
-    marginTop: hwrosh(20),
   },
   optionsContainer: {
     width: "100%",

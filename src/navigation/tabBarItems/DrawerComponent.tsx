@@ -1,25 +1,40 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import React  from "react";
+import { StyleSheet, View } from "react-native";
+import React from "react";
 import { Feather } from "@expo/vector-icons";
-import {  theme } from "../../constants/theme";
+import { theme } from "../../constants/theme";
 import { i18n } from "../../translation/i18n";
-import DrawerProfileCard from "../../components/DrawerProfileCard";
+import DrawerProfileCard from "../../components/myTabBarComponents/DrawerProfileCard";
 import MyLine from "../../components/MyLine";
-import {
-  circularRatio,
-  fontRatio,
-  hwrosh,
-  wwrosw,
-} from "../../constants/Layout";
+import { circularRatio, wwrosw } from "../../constants/Layout";
 import {
   drawerContentContainerHeight,
   drawerProfileCardHeight,
 } from "../constants";
-import MyText from "../../components/MyText";
-import { myColors } from "../../constants";
+
+import DrawerItem, {
+  DrawerItemsProps,
+} from "../../components/myTabBarComponents/DrawerItem";
 
 const DrawerComponent = () => {
   const iconRadius = circularRatio(37);
+  const iconColor = theme.iconColor();
+  const drawerItems: DrawerItemsProps[] = [
+    {
+      title: i18n.t("profile"),
+      icon: <Feather name="user" color={iconColor} size={iconRadius} />,
+      onPress: () => {
+        console.log("DrawerComponent.tsx -> ", "PROFILE");
+      },
+    },
+    {
+      title: i18n.t("messages"),
+      icon: <Feather name="mail" color={iconColor} size={iconRadius} />,
+    },
+    {
+      title: i18n.t("friends"),
+      icon: <Feather name="users" color={iconColor} size={iconRadius} />,
+    },
+  ];
   return (
     <View style={{ width: "100%" }}>
       <View
@@ -32,52 +47,13 @@ const DrawerComponent = () => {
           height: drawerProfileCardHeight,
         }}
       >
-        <DrawerProfileCard  />
+        <DrawerProfileCard />
       </View>
       <MyLine />
       <View style={styles.drawerContentContainer}>
-        <TouchableOpacity style={styles.drawerItemContainer}>
-          <View style={styles.drawerIconContainer}>
-            <Feather name="user" color={theme.iconColor()} size={iconRadius} />
-          </View>
-          <View style={styles.drawerTextContainer}>
-            <MyText
-              style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
-              text={i18n.t("profile")}
-            />
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.drawerItemContainer, { flexDirection: "row" }]}
-        >
-          <View style={styles.drawerIconContainer}>
-            <Feather name="mail" color={theme.iconColor()} size={iconRadius} />
-          </View>
-          <View style={styles.drawerTextContainer}>
-            <MyText
-              style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
-              text={i18n.t("messages")}
-            />
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.drawerItemContainer]}>
-          <View
-            style={[
-              styles.drawerIconContainer,
-              {
-                transform: theme.iconLocalizationTransform(),
-              },
-            ]}
-          >
-            <Feather name="users" size={iconRadius} color={theme.iconColor()} />
-          </View>
-          <View style={styles.drawerTextContainer}>
-            <MyText
-              style={[styles.drawerItemText, { color: theme.baseTextColor() }]}
-              text={i18n.t("friends")}
-            />
-          </View>
-        </TouchableOpacity>
+        {drawerItems.map((item, index) => (
+          <DrawerItem key={index} {...item} />
+        ))}
       </View>
     </View>
   );
@@ -88,35 +64,7 @@ export default DrawerComponent;
 const styles = StyleSheet.create({
   drawerContentContainer: {
     height: drawerContentContainerHeight,
-  },
-  drawerItemContainer: {
-    marginLeft: wwrosw(10),
-    marginBottom: hwrosh(10),
-    flexDirection: "row",
-  },
-  drawerIconContainer: {
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     alignContent: "center",
-    alignItems: "center",
-    width: wwrosw(48),
-    height: hwrosh(48),
-  },
-  drawerTextContainer: {
-    marginLeft: wwrosw(10),
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-  },
-  drawerItemText: {
-    fontSize: fontRatio(22),
-    color: myColors.black,
-    fontWeight: "600",
-  },
-  drawerItemIconStyle: {
-    width: wwrosw(40),
-    height: hwrosh(40),
-    maxWidth: wwrosw(40),
-    maxHeight: hwrosh(40),
-    overflow: "hidden",
   },
 });

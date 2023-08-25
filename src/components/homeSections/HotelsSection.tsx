@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { Hotel } from "../../types";
 import { hotels } from "../../../dummy/hotels";
@@ -30,7 +30,7 @@ const HotelsSection = () => {
     );
   };
   return (
-    <View style={styles.container}>
+    <View style={{ marginTop: hwrosh(10) }}>
       <HomeSectionTitle text={i18n.t("hotels")} />
       <HomeSectionContainer content={<Content />} />
     </View>
@@ -38,9 +38,3 @@ const HotelsSection = () => {
 };
 
 export default HotelsSection;
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: hwrosh(10),
-  },
-});

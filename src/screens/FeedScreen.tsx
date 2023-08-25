@@ -81,7 +81,7 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
       }}
     >
       <SimpleHeader title={i18n.t("timeLine")} />
-      <View style={styles.postsContainer}>
+      <View style={[styles.postsContainer, { marginBottom: hwrosh(6) }]}>
         <FlatList
           refreshControl={
             <RefreshControl
@@ -99,12 +99,12 @@ function FeedScreen({ navigation }: RootTabScreenProps<"Feed">) {
                 isViewable={viewableItemsIndexes == index}
               />
             ),
-            []
+            [],
           )}
           ref={flatListRef}
           keyExtractor={useCallback(
             (item: string, index: number) => index.toString(),
-            []
+            [],
           )}
           initialNumToRender={5}
           windowSize={2}
@@ -130,6 +130,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     overflow: "hidden",
     flex: 1,
-    marginBottom: hwrosh(6),
   },
 });

@@ -122,7 +122,7 @@ const RemoveItemButton = ({
         >
           <Text
             style={{
-              fontSize: fontRatio(22),
+              fontSize: theme.fontSize.small,
               color: theme.darkTheme ? theme.error : theme.black,
               fontWeight: "bold",
             }}

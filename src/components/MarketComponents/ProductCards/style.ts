@@ -7,7 +7,8 @@ export default StyleSheet.create({
     flex: 1,
   },
   welcome: {
-    fontSize: fontRatio(20),
+    // fontSize: fontRatio(20),
+    fontSize: (20),
   },
 });
 

@@ -1,13 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { ReadingThemesCombo } from "../../types";
-import { myColors } from "../../constants";
-import {
-  averageRatio,
-  circularRatio,
-  fontRatio,
-  wwrosw,
-} from "../../constants/Layout";
+import { myColors, theme } from "../../constants";
+import { averageRatio, circularRatio, wwrosw } from "../../constants/Layout";
 
 type Props = {
   colors: ReadingThemesCombo;
@@ -51,7 +46,7 @@ const ReadingThemComboComponent = ({
           style={{
             fontWeight: "bold",
             color: colors.fontColor,
-            fontSize: fontRatio(22),
+            fontSize: theme.fontSize.s22,
           }}
         >
           {colors.fontSize ?? "F"}

@@ -49,24 +49,40 @@ const VideoPostComponent = ({ post, isViewable }: Props) => {
       <View style={{ marginTop: hwrosh(10) }}>
         <PostText text={post.text} />
       </View>
-      <View style={[styles.videoContainer]}>
+      <View
+        style={[
+          styles.videoContainer,
+          { height: hwrosh(250), width: width - wwrosw(20) },
+        ]}
+      >
         {videoLoading && (
           <View
             style={[
               styles.videoContainer,
               {
+                height: hwrosh(250),
+                width: width - wwrosw(20),
                 position: "absolute",
                 zIndex: 1,
               },
             ]}
           >
-            <MyCustomSkeleton style={styles.videoContainer} />
+            <MyCustomSkeleton
+              style={{
+                // marginTop: hwrosh(10),
+                height: hwrosh(250),
+                width: width - wwrosw(20),
+                justifyContent: "center",
+                alignContent: "center",
+                alignItems: "center",
+              }}
+            />
           </View>
         )}
         <Video
           accessibilityHint="video"
           ref={video}
-          style={styles.video}
+          style={[styles.video, { height: hwrosh(240) }]}
           source={{
             uri: post?.video ?? "",
           }}
@@ -135,16 +151,12 @@ export { VideoPostComponent };
 
 const styles = StyleSheet.create({
   video: {
-    height: hwrosh(240),
     width: "100%",
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
   },
   videoContainer: {
-    marginTop: hwrosh(10),
-    height: hwrosh(250),
-    width: width - wwrosw(20),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

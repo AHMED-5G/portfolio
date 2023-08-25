@@ -2,17 +2,17 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Image } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { theme } from "../constants/theme";
-import { circularRatio, fontRatio, hwrosh, wwrosw } from "../constants/Layout";
-import MyText from "./MyText";
+import { theme } from "../../constants/theme";
+import { circularRatio, fontRatio, hwrosh, wwrosw } from "../../constants/Layout";
+import MyText from "../MyText";
 import {
   getRandomOneItemFromList,
   randomIntNumber,
-} from "../utils/helperFunctions";
-import { users } from "../../dummy/Users";
-import { images } from "../../dummy/images";
+} from "../../utils/helperFunctions";
+import { users } from "../../../dummy/Users";
+import { images } from "../../../dummy/images";
 import { Session } from "@supabase/supabase-js";
-import { supabase } from "../../lib/supabase";
+import { supabase } from "../../../lib/supabase";
 
 const DrawerProfileCard = () => {
   const imageRadius = circularRatio(60);
@@ -37,7 +37,7 @@ const DrawerProfileCard = () => {
         width: "100%",
       }}
     >
-      <View style={styles.imageContainer}>
+      <View style={[styles.imageContainer, { marginTop: hwrosh(10) }]}>
         <Image
           resizeMode="center"
           style={{
@@ -52,7 +52,8 @@ const DrawerProfileCard = () => {
         <MyText
           text={userName}
           style={{
-            fontSize: fontRatio(22),
+            fontSize: theme.fontSize.s22,
+
             fontWeight: "bold",
             color: theme.baseTextColor(),
           }}
@@ -89,7 +90,6 @@ export default DrawerProfileCard;
 
 const styles = StyleSheet.create({
   imageContainer: {
-    marginTop: hwrosh(10),
     alignItems: "center",
     alignContent: "center",
     justifyContent: "center",

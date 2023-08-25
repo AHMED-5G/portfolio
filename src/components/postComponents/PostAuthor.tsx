@@ -1,4 +1,4 @@
-import {  Text, View, Image } from "react-native";
+import { Text, View, Image } from "react-native";
 import React, { useState } from "react";
 import { User } from "../../types";
 import MedButton from "../mini/MedButton";
@@ -10,7 +10,6 @@ import { i18n } from "../../translation/i18n";
 import {
   averageRatio,
   circularRatio,
-  fontRatio,
   hwrosh,
   wwrosw,
 } from "../../constants/Layout";
@@ -133,7 +132,7 @@ const PostAuthor = ({ user }: Props) => {
             <Text
               accessibilityRole="header"
               style={{
-                fontSize: fontRatio(22),
+                fontSize: theme.fontSize.s22,
                 fontWeight: "700",
                 color: theme.primaryText(),
               }}
@@ -164,7 +163,7 @@ const PostAuthor = ({ user }: Props) => {
                   backgroundColor: theme.cardBackground(),
                 }}
                 textStyle={{
-                  fontSize: fontRatio(16),
+                  fontSize: theme.fontSize.medium,
                   fontWeight: "700",
                   color: theme.baseTextColor(),
                 }}
@@ -183,7 +182,7 @@ const PostAuthor = ({ user }: Props) => {
                   backgroundColor: theme.cardBackground(),
                 }}
                 textStyle={{
-                  fontSize: fontRatio(16),
+                  fontSize: theme.fontSize.medium,
                   fontWeight: "700",
                   color: theme.baseTextColor(),
                 }}

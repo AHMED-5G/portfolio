@@ -14,7 +14,6 @@ import MyCustomSkeleton from "./MyCustomSkeleton";
 import {
   averageRatio,
   circularRatio,
-  fontRatio,
   hwrosh,
   wwrosw,
 } from "../constants/Layout";
@@ -34,7 +33,13 @@ const ContributorCardInDetailsScreen = ({ contributor }: Props) => {
   return (
     <Animated.View
       sharedTransitionTag={contributor.id.toString()}
-      style={[styles.container, { backgroundColor: theme.cardBackground() }]}
+      style={[
+        styles.container,
+        {
+          marginRight: wwrosw(10),
+          backgroundColor: theme.cardBackground(),
+        },
+      ]}
     >
       <TouchableOpacity
         style={{
@@ -44,7 +49,7 @@ const ContributorCardInDetailsScreen = ({ contributor }: Props) => {
         }}
         onPress={() => navigation.navigate("ContributorsDetails", contributor)}
       >
-        <View style={styles.imageContainer}>
+        <View style={[styles.imageContainer, { marginTop: hwrosh(10) }]}>
           {imageLoading && (
             <View
               style={[
@@ -73,12 +78,12 @@ const ContributorCardInDetailsScreen = ({ contributor }: Props) => {
             source={{ uri: contributor.image }}
           />
         </View>
-        <View style={styles.nameContainer}>
+        <View style={[styles.nameContainer, { marginTop: hwrosh(5) }]}>
           <Text style={[styles.nameText, { color: theme.cardText() }]}>
             {contributor.name}
           </Text>
         </View>
-        <View style={styles.titleContainer}>
+        <View style={{ marginBottom: hwrosh(5) }}>
           <Text style={[styles.titleText, { color: theme.cardText() }]}>
             {contributor.title}
           </Text>
@@ -90,7 +95,17 @@ const ContributorCardInDetailsScreen = ({ contributor }: Props) => {
             width: "100%",
           }}
         />
-        <View style={styles.socialContainer}>
+        <View
+          style={[
+            styles.socialContainer,
+            {
+              height: hwrosh(40),
+              marginTop: hwrosh(10),
+              borderRadius: averageRatio(12),
+              marginBottom: hwrosh(5),
+            },
+          ]}
+        >
           <FlatList
             data={contributor.accounts.slice(0, 3)}
             numColumns={4}
@@ -111,7 +126,6 @@ export default ContributorCardInDetailsScreen;
 const styles = StyleSheet.create({
   container: {
     width: cardWidth,
-    marginRight: wwrosw(10),
     borderRadius: theme.borderRadius,
     overflow: "hidden",
     alignItems: "center",
@@ -119,38 +133,30 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   imageContainer: {
-    marginTop: hwrosh(10),
     alignItems: "center",
     alignContent: "center",
     justifyContent: "center",
   },
   nameContainer: {
-    marginTop: hwrosh(5),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
   },
   nameText: {
-    fontSize: fontRatio(22),
+    fontSize: theme.fontSize.s22,
     fontWeight: "800",
     textTransform: "uppercase",
   },
-  titleContainer: {
-    marginBottom: hwrosh(5),
-  },
+  titleContainer: {},
   titleText: {
     fontWeight: "700",
     textTransform: "uppercase",
-    fontSize: fontRatio(12),
+    fontSize: theme.fontSize.small,
   },
   socialContainer: {
-    height: hwrosh(40),
-    marginTop: hwrosh(10),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    borderRadius: averageRatio(12),
-    marginBottom: hwrosh(5),
   },
   image: {
     height: imageSize,

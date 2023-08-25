@@ -19,7 +19,11 @@ const PostComponent = ({ post, isViewable, index }: Props) => {
     <View
       style={[
         styles.postContainer,
-        { backgroundColor: theme.cardBackground() },
+        {
+          width: width - wwrosw(10),
+          marginTop: hwrosh(20),
+          backgroundColor: theme.cardBackground(),
+        },
       ]}
     >
       {post.type == PostTypes.Text ? (
@@ -40,11 +44,9 @@ export { PostComponent };
 
 const styles = StyleSheet.create({
   postContainer: {
-    width: width - wwrosw(10),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
     borderRadius: theme.borderRadius,
-    marginTop: hwrosh(20),
   },
 });

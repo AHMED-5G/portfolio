@@ -2,7 +2,7 @@
 //https://github.com/supabase/supabase/issues/5663
 //npx uri-scheme open exp://10.0.2.2:8081/--/login --android
 
-// npx uri-scheme open "exp://10.0.2.2:8081/--/login#access_token=eyJhU&expires_in=3600&refresh_token=hFEuaYjXLOW2uszlOFexCg&token_type=bearer&type=recovery" --android
+// npx uri-scheme open "exp://127.0.0.1:8081/--/resetPassword#access_token=eyJhU&expires_in=3600&refresh_token=hFEuaYjXLOW2uszlOFexCg&token_type=bearer&type=recovery" --android
 
 import {
   View,
@@ -109,16 +109,12 @@ const LoginScreen = () => {
     const resetPassword = async (email: string) => {
       const resetPasswordURL = Linking.createURL("resetPassword");
 
-      console.log("LoginScreen.tsx ->reset password  ", resetPasswordURL);
-
       const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: resetPasswordURL,
       });
 
       if (error)
         return showToast(error.message, theme.alertWarningColor as string);
-
-      // console.log("LoginScreen.tsx -> ", data);
 
       return { data, error };
     };
@@ -193,14 +189,14 @@ const LoginScreen = () => {
             >
               <MedButton
                 disabled={disableAction}
-                style={styles.btnStyle}
+                style={[styles.btnStyle, { width: wwrosw(120) }]}
                 title="Login"
                 onPress={() => signInWithEmail()}
                 textStyle={{ fontSize: theme.fontSize.s18 }}
               />
               <MedButton
                 disabled={disableAction}
-                style={styles.btnStyle}
+                style={[styles.btnStyle, { width: wwrosw(120) }]}
                 title="Sign Up"
                 onPress={() => signUpWithEmail()}
                 textStyle={{ fontSize: theme.fontSize.s18 }}
@@ -268,7 +264,6 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   btnStyle: {
-    width: wwrosw(120),
     borderRadius: theme.borderRadius,
   },
 });

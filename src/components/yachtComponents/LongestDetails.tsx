@@ -32,7 +32,7 @@ const LongestDetails = () => {
           <Text
             style={{
               color: theme.cardText(),
-              fontSize: fontRatio(22),
+              fontSize: theme.fontSize.s22,
               fontWeight: "bold",
             }}
           >
@@ -42,7 +42,7 @@ const LongestDetails = () => {
             style={{
               marginLeft: 4,
               color: theme.cardText(),
-              fontSize: fontRatio(18),
+              fontSize: theme.fontSize.s18,
               fontWeight: "500",
               lineHeight: fontRatio(32),
             }}
@@ -54,7 +54,7 @@ const LongestDetails = () => {
           <Text
             style={{
               color: theme.cardText(),
-              fontSize: fontRatio(18),
+              fontSize: theme.fontSize.s18,
               fontWeight: "500",
             }}
           >
@@ -76,7 +76,7 @@ const LongestDetails = () => {
           <Text
             style={{
               color: theme.cardText(),
-              fontSize: fontRatio(22),
+              fontSize: theme.fontSize.s22,
               fontWeight: "bold",
             }}
           >
@@ -87,7 +87,7 @@ const LongestDetails = () => {
           <Text
             style={{
               color: theme.cardText(),
-              fontSize: fontRatio(18),
+              fontSize: theme.fontSize.s18,
               fontWeight: "500",
             }}
           >
@@ -98,7 +98,13 @@ const LongestDetails = () => {
       <View
         style={[
           styles.cardContainer,
-          { backgroundColor: theme.cardBackground() },
+          {
+            width: wwrosw(120),
+            height: hwrosh(100),
+            margin: averageRatio(5),
+            borderRadius: averageRatio(10),
+            backgroundColor: theme.cardBackground(),
+          },
         ]}
       >
         <View
@@ -109,7 +115,7 @@ const LongestDetails = () => {
           <Text
             style={{
               color: theme.cardText(),
-              fontSize: fontRatio(22),
+              fontSize: theme.fontSize.s22,
               fontWeight: "bold",
             }}
           >
@@ -120,7 +126,7 @@ const LongestDetails = () => {
           <Text
             style={{
               color: theme.cardText(),
-              fontSize: fontRatio(18),
+              fontSize: theme.fontSize.s18,
               fontWeight: "500",
             }}
           >
@@ -136,10 +142,6 @@ export default LongestDetails;
 
 const styles = StyleSheet.create({
   cardContainer: {
-    width: wwrosw(120),
-    height: hwrosh(100),
-    margin: averageRatio(5),
-    borderRadius: averageRatio(10),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

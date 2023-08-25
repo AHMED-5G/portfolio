@@ -28,12 +28,12 @@ const ProductCardParent = ({ product }: Props) => {
 
   const [counter, setCounter] = useState(1);
   const multiplyViewFadeInProgress = useSharedValue(
-    product.type == ProductTypes.upTo100 ? 1 : 0
+    product.type == ProductTypes.upTo100 ? 1 : 0,
   );
 
   const openRemoveButtonProgress = useSharedValue(0);
   const state: InitialStateInterface = useAppSelector(
-    (state) => state.dataSlice
+    (state) => state.dataSlice,
   );
 
   //useEffects
@@ -50,7 +50,7 @@ const ProductCardParent = ({ product }: Props) => {
   useEffect(() => {
     try {
       const thisProduct = state.itemsInCart.find(
-        (item) => item.id == product.id
+        (item) => item.id == product.id,
       );
 
       if (thisProduct != undefined) {
@@ -90,7 +90,11 @@ const ProductCardParent = ({ product }: Props) => {
     <View
       style={[
         styles.cardContainer,
-        { backgroundColor: theme.cardBackground() },
+        {
+          marginTop: hwrosh(20),
+          height: hwrosh(420),
+          backgroundColor: theme.cardBackground(),
+        },
       ]}
     >
       <TopSection {...{ product, counter, multiplyViewFadeInProgress }} />
@@ -118,10 +122,6 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     width: productCardWidth,
-    // backgroundColor: "white",
-    marginTop: hwrosh(20),
-    // marginBottom: 20,
     borderRadius: productCardBorderRadius,
-    height: hwrosh(420),
   },
 });

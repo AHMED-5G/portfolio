@@ -73,7 +73,16 @@ const LikeComponent = ({
       }}
     >
       <Animated.View
-        style={[styles.favoriteContainer, rStyle]}
+        style={[
+          styles.favoriteContainer,
+          {
+            marginRight: wwrosw(10),
+            height: hwrosh(56),
+            width: wwrosw(56),
+            marginLeft: wwrosw(6),
+          },
+          rStyle,
+        ]}
         accessibilityRole="button"
         accessibilityHint={
           !favoriteState
@@ -114,13 +123,10 @@ export default LikeComponent;
 const styles = StyleSheet.create({
   favoriteContainer: {
     flexDirection: "row",
-    marginRight: wwrosw(10),
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
-    height: hwrosh(56),
-    width: wwrosw(56),
-    marginLeft: wwrosw(6),
+
     overflow: "hidden",
   },
 });

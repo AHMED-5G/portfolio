@@ -118,7 +118,7 @@ export const theme: ThemeInterface = {
 
   baseTextColor: function (opacity = 1) {
     return this.darkTheme
-      ? `rgba(255, 255, 255, ${opacity}})`
+      ? `rgba(255, 255, 255, ${opacity})`
       : `rgba(0, 0, 0, ${opacity})`;
   },
 

@@ -27,7 +27,9 @@ const HomeSingleImage = ({ uri }: Props) => {
             },
           ]}
         >
-          <MyCustomSkeleton style={styles.image} />
+          <MyCustomSkeleton
+            style={{ width: imageWidth, height: hwrosh(200) }}
+          />
         </View>
       )}
       <Image
@@ -41,7 +43,7 @@ const HomeSingleImage = ({ uri }: Props) => {
           setImageLoading(false);
         }}
         source={{ uri: uri }}
-        style={styles.image}
+        style={[styles.image, { height: hwrosh(200) }]}
       />
     </View>
   );
@@ -51,7 +53,6 @@ export default HomeSingleImage;
 
 const styles = StyleSheet.create({
   image: {
-    height: hwrosh(200),
     width: imageWidth,
     borderRadius: theme.borderRadius,
   },

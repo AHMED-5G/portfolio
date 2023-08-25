@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 import React, { ReactNode } from "react";
-import { fontRatio, hwrosh } from "../constants/Layout";
+import {  hwrosh } from "../constants/Layout";
 import { theme } from "../constants/theme";
 
 type Props = {
@@ -17,7 +17,7 @@ const FormComponentWithLabel = ({
   return (
     <View style={{ marginTop: hwrosh(5), width: "100%" }}>
       <View>
-        <Text style={{ fontSize: fontRatio(18), color: theme.baseTextColor() }}>
+        <Text style={{ fontSize: theme.fontSize.s18, color: theme.baseTextColor() }}>
           {label}
         </Text>
       </View>

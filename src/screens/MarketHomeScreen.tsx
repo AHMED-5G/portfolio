@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
-import { averageRatio, fontRatio, hwrosh, width } from "../constants/Layout";
+import { averageRatio, hwrosh, width } from "../constants/Layout";
 import SearchComponent from "../components/MarketComponents/SearchComponent";
 import Cart from "../components/MarketComponents/Cart";
 import { productsData } from "../../dummy/marketDummy/ProductsDummy";
@@ -21,7 +21,12 @@ const MarketHomeScreen = () => {
           title={i18n.t("market") + " - " + i18n.t("everydayEssentials")}
         />
         <View style={{ flex: 1, justifyContent: "flex-end" }}>
-          <View style={styles.productsFlatListContainer}>
+          <View
+            style={[
+              styles.productsFlatListContainer,
+              { marginBottom: hwrosh(10) },
+            ]}
+          >
             <FlatList
               data={productsData}
               renderItem={({ item }) => {
@@ -74,7 +79,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    marginBottom: hwrosh(10),
   },
 
   searchInputContainer: {
@@ -82,11 +86,5 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     width,
-  },
-  searchResultText: {
-    margin: averageRatio(4),
-    color: theme.primaryText(),
-    fontSize: fontRatio(20),
-    fontWeight: "500",
   },
 });

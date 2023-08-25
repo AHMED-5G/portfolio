@@ -5,6 +5,7 @@ const fontSizes = {
   medium: 16,
   large: 18,
   s18: 18,
+  s22: 22,
 };
 
 export type FontSizeEnum = keyof typeof fontSizes;

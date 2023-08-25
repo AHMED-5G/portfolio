@@ -9,18 +9,26 @@ type Props = { image: Post["image"] };
 const PostImage = ({ image }: Props) => {
   const [postImageLoading, setPostImageLoading] = useState(true);
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { marginTop: hwrosh(5) }]}>
       {postImageLoading && (
         <View
           style={[
-            styles.image,
             {
+              height: hwrosh(190),
+              borderRadius: averageRatio(10),
+              width: width - wwrosw(20),
               position: "absolute",
               zIndex: 1,
             },
           ]}
         >
-          <MyCustomSkeleton style={styles.image} />
+          <MyCustomSkeleton
+            style={{
+              height: hwrosh(190),
+              borderRadius: averageRatio(10),
+              width: width - wwrosw(20),
+            }}
+          />
         </View>
       )}
       <Image
@@ -34,7 +42,11 @@ const PostImage = ({ image }: Props) => {
           setPostImageLoading(false);
         }}
         source={{ uri: image }}
-        style={styles.image}
+        style={{
+          height: hwrosh(190),
+          borderRadius: averageRatio(10),
+          width: width - wwrosw(20),
+        }}
       />
     </View>
   );
@@ -44,14 +56,8 @@ export { PostImage };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: hwrosh(5),
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
-  },
-  image: {
-    height: hwrosh(190),
-    borderRadius: averageRatio(10),
-    width: width - wwrosw(20),
   },
 });

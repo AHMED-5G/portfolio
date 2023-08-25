@@ -8,13 +8,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { ContributorAccount, RootStackParamList } from "../types";
-import {
-  circularRatio,
-  fontRatio,
-  hwrosh,
-  width,
-  wwrosw,
-} from "../constants/Layout";
+import { circularRatio, hwrosh, width, wwrosw } from "../constants/Layout";
 import { theme } from "../constants/theme";
 import { StackScreenProps } from "@react-navigation/stack";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
@@ -258,7 +252,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   nameText: {
-    fontSize: fontRatio(22),
+    fontSize: theme.fontSize.s22,
     fontWeight: "800",
     textTransform: "uppercase",
   },
@@ -268,7 +262,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontWeight: "700",
     textTransform: "uppercase",
-    fontSize: fontRatio(12),
+    fontSize: theme.fontSize.small,
   },
 
   image: {

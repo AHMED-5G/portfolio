@@ -33,10 +33,15 @@ const BottomSection = ({
 }: Props) => {
   return (
     <View style={styles.bottomSection}>
-      <View style={styles.inputContainer}>
+      <View
+        style={[
+          styles.inputContainer,
+          { height: hwrosh(30), marginTop: hwrosh(35) },
+        ]}
+      >
         <InputComponent {...{ product, setCounter, counter }} />
       </View>
-      <View style={styles.buttonsContainer}>
+      <View style={[styles.buttonsContainer, { marginTop: hwrosh(50) }]}>
         <View style={{ width: actionButtonWidth }}>
           <AddToCartButtonComponent
             {...{
@@ -76,14 +81,12 @@ const BottomSection = ({
 export default BottomSection;
 const styles = StyleSheet.create({
   inputContainer: {
-    height: hwrosh(30),
-    marginTop: hwrosh(35),
     width: productCardWidth * 0.9,
     // justifyContent: 'center' ,alignContent: 'center' ,alignItems :'center'
   },
   buttonsContainer: {
     width: productCardWidth * 0.9,
-    marginTop: hwrosh(50),
+
     flexDirection: "row",
     justifyContent: "space-between",
     alignContent: "center",

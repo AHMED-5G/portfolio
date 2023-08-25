@@ -4,7 +4,7 @@ import { Hotel } from "../types";
 import { theme } from "../constants/theme";
 import { useNavigation } from "@react-navigation/native";
 import MyCustomSkeleton from "./MyCustomSkeleton";
-import { fontRatio, hwrosh, wwrosw } from "../constants/Layout";
+import { hwrosh, wwrosw } from "../constants/Layout";
 
 type Props = {
   hotel: Hotel;
@@ -89,12 +89,12 @@ export default HotelCard;
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: fontRatio(22),
+    fontSize: theme.fontSize.s22,
     fontWeight: "700",
-    lineHeight: fontRatio(36),
+    // lineHeight: fontRatio(36),
   },
   secondlyTitle: {
-    fontSize: fontRatio(14),
+    fontSize: theme.fontSize.small,
     fontWeight: "bold",
   },
   image: {

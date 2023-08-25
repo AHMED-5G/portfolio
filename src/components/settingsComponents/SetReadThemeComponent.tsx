@@ -10,26 +10,37 @@ import { SET_READING_THEME } from "../../redux/reducers/dataSlice";
 import { i18n } from "../../translation/i18n";
 import Slider from "@react-native-community/slider";
 
-
 const SetReadThemeComponent = () => {
   const state: InitialStateInterface = useAppSelector(
-    (state) => state.dataSlice
+    (state) => state.dataSlice,
   );
-  const  savedReadingTheme = state.settings.savedReadingTheme;
+  const savedReadingTheme = state.settings.savedReadingTheme;
   const [selectedCombo, setSelectedCombo] = useState<ReadingThemesCombo>(
-    readingThemes[0]
+    readingThemes[0],
   );
   const [fontSize, setFontSize] = useState(
-    state.settings.savedReadingTheme.fontSize ?? 18
+    state.settings.savedReadingTheme.fontSize ?? 18,
   );
 
   const dispatch = useAppDispatch();
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { borderRadius: averageRatio(10), marginTop: hwrosh(10) },
+      ]}
+    >
       <View
         style={[
           styles.exampleContainer,
-          { backgroundColor: selectedCombo?.backGroundColor },
+          {
+            marginTop: hwrosh(20),
+            width: width - wwrosw(20),
+            height: hwrosh(100),
+            marginBottom: hwrosh(3),
+            borderRadius: averageRatio(10),
+            backgroundColor: selectedCombo?.backGroundColor,
+          },
         ]}
       >
         <Text
@@ -71,7 +82,12 @@ const SetReadThemeComponent = () => {
         />
       </View>
       <View>
-        <View style={styles.sliderContainer}>
+        <View
+          style={[
+            styles.sliderContainer,
+            { marginTop: hwrosh(20), width: width - wwrosw(20) },
+          ]}
+        >
           <Slider
             style={{ width: "100%" }}
             minimumValue={10}
@@ -130,26 +146,17 @@ export default SetReadThemeComponent;
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: averageRatio(10),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    marginTop: hwrosh(10),
     overflow: "hidden",
   },
   exampleContainer: {
-    marginTop: hwrosh(20),
-    width: width - wwrosw(20),
-    height: hwrosh(100),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    marginBottom: hwrosh(3),
-    borderRadius: averageRatio(10),
   },
   sliderContainer: {
-    marginTop: hwrosh(20),
-    width: width - wwrosw(20),
     justifyContent: "center",
     alignContent: "center",
   },

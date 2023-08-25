@@ -2,6 +2,7 @@ import {
   Alert,
   DevSettings,
   StyleSheet,
+  Text,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -19,7 +20,7 @@ import {
   wwrosw,
 } from "../../constants/Layout";
 import { footerContentContainerHeight } from "../constants";
-import MyText from "../../components/MyText";
+// import MyText from "../../components/MyText";
 import { useFonts } from "expo-font";
 import {
   IBMPlexSansArabicRegular,
@@ -127,10 +128,14 @@ const TabBarFooter = () => {
             alignItems: "center",
           }}
         >
-          <MyText
-            text={session ? i18n.t("logOut") : i18n.t("logIn")}
-            style={[styles.text, { color: theme.baseTextColor() }]}
-          />
+          <Text
+            style={[
+              styles.text,
+              { fontSize: fontRatio(15), color: theme.baseTextColor() },
+            ]}
+          >
+            {session ? i18n.t("logOut") : i18n.t("logIn")}
+          </Text>
         </View>
         <View
           style={{
@@ -170,5 +175,5 @@ const TabBarFooter = () => {
 export default TabBarFooter;
 
 const styles = StyleSheet.create({
-  text: { color: "black", fontWeight: "700", fontSize: fontRatio(15) },
+  text: { color: "black", fontWeight: "700" },
 });
