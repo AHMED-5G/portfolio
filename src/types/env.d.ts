@@ -1,5 +1,4 @@
 declare module "@env" {
-  export const SUPABASE_ANON_KEY: string;
   export const GITHUB_CLIENT_ID: string;
 }
 

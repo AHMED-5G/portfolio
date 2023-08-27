@@ -1,24 +1,15 @@
-//https://blog.theodo.com/2023/03/supabase-reset-password-rn/
-//https://github.com/supabase/supabase/issues/5663
-//npx uri-scheme open exp://10.0.2.2:8081/--/login --android
-
-// npx uri-scheme open "exp://127.0.0.1:8081/--/resetPassword#access_token=eyJhU&expires_in=3600&refresh_token=hFEuaYjXLOW2uszlOFexCg&token_type=bearer&type=recovery" --android
-
 import {
   View,
   StyleSheet,
   ScrollView,
-  Alert,
   Text,
   TouchableOpacity,
 } from "react-native";
-import * as Linking from "expo-linking";
 import React, { useEffect, useState } from "react";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import { height, hwrosh, width, wwrosw } from "../constants/Layout";
 import { theme } from "../constants/theme";
 import CustomTextInput from "../components/mini/CustomTextInput";
-import { supabase } from "../../lib/supabase";
 import {
   validateEmail,
   validateShortTextLength,
@@ -26,55 +17,24 @@ import {
 import MedButton from "../components/mini/MedButton";
 import LoadingIndicator from "../components/mini/LoadingIndicator";
 import FormComponentWithLabel from "../components/FormComponentWithLabel";
-import { showToast } from "../utils/helperFunctions";
-import { useNavigation } from "@react-navigation/native";
 import { i18n } from "../translation/i18n";
 import PasswordInputIconsComponent from "../components/loginComponents/PasswordInputIconsComponent";
 import LoginBackUpComponent from "../components/loginComponents/LoginBackUpComponent";
 import LoginTitle from "../components/AuthComponents/LoginTitle";
-import { IUser } from "shared-data/types";
-
+import { showToast } from "../utils/helperFunctions";
 
 const LoginScreen = () => {
-  const navigation = useNavigation();
-  const user: IUser = {
-    id: 1,
-    name: "mohamed",
-    email: "m@m.com",
-    password: "123",
-    userName: "",
-  };
-
   const Content = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(true);
 
-    console.log("LoginScreen.tsx -> ", user);
-
-    async function signInWithEmail() {
-      setLoading(true);
-      const { error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
-      });
-
-      setLoading(false);
-      if (error)
-        return showToast(error.message, theme.alertWarningColor as string);
-      showToast(i18n.t("loginSuccess"), theme.alertSuccessColor as string);
-      navigation.navigate("Home");
-    }
+    async function loginInWithEmail() {}
 
     async function signUpWithEmail() {
       setLoading(true);
-      const { error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-      });
 
-      if (error) Alert.alert(error.message);
       setLoading(false);
     }
 
@@ -90,45 +50,6 @@ const LoginScreen = () => {
         setDisableAction(false);
       } else setDisableAction(true);
     }, [email, password]);
-
-    const parseSupabaseUrl = (url: string) => {
-      let parsedUrl = url;
-      if (url.includes("#")) {
-        parsedUrl = url.replace("#", "?");
-      }
-
-      // console.log("LoginScreen.tsx -> parseSupabaseUrl -> ", parsedUrl);
-      return parsedUrl;
-    };
-    const handelDeepLink = (event: Linking.EventType) => {
-      // console.log("LoginScreen.tsx -> handelDeepLink -> ", event.url);
-
-      // const { hostname, path, queryParams } = Linking.parse(event.url);
-
-      // console.log("LoginScreen.tsx -> ", hostname, path, queryParams);
-      parseSupabaseUrl(event.url);
-    };
-
-    useEffect(() => {
-      console.log("LoginScreen.tsx ->fire ");
-
-      Linking.addEventListener("url", handelDeepLink);
-    }, []);
-
-    //https://bbrkeceesipzffkdvfpd.supabase.co/auth/v1/verify?token=138297d64c7fec7e69b923e9b603e75fc745b2eef030a8669e46d9d3&type=recovery&redirect_to=exp://192.168.1.4:8081/--/login
-
-    const resetPassword = async (email: string) => {
-      const resetPasswordURL = Linking.createURL("resetPassword");
-
-      const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: resetPasswordURL,
-      });
-
-      if (error)
-        return showToast(error.message, theme.alertWarningColor as string);
-
-      return { data, error };
-    };
 
     const formWidth = 0.8 * width;
     return (
@@ -202,7 +123,7 @@ const LoginScreen = () => {
                 disabled={disableAction}
                 style={[styles.btnStyle, { width: wwrosw(120) }]}
                 title="Login"
-                onPress={() => signInWithEmail()}
+                onPress={() => loginInWithEmail()}
                 textStyle={{ fontSize: theme.fontSize.s18 }}
               />
               <MedButton
@@ -226,16 +147,7 @@ const LoginScreen = () => {
                 theme.alertWarningColor as string,
               );
             }
-            const { error } = resetPassword(email);
-
-            if (error) {
-              return showToast(
-                error.message,
-                theme.alertWarningColor as string,
-              );
-            } else {
-              showToast(i18n.t("emailSent"), theme.alertSuccessColor as string);
-            }
+            // const { error } = resetPassword(email);
           }}
         >
           <Text

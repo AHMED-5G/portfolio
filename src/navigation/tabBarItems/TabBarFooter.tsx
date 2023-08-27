@@ -28,26 +28,13 @@ import {
   IBMPlexSansArabicBold,
 } from "../../../assets/fonts";
 import LoadingIndicator from "../../components/mini/LoadingIndicator";
-import React, { useEffect, useState } from "react";
-import { Session } from "@supabase/supabase-js";
-import { supabase } from "../../../lib/supabase";
+import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
 const TabBarFooter = () => {
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice,
   );
-  const [session, setSession] = useState<Session | null>(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, []);
 
   const useDispatch = useAppDispatch();
 
@@ -118,7 +105,7 @@ const TabBarFooter = () => {
           borderRadius: theme.borderRadius,
         }}
         onPress={() => {
-          !session ? navigation.navigate("Login") : supabase.auth.signOut();
+          navigation.navigate("Login");
         }}
       >
         <View
@@ -134,7 +121,7 @@ const TabBarFooter = () => {
               { fontSize: fontRatio(15), color: theme.baseTextColor() },
             ]}
           >
-            {session ? i18n.t("logOut") : i18n.t("logIn")}
+            {i18n.t("logIn")}
           </Text>
         </View>
         <View
@@ -145,7 +132,7 @@ const TabBarFooter = () => {
             alignItems: "center",
           }}
         >
-          {session ? (
+          {/* {true ? (
             <MaterialCommunityIcons
               disabled
               name="logout"
@@ -155,17 +142,17 @@ const TabBarFooter = () => {
                 transform: theme.iconLocalizationTransform(),
               }}
             />
-          ) : (
-            <MaterialCommunityIcons
-              name="login"
-              disabled
-              size={circularRatio(40)}
-              color={theme.iconColor()}
-              style={{
-                transform: theme.iconLocalizationTransform(),
-              }}
-            />
-          )}
+          ) : ( */}
+          <MaterialCommunityIcons
+            name="login"
+            disabled
+            size={circularRatio(40)}
+            color={theme.iconColor()}
+            style={{
+              transform: theme.iconLocalizationTransform(),
+            }}
+          />
+          {/* )} */}
         </View>
       </TouchableOpacity>
     </View>

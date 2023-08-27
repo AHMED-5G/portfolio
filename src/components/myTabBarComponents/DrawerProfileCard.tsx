@@ -1,9 +1,14 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Image } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { theme } from "../../constants/theme";
-import { circularRatio, fontRatio, hwrosh, wwrosw } from "../../constants/Layout";
+import {
+  circularRatio,
+  fontRatio,
+  hwrosh,
+  wwrosw,
+} from "../../constants/Layout";
 import MyText from "../MyText";
 import {
   getRandomOneItemFromList,
@@ -11,23 +16,10 @@ import {
 } from "../../utils/helperFunctions";
 import { users } from "../../../dummy/Users";
 import { images } from "../../../dummy/images";
-import { Session } from "@supabase/supabase-js";
-import { supabase } from "../../../lib/supabase";
 
 const DrawerProfileCard = () => {
   const imageRadius = circularRatio(60);
   const userName = getRandomOneItemFromList(users).name;
-  const [session, setSession] = useState<Session | null>(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-  }, []);
 
   return (
     <View
@@ -60,7 +52,6 @@ const DrawerProfileCard = () => {
         />
         <MyText
           text={
-            session?.user.email ??
             "@" + getRandomOneItemFromList(users).name + randomIntNumber(80)
           }
           style={{ fontSize: fontRatio(10), color: theme.baseTextColor() }}
