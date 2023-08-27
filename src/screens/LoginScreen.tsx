@@ -22,6 +22,7 @@ import PasswordInputIconsComponent from "../components/loginComponents/PasswordI
 import LoginBackUpComponent from "../components/loginComponents/LoginBackUpComponent";
 import LoginTitle from "../components/AuthComponents/LoginTitle";
 import { showToast } from "../utils/helperFunctions";
+import axiosInstance from "../utils/axiosInstance";
 
 const LoginScreen = () => {
   const Content = () => {
@@ -34,6 +35,7 @@ const LoginScreen = () => {
 
     async function signUpWithEmail() {
       setLoading(true);
+      axiosInstance.post("signup", {});
 
       setLoading(false);
     }

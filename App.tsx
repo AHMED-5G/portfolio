@@ -7,8 +7,6 @@ import { Provider } from "react-redux";
 import { persistor, store } from "./src/redux";
 import { PersistGate } from "redux-persist/integration/react";
 
-
-
 export default function App() {
   // const isLoadingComplete = useCachedResources();
 
