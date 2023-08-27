@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
   },
-
   searchInputContainer: {
     justifyContent: "space-evenly",
     alignContent: "center",

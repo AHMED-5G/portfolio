@@ -32,15 +32,26 @@ import { i18n } from "../translation/i18n";
 import PasswordInputIconsComponent from "../components/loginComponents/PasswordInputIconsComponent";
 import LoginBackUpComponent from "../components/loginComponents/LoginBackUpComponent";
 import LoginTitle from "../components/AuthComponents/LoginTitle";
+import { IUser } from "shared-data/types";
+
 
 const LoginScreen = () => {
   const navigation = useNavigation();
+  const user: IUser = {
+    id: 1,
+    name: "mohamed",
+    email: "m@m.com",
+    password: "123",
+    userName: "",
+  };
 
   const Content = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(true);
+
+    console.log("LoginScreen.tsx -> ", user);
 
     async function signInWithEmail() {
       setLoading(true);
