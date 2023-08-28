@@ -48,7 +48,8 @@ const en = {
   loginSuccess: 'Logged in successfully',
   help: 'Help',
   emailNotValid: 'Email not valid',
-  emailSent:"Email sent"
+  emailSent:"Email sent",
+  signUpSuccessfully: 'Sign up successfully'
 };
 
 const ar = {
@@ -102,7 +103,8 @@ const ar = {
   loginSuccess: 'تم تسجيل الدخول بنجاح',
   help: 'مساعدة',
   emailNotValid: 'البريد الإلكتروني غير صالح ',
-  emailSent:"تم ارسال البريد الإلكتروني"
+  emailSent:"تم ارسال البريد الإلكتروني",
+  signUpSuccessfully: 'تم التسجيل بنجاح'
 };
 
 export { en, ar };

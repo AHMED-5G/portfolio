@@ -7,6 +7,12 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ColorValue, ImageSourcePropType } from "react-native";
 import { UserConfigurationInterface } from "../constants/theme";
 import { ReactElement } from "react";
+import {
+
+  ApiResponseError,
+  IUser,
+  JSONWebTokenType,
+} from "shared-data/types";
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -60,12 +66,7 @@ export interface Hotel {
   address: string;
 }
 
-export interface User {
-  id: ID;
-  name: string;
-  email: string;
-  image?: string;
-}
+export interface User extends IUser {}
 
 export enum AccountTypes {
   Facebook,
@@ -151,6 +152,7 @@ export interface InitialStateInterface {
     userConfiguration: UserConfigurationInterface;
   };
   itemsInCart: ProductInCart[];
+  jwt: JSONWebTokenType | undefined;
 }
 
 export enum ProductTypes {
@@ -177,4 +179,15 @@ export interface ProductInCart extends Product {
 export interface SectionContainerInterface {
   title: string;
   content: ReactElement;
+}
+
+export interface PostRequest<T extends object| null> {
+  url: string;
+  token?: string;
+  body?: object;
+  onSuccess: (data: T) => void;
+  onElse?: (response: ApiResponseError) => void;
+  onError?: (error: unknown) => void;
+  onStart?: () => void;
+  onFinish?: () => void;
 }

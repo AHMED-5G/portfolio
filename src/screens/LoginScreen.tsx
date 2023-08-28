@@ -4,6 +4,7 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
+  Button,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
@@ -21,8 +22,20 @@ import { i18n } from "../translation/i18n";
 import PasswordInputIconsComponent from "../components/loginComponents/PasswordInputIconsComponent";
 import LoginBackUpComponent from "../components/loginComponents/LoginBackUpComponent";
 import LoginTitle from "../components/AuthComponents/LoginTitle";
-import { showToast } from "../utils/helperFunctions";
-import axiosInstance from "../utils/axiosInstance";
+import { postRequest, showToast, showToastV2 } from "../utils/helperFunctions";
+import {
+  LOGIN_PATH,
+  REGISTER_PATH,
+  REQUEST_RESET_PASSWORD_PATH,
+} from "shared-data/constants/apiUrls";
+import { baseUrl } from "../constants/constants";
+import { useAppDispatch } from "../redux/Hooks/hooks";
+import { SET_USER_JWT } from "../redux/reducers/dataSlice";
+import {
+  RequestLoginRequireData,
+  RequestLoginSuccessObject,
+} from "shared-data/constants/requestsData";
+import { useNavigation } from "@react-navigation/native";
 
 const LoginScreen = () => {
   const Content = () => {
@@ -30,17 +43,68 @@ const LoginScreen = () => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(true);
-
-    async function loginInWithEmail() {}
-
-    async function signUpWithEmail() {
-      setLoading(true);
-      axiosInstance.post("signup", {});
-
-      setLoading(false);
+    const [disableAction, setDisableAction] = useState(true);
+    const dispatch = useAppDispatch();
+    const navigation = useNavigation();
+    async function loginInWithEmail() {
+      const body: RequestLoginRequireData = {
+        email,
+        password,
+      };
+      await postRequest<RequestLoginSuccessObject>({
+        url: baseUrl + LOGIN_PATH,
+        body,
+        onStart: () => setLoading(true),
+        onFinish: () => setLoading(false),
+        onSuccess: (data) => {
+          console.log("LoginScreen.tsx -> loginInWithEmail -> ", data.jwt);
+          showToast(
+            i18n.t("loginSuccessfully"),
+            theme.alertSuccessColor as string,
+          );
+          console.log("LoginScreen.tsx -> ", data.jwt);
+          dispatch(SET_USER_JWT(data.jwt));
+        },
+        onElse: (response) => {
+          console.log("LoginScreen.tsx -> ", response?.codeError);
+        },
+      });
     }
 
-    const [disableAction, setDisableAction] = useState(true);
+    async function signUpWithEmail() {
+      await postRequest({
+        url: baseUrl + REGISTER_PATH,
+        body: { email, password },
+        onStart: () => setLoading(true),
+        onFinish: () => setLoading(false),
+        onSuccess: () => {
+          showToast(
+            i18n.t("signUpSuccessfully"),
+            theme.alertSuccessColor as string,
+          );
+        },
+        onElse: (response) => {
+          console.log("LoginScreen.tsx -> ", response?.codeError);
+        },
+      });
+    }
+
+    async function requestResetPassword() {
+      await postRequest({
+        url: baseUrl + REQUEST_RESET_PASSWORD_PATH,
+        body: { email },
+        onStart: () => setLoading(true),
+        onFinish: () => setLoading(false),
+        onSuccess: () => {
+          showToastV2(i18n.t("requestSentSuccessfully"), theme.darkTheme);
+          navigation.navigate("ResetPassword");
+        },
+        onElse: (error) => {
+          console.log("LoginScreen.tsx -> ", error.codeMessage);
+          showToast(i18n.t(error.codeMessage), theme.alertFailColor as string);
+        },
+      });
+    }
 
     useEffect(() => {
       const emailValidationResult = validateEmail(email);
@@ -59,6 +123,10 @@ const LoginScreen = () => {
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps="always"
       >
+        <Button
+          title="fetch"
+          onPress={() => navigation.navigate("ResetPassword")}
+        />
         <View style={{ width: formWidth }}>
           <View
             style={{
@@ -149,6 +217,7 @@ const LoginScreen = () => {
                 theme.alertWarningColor as string,
               );
             }
+            requestResetPassword();
             // const { error } = resetPassword(email);
           }}
         >

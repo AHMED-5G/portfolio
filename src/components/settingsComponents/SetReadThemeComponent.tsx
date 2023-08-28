@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import ReadingThemComboComponent from "./ReadingThemComboComponent";
 import { InitialStateInterface, ReadingThemesCombo } from "../../types";
 import { averageRatio, hwrosh, width, wwrosw } from "../../constants/Layout";
-import { myColors, readingThemes, theme } from "../../constants/theme";
+import { readingThemes, theme } from "../../constants/theme";
 import MedButton from "../mini/MedButton";
 import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
 import { SET_READING_THEME } from "../../redux/reducers/dataSlice";
 import { i18n } from "../../translation/i18n";
 import Slider from "@react-native-community/slider";
+import { myColors } from "../../constants";
 
 const SetReadThemeComponent = () => {
   const state: InitialStateInterface = useAppSelector(

@@ -35,7 +35,7 @@ export const readingThemes: ReadingThemesCombo[] = [
   },
 ];
 
-interface ThemeInterface {
+export interface ThemeInterface {
   darkTheme: boolean;
 
   baseBackground: () => ColorValue;

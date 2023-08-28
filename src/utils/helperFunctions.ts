@@ -1,6 +1,8 @@
 import { AccessibilityInfo } from "react-native";
 import Toast from "react-native-root-toast";
-import { AccountTypes } from "../types";
+import { AccountTypes, PostRequest } from "../types";
+import { ApiResponse } from "shared-data/types";
+import { ThemeInterface } from "../constants/theme";
 
 export enum ToastPositions {
   Top = Toast.positions.TOP,
@@ -37,6 +39,42 @@ export const showToast = (
     },
     onHidden: () => {
       // calls on toast\`s hide animation end.
+    },
+  });
+};
+
+export const showToastV2 = (
+  message: string,
+  themeIsDark: ThemeInterface["darkTheme"],
+  position: ToastPositions = Toast.positions.BOTTOM,
+) => {
+  const backgroundColor = themeIsDark ? "black" : "white";
+  const textColor = themeIsDark ? "white" : "black";
+
+  Toast.show(message, {
+    duration: Toast.durations.SHORT,
+    position: position,
+    shadow: true,
+    animation: true,
+    hideOnPress: true,
+    delay: 0,
+    backgroundColor,
+    textColor,
+    containerStyle: { height: 48 },
+    opacity: 1,
+
+    onShow: () => {
+      AccessibilityInfo.announceForAccessibility(message);
+      // calls on toast's appear animation start
+    },
+    onShown: () => {
+      // calls on toast's appear animation end.
+    },
+    onHide: () => {
+      // calls on toast's hide animation start.
+    },
+    onHidden: () => {
+      // calls on toast's hide animation end.
     },
   });
 };
@@ -129,3 +167,43 @@ export const addMinutesToNowTimeStamp = (minutes: number) => {
   newTime.setTime(now.getTime() + minutes * 60 * 1000);
   return newTime.getTime();
 };
+
+export async function postRequest<T extends object>({
+  url,
+  body,
+  token,
+  onSuccess,
+  onElse,
+  onError,
+  onFinish,
+  onStart,
+}: PostRequest<T>): Promise<ApiResponse<T>> {
+  onStart?.();
+  const headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(body),
+    });
+
+    const responseData: ApiResponse<T> = await response.json();
+
+    if (responseData.status) {
+      onSuccess?.(responseData.data);
+    } else {
+      if (responseData.error) onElse?.(responseData.error);
+    }
+    return responseData;
+  } catch (error: unknown) {
+    onError?.(error);
+    throw error;
+  } finally {
+    onFinish?.();
+  }
+}

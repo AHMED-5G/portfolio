@@ -7,6 +7,7 @@ import {
 } from "../../types";
 import { UserConfigurationInterface } from "../../constants/theme";
 import { Appearance } from "react-native";
+import { JSONWebTokenType } from "shared-data/types";
 
 const initialState: InitialStateInterface = {
   error: undefined,
@@ -23,6 +24,7 @@ const initialState: InitialStateInterface = {
     },
   },
   itemsInCart: [],
+  jwt: undefined,
 };
 
 export const dataSlice: Slice = createSlice({
@@ -35,23 +37,30 @@ export const dataSlice: Slice = createSlice({
 
     SET_READING_THEME: (
       state = initialState,
-      action: PayloadAction<ReadingThemesCombo>
+      action: PayloadAction<ReadingThemesCombo>,
     ) => {
       state.settings.savedReadingTheme = action.payload;
     },
 
     SET_CART: (
       state = initialState,
-      action: PayloadAction<InitialStateInterface["itemsInCart"]>
+      action: PayloadAction<InitialStateInterface["itemsInCart"]>,
     ) => {
       state.itemsInCart = action.payload;
     },
 
     SET_USER_CONFIGURATIONS: (
       state = initialState,
-      action: PayloadAction<UserConfigurationInterface>
+      action: PayloadAction<UserConfigurationInterface>,
     ) => {
       state.settings.userConfiguration = action.payload;
+    },
+
+    SET_USER_JWT: (
+      state = initialState,
+      action: PayloadAction<JSONWebTokenType | undefined>,
+    ) => {
+      state.jwt = action.payload;
     },
   },
 });
@@ -62,6 +71,7 @@ export const {
   SET_LANGUAGE,
   SET_READING_THEME,
   SET_USER_CONFIGURATIONS,
+  SET_USER_JWT
 } = dataSlice.actions;
 
 export default dataSlice.reducer;
