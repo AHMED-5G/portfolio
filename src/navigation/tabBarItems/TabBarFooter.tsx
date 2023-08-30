@@ -12,7 +12,10 @@ import { myColors, theme } from "../../constants";
 import { i18n } from "../../translation/i18n";
 import { useAppDispatch, useAppSelector } from "../../redux/Hooks/hooks";
 import { InitialStateInterface } from "../../types";
-import { SET_USER_CONFIGURATIONS } from "../../redux/reducers/dataSlice";
+import {
+  SET_USER_CONFIGURATIONS,
+  SET_USER_JWT,
+} from "../../redux/reducers/dataSlice";
 import {
   circularRatio,
   fontRatio,
@@ -35,7 +38,7 @@ const TabBarFooter = () => {
   const state: InitialStateInterface = useAppSelector(
     (state) => state.dataSlice,
   );
-
+  const dispatch = useAppDispatch();
   const useDispatch = useAppDispatch();
 
   const [fontsLoaded] = useFonts({
@@ -45,7 +48,9 @@ const TabBarFooter = () => {
   });
 
   const navigation = useNavigation();
-
+  const logout = () => {
+    dispatch(SET_USER_JWT(null));
+  };
   if (!fontsLoaded) return <LoadingIndicator />;
   return (
     <View
@@ -105,7 +110,7 @@ const TabBarFooter = () => {
           borderRadius: theme.borderRadius,
         }}
         onPress={() => {
-          navigation.navigate("Login");
+          state.jwt ? logout() : navigation.navigate("Login");
         }}
       >
         <View
@@ -121,7 +126,7 @@ const TabBarFooter = () => {
               { fontSize: fontRatio(15), color: theme.baseTextColor() },
             ]}
           >
-            {i18n.t("logIn")}
+            {state.jwt ? i18n.t("logout") : i18n.t("login")}
           </Text>
         </View>
         <View
@@ -132,7 +137,7 @@ const TabBarFooter = () => {
             alignItems: "center",
           }}
         >
-          {/* {true ? (
+          {state.jwt ? (
             <MaterialCommunityIcons
               disabled
               name="logout"
@@ -142,17 +147,17 @@ const TabBarFooter = () => {
                 transform: theme.iconLocalizationTransform(),
               }}
             />
-          ) : ( */}
-          <MaterialCommunityIcons
-            name="login"
-            disabled
-            size={circularRatio(40)}
-            color={theme.iconColor()}
-            style={{
-              transform: theme.iconLocalizationTransform(),
-            }}
-          />
-          {/* )} */}
+          ) : (
+            <MaterialCommunityIcons
+              name="login"
+              disabled
+              size={circularRatio(40)}
+              color={theme.iconColor()}
+              style={{
+                transform: theme.iconLocalizationTransform(),
+              }}
+            />
+          )}
         </View>
       </TouchableOpacity>
     </View>

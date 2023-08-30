@@ -45,11 +45,16 @@ const en = {
   mySimulators: "My Simulators",
   openSourceLibrary: "Open source library",
   logIn: "LogIn",
-  loginSuccess: 'Logged in successfully',
-  help: 'Help',
-  emailNotValid: 'Email not valid',
-  emailSent:"Email sent",
-  signUpSuccessfully: 'Sign up successfully'
+  loginSuccess: "Logged in successfully",
+  help: "Help",
+  emailNotValid: "Email not valid",
+  emailSent: "Email sent",
+  signUpSuccessfully: "Sign up successfully",
+  resetPasswordSuccessfully: "Reset Password Successfully",
+  logout: "Logout",
+  login: "Login",
+  somethingWentWrong: 'Something went wrong',
+  loginSuccessfully: "Login successfully"
 };
 
 const ar = {
@@ -100,11 +105,16 @@ const ar = {
   mySimulators: "المحاكيات الخاصة بي",
   openSourceLibrary: "مكتبة مفتوحة المصدر",
   logIn: "تسجيل الدخول",
-  loginSuccess: 'تم تسجيل الدخول بنجاح',
-  help: 'مساعدة',
-  emailNotValid: 'البريد الإلكتروني غير صالح ',
-  emailSent:"تم ارسال البريد الإلكتروني",
-  signUpSuccessfully: 'تم التسجيل بنجاح'
+  loginSuccess: "تم تسجيل الدخول بنجاح",
+  help: "مساعدة",
+  emailNotValid: "البريد الإلكتروني غير صالح ",
+  emailSent: "تم ارسال البريد الإلكتروني",
+  signUpSuccessfully: "تم التسجيل بنجاح",
+  resetPasswordSuccessfully: "تم تغيير كلمة المرور بنجاح",
+  logout: "تسجيل الخروج",
+  login: "تسجيل الدخول",
+  somethingWentWrong: 'حدث خطأ ما',
+  loginSuccessfully: "تم تسجيل الدخول بنجاح"
 };
 
 export { en, ar };

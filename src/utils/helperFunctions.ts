@@ -1,7 +1,6 @@
 import { AccessibilityInfo } from "react-native";
 import Toast from "react-native-root-toast";
 import { AccountTypes, PostRequest } from "../types";
-import { ApiResponse } from "shared-data/types";
 import { ThemeInterface } from "../constants/theme";
 
 export enum ToastPositions {
@@ -168,7 +167,7 @@ export const addMinutesToNowTimeStamp = (minutes: number) => {
   return newTime.getTime();
 };
 
-export async function postRequest<T extends object>({
+export async function postRequest<RequiredT, SuccessT>({
   url,
   body,
   token,
@@ -177,7 +176,7 @@ export async function postRequest<T extends object>({
   onError,
   onFinish,
   onStart,
-}: PostRequest<T>): Promise<ApiResponse<T>> {
+}: PostRequest<RequiredT, SuccessT>) {
   onStart?.();
   const headers = {
     Accept: "application/json",
@@ -192,17 +191,15 @@ export async function postRequest<T extends object>({
       body: JSON.stringify(body),
     });
 
-    const responseData: ApiResponse<T> = await response.json();
+    const responseData = await response.json();
 
     if (responseData.status) {
       onSuccess?.(responseData.data);
     } else {
-      if (responseData.error) onElse?.(responseData.error);
+      onElse?.(responseData.error);
     }
-    return responseData;
-  } catch (error: unknown) {
+  } catch (error) {
     onError?.(error);
-    throw error;
   } finally {
     onFinish?.();
   }

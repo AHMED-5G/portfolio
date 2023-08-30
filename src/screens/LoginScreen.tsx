@@ -29,15 +29,20 @@ import {
   REQUEST_RESET_PASSWORD_PATH,
 } from "shared-data/constants/apiUrls";
 import { baseUrl } from "../constants/constants";
-import { useAppDispatch } from "../redux/Hooks/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/Hooks/hooks";
 import { SET_USER_JWT } from "../redux/reducers/dataSlice";
 import {
   RequestLoginRequireData,
   RequestLoginSuccessObject,
+  RequestSignupRequireData,
 } from "shared-data/constants/requestsData";
 import { useNavigation } from "@react-navigation/native";
+import { InitialStateInterface } from "../types";
 
 const LoginScreen = () => {
+  const state: InitialStateInterface = useAppSelector(
+    (state) => state.dataSlice,
+  );
   const Content = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -47,11 +52,11 @@ const LoginScreen = () => {
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
     async function loginInWithEmail() {
-      const body: RequestLoginRequireData = {
+      const body = {
         email,
         password,
       };
-      await postRequest<RequestLoginSuccessObject>({
+      await postRequest<RequestLoginRequireData, RequestLoginSuccessObject>({
         url: baseUrl + LOGIN_PATH,
         body,
         onStart: () => setLoading(true),
@@ -62,17 +67,17 @@ const LoginScreen = () => {
             i18n.t("loginSuccessfully"),
             theme.alertSuccessColor as string,
           );
-          console.log("LoginScreen.tsx -> ", data.jwt);
           dispatch(SET_USER_JWT(data.jwt));
+          navigation.navigate("Home");
         },
         onElse: (response) => {
-          console.log("LoginScreen.tsx -> ", response?.codeError);
+          console.log("LoginScreen.tsx -> ", response?.codeMessage);
         },
       });
     }
 
     async function signUpWithEmail() {
-      await postRequest({
+      await postRequest<RequestSignupRequireData, null>({
         url: baseUrl + REGISTER_PATH,
         body: { email, password },
         onStart: () => setLoading(true),
@@ -84,7 +89,7 @@ const LoginScreen = () => {
           );
         },
         onElse: (response) => {
-          console.log("LoginScreen.tsx -> ", response?.codeError);
+          console.log("LoginScreen.tsx -> ", response?.codeMessage);
         },
       });
     }
@@ -96,12 +101,16 @@ const LoginScreen = () => {
         onStart: () => setLoading(true),
         onFinish: () => setLoading(false),
         onSuccess: () => {
+          console.log("LoginScreen.tsx -> ", "requestSentSuccessfully");
           showToastV2(i18n.t("requestSentSuccessfully"), theme.darkTheme);
-          navigation.navigate("ResetPassword");
+          navigation.navigate("ResetPassword", { email });
         },
         onElse: (error) => {
-          console.log("LoginScreen.tsx -> ", error.codeMessage);
-          showToast(i18n.t(error.codeMessage), theme.alertFailColor as string);
+          console.log("LoginScreen.tsx -> ", error);
+          showToast(
+            i18n.t("somethingWentWrong"),
+            theme.alertFailColor as string,
+          );
         },
       });
     }
@@ -118,6 +127,12 @@ const LoginScreen = () => {
     }, [email, password]);
 
     const formWidth = 0.8 * width;
+    if (state.jwt)
+      return (
+        <View>
+          <Text>Logout</Text>
+        </View>
+      );
     return (
       <ScrollView
         contentContainerStyle={styles.container}
@@ -125,7 +140,7 @@ const LoginScreen = () => {
       >
         <Button
           title="fetch"
-          onPress={() => navigation.navigate("ResetPassword")}
+          onPress={() => navigation.navigate("ResetPassword", { email })}
         />
         <View style={{ width: formWidth }}>
           <View
@@ -234,6 +249,7 @@ const LoginScreen = () => {
       </ScrollView>
     );
   };
+
   return (
     <ScreenWithCustomBottomTab
       backUpContent={

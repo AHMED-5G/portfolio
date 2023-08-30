@@ -36,7 +36,7 @@ export type RootStackParamList = {
   MarketStackNavigator: undefined;
   MarketHomeScreen: undefined;
   Login: undefined;
-  ResetPassword: undefined;
+  ResetPassword: FormData;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
@@ -126,6 +126,9 @@ export interface Horse {
   history: string;
   images?: string[];
 }
+interface FormData {
+  email: string;
+}
 
 export type Bid = { user: User; timeStamp: number; amount: number };
 
@@ -181,11 +184,11 @@ export interface SectionContainerInterface {
   content: ReactElement;
 }
 
-export interface PostRequest<T extends object| null> {
+export interface PostRequest<RequiredT, OnSuccessT> {
   url: string;
   token?: string;
-  body?: object;
-  onSuccess: (data: T) => void;
+  body?: RequiredT;
+  onSuccess: (data: OnSuccessT) => void;
   onElse?: (response: ApiResponseError) => void;
   onError?: (error: unknown) => void;
   onStart?: () => void;
