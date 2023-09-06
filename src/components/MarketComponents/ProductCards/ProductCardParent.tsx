@@ -1,16 +1,10 @@
 import { StyleSheet, View } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import TopSection from "./TopSection";
-import {
-  InitialStateInterface,
-  Product,
-  ProductInCart,
-  ProductTypes,
-} from "../../../types";
+import { Product, ProductInCart, ProductTypes } from "../../../types";
 import BottomSection from "./BottomSection";
 import { productCardWidth, productCardBorderRadius } from "./style";
 import { useSharedValue, withTiming } from "react-native-reanimated";
-import { useAppSelector } from "../../../redux/Hooks/hooks";
 import { theme } from "../../../constants/theme";
 import { hwrosh } from "../../../constants/Layout";
 
@@ -19,8 +13,7 @@ type Props = {
 };
 
 const ProductCardParent = ({ product }: Props) => {
-  const openMultiplyViewTime = 700;
-
+  const openMultiplyViewTime = 500;
   const [isItemInCart, setIsItemInCart] = useState({
     id: "0",
     counter: 0,
@@ -29,11 +22,6 @@ const ProductCardParent = ({ product }: Props) => {
   const [counter, setCounter] = useState(1);
   const multiplyViewFadeInProgress = useSharedValue(
     product.type == ProductTypes.upTo100 ? 1 : 0,
-  );
-
-  const openRemoveButtonProgress = useSharedValue(0);
-  const state: InitialStateInterface = useAppSelector(
-    (state) => state.dataSlice,
   );
 
   //useEffects
@@ -45,25 +33,6 @@ const ProductCardParent = ({ product }: Props) => {
       closeMultiplyView();
     }
   }, [counter]);
-
-  //check if the product in cart
-  useEffect(() => {
-    try {
-      const thisProduct = state.itemsInCart.find(
-        (item) => item.id == product.id,
-      );
-
-      if (thisProduct != undefined) {
-        openRemoveButtonProgress.value = withTiming(1, { duration: 100 });
-
-        setTimeout(() => {
-          setIsItemInCart(thisProduct);
-        }, 100);
-      }
-    } catch (error) {
-      console.warn(error);
-    }
-  }, []);
 
   // functions
   function openMultiplyView() {
@@ -77,14 +46,6 @@ const ProductCardParent = ({ product }: Props) => {
       duration: openMultiplyViewTime,
     });
   }
-
-  const openRemoveButton = useCallback(() => {
-    if (openRemoveButtonProgress.value == 0) {
-      openRemoveButtonProgress.value = withTiming(1, {
-        duration: 700,
-      });
-    }
-  }, []);
 
   return (
     <View
@@ -105,9 +66,7 @@ const ProductCardParent = ({ product }: Props) => {
           setCounter,
           isItemInCart,
           setIsItemInCart,
-          openRemoveButtonProgress,
           multiplyViewFadeInProgress,
-          openRemoveButton,
         }}
       />
     </View>

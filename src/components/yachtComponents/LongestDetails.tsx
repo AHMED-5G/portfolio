@@ -15,13 +15,18 @@ const LongestDetails = () => {
         flexDirection: "row",
         justifyContent: "center",
         alignContent: "center",
-        // alignItems: "center",
       }}
     >
       <View
         style={[
           styles.cardContainer,
-          { backgroundColor: theme.cardBackground() },
+          {
+            width: wwrosw(120),
+            height: hwrosh(100),
+            margin: averageRatio(5),
+            borderRadius: averageRatio(10),
+            backgroundColor: theme.cardBackground(),
+          },
         ]}
       >
         <View
@@ -65,7 +70,13 @@ const LongestDetails = () => {
       <View
         style={[
           styles.cardContainer,
-          { backgroundColor: theme.cardBackground() },
+          {
+            width: wwrosw(120),
+            height: hwrosh(100),
+            margin: averageRatio(5),
+            borderRadius: averageRatio(10),
+            backgroundColor: theme.cardBackground(),
+          },
         ]}
       >
         <View

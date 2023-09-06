@@ -353,7 +353,6 @@ const styles = StyleSheet.create({
   totalText: {
     fontWeight: "bold",
     color: theme.secondary,
-
     direction: "rtl",
   },
   priceCurrencyText: {

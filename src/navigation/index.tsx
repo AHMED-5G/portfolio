@@ -61,10 +61,6 @@ export default function Navigation() {
     return <LoadingIndicator />;
   }
 
-  const AppInsideNavigation = () => {
-    return <RootNavigator />;
-  };
-
   return (
     <NavigationContainer linking={linking}>
       <StatusBar
@@ -77,8 +73,7 @@ export default function Navigation() {
           backgroundColor: theme.baseBackground(),
         }}
       >
-        <AppInsideNavigation />
-        {/* <RootNavigator /> */}
+        <RootNavigator />
       </SafeAreaView>
     </NavigationContainer>
   );

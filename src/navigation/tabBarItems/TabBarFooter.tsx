@@ -75,7 +75,7 @@ const TabBarFooter = () => {
           isOn={state.settings.userConfiguration?.darkTheme ? false : true}
           onColor={"black"}
           offColor={myColors.sky}
-          label={i18n.t("darkTheme")}
+          label={!theme.darkTheme?  i18n.t("darkTheme"): i18n.t("lightTheme")}
           icon={<Entypo name="moon" size={circularRatio(24)} color="black" />}
           labelStyle={[
             styles.text,

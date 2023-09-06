@@ -5,7 +5,7 @@ import {
   Languages,
   ReadingThemesCombo,
 } from "../../types";
-import { UserConfigurationInterface } from "../../constants/theme";
+import { theme, UserConfigurationInterface } from "../../constants/theme";
 import { Appearance } from "react-native";
 import { JSONWebTokenType } from "shared-data/types";
 
@@ -17,13 +17,13 @@ const initialState: InitialStateInterface = {
     savedReadingTheme: {
       fontColor: "#000000",
       backGroundColor: "#FFFFFF",
-      fontSize: 18,
+      fontSize: theme.fontSize.s18,
     },
     userConfiguration: {
       darkTheme: Appearance.getColorScheme() == "dark" ? true : false,
     },
   },
-  itemsInCart: [],
+
   jwt: undefined,
 };
 
@@ -40,13 +40,6 @@ export const dataSlice: Slice = createSlice({
       action: PayloadAction<ReadingThemesCombo>,
     ) => {
       state.settings.savedReadingTheme = action.payload;
-    },
-
-    SET_CART: (
-      state = initialState,
-      action: PayloadAction<InitialStateInterface["itemsInCart"]>,
-    ) => {
-      state.itemsInCart = action.payload;
     },
 
     SET_USER_CONFIGURATIONS: (
@@ -67,11 +60,10 @@ export const dataSlice: Slice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-  SET_CART,
   SET_LANGUAGE,
   SET_READING_THEME,
   SET_USER_CONFIGURATIONS,
-  SET_USER_JWT
+  SET_USER_JWT,
 } = dataSlice.actions;
 
 export default dataSlice.reducer;

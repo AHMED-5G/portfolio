@@ -9,6 +9,12 @@ export enum ToastPositions {
   Center = Toast.positions.CENTER,
 }
 
+/**
+ * @deprecated
+ * @param message
+ * @param backgroundColor
+ * @param position
+ */
 export const showToast = (
   message: string,
   backgroundColor: string,
@@ -45,7 +51,7 @@ export const showToast = (
 export const showToastV2 = (
   message: string,
   themeIsDark: ThemeInterface["darkTheme"],
-  position: ToastPositions = Toast.positions.BOTTOM,
+  position: ToastPositions = Toast.positions.TOP,
 ) => {
   const backgroundColor = themeIsDark ? "black" : "white";
   const textColor = themeIsDark ? "white" : "black";

@@ -53,8 +53,9 @@ const en = {
   resetPasswordSuccessfully: "Reset Password Successfully",
   logout: "Logout",
   login: "Login",
-  somethingWentWrong: 'Something went wrong',
-  loginSuccessfully: "Login successfully"
+  somethingWentWrong: "Something went wrong",
+  loginSuccessfully: "Login successfully",
+  lightTheme: "Light Theme",
 };
 
 const ar = {
@@ -113,8 +114,9 @@ const ar = {
   resetPasswordSuccessfully: "تم تغيير كلمة المرور بنجاح",
   logout: "تسجيل الخروج",
   login: "تسجيل الدخول",
-  somethingWentWrong: 'حدث خطأ ما',
-  loginSuccessfully: "تم تسجيل الدخول بنجاح"
+  somethingWentWrong: "حدث خطأ ما",
+  loginSuccessfully: "تم تسجيل الدخول بنجاح",
+  lightTheme: "فاتح",
 };
 
 export { en, ar };

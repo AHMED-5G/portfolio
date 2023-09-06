@@ -59,17 +59,13 @@ const LoginScreen = () => {
       await postRequest<RequestLoginRequireData, RequestLoginSuccessObject>({
         url: baseUrl + LOGIN_PATH,
         body,
-        onStart: () => setLoading(true),
-        onFinish: () => setLoading(false),
         onSuccess: (data) => {
-          console.log("LoginScreen.tsx -> loginInWithEmail -> ", data.jwt);
-          showToast(
-            i18n.t("loginSuccessfully"),
-            theme.alertSuccessColor as string,
-          );
+          showToastV2(i18n.t("loginSuccessfully"), theme.darkTheme);
           dispatch(SET_USER_JWT(data.jwt));
           navigation.navigate("Home");
         },
+        onStart: () => setLoading(true),
+        onFinish: () => setLoading(false),
         onElse: (response) => {
           console.log("LoginScreen.tsx -> ", response?.codeMessage);
         },
