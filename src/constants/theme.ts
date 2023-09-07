@@ -174,7 +174,7 @@ export const theme: ThemeInterface = {
   },
 
   actionButtonBackground: function () {
-    return this.darkTheme ? "#282828" : "#0048BA";
+    return this.darkTheme ? "#c7d0e0" : "#0048BA";
   },
 
   actionButtonTextColor: function () {

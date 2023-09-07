@@ -14,10 +14,10 @@ export const technologies: TechnologiesInterface[] = [
     fontColor: "#FFF",
   },
   {
-    name: "Fire Base",
+    name: "NestJs",
     logo: "https://firebase.google.com/static/images/brand-guidelines/logo-vertical.png",
-    color: "#FFCA28",
-    fontColor: "#000",
+    color: "#ea2845",
+    fontColor: "#fff",
   },
   {
     name: "Laravel",

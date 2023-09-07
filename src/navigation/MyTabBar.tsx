@@ -143,6 +143,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
         onPress={() => {
           openTabProgress.value < 1 ? openTab() : closTab();
         }}
+        activeOpacity={1}
         style={{
           justifyContent: "center",
           alignContent: "center",

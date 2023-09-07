@@ -32,7 +32,7 @@ const OpenSourceLib = () => {
   }, []);
   const Content = () => {
     return (
-      <View>
+      <View style={{ width: width * 0.9 }}>
         <TouchableOpacity
           onPress={() => Linking.openURL(osRepoUrl)}
           style={{ marginTop: hwrosh(5) }}

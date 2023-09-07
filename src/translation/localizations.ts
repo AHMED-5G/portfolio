@@ -42,7 +42,7 @@ const en = {
   alert: "Alert",
   openSource: "Open source",
   technologies: "Technologies",
-  mySimulators: "My Simulators",
+  mySimulators: "My simulators",
   openSourceLibrary: "Open source library",
   logIn: "LogIn",
   loginSuccess: "Logged in successfully",
@@ -55,7 +55,7 @@ const en = {
   login: "Login",
   somethingWentWrong: "Something went wrong",
   loginSuccessfully: "Login successfully",
-  lightTheme: "Light Theme",
+  lightTheme: "Light theme",
 };
 
 const ar = {

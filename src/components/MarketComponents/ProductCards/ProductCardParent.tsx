@@ -82,5 +82,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: productCardWidth,
     borderRadius: productCardBorderRadius,
+    overflow: "hidden",
   },
 });

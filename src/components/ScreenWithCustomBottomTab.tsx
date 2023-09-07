@@ -5,7 +5,6 @@ import { theme } from "../constants/theme";
 import { useSharedValue } from "react-native-reanimated";
 import MyCustomModal from "./myCustomModal/MyCustomModal";
 
-
 type Props = {
   CustomBottomTabComponents?: ReactNode;
   content?: ReactNode;

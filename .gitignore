@@ -18,3 +18,7 @@ web-build/
 .test.ts
 .vscode/
 .*
+
+// by me
+.expo
+.env

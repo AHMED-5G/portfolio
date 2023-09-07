@@ -53,8 +53,8 @@ export const showToastV2 = (
   themeIsDark: ThemeInterface["darkTheme"],
   position: ToastPositions = Toast.positions.TOP,
 ) => {
-  const backgroundColor = themeIsDark ? "black" : "white";
-  const textColor = themeIsDark ? "white" : "black";
+  const backgroundColor = !themeIsDark ? "black" : "white";
+  const textColor = !themeIsDark ? "white" : "black";
 
   Toast.show(message, {
     duration: Toast.durations.SHORT,

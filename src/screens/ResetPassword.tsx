@@ -15,6 +15,7 @@ import { RESET_PASSWORD_PATH } from "shared-data/constants/apiUrls";
 import { ResetPasswordRequireData } from "shared-data/constants/requestsData";
 import { i18n } from "../translation/i18n";
 import { postRequest, showToastV2 } from "../utils";
+import LoadingIndicator from "../components/mini/LoadingIndicator";
 
 type Props = StackScreenProps<RootStackParamList, "ResetPassword">;
 
@@ -41,7 +42,7 @@ const ResetPassword = ({ navigation, route }: Props) => {
     const [code, setCode] = useState("");
     const formWidth = 0.8 * width;
     const [loading, setLoading] = useState(false);
-    const [readyToLogin, setReadyToLogin] = useState(true);
+    const [readyToLogin, setReadyToLogin] = useState(false);
 
     async function resetPassword() {
       const body = {
@@ -105,18 +106,18 @@ const ResetPassword = ({ navigation, route }: Props) => {
           <View>
             <FormComponentWithLabel
               label="Code from email"
-              iconsView={undefined}
               CustomTextInput={
                 <CustomTextInput
+                  keyboardType="number-pad"
                   containerStyle={{
                     width: formWidth / 2,
                   }}
-                  placeholder="Example 22422"
+                  placeholder="Example 12345"
                   onChangeText={(text) => setCode(text)}
                   validationFunctions={[() => validateShortTextLength(code, 5)]}
                   autoCapitalize="none"
                   value={code}
-                  style={{ width: formWidth / 2 }}
+                  style={{ width: formWidth / 2, color: theme.baseTextColor() }}
                 />
               }
             />
@@ -151,41 +152,42 @@ const ResetPassword = ({ navigation, route }: Props) => {
                   autoCapitalize="none"
                   secureTextEntry={showPassword}
                   value={newPassword}
-                  style={{ width: formWidth / 2 }}
+                  style={{ width: formWidth / 2, color: theme.baseTextColor() }}
                 />
               }
             />
           </View>
-          <View
-            style={{
-              marginTop: hwrosh(16),
-              width: 0.8 * width,
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
-            <MedButton
-              loading={loading}
-              disabled={validateAll}
-              style={[
-                styles.btnStyle,
-                { width: readyToLogin ? wwrosw(130) : formWidth },
-              ]}
-              title="Reset password"
-              onPress={() => resetPassword()}
-              textStyle={{ fontSize: theme.fontSize.s18 }}
-            />
-
-            {readyToLogin && (
+          {!loading ? (
+            <View
+              style={{
+                marginTop: hwrosh(16),
+                width: 0.8 * width,
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
               <MedButton
-                loading={loading}
-                style={[styles.btnStyle, { width: wwrosw(130) }]}
-                title="Login"
-                onPress={() => navigation.navigate("Login")}
+                disabled={validateAll}
+                style={[
+                  styles.btnStyle,
+                  { width: readyToLogin ? wwrosw(130) : formWidth },
+                ]}
+                title="Reset password"
+                onPress={() => resetPassword()}
                 textStyle={{ fontSize: theme.fontSize.s18 }}
               />
-            )}
-          </View>
+              {readyToLogin && (
+                <MedButton
+                  style={[styles.btnStyle, { width: wwrosw(130) }]}
+                  title="Login"
+                  onPress={() => navigation.navigate("Login")}
+                  textStyle={{ fontSize: theme.fontSize.s18 }}
+                />
+              )}
+            </View>
+          ) : (
+            <LoadingIndicator />
+          )}
         </View>
       </View>
     );

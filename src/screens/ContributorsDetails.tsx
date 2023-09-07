@@ -1,13 +1,6 @@
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  I18nManager,
-} from "react-native";
+import { StyleSheet, Text, View, Image, I18nManager } from "react-native";
 import React, { useState } from "react";
-import { ContributorAccount, RootStackParamList } from "../types";
+import { RootStackParamList } from "../types";
 import { circularRatio, hwrosh, width, wwrosw } from "../constants/Layout";
 import { theme } from "../constants/theme";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -199,13 +192,7 @@ function ContributorsDetails({ route }: Props) {
             </View>
           </Animated.View>
         </Animated.View>
-        <Animated.ScrollView
-          contentContainerStyle={{
-            alignContent: "center",
-            alignItems: "center",
-          }}
-          onScroll={scrollHandler}
-        >
+        <Animated.ScrollView onScroll={scrollHandler}>
           {contributor.name == "AA" && <AAContent />}
         </Animated.ScrollView>
       </View>
@@ -216,16 +203,15 @@ function ContributorsDetails({ route }: Props) {
     <ScreenWithCustomBottomTab
       content={<Content />}
       CustomBottomTabComponents={
-        <View key={"accounts"}>
-          <FlatList
-            data={contributor.accounts.slice(0, 3)}
-            numColumns={4}
-            renderItem={({ item }: { item: ContributorAccount }) => (
-              <ContributorAccountCard account={item} />
-            )}
-            keyExtractor={(_item, index) => index.toString()}
-            showsVerticalScrollIndicator={false}
-          />
+        <View
+          key={"accounts"}
+          style={{
+            flexDirection: "row",
+          }}
+        >
+          {contributor.accounts.slice(0, 3).map((account, index) => {
+            return <ContributorAccountCard account={account} key={index} />;
+          })}
         </View>
       }
     />

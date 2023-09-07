@@ -223,10 +223,7 @@ const LoginScreen = () => {
           style={{ marginTop: hwrosh(16) }}
           onPress={async () => {
             if (validateEmail(email)) {
-              return showToast(
-                i18n.t("emailNotValid"),
-                theme.alertWarningColor as string,
-              );
+              return showToastV2(i18n.t("emailNotValid"), theme.darkTheme);
             }
             requestResetPassword();
             // const { error } = resetPassword(email);
@@ -236,10 +233,12 @@ const LoginScreen = () => {
             style={{
               fontSize: theme.fontSize.medium,
               fontWeight: "500",
-              color: theme.actionColor,
+              color: theme.actionButtonBackground(),
+              textDecorationLine: "underline",
+              textDecorationColor: theme.actionButtonBackground(),
             }}
           >
-            Reset Password
+            Reset password
           </Text>
         </TouchableOpacity>
       </ScrollView>

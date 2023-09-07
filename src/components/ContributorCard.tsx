@@ -1,13 +1,6 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import { Contributor, ContributorAccount } from "../types";
+import { Contributor } from "../types";
 import ContributorAccountCard from "./ContributorAccountCard";
 import { theme } from "../constants/theme";
 import MyCustomSkeleton from "./MyCustomSkeleton";
@@ -44,7 +37,6 @@ const ContributorCard = ({ contributor }: Props) => {
   if (!fontsLoaded) return <LoadingIndicator />;
   return (
     <Animated.View
-      sharedTransitionTag={contributor.id.toString()}
       style={[
         styles.container,
         {
@@ -118,15 +110,14 @@ const ContributorCard = ({ contributor }: Props) => {
             },
           ]}
         >
-          <FlatList
-            data={contributor.accounts.slice(0, 3)}
-            numColumns={4}
-            renderItem={({ item }: { item: ContributorAccount }) => (
-              <ContributorAccountCard account={item} />
-            )}
-            keyExtractor={(item, index) => index.toString()}
-            showsVerticalScrollIndicator={false}
-          />
+          <View style={{ flexDirection: "row" }}>
+            {contributor.accounts.map((account, index) => (
+              <ContributorAccountCard
+                key={index.toString()}
+                account={account}
+              />
+            ))}
+          </View>
         </View>
       </TouchableOpacity>
     </Animated.View>

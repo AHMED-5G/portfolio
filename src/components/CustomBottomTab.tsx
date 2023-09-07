@@ -23,6 +23,9 @@ const CustomBottomTab = ({ components, sharedValue }: Props) => {
   }, []);
   const navigation: StackNavigationProp<RootStackParamList> = useNavigation();
 
+  const backViewWidth = width * 0.15;
+  const componentsWidth = width - backViewWidth;
+
   return (
     <View
       style={{
@@ -33,6 +36,7 @@ const CustomBottomTab = ({ components, sharedValue }: Props) => {
         borderLeftWidth: 0,
         borderRightWidth: 0,
         borderBottomWidth: 0,
+        borderTopLeftRadius: theme.tabBarBorderRadius,
       }}
     >
       <View
@@ -46,11 +50,10 @@ const CustomBottomTab = ({ components, sharedValue }: Props) => {
       >
         <View
           style={{
-            flexDirection: "row",
             justifyContent: "center",
             alignContent: "center",
             alignItems: "center",
-            width: 0.15 * width,
+            width: backViewWidth,
             backgroundColor: theme.tabBarLeftSectionColor(),
             height: "100%",
             borderTopLeftRadius: theme.tabBarBorderRadius,
@@ -60,11 +63,11 @@ const CustomBottomTab = ({ components, sharedValue }: Props) => {
         </View>
         <View
           style={{
-            flexDirection: "row",
             alignContent: "center",
             alignItems: "center",
-            justifyContent: "space-evenly",
-            flex: 1,
+            justifyContent: "center",
+            height: "100%",
+            width: componentsWidth,
           }}
         >
           {components}

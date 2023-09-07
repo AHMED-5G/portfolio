@@ -53,7 +53,7 @@ function Yachts() {
         openLongestProgress.value,
         [0, 1],
         [0, 90],
-        Extrapolation.CLAMP
+        Extrapolation.CLAMP,
       );
     });
 
@@ -61,17 +61,17 @@ function Yachts() {
       const widthStyle = interpolate(
         openLongestProgress.value,
         [0, 1],
-        [width / 2, width]
+        [width / 2, width],
       );
       const heightStyle = interpolate(
         openLongestProgress.value,
         [0, 1],
-        [height * 0.7, imageInTopHeight]
+        [height * 0.7, imageInTopHeight],
       );
       const marginTop = interpolate(
         openLongestProgress.value,
         [0, 1],
-        [longestMarinTop, 0]
+        [longestMarinTop, 0],
       );
       const marginLeft = interpolate(openLongestProgress.value, [0, 1], [2, 0]);
 
@@ -92,7 +92,7 @@ function Yachts() {
       const borderAtTop = interpolate(
         openLongestProgress.value,
         [0, 1],
-        [10, 0]
+        [10, 0],
       );
       return {
         borderTopLeftRadius: borderAtTop,
@@ -104,12 +104,12 @@ function Yachts() {
       const translateX = interpolate(
         openLongestProgress.value,
         [0, 1],
-        [0, width]
+        [0, width],
       );
       const heightStyle = interpolate(
         openLongestProgress.value,
         [0, 0.5],
-        [rightSideHeight, height / 2]
+        [rightSideHeight, height / 2],
       );
       return {
         height: heightStyle,
@@ -126,12 +126,12 @@ function Yachts() {
         openLongestProgress.value,
         [0.5, 1],
         [-width, 0],
-        Extrapolation.CLAMP
+        Extrapolation.CLAMP,
       );
       const toOpacity = interpolate(
         openLongestProgress.value,
         [1, 0.5],
-        [1, 0]
+        [1, 0],
       );
 
       return {
@@ -144,7 +144,7 @@ function Yachts() {
       const toOpacityWithGallery = interpolate(
         openGalleryProgress.value,
         [0, 1],
-        [1, 0.5]
+        [1, 0.5],
       );
       return {
         opacity: toOpacityWithGallery,
@@ -158,13 +158,13 @@ function Yachts() {
         [
           imageInTopHeight + informationCardContainerHeight,
           height / 2 - informationCardContainerHeight / 2,
-        ]
+        ],
       );
 
       const toHeight = interpolate(
         openGalleryProgress.value,
         [0, 1],
-        [galleryContainerHeight, height / 2]
+        [galleryContainerHeight, height / 2],
       );
 
       const left = interpolate(openLongestProgress.value, [0, 1], [-width, 0]);
@@ -172,7 +172,7 @@ function Yachts() {
       const toOpacity = interpolate(
         openLongestProgress.value,
         [1, 0.25],
-        [1, 0]
+        [1, 0],
       );
       return {
         left,
@@ -186,17 +186,17 @@ function Yachts() {
       const widthStyle = interpolate(
         openGalleryProgress.value,
         [0, 1],
-        [imageSize, galleryScaleUpRatio]
+        [imageSize, galleryScaleUpRatio],
       );
       const heightStyle = interpolate(
         openGalleryProgress.value,
         [0, 1],
-        [imageSize, galleryScaleUpRatio]
+        [imageSize, galleryScaleUpRatio],
       );
       const left = interpolate(
         openGalleryProgress.value,
         [0, 1],
-        [imageLeft, bigImageLeft]
+        [imageLeft, bigImageLeft],
       );
 
       return {
@@ -211,13 +211,13 @@ function Yachts() {
     }
 
     function lastStepForImageRStyle(
-      imagePastAwayProgress: SharedValue<number>
+      imagePastAwayProgress: SharedValue<number>,
     ) {
       const imagePastAwayRStyle = useAnimatedStyle(() => {
         const left = interpolate(
           imagePastAwayProgress.value,
           [0, 1],
-          [bigImageLeft, -width]
+          [bigImageLeft, -width],
         );
         return {
           left,
@@ -246,7 +246,7 @@ function Yachts() {
 
     function refactorKillImage(
       progressValue: SharedValue<number>,
-      index: number
+      index: number,
     ) {
       if (index === 0) {
         imagePastAwayProgress3.value = withTiming(0, {
@@ -260,7 +260,7 @@ function Yachts() {
         });
         openGalleryProgress.value = withDelay(
           400,
-          withTiming(0, { duration: 200 })
+          withTiming(0, { duration: 200 }),
         );
       } else {
         progressValue.value = withTiming(1, {
@@ -376,26 +376,20 @@ function Yachts() {
   const BarTitle = () => {
     const yachtNameRStyle = useAnimatedStyle(() => {
       return {
-        opacity: interpolate(openLongestProgress.value, [0, 1], [0, 1]),
+        opacity: interpolate(openLongestProgress.value, [0.5, 1], [0, 1]),
       };
     });
 
     const yachtTextRStyle = useAnimatedStyle(() => {
-      const toTop = interpolate(
-        openLongestProgress.value,
-        [0, 1],
-        [theme.tabBarHeight / 2 - BarTitleFontSize / 2, theme.tabBarHeight]
-      );
       return {
-        opacity: interpolate(openLongestProgress.value, [0, 1], [1, 0]),
-        top: toTop,
+        opacity: interpolate(openLongestProgress.value, [0, 0.6], [1, 0]),
       };
     });
     return (
       <View
         style={{
-          flexDirection: "row",
-          height: theme.tabBarHeight,
+          height: "100%",
+          width: "100%",
           justifyContent: "center",
           alignContent: "center",
           alignItems: "center",
@@ -408,7 +402,6 @@ function Yachts() {
               fontWeight: "800",
               color: theme.baseTextColor(),
               position: "absolute",
-              top: theme.tabBarHeight / 2 - BarTitleFontSize / 2,
             },
             yachtTextRStyle,
           ]}
@@ -421,7 +414,6 @@ function Yachts() {
               fontSize: BarTitleFontSize,
               fontWeight: "800",
               position: "absolute",
-              top: theme.tabBarHeight / 2 - BarTitleFontSize / 2,
               color: theme.baseTextColor(),
             },
             yachtNameRStyle,

@@ -81,6 +81,7 @@ export interface ContributorAccount {
 export interface Contributor extends User {
   accounts: ContributorAccount[];
   title: string;
+  image: string;
 }
 
 export enum PostTypes {

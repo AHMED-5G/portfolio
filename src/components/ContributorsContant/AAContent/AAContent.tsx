@@ -4,14 +4,15 @@ import OpenSourceLib from "./OpenSourceLib";
 import Technologies from "./Technologies";
 import MyGames from "./MyGames";
 import Reviews from "./Reviews";
-import { hwrosh } from "../../../constants/Layout";
+import { hwrosh, width, wwrosw } from "../../../constants/Layout";
 
 const AAContent = () => {
   return (
     <View
       style={{
-        alignItems: "center",
         marginBottom: hwrosh(10),
+        marginLeft: wwrosw(10),
+        width: width,
       }}
     >
       <Technologies />

@@ -30,18 +30,6 @@ const SimpleHeader = ({ title }: Props) => {
           flexDirection: "row",
         }}
       >
-        {/* <Text
-          style={[
-            styles.sectionHeadText,
-            {
-              color: theme.baseTextColor(),
-              // color: theme.primaryText(),
-              // fontFamily: "IBMPlexSansArabicBold"
-            },
-          ]}
-        >
-          {title}
-        </Text> */}
         <MyText
           text={title}
           style={[
@@ -49,6 +37,7 @@ const SimpleHeader = ({ title }: Props) => {
               fontSize: theme.fontSize.s22,
               color: theme.baseTextColor(),
               fontFamily: "IBMPlexSansArabicBold",
+              letterSpacing: 0.1,
             },
           ]}
         />

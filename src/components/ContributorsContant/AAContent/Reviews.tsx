@@ -1,6 +1,6 @@
 import { View, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import { averageRatio, hwrosh } from "../../../constants/Layout";
+import { averageRatio, hwrosh, width } from "../../../constants/Layout";
 import SectionContainer from "./SectionContainer";
 import { review1Image } from "../../../../assets/images";
 import ImageView from "react-native-image-viewing";
@@ -10,7 +10,7 @@ const Reviews = () => {
     const [visible, setIsVisible] = useState(false);
 
     return (
-      <View>
+      <View style={{ width: width * 0.9 }}>
         <TouchableOpacity
           style={{
             width: "100%",

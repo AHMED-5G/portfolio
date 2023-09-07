@@ -92,7 +92,11 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
               <Text
                 style={[
                   styles.titleText,
-                  { fontSize: fontRatio(28) },
+                  {
+                    fontSize: fontRatio(28),
+                    color: !theme.darkTheme ? theme.actionColorText : "#000",
+                  },
+
                   props.textStyle,
                 ]}
               >
