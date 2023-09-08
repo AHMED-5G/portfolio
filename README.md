@@ -53,6 +53,7 @@ Improve UI and UX and test all app in all stages
 - Reset password.
 - [Backup feature](https://twitter.com/AD_5G/status/1692062142491484294).
 - Fix some bugs and improve theme.
+- Setup [shared data](https://github.com/AHMED-5G/portfolio-shared-data) submodule.
 
   </details>
 
