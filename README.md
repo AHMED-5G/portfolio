@@ -1,8 +1,8 @@
-# Review my react native portfolio application v0.8
+# Review my react native portfolio application v0.9
 
 <img
      width=375 height= 800
-      src="./assets/images/sh2.png">
+      src="./assets/images/sh09.png">
 </a>
 
 - For android devices download Expo Go application https://expo.dev/client
@@ -18,7 +18,7 @@
 
 - or past link:
 
-  exp://u.expo.dev/update/086e8b61-8371-46d5-a7cb-dda0edb16b61
+  exp://u.expo.dev/update/e56e67f4-a606-45b0-8bbe-7d38661c2061
 
 # Application in [Trello](https://trello.com/b/LCgVV444/portfolio)
 
@@ -42,6 +42,19 @@ AHMED_5G@YAHOO.COM
 # Rood map - [Releases](https://github.com/AHMED-5G/portfolio/releases)
 
 Improve UI and UX and test all app in all stages
+
+## V 0.9 "Connected" -- released
+
+<details>
+<summary>Details</summary>
+
+- Connect To Real backend server
+- Login/Signup with email.
+- Reset password.
+- [Backup feature](https://twitter.com/AD_5G/status/1692062142491484294).
+- Fix some bugs and improve theme.
+
+  </details>
 
 ## V 0.8 "About Me" -- released
 
