@@ -127,8 +127,6 @@ const SetReadThemeComponent = () => {
           }
           title={i18n.t("save")}
           width={wwrosw(100)}
-          // color={theme.darkTheme ? theme.secondaryColor() : theme.actionColor}
-          // textStyle={{ color: theme.actionColorText }}
           style={{ borderRadius: averageRatio(10) }}
         />
         <View>

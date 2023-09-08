@@ -12,7 +12,6 @@ import HomeSectionContainer from "../components/homeSections/HomeSectionContaine
 import { theme } from "../constants/theme";
 import { hwrosh } from "../constants/Layout";
 import MyText from "../components/MyText";
-// import MyText from "../components/MyText";
 
 type Props = StackScreenProps<RootStackParamList, "Home">;
 

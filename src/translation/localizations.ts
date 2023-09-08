@@ -56,6 +56,8 @@ const en = {
   somethingWentWrong: "Something went wrong",
   loginSuccessfully: "Login successfully",
   lightTheme: "Light theme",
+  resetPasswordEmailSentSuccessfully:
+    "An email has been sent to your email address with a verification code.",
 };
 
 const ar = {
@@ -117,6 +119,8 @@ const ar = {
   somethingWentWrong: "حدث خطأ ما",
   loginSuccessfully: "تم تسجيل الدخول بنجاح",
   lightTheme: "فاتح",
+  resetPasswordEmailSentSuccessfully:
+    "تم ارسال كود التحقق الى بريدك الالكتروني",
 };
 
 export { en, ar };

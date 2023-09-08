@@ -4,7 +4,7 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
-  Button,
+  Keyboard,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
@@ -22,7 +22,7 @@ import { i18n } from "../translation/i18n";
 import PasswordInputIconsComponent from "../components/loginComponents/PasswordInputIconsComponent";
 import LoginBackUpComponent from "../components/loginComponents/LoginBackUpComponent";
 import LoginTitle from "../components/AuthComponents/LoginTitle";
-import { postRequest, showToast, showToastV2 } from "../utils/helperFunctions";
+
 import {
   LOGIN_PATH,
   REGISTER_PATH,
@@ -38,6 +38,7 @@ import {
 } from "shared-data/constants/requestsData";
 import { useNavigation } from "@react-navigation/native";
 import { InitialStateInterface } from "../types";
+import { postRequest, showToastV3 } from "../utils";
 
 const LoginScreen = () => {
   const state: InitialStateInterface = useAppSelector(
@@ -60,14 +61,14 @@ const LoginScreen = () => {
         url: baseUrl + LOGIN_PATH,
         body,
         onSuccess: (data) => {
-          showToastV2(i18n.t("loginSuccessfully"), theme.darkTheme);
+          showToastV3(i18n.t("loginSuccessfully"));
           dispatch(SET_USER_JWT(data.jwt));
           navigation.navigate("Home");
         },
         onStart: () => setLoading(true),
         onFinish: () => setLoading(false),
         onElse: (response) => {
-          console.log("LoginScreen.tsx -> ", response?.codeMessage);
+          showToastV3(response.codeMessage);
         },
       });
     }
@@ -79,13 +80,10 @@ const LoginScreen = () => {
         onStart: () => setLoading(true),
         onFinish: () => setLoading(false),
         onSuccess: () => {
-          showToast(
-            i18n.t("signUpSuccessfully"),
-            theme.alertSuccessColor as string,
-          );
+          showToastV3(i18n.t("signUpSuccessfully"));
         },
         onElse: (response) => {
-          console.log("LoginScreen.tsx -> ", response?.codeMessage);
+          showToastV3(response.codeMessage);
         },
       });
     }
@@ -97,19 +95,18 @@ const LoginScreen = () => {
         onStart: () => setLoading(true),
         onFinish: () => setLoading(false),
         onSuccess: () => {
-          console.log("LoginScreen.tsx -> ", "requestSentSuccessfully");
-          showToastV2(i18n.t("requestSentSuccessfully"), theme.darkTheme);
+          showToastV3(i18n.t("resetPasswordEmailSentSuccessfully"));
           navigation.navigate("ResetPassword", { email });
         },
         onElse: (error) => {
-          console.log("LoginScreen.tsx -> ", error);
-          showToast(
-            i18n.t("somethingWentWrong"),
-            theme.alertFailColor as string,
-          );
+          showToastV3(error.codeMessage);
         },
       });
     }
+
+    const sharedActions = () => {
+      Keyboard.dismiss();
+    };
 
     useEffect(() => {
       const emailValidationResult = validateEmail(email);
@@ -121,7 +118,9 @@ const LoginScreen = () => {
         setDisableAction(false);
       } else setDisableAction(true);
     }, [email, password]);
-
+    const passwordValidationFunctions = [
+      () => validateShortTextLength(password, 6),
+    ];
     const formWidth = 0.8 * width;
     if (state.jwt)
       return (
@@ -134,10 +133,23 @@ const LoginScreen = () => {
         contentContainerStyle={styles.container}
         keyboardShouldPersistTaps="always"
       >
-        <Button
-          title="fetch"
-          onPress={() => navigation.navigate("ResetPassword", { email })}
-        />
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            alignContent: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: theme.fontSize.s22,
+              color: theme.baseTextColor(),
+              fontWeight: "700",
+            }}
+          >
+            Welcome back
+          </Text>
+        </View>
         <View style={{ width: formWidth }}>
           <View
             style={{
@@ -156,6 +168,7 @@ const LoginScreen = () => {
                   validationFunctions={[() => validateEmail(email)]}
                   autoCapitalize="none"
                   value={email}
+                  style={{ color: theme.baseTextColor() }}
                 />
               }
             />
@@ -178,69 +191,76 @@ const LoginScreen = () => {
                     width: formWidth / 2,
                   }}
                   placeholder="Password"
-                  onChangeText={(text) => setPassword(text)}
-                  validationFunctions={[
-                    () => validateShortTextLength(password, 6),
-                  ]}
+                  validationFunctions={passwordValidationFunctions}
                   autoCapitalize="none"
+                  onChangeText={(text) => setPassword(text)}
                   secureTextEntry={showPassword}
                   value={password}
-                  style={{ width: formWidth / 2 }}
+                  style={{ width: formWidth / 2, color: theme.baseTextColor() }}
                 />
               }
             />
           </View>
         </View>
-        <View style={{ marginTop: hwrosh(40), width: 0.8 * width }}>
+        <View style={{ marginTop: hwrosh(20), width: 0.8 * width }}>
           {!loading ? (
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                width: "100%",
-              }}
-            >
-              <MedButton
-                disabled={disableAction}
-                style={[styles.btnStyle, { width: wwrosw(120) }]}
-                title="Login"
-                onPress={() => loginInWithEmail()}
-                textStyle={{ fontSize: theme.fontSize.s18 }}
-              />
-              <MedButton
-                disabled={disableAction}
-                style={[styles.btnStyle, { width: wwrosw(120) }]}
-                title="Sign Up"
-                onPress={() => signUpWithEmail()}
-                textStyle={{ fontSize: theme.fontSize.s18 }}
-              />
+            <View>
+              {!password && (
+                <TouchableOpacity
+                  style={{ marginTop: hwrosh(10) }}
+                  onPress={async () => {
+                    if (validateEmail(email)) {
+                      return showToastV3(i18n.t("emailNotValid"));
+                    }
+                    requestResetPassword();
+                    sharedActions();
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: theme.fontSize.medium,
+                      fontWeight: "500",
+                      color: theme.actionButtonBackground(),
+                      textDecorationLine: "underline",
+                      textDecorationColor: theme.actionButtonBackground(),
+                    }}
+                  >
+                    Reset password
+                  </Text>
+                </TouchableOpacity>
+              )}
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  marginTop: hwrosh(20),
+                }}
+              >
+                <MedButton
+                  disabled={disableAction}
+                  style={[styles.btnStyle, { width: wwrosw(120) }]}
+                  title="Login"
+                  onPress={() => {
+                    loginInWithEmail(), sharedActions();
+                  }}
+                  textStyle={{ fontSize: theme.fontSize.s18 }}
+                />
+                <MedButton
+                  disabled={disableAction}
+                  style={[styles.btnStyle, { width: wwrosw(120) }]}
+                  title="Sign Up"
+                  onPress={() => {
+                    signUpWithEmail(), sharedActions();
+                  }}
+                  textStyle={{ fontSize: theme.fontSize.s18 }}
+                />
+              </View>
             </View>
           ) : (
             <LoadingIndicator />
           )}
         </View>
-        <TouchableOpacity
-          style={{ marginTop: hwrosh(16) }}
-          onPress={async () => {
-            if (validateEmail(email)) {
-              return showToastV2(i18n.t("emailNotValid"), theme.darkTheme);
-            }
-            requestResetPassword();
-            // const { error } = resetPassword(email);
-          }}
-        >
-          <Text
-            style={{
-              fontSize: theme.fontSize.medium,
-              fontWeight: "500",
-              color: theme.actionButtonBackground(),
-              textDecorationLine: "underline",
-              textDecorationColor: theme.actionButtonBackground(),
-            }}
-          >
-            Reset password
-          </Text>
-        </TouchableOpacity>
       </ScrollView>
     );
   };

@@ -1,7 +1,9 @@
 import { AccessibilityInfo } from "react-native";
 import Toast from "react-native-root-toast";
 import { AccountTypes, PostRequest } from "../types";
-import { ThemeInterface } from "../constants/theme";
+import { ThemeInterface, theme } from "../constants/theme";
+import { hwrosh } from "../constants";
+import { height } from "../constants/Layout";
 
 export enum ToastPositions {
   Top = Toast.positions.TOP,
@@ -48,6 +50,12 @@ export const showToast = (
   });
 };
 
+/**
+ * @deprecated
+ * @param message
+ * @param backgroundColor
+ * @param position
+ */
 export const showToastV2 = (
   message: string,
   themeIsDark: ThemeInterface["darkTheme"],
@@ -65,8 +73,45 @@ export const showToastV2 = (
     delay: 0,
     backgroundColor,
     textColor,
-    containerStyle: { height: 48 },
+    // containerStyle: { height: 48 },
     opacity: 1,
+
+    onShow: () => {
+      AccessibilityInfo.announceForAccessibility(message);
+      // calls on toast's appear animation start
+    },
+    onShown: () => {
+      // calls on toast's appear animation end.
+    },
+    onHide: () => {
+      // calls on toast's hide animation start.
+    },
+    onHidden: () => {
+      // calls on toast's hide animation end.
+    },
+  });
+};
+
+export const showToastV3 = (
+  message: string,
+  position: ToastPositions = Toast.positions.TOP,
+) => {
+  const backgroundColor = !theme.darkTheme ? "black" : "white";
+  const textColor = !theme.darkTheme ? "white" : "black";
+
+  Toast.show(message, {
+    duration: Toast.durations.SHORT,
+    position: position,
+    shadow: true,
+    animation: true,
+    hideOnPress: true,
+    backgroundColor,
+    textColor,
+    containerStyle: { maxHeight: hwrosh(0.25 * height) },
+    opacity: 1,
+    textStyle: {
+      fontSize: theme.fontSize.s18,
+    },
 
     onShow: () => {
       AccessibilityInfo.announceForAccessibility(message);

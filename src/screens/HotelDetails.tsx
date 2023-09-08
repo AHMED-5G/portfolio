@@ -27,7 +27,7 @@ import MedButton from "../components/mini/MedButton";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
 import Stars from "react-native-stars";
-import { showToast } from "../utils/helperFunctions";
+import { showToastV3 } from "../utils/helperFunctions";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import ImageSliderComponent from "../components/HotelDetailsComponents/ImageSliderComponent";
 // import DateTimePicker from "@react-native-community/datetimepicker";
@@ -54,13 +54,10 @@ function HotelDetails({ route }: Props) {
     function sendFakeRequest() {
       setTimeout(() => {
         setLoading(false);
-        showToast(
+        showToastV3(
           requestResult
             ? i18n.t("requestSentSuccessfully")
             : i18n.t("requestFailedToSend"),
-          requestResult
-            ? (theme.alertSuccessColor as string)
-            : (theme.alertFailColor as string),
         );
         setRequestResult(!requestResult);
       }, 3000);

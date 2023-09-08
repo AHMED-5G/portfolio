@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import FormComponentWithLabel from "../components/FormComponentWithLabel";
@@ -14,7 +14,7 @@ import { baseUrl } from "../constants/constants";
 import { RESET_PASSWORD_PATH } from "shared-data/constants/apiUrls";
 import { ResetPasswordRequireData } from "shared-data/constants/requestsData";
 import { i18n } from "../translation/i18n";
-import { postRequest, showToastV2 } from "../utils";
+import { postRequest, showToastV3 } from "../utils";
 import LoadingIndicator from "../components/mini/LoadingIndicator";
 
 type Props = StackScreenProps<RootStackParamList, "ResetPassword">;
@@ -56,11 +56,11 @@ const ResetPassword = ({ navigation, route }: Props) => {
         onStart: () => setLoading(true),
         onFinish: () => setLoading(false),
         onSuccess: () => {
-          showToastV2(i18n.t("resetPasswordSuccessfully"), theme.darkTheme);
+          showToastV3(i18n.t("resetPasswordSuccessfully"));
           setReadyToLogin(true);
         },
-        onElse: (response) => {
-          console.log("LoginScreen.tsx -> ", response?.codeMessage);
+        onElse: (error) => {
+          console.log("LoginScreen.tsx -> ", error?.codeMessage);
         },
       });
     }
@@ -95,6 +95,16 @@ const ResetPassword = ({ navigation, route }: Props) => {
             }}
           >
             {email}
+          </Text>
+        </View>
+        <View style={{ marginTop: hwrosh(5) }}>
+          <Text
+            style={{
+              fontSize: theme.fontSize.medium,
+              color: theme.baseTextColor(),
+            }}
+          >
+            Check your email for verification code
           </Text>
         </View>
         <View
@@ -166,23 +176,38 @@ const ResetPassword = ({ navigation, route }: Props) => {
                 justifyContent: "space-between",
               }}
             >
-              <MedButton
-                disabled={validateAll}
-                style={[
-                  styles.btnStyle,
-                  { width: readyToLogin ? wwrosw(130) : formWidth },
-                ]}
-                title="Reset password"
-                onPress={() => resetPassword()}
-                textStyle={{ fontSize: theme.fontSize.s18 }}
-              />
-              {readyToLogin && (
+              {!readyToLogin ? (
                 <MedButton
-                  style={[styles.btnStyle, { width: wwrosw(130) }]}
-                  title="Login"
-                  onPress={() => navigation.navigate("Login")}
+                  disabled={validateAll}
+                  style={[
+                    styles.btnStyle,
+                    { width: readyToLogin ? wwrosw(130) : formWidth },
+                  ]}
+                  title="Reset password"
+                  onPress={() => resetPassword()}
                   textStyle={{ fontSize: theme.fontSize.s18 }}
                 />
+              ) : (
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("Login")}
+                  style={{
+                    width: "100%",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: theme.fontSize.s22,
+                      fontWeight: "500",
+                      color: theme.actionButtonBackground(),
+                      textDecorationLine: "underline",
+                      textDecorationColor: theme.actionButtonBackground(),
+                    }}
+                  >
+                    Login
+                  </Text>
+                </TouchableOpacity>
               )}
             </View>
           ) : (

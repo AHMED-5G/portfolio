@@ -18,10 +18,8 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.10",
     "@expo-google-fonts/balsamiq-sans": "^0.2.3",
     "@expo/vector-icons": "^13.0.0",
-    "@gorhom/bottom-sheet": "^4",
     "@react-native-async-storage/async-storage": "1.18.2",
     "@react-native-community/datetimepicker": "7.2.0",
     "@react-native-community/slider": "4.4.2",
@@ -58,10 +56,8 @@
     "expo-system-ui": "~2.4.0",
     "expo-updates": "~0.18.12",
     "expo-web-browser": "~12.3.2",
-    "graphql": "^16.6.0",
     "i18n-js": "^4.2.2",
     "install": "^0.13.0",
-    "moment": "^2.29.4",
     "npm": "^9.6.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -84,12 +80,10 @@
     "react-native-svg-icon": "^0.10.0",
     "react-native-timeago": "^0.5.0",
     "react-native-web": "~0.19.6",
-    "react-native-youtube": "^2.0.2",
     "react-redux": "^8.0.5",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
-    "toggle-switch-react-native": "^3.3.0",
-    "url-polyfill": "^1.1.12"
+    "toggle-switch-react-native": "^3.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

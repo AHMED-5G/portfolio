@@ -6,7 +6,7 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { averageRatio, hwrosh, width } from "../../constants/Layout";
 import { theme } from "../../constants/theme";
 
@@ -18,6 +18,7 @@ interface CustomTextInputInterface extends TextInputProps {
 const CustomTextInput = ({
   validationFunctions,
   containerStyle,
+
   ...props
 }: CustomTextInputInterface) => {
   const [validationErrors, setValidationsError] = useState<string[]>([]);
@@ -29,10 +30,13 @@ const CustomTextInput = ({
     }
   };
 
-  const [comeBack, setComeBack] = useState(false);
-
   const textInputHeight = hwrosh(55);
   const validationErrorSpace = hwrosh(35);
+
+  useEffect(() => {
+    if (props.value?.length) handleBlur();
+  }, [props.value]);
+
   return (
     <View
       style={[
@@ -60,18 +64,6 @@ const CustomTextInput = ({
             props.style,
           ]}
           placeholderTextColor={theme.baseTextColor(0.7)}
-          onBlur={handleBlur}
-          onFocus={() => {
-            if (props.value)
-              if (props.value?.length > 1) {
-                setComeBack(true);
-              }
-          }}
-          onTextInput={() => {
-            if (comeBack) {
-              handleBlur();
-            }
-          }}
         />
       </KeyboardAvoidingView>
       <View style={{ flexDirection: "row" }}>
