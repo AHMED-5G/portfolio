@@ -4,7 +4,7 @@ import TimeAgo from "react-native-timeago";
 import {
   getRandomIntBetweenTow,
 } from "../../utils/helperFunctions";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import { averageRatio, wwrosw } from "../../constants/Layout";
 
 const DuringSevenDaysAgo = () => {

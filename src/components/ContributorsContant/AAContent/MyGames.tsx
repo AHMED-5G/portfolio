@@ -2,7 +2,7 @@ import { Image, View } from "react-native";
 import React from "react";
 import { myGames } from "./data";
 import SectionContainer from "./SectionContainer";
-import { theme } from "../../../constants/myColors";
+import { theme } from "../../../constants/theme";
 import { averageRatio, hwrosh, width } from "../../../constants/Layout";
 import { FlatListWithCircularIndicator } from "react-native-flatlist-withindicator";
 import { i18n } from "../../../translation/i18n";
@@ -26,7 +26,7 @@ const MyGames = () => {
               alignContent: "center",
               alignItems: "center",
               overflow: "hidden",
-              backgroundColor: "white",
+              backgroundColor: theme.cardBackground(),
             }}
           >
             <Image
@@ -34,10 +34,8 @@ const MyGames = () => {
               source={{ uri: item.image }}
               style={{
                 width: cardWidth,
-                height: "100%",
-                borderRadius: averageRatio(10),
-                borderWidth: 0.4,
-                borderColor: theme.primary(),
+                height: hwrosh(200),
+                borderRadius: averageRatio(5),
               }}
             />
           </View>

@@ -12,7 +12,7 @@ import {
   productCardHeight,
   productCardWidth,
 } from "./style";
-import { theme } from "../../../constants/myColors";
+import { theme } from "../../../constants/theme";
 import { Product } from "../../../types";
 import Animated, {
   SharedValue,
@@ -62,19 +62,19 @@ const TopSection = ({
     const toWidth = interpolate(
       showImageProgress.value,
       [0, 1],
-      [productCardWidth / 2, productCardWidth]
+      [productCardWidth / 2, productCardWidth],
     );
-    
+
     const toHeight = interpolate(
       showImageProgress.value,
       [0, 1],
-      [productCardHeight / 2, productCardHeight]
+      [productCardHeight / 2, productCardHeight],
     );
 
     const toBorderBottomLeftRadius = interpolate(
       showImageProgress.value,
       [0, 1],
-      [0, productCardBorderRadius]
+      [0, productCardBorderRadius],
     );
 
     const toIndex = interpolate(showImageProgress.value, [0, 0.3], [0, 2]);
@@ -91,7 +91,7 @@ const TopSection = ({
     const toBorderBottomLeftRadius = interpolate(
       showImageProgress.value,
       [0, 1],
-      [0, productCardBorderRadius]
+      [0, productCardBorderRadius],
     );
     return {
       borderBottomLeftRadius: toBorderBottomLeftRadius,
@@ -104,7 +104,7 @@ const TopSection = ({
     const toMarginLift = interpolate(
       multiplyViewFadeInProgress.value,
       [0, 1],
-      [0, priceContainerFinalMarginLeft]
+      [0, priceContainerFinalMarginLeft],
     );
     return {
       marginLeft: toMarginLift,
@@ -115,7 +115,7 @@ const TopSection = ({
     const toOpacity = interpolate(
       multiplyViewFadeInProgress.value,
       [0, 1],
-      [0, 1]
+      [0, 1],
     );
     return { opacity: toOpacity };
   });
@@ -124,7 +124,7 @@ const TopSection = ({
     const toSize = interpolate(
       multiplyViewFadeInProgress.value,
       [0, 1],
-      [priceInitialSize, inCalculationTextSize]
+      [priceInitialSize, inCalculationTextSize],
     );
     return { fontSize: toSize };
   });
@@ -133,7 +133,7 @@ const TopSection = ({
     const toOpacity = interpolate(
       multiplyViewFadeInProgress.value,
       [0, 1],
-      [1, 0]
+      [1, 0],
     );
     return { opacity: toOpacity };
   });
@@ -154,7 +154,7 @@ const TopSection = ({
           AccessibilityInfo.announceForAccessibility(
             showImageProgress.value == 0
               ? "opening image in 100% of card"
-              : "closing image in 25% of card"
+              : "closing image in 25% of card",
           );
         }}
         accessibilityHint={"Product Image tab to show image bigger"}
@@ -165,7 +165,7 @@ const TopSection = ({
           style={[styles.productImageStyle, productImageRStyle]}
         />
       </AnimatedTouchable>
-      <View style={[styles.topRightSection]}>
+      <View style={[styles.topRightSection, { margin: averageRatio(5) }]}>
         <View
           style={{
             marginLeft: theme.localizationRtl ? wwrosw(10) : 0,
@@ -191,7 +191,7 @@ const TopSection = ({
         >
           <Text
             style={{
-              fontSize: fontRatio(12),
+              fontSize: theme.fontSize.small,
               fontWeight: "400",
               marginRight: wwrosw(5),
               color: theme.baseTextColor(),
@@ -202,7 +202,11 @@ const TopSection = ({
         </View>
         <View style={styles.priceSectionContainer}>
           <Animated.View
-            style={[styles.priceContainerStyle, priceContainerRStyle]}
+            style={[
+              styles.priceContainerStyle,
+              { width: wwrosw(120) },
+              priceContainerRStyle,
+            ]}
           >
             <Animated.Text
               style={[
@@ -228,6 +232,7 @@ const TopSection = ({
           <Animated.View
             style={[
               styles.multiplyViewContainerStyle,
+              { width: wwrosw(120) },
               multiplyViewContainerRStyle,
             ]}
           >
@@ -243,7 +248,10 @@ const TopSection = ({
                 {"X"}
               </Text>
               <Text
-                style={[styles.counterText, { color: theme.secondaryColor() }]}
+                style={[
+                  styles.counterText,
+                  { margin: averageRatio(5), color: theme.secondaryColor() },
+                ]}
               >
                 {counter}
               </Text>
@@ -257,7 +265,14 @@ const TopSection = ({
             />
             <View>
               <Text
-                style={[styles.totalText, { color: theme.secondaryColor() }]}
+                style={[
+                  styles.totalText,
+                  {
+                    margin: averageRatio(5),
+                    fontSize: fontRatio(30),
+                    color: theme.secondaryColor(),
+                  },
+                ]}
               >
                 ${(product.price * counter).toFixed(2)}
               </Text>
@@ -309,7 +324,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 0,
   },
   topRightSection: {
-    margin: averageRatio(5),
     position: "absolute",
     left: productCardWidth / 2,
     width: productCardWidth / 2,
@@ -319,14 +333,13 @@ const styles = StyleSheet.create({
   },
   priceContainerStyle: {
     //TODO:  check this width use set in constant
-    width: wwrosw(120),
+
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
     flexDirection: "row",
   },
   multiplyViewContainerStyle: {
-    width: wwrosw(120),
     marginTop: 3,
     justifyContent: "center",
     alignContent: "center",
@@ -336,13 +349,10 @@ const styles = StyleSheet.create({
     fontSize: inCalculationTextSize,
     fontWeight: "bold",
     color: theme.secondary,
-    margin: averageRatio(5),
   },
   totalText: {
-    fontSize: fontRatio(30),
     fontWeight: "bold",
     color: theme.secondary,
-    margin: averageRatio(5),
     direction: "rtl",
   },
   priceCurrencyText: {

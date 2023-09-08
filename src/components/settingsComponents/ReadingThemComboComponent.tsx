@@ -1,13 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { ReadingThemesCombo } from "../../types";
-import { myColors } from "../../constants/myColors";
-import {
-  averageRatio,
-  circularRatio,
-  fontRatio,
-  wwrosw,
-} from "../../constants/Layout";
+import { myColors, theme } from "../../constants";
+import { averageRatio, circularRatio } from "../../constants/Layout";
 
 type Props = {
   colors: ReadingThemesCombo;
@@ -15,7 +10,7 @@ type Props = {
   setSelectedCombo?: React.Dispatch<React.SetStateAction<ReadingThemesCombo>>;
   fontSize: number;
 };
-
+const comboContainerRadius = circularRatio(70);
 const ReadingThemComboComponent = ({
   colors,
   isSelected,
@@ -36,6 +31,10 @@ const ReadingThemComboComponent = ({
           borderColor: isSelected ? myColors.redFavorite : myColors.black,
           borderWidth: isSelected ? averageRatio(2.4) : 0,
           backgroundColor: colors.backGroundColor,
+          margin: averageRatio(10),
+          width: comboContainerRadius,
+          height: comboContainerRadius,
+          borderRadius: comboContainerRadius,
         },
       ]}
     >
@@ -51,10 +50,10 @@ const ReadingThemComboComponent = ({
           style={{
             fontWeight: "bold",
             color: colors.fontColor,
-            fontSize: fontRatio(22),
+            fontSize: theme.fontSize.s22,
           }}
         >
-          {colors.fontSize ?? "F"}
+          {colors.fontSize?.toFixed(0) ?? "F"}
         </Text>
       </View>
     </TouchableOpacity>
@@ -62,35 +61,12 @@ const ReadingThemComboComponent = ({
 };
 
 export default ReadingThemComboComponent;
-const backgroundColorContainerRadius = circularRatio(40);
-const comboContainerRadius = circularRatio(70);
+
 const styles = StyleSheet.create({
   comboContainer: {
-    width: comboContainerRadius,
-    height: comboContainerRadius,
-    borderRadius: comboContainerRadius,
     borderWidth: 0.5,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    margin: averageRatio(10),
-  },
-  backgroundColorContainer: {
-    width: backgroundColorContainerRadius,
-    height: backgroundColorContainerRadius,
-    borderRadius: backgroundColorContainerRadius,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    marginLeft: wwrosw(5),
-  },
-  fontColorContainer: {
-    width: backgroundColorContainerRadius,
-    height: backgroundColorContainerRadius,
-    borderRadius: backgroundColorContainerRadius,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    marginLeft: wwrosw(5),
   },
 });

@@ -10,7 +10,7 @@ import {
   TextStyle,
   StyleProp,
 } from "react-native";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import LoadingIndicator from "./LoadingIndicator";
 import {
   circularRatio,
@@ -23,8 +23,8 @@ interface ButtonProps {
   disabled?: boolean;
   loading?: boolean | ReactElement;
   style?: StyleProp<ViewStyle> | undefined;
-  width?: number | string | undefined;
-  height?: number | string | undefined;
+  width?: ViewStyle["width"];
+  height?: ViewStyle["height"];
   square?: boolean;
   circle?: boolean;
   color?: ColorValue;
@@ -49,6 +49,7 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
           <View
             style={[
               styles.container,
+              { width: wwrosw(244), height: hwrosh(55) },
               {
                 backgroundColor: props.disabled
                   ? "#bdc6cf"
@@ -88,7 +89,17 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
               <Text>{props.leftIcon}</Text>
             </View>
             <View>
-              <Text style={[styles.titleText, props.textStyle]}>
+              <Text
+                style={[
+                  styles.titleText,
+                  {
+                    fontSize: fontRatio(28),
+                    color: !theme.darkTheme ? theme.actionColorText : "#000",
+                  },
+
+                  props.textStyle,
+                ]}
+              >
                 {props.title}
               </Text>
             </View>
@@ -112,8 +123,6 @@ const MedButton: FunctionComponent<ButtonProps> = (props: ButtonProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: wwrosw(244),
-    height: hwrosh(55),
     alignItems: "center",
     justifyContent: "center",
     alignContent: "center",
@@ -123,7 +132,6 @@ const styles = StyleSheet.create({
   titleText: {
     color: theme.actionColorText,
     fontWeight: "bold",
-    fontSize: fontRatio(28),
   },
 });
 

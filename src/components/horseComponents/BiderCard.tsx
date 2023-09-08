@@ -1,8 +1,9 @@
 import { Text, View, Image } from "react-native";
 import React from "react";
-import { myColors } from "../../constants/myColors";
+
 import TimeAgo from "react-native-timeago";
 import { Bid } from "../../types";
+import { myColors } from "../../constants";
 
 
 const BiderCard = ({ bid }: { bid: Bid }) => {

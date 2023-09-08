@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Horse, InitialStateInterface } from "../../types";
 import { Entypo } from "@expo/vector-icons";
-import { myColors } from "../../constants/myColors";
+import { myColors } from "../../constants";
 import { useAppSelector } from "../../redux/Hooks/hooks";
 import { ScrollView } from "react-native-gesture-handler";
 

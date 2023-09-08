@@ -11,7 +11,7 @@ import {
   FontAwesome,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 import {
   averageRatio,
   circularRatio,
@@ -45,7 +45,12 @@ const WriteCommentSection = ({
   sendComment,
 }: Props) => {
   return (
-    <View style={styles.commentContainer}>
+    <View
+      style={[
+        styles.commentContainer,
+        { margin: averageRatio(5), height: hwrosh(48) },
+      ]}
+    >
       <FormTextInput
         placeholder="Write comment ..."
         placeholderTextColor={theme.baseTextColor()}
@@ -88,7 +93,10 @@ const WriteCommentSection = ({
       {commentText && (
         <TouchableOpacity
           accessibilityHint="send comment"
-          style={styles.sendIconContainer}
+          style={[
+            styles.sendIconContainer,
+            { height: hwrosh(48), width: wwrosw(48), marginLeft: wwrosw(3) },
+          ]}
           onPress={() => {
             sendComment();
           }}
@@ -102,7 +110,10 @@ const WriteCommentSection = ({
       )}
 
       <TouchableOpacity
-        style={styles.commentIconContainer}
+        style={[
+          styles.commentIconContainer,
+          { marginLeft: wwrosw(5), height: hwrosh(48), width: wwrosw(48) },
+        ]}
         onPress={() => {
           if (!showComments) {
             setShowComments(true);
@@ -145,26 +156,18 @@ export default WriteCommentSection;
 const styles = StyleSheet.create({
   commentContainer: {
     flexDirection: "row",
-    margin: averageRatio(5),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    height: hwrosh(48),
   },
   sendIconContainer: {
-    height: hwrosh(48),
-    width: wwrosw(48),
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: wwrosw(3),
   },
   commentIconContainer: {
     flexDirection: "row",
-    marginLeft: wwrosw(5),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    height: hwrosh(48),
-    width: wwrosw(48),
   },
 });

@@ -10,17 +10,21 @@ import { RootStackParamList } from "../types";
 
 const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.createURL("/")],
+
   config: {
     screens: {
       Root: {
         screens: {
           HomeStackNavigator: {
             screens: {
-              TabOneScreen: "Home",
+              Home: "home",
             },
           },
         },
       },
+      Login: "login",
+      ResetPassword: "resetPassword",
+
       NotFound: "*",
     },
   },

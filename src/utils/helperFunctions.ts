@@ -1,11 +1,30 @@
 import { AccessibilityInfo } from "react-native";
 import Toast from "react-native-root-toast";
-import { AccountTypes } from "../types";
+import { AccountTypes, PostRequest } from "../types";
+import { ThemeInterface, theme } from "../constants/theme";
+import { hwrosh } from "../constants";
+import { height } from "../constants/Layout";
 
-export const showToast = (message: string, backgroundColor: string) => {
+export enum ToastPositions {
+  Top = Toast.positions.TOP,
+  Bottom = Toast.positions.BOTTOM,
+  Center = Toast.positions.CENTER,
+}
+
+/**
+ * @deprecated
+ * @param message
+ * @param backgroundColor
+ * @param position
+ */
+export const showToast = (
+  message: string,
+  backgroundColor: string,
+  position: ToastPositions = Toast.positions.BOTTOM,
+) => {
   Toast.show(message, {
     duration: Toast.durations.SHORT,
-    position: Toast.positions.BOTTOM,
+    position: position,
     shadow: true,
     animation: true,
     hideOnPress: true,
@@ -27,6 +46,85 @@ export const showToast = (message: string, backgroundColor: string) => {
     },
     onHidden: () => {
       // calls on toast\`s hide animation end.
+    },
+  });
+};
+
+/**
+ * @deprecated
+ * @param message
+ * @param backgroundColor
+ * @param position
+ */
+export const showToastV2 = (
+  message: string,
+  themeIsDark: ThemeInterface["darkTheme"],
+  position: ToastPositions = Toast.positions.TOP,
+) => {
+  const backgroundColor = !themeIsDark ? "black" : "white";
+  const textColor = !themeIsDark ? "white" : "black";
+
+  Toast.show(message, {
+    duration: Toast.durations.SHORT,
+    position: position,
+    shadow: true,
+    animation: true,
+    hideOnPress: true,
+    delay: 0,
+    backgroundColor,
+    textColor,
+    // containerStyle: { height: 48 },
+    opacity: 1,
+
+    onShow: () => {
+      AccessibilityInfo.announceForAccessibility(message);
+      // calls on toast's appear animation start
+    },
+    onShown: () => {
+      // calls on toast's appear animation end.
+    },
+    onHide: () => {
+      // calls on toast's hide animation start.
+    },
+    onHidden: () => {
+      // calls on toast's hide animation end.
+    },
+  });
+};
+
+export const showToastV3 = (
+  message: string,
+  position: ToastPositions = Toast.positions.TOP,
+) => {
+  const backgroundColor = !theme.darkTheme ? "black" : "white";
+  const textColor = !theme.darkTheme ? "white" : "black";
+
+  Toast.show(message, {
+    duration: Toast.durations.SHORT,
+    position: position,
+    shadow: true,
+    animation: true,
+    hideOnPress: true,
+    backgroundColor,
+    textColor,
+    containerStyle: { maxHeight: hwrosh(0.25 * height) },
+    opacity: 1,
+    textStyle: {
+      fontSize: theme.fontSize.s18,
+    },
+
+    onShow: () => {
+      AccessibilityInfo.announceForAccessibility(message);
+      // calls on toast's appear animation start
+    },
+    onShown: () => {
+      // calls on toast's appear animation end.
+    },
+    onHide: () => {
+      // calls on toast's hide animation start.
+    },
+    onHidden: () => {
+      // calls on toast's hide animation end.
     },
   });
 };
@@ -119,3 +217,41 @@ export const addMinutesToNowTimeStamp = (minutes: number) => {
   newTime.setTime(now.getTime() + minutes * 60 * 1000);
   return newTime.getTime();
 };
+
+export async function postRequest<RequiredT, SuccessT>({
+  url,
+  body,
+  token,
+  onSuccess,
+  onElse,
+  onError,
+  onFinish,
+  onStart,
+}: PostRequest<RequiredT, SuccessT>) {
+  onStart?.();
+  const headers = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(body),
+    });
+
+    const responseData = await response.json();
+
+    if (responseData.status) {
+      onSuccess?.(responseData.data);
+    } else {
+      onElse?.(responseData.error);
+    }
+  } catch (error) {
+    onError?.(error);
+  } finally {
+    onFinish?.();
+  }
+}

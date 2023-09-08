@@ -38,13 +38,26 @@ const en = {
   unFollow: "Unfollow",
   thisFeatureIsCurrentlyUnavailable: "This feature is currently unavailable",
 
-  restartApplication: "Restart Application",
+  restartApplication: "Restart application",
   alert: "Alert",
   openSource: "Open source",
-  technologies: 'Technologies',
-  mySimulators: 'My Simulators',
-  openSourceLibrary: 'Open Source Library',
-
+  technologies: "Technologies",
+  mySimulators: "My simulators",
+  openSourceLibrary: "Open source library",
+  logIn: "LogIn",
+  loginSuccess: "Logged in successfully",
+  help: "Help",
+  emailNotValid: "Email not valid",
+  emailSent: "Email sent",
+  signUpSuccessfully: "Sign up successfully",
+  resetPasswordSuccessfully: "Reset Password Successfully",
+  logout: "Logout",
+  login: "Login",
+  somethingWentWrong: "Something went wrong",
+  loginSuccessfully: "Login successfully",
+  lightTheme: "Light theme",
+  resetPasswordEmailSentSuccessfully:
+    "An email has been sent to your email address with a verification code.",
 };
 
 const ar = {
@@ -91,10 +104,23 @@ const ar = {
   restartApplication: "أعد تشغيل التطبيق",
   alert: "تنبيه",
   openSource: "مفتوح المصدر",
-  technologies: 'التقنيات',
-  mySimulators: 'المحاكيات الخاصة بي',
-  openSourceLibrary: 'مكتبة مفتوحة المصدر',
-
+  technologies: "التقنيات",
+  mySimulators: "المحاكيات الخاصة بي",
+  openSourceLibrary: "مكتبة مفتوحة المصدر",
+  logIn: "تسجيل الدخول",
+  loginSuccess: "تم تسجيل الدخول بنجاح",
+  help: "مساعدة",
+  emailNotValid: "البريد الإلكتروني غير صالح ",
+  emailSent: "تم ارسال البريد الإلكتروني",
+  signUpSuccessfully: "تم التسجيل بنجاح",
+  resetPasswordSuccessfully: "تم تغيير كلمة المرور بنجاح",
+  logout: "تسجيل الخروج",
+  login: "تسجيل الدخول",
+  somethingWentWrong: "حدث خطأ ما",
+  loginSuccessfully: "تم تسجيل الدخول بنجاح",
+  lightTheme: "فاتح",
+  resetPasswordEmailSentSuccessfully:
+    "تم ارسال كود التحقق الى بريدك الالكتروني",
 };
 
 export { en, ar };

@@ -1,20 +1,12 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import { Contributor, ContributorAccount } from "../types";
+import { Contributor } from "../types";
 import ContributorAccountCard from "./ContributorAccountCard";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import MyCustomSkeleton from "./MyCustomSkeleton";
 import {
   averageRatio,
   circularRatio,
-  fontRatio,
   hwrosh,
   wwrosw,
 } from "../constants/Layout";
@@ -45,10 +37,15 @@ const ContributorCard = ({ contributor }: Props) => {
   if (!fontsLoaded) return <LoadingIndicator />;
   return (
     <Animated.View
-      sharedTransitionTag={contributor.id.toString()}
-      style={[styles.container, { backgroundColor: theme.cardBackground() }]}
+      style={[
+        styles.container,
+        {
+          marginRight: wwrosw(10),
+          backgroundColor: theme.cardBackground(),
+        },
+      ]}
     >
-      <TouchableOpacity 
+      <TouchableOpacity
         style={{
           alignItems: "center",
           alignContent: "center",
@@ -56,7 +53,7 @@ const ContributorCard = ({ contributor }: Props) => {
         }}
         onPress={() => navigation.navigate("ContributorsDetails", contributor)}
       >
-        <View style={styles.imageContainer}>
+        <View style={[styles.imageContainer, { marginTop: hwrosh(10) }]}>
           {imageLoading && (
             <View
               style={[
@@ -85,12 +82,12 @@ const ContributorCard = ({ contributor }: Props) => {
             source={{ uri: contributor.image }}
           />
         </View>
-        <View style={styles.nameContainer}>
+        <View style={[styles.nameContainer, { marginTop: hwrosh(5) }]}>
           <Text style={[styles.nameText, { color: theme.cardText() }]}>
             {contributor.name}
           </Text>
         </View>
-        <View style={styles.titleContainer}>
+        <View style={{ marginBottom: hwrosh(5) }}>
           <Text style={[styles.titleText, { color: theme.cardText() }]}>
             {contributor.title}
           </Text>
@@ -102,16 +99,25 @@ const ContributorCard = ({ contributor }: Props) => {
             width: "100%",
           }}
         />
-        <View style={styles.socialContainer}>
-          <FlatList
-            data={contributor.accounts.slice(0, 3)}
-            numColumns={4}
-            renderItem={({ item }: { item: ContributorAccount }) => (
-              <ContributorAccountCard account={item} />
-            )}
-            keyExtractor={(item, index) => index.toString()}
-            showsVerticalScrollIndicator={false}
-          />
+        <View
+          style={[
+            styles.socialContainer,
+            {
+              height: hwrosh(40),
+              marginTop: hwrosh(10),
+              borderRadius: averageRatio(12),
+              marginBottom: hwrosh(5),
+            },
+          ]}
+        >
+          <View style={{ flexDirection: "row" }}>
+            {contributor.accounts.map((account, index) => (
+              <ContributorAccountCard
+                key={index.toString()}
+                account={account}
+              />
+            ))}
+          </View>
         </View>
       </TouchableOpacity>
     </Animated.View>
@@ -123,7 +129,6 @@ export default ContributorCard;
 const styles = StyleSheet.create({
   container: {
     width: cardWidth,
-    marginRight: wwrosw(10),
     borderRadius: theme.borderRadius,
     overflow: "hidden",
     alignItems: "center",
@@ -131,39 +136,31 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   imageContainer: {
-    marginTop: hwrosh(10),
     alignItems: "center",
     alignContent: "center",
     justifyContent: "center",
   },
   nameContainer: {
-    marginTop: hwrosh(5),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
   },
   nameText: {
-    fontSize: fontRatio(22),
+    fontSize: theme.fontSize.s22,
     fontWeight: "700",
     textTransform: "uppercase",
     fontFamily: "IBMPlexSansArabicBold",
   },
-  titleContainer: {
-    marginBottom: hwrosh(5),
-  },
+  titleContainer: {},
   titleText: {
     textTransform: "uppercase",
-    fontSize: fontRatio(12),
+    fontSize: theme.fontSize.small,
     fontFamily: "IBMPlexSansArabicBold",
   },
   socialContainer: {
-    height: hwrosh(40),
-    marginTop: hwrosh(10),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    borderRadius: averageRatio(12),
-    marginBottom: hwrosh(5),
   },
   image: {
     height: imageSize,

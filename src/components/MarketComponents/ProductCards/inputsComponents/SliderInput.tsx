@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import React, { useEffect } from "react";
-import { myColors } from "../../../../constants/myColors";
+import { myColors } from "../../../../constants";
 import Slider from "@react-native-community/slider";
 import { averageRatio } from "../../../../constants/Layout";
 

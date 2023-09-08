@@ -18,14 +18,13 @@ import React, {
   FunctionComponent,
   ReactNode,
 } from "react";
-import { theme } from "../../constants/myColors";
+import { theme } from "../../constants/theme";
 const width = Dimensions.get("screen").width;
 interface FormTextInputInterface {
   mainContainerStyle?: StyleProp<ViewStyle>;
   containerStyle?: StyleProp<ViewStyle>;
   textInputContainer?: StyleProp<ViewStyle>;
   style?: StyleProp<ViewStyle>;
-
   placeholder?: string;
   value?: string | undefined;
   validations?: string | undefined;

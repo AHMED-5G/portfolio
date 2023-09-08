@@ -1,4 +1,4 @@
-import { Animated, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import AddToCartButtonComponent from "../AddToCartButtonComponent";
 import RemoveItemButton from "../RemoveItemButton";
@@ -14,9 +14,7 @@ type Props = {
   setCounter: React.Dispatch<React.SetStateAction<number>>;
   isItemInCart: ProductInCart;
   setIsItemInCart: React.Dispatch<React.SetStateAction<ProductInCart>>;
-  openRemoveButtonProgress: SharedValue<number>;
   multiplyViewFadeInProgress: SharedValue<number>;
-  openRemoveButton: () => void;
 };
 
 const actionButtonWidth = productCardWidth * 0.45 - wwrosw(10);
@@ -27,16 +25,18 @@ const BottomSection = ({
   setCounter,
   isItemInCart,
   setIsItemInCart,
-  openRemoveButtonProgress,
-  multiplyViewFadeInProgress,
-  openRemoveButton,
 }: Props) => {
   return (
     <View style={styles.bottomSection}>
-      <View style={styles.inputContainer}>
+      <View
+        style={[
+          styles.inputContainer,
+          { height: hwrosh(30), marginTop: hwrosh(35) },
+        ]}
+      >
         <InputComponent {...{ product, setCounter, counter }} />
       </View>
-      <View style={styles.buttonsContainer}>
+      <View style={[styles.buttonsContainer, { marginTop: hwrosh(50) }]}>
         <View style={{ width: actionButtonWidth }}>
           <AddToCartButtonComponent
             {...{
@@ -44,16 +44,12 @@ const BottomSection = ({
               product,
               isItemInCart,
               setIsItemInCart,
-              openRemoveButton,
             }}
-            callBack={() => {
-              if (multiplyViewFadeInProgress.value == 0 && counter != 1) {
-                // openMultiplyView();
-              }
-            }}
+            callBack={() => {}}
           />
         </View>
-        <Animated.View>
+
+        {isItemInCart.counter > 0 && (
           <RemoveItemButton
             {...{
               counter,
@@ -61,13 +57,12 @@ const BottomSection = ({
               setIsItemInCart,
               product,
             }}
-            openRemoveButtonProgress={openRemoveButtonProgress}
             allButtonWidth={actionButtonWidth}
             callBack={() => {
               // closeMultiplyView();
             }}
           />
-        </Animated.View>
+        )}
       </View>
     </View>
   );
@@ -76,14 +71,11 @@ const BottomSection = ({
 export default BottomSection;
 const styles = StyleSheet.create({
   inputContainer: {
-    height: hwrosh(30),
-    marginTop: hwrosh(35),
     width: productCardWidth * 0.9,
-    // justifyContent: 'center' ,alignContent: 'center' ,alignItems :'center'
   },
   buttonsContainer: {
     width: productCardWidth * 0.9,
-    marginTop: hwrosh(50),
+
     flexDirection: "row",
     justifyContent: "space-between",
     alignContent: "center",

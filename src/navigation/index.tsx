@@ -23,13 +23,17 @@ import YachtStackNavigation from "./YachtStackNavigation/YachtStackNavigation";
 import MarketStackNavigator from "./MarketStackNavigator/MarketStackNavigator";
 import { StatusBar } from "react-native";
 import HotelDetails from "../screens/HotelDetails";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import LoadingIndicator from "../components/mini/LoadingIndicator";
 import { View } from "../components/Themed";
 import ContributorsDetails from "../screens/ContributorsDetails";
+import LoginScreen from "../screens/LoginScreen";
+import linking from "./LinkingConfiguration";
+import ResetPassword from "../screens/ResetPassword";
+
 export default function Navigation() {
   const state: InitialStateInterface = useAppSelector(
-    (state) => state.dataSlice
+    (state) => state.dataSlice,
   );
   const [appIsReady, setAppIsReady] = React.useState(false);
 
@@ -58,7 +62,7 @@ export default function Navigation() {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <StatusBar
         barStyle={!theme.darkTheme ? "dark-content" : "light-content"}
       />
@@ -90,7 +94,6 @@ function RootNavigator() {
         component={HotelDetails}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen
         name="YachtStackNavigation"
         component={YachtStackNavigation}
@@ -104,6 +107,16 @@ function RootNavigator() {
       <Stack.Screen
         name="ContributorsDetails"
         component={ContributorsDetails}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ResetPassword"
+        component={ResetPassword}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

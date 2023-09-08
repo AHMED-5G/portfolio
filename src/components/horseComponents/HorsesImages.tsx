@@ -1,7 +1,7 @@
 import { Text, View, FlatList, Image } from "react-native";
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
-import { myColors } from "../../constants/myColors";
+import { myColors } from "../../constants";
 
 type Props = {
   images: string[];

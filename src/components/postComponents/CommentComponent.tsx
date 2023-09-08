@@ -3,14 +3,13 @@ import React, { useState } from "react";
 import {
   averageRatio,
   circularRatio,
-  fontRatio,
   hwrosh,
   width,
   wwrosw,
 } from "../../constants/Layout";
 import { PostComment } from "../../types";
 import LikeComponent from "./LikeComponent";
-import { myColors, theme } from "../../constants/myColors";
+import { myColors, theme } from "../../constants";
 
 type Props = { comment: PostComment };
 
@@ -21,9 +20,21 @@ const CommentComponent = ({ comment }: Props) => {
   const NumberOfLiensToShow = 4;
   const [favoriteState, setFavoriteState] = useState<boolean>(!false);
   return (
-    <View style={styles.commentContainer}>
+    <View
+      style={[
+        styles.commentContainer,
+        {
+          width: width - wwrosw(40),
+          borderRadius: averageRatio(5),
+          marginLeft: wwrosw(3),
+        },
+      ]}
+    >
       <View style={styles.commentAuthorContainer}>
-        <Image source={{ uri: comment.by?.image }} style={styles.authorImage} />
+        <Image
+          source={{ uri: comment.by?.image }}
+          style={[styles.authorImage, { margin: averageRatio(10) }]}
+        />
         <Text style={[styles.authorNameText, { color: theme.baseTextColor() }]}>
           {comment.by?.name}
         </Text>
@@ -41,7 +52,7 @@ const CommentComponent = ({ comment }: Props) => {
             }}
             numberOfLines={readMore ? undefined : NumberOfLiensToShow}
             style={{
-              fontSize: fontRatio(18),
+              fontSize: theme.fontSize.s18,
               fontWeight: "400",
               color: theme.baseTextColor(),
             }}
@@ -51,7 +62,14 @@ const CommentComponent = ({ comment }: Props) => {
           {readMore && (
             <TouchableOpacity
               onPress={() => setReadMore(false)}
-              style={styles.readLessContainer}
+              style={[
+                styles.readLessContainer,
+                {
+                  marginRight: wwrosw(25),
+                  marginTop: hwrosh(10),
+                  height: hwrosh(48),
+                },
+              ]}
             >
               <Text style={styles.readMoreLessText}>Less</Text>
             </TouchableOpacity>
@@ -60,7 +78,14 @@ const CommentComponent = ({ comment }: Props) => {
         {lengthOfLiens > NumberOfLiensToShow && !readMore && (
           <TouchableOpacity
             onPress={() => setReadMore(true)}
-            style={styles.readMoreContainer}
+            style={[
+              styles.readMoreContainer,
+              {
+                marginRight: wwrosw(25),
+                marginTop: hwrosh(10),
+                height: hwrosh(48),
+              },
+            ]}
           >
             <Text style={styles.readMoreLessText}>Read More</Text>
           </TouchableOpacity>
@@ -81,11 +106,9 @@ const styles = StyleSheet.create({
   commentContainer: {
     justifyContent: "space-between",
     alignItems: "center",
-    width: width - wwrosw(40),
+
     borderWidth: 0.7,
     borderColor: myColors.black,
-    marginLeft: wwrosw(3),
-    borderRadius: averageRatio(5),
   },
   commentAuthorContainer: {
     flexDirection: "row",
@@ -96,32 +119,17 @@ const styles = StyleSheet.create({
     width: authImageRadius,
     height: authImageRadius,
     borderRadius: authImageRadius,
-    margin: averageRatio(10),
   },
-  authorNameText: { fontSize: fontRatio(22), fontWeight: "700" },
+  authorNameText: { fontSize: theme.fontSize.s22, fontWeight: "700" },
   readLessContainer: {
     alignItems: "flex-end",
-    marginRight: wwrosw(25),
-    marginTop: hwrosh(10),
-    height: hwrosh(48),
   },
   readMoreContainer: {
     alignItems: "flex-end",
-    marginRight: wwrosw(25),
-    marginTop: hwrosh(10),
     width: "100%",
-    height: hwrosh(48),
   },
   readMoreLessText: {
-    fontSize: fontRatio(16),
+    fontSize: theme.fontSize.medium,
     fontWeight: "800",
-  },
-  favoriteContainer: {
-    flexDirection: "row",
-    marginRight: wwrosw(10),
-    justifyContent: "center",
-    alignItems: "center",
-    alignContent: "center",
-    height: hwrosh(48),
   },
 });

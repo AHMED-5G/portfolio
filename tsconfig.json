@@ -4,8 +4,10 @@
     "jsx": "react",
     "strict": true,
     "paths": {
-      "react": [ "./node_modules/@types/react" ]
-    }
+      "shared-data/*": ["./shared-data/*"],
+      "react": ["./node_modules/@types/react"]
+    },
+    "typeRoots": ["./src/types"]
   },
   "typeRoots": ["../node_modules/@types", "../@types"]
 }

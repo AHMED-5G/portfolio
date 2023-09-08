@@ -5,8 +5,9 @@ import {
 } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ColorValue, ImageSourcePropType } from "react-native";
-import { UserConfigurationInterface } from "../constants/myColors";
+import { UserConfigurationInterface } from "../constants/theme";
 import { ReactElement } from "react";
+import { ApiResponseError, IUser, JSONWebTokenType } from "shared-data/types";
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -29,6 +30,8 @@ export type RootStackParamList = {
   Yachts: undefined;
   MarketStackNavigator: undefined;
   MarketHomeScreen: undefined;
+  Login: undefined;
+  ResetPassword: FormData;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
@@ -58,12 +61,7 @@ export interface Hotel {
   address: string;
 }
 
-export interface User {
-  id: ID;
-  name: string;
-  email: string;
-  image?: string;
-}
+export interface User extends IUser {}
 
 export enum AccountTypes {
   Facebook,
@@ -83,6 +81,7 @@ export interface ContributorAccount {
 export interface Contributor extends User {
   accounts: ContributorAccount[];
   title: string;
+  image: string;
 }
 
 export enum PostTypes {
@@ -123,6 +122,9 @@ export interface Horse {
   history: string;
   images?: string[];
 }
+interface FormData {
+  email: string;
+}
 
 export type Bid = { user: User; timeStamp: number; amount: number };
 
@@ -148,7 +150,7 @@ export interface InitialStateInterface {
     savedReadingTheme: ReadingThemesCombo;
     userConfiguration: UserConfigurationInterface;
   };
-  itemsInCart: ProductInCart[];
+  jwt: JSONWebTokenType | undefined;
 }
 
 export enum ProductTypes {
@@ -175,4 +177,15 @@ export interface ProductInCart extends Product {
 export interface SectionContainerInterface {
   title: string;
   content: ReactElement;
+}
+
+export interface PostRequest<RequiredT, OnSuccessT> {
+  url: string;
+  token?: string;
+  body?: RequiredT;
+  onSuccess: (data: OnSuccessT) => void;
+  onElse?: (response: ApiResponseError) => void;
+  onError?: (error: unknown) => void;
+  onStart?: () => void;
+  onFinish?: () => void;
 }

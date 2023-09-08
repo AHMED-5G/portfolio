@@ -4,45 +4,13 @@ import {
   FlexStyle,
   I18nManager,
   ShadowStyleIOS,
+  TextStyle,
 } from "react-native";
 import { ReadingThemesCombo } from "../types";
 import { ViewStyle } from "react-native";
 import { averageRatio, hwrosh } from "./Layout";
-
-export const myColors = {
-  main: "#CD9575",
-  secondary: "#007FFF",
-  primary: "#8AE7E1",
-  AshGray: "#B2BEB5",
-  AzureX11: "#F0FFFF",
-  Blond: "#FAF0BE",
-  AngryPasta: "#ffcc55",
-  Antique: "#8b846d",
-  ApolloLanding: "#e5e5e1",
-  Baltic: "#279d9f",
-  EbayRed: "#e53238",
-  grey1: "#43484d",
-  grey2: "#5e6977",
-  grey3: "#86939e",
-  grey4: "#bdc6cf",
-  grey5: "#e1e8ee",
-  orange: "#ff8c52",
-  white: "white",
-  lightGreen: "#66DF48",
-  like1: "#A8D8FF",
-  red: "#EF4444",
-  redPlus: "#FF1744",
-  redFavorite: "#e0576e",
-  sky: "#00ccff",
-  lightBlue: "#6d73e9f2",
-  heavyBlue: "#008fa1",
-  medBlue: "#2fe0fe",
-  grey: "#dbdae0",
-  yy: "#fcefab",
-  black: "black",
-  blueA: "#0048BA",
-  tr: "trans",
-};
+import { myColors } from "./Colors";
+import { FontSizeEnum, fontSizeEntries } from "./fontSizes";
 
 export const readingThemes: ReadingThemesCombo[] = [
   {
@@ -66,11 +34,12 @@ export const readingThemes: ReadingThemesCombo[] = [
     backGroundColor: "#000000",
   },
 ];
-interface ThemeInterface {
+
+export interface ThemeInterface {
   darkTheme: boolean;
 
   baseBackground: () => ColorValue;
-  baseTextColor: () => ColorValue;
+  baseTextColor: (opacity?: number) => ColorValue;
 
   primary: () => ColorValue;
   primaryText: () => ColorValue;
@@ -117,6 +86,7 @@ interface ThemeInterface {
   disableColor: ColorValue;
 
   error: ColorValue;
+  textError: () => ColorValue;
 
   localizationRtl: boolean;
   localizationFlexDirection: FlexStyle["flexDirection"] | undefined;
@@ -132,19 +102,24 @@ interface ThemeInterface {
     shadowOpacity: ShadowStyleIOS["shadowOpacity"];
     shadowRadius: ShadowStyleIOS["shadowRadius"];
   };
+
+  fontSize: { [key in FontSizeEnum]: TextStyle["fontSize"] };
 }
 export interface UserConfigurationInterface {
   darkTheme: boolean;
 }
-
+1;
 export const theme: ThemeInterface = {
   darkTheme: Appearance.getColorScheme() == "dark" ? true : false,
 
   baseBackground: function () {
     return this.darkTheme ? "#141414" : "";
   },
-  baseTextColor: function () {
-    return this.darkTheme ? "#FFF" : "#000";
+
+  baseTextColor: function (opacity = 1) {
+    return this.darkTheme
+      ? `rgba(255, 255, 255, ${opacity})`
+      : `rgba(0, 0, 0, ${opacity})`;
   },
 
   primary: function () {
@@ -199,17 +174,21 @@ export const theme: ThemeInterface = {
   },
 
   actionButtonBackground: function () {
-    return this.darkTheme ? "#282828" : "#0048BA";
+    return this.darkTheme ? "#c7d0e0" : "#0048BA";
   },
 
   actionButtonTextColor: function () {
     return this.darkTheme ? "#c7d0e0" : "#FFF";
   },
 
-  borderColor: myColors.grey5,
-  disableColor: myColors.grey5,
+  borderColor: myColors.grey4,
+  disableColor: myColors.grey3,
 
   error: "#b00020",
+
+  textError: function () {
+    return this.darkTheme ? "#dddcec" : this.error;
+  },
 
   tabBarHeight: hwrosh(70),
   // tabBarBackground: "#FFF",
@@ -248,4 +227,6 @@ export const theme: ThemeInterface = {
       shadowRadius: 1.0,
     };
   },
+
+  fontSize: Object.fromEntries(fontSizeEntries),
 };

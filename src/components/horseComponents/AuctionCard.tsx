@@ -1,10 +1,11 @@
 import { StyleSheet, View, Text, FlatList, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import { HorseInAuction } from "../../types";
-import { myColors } from "../../constants/myColors";
+
 import { MaterialIcons,Feather } from "@expo/vector-icons";
 import { width } from "../../constants/Layout";
 import BiderCard from "./BiderCard";
+import { myColors } from "../../constants";
 
 type Props = {
   auction: HorseInAuction;

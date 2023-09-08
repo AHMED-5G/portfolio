@@ -1,4 +1,4 @@
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import React from "react";
 import { RootStackParamList } from "../../types";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -27,7 +27,7 @@ const MarketSection = ({ navigation }: Props) => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={{ marginTop: hwrosh(5) }}>
       <HomeSectionTitle text={i18n.t("market")} />
       <HomeSectionContainer content={<Content />} />
     </View>
@@ -36,8 +36,3 @@ const MarketSection = ({ navigation }: Props) => {
 
 export default MarketSection;
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: hwrosh(5),
-  },
-});

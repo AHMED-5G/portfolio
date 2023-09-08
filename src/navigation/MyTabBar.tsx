@@ -8,9 +8,9 @@ import {
   TabNavigationState,
 } from "@react-navigation/native";
 import React, { useCallback, useEffect, useState } from "react";
-import { Keyboard,  TouchableOpacity, View } from "react-native";
+import { Keyboard, TouchableOpacity, View } from "react-native";
 import { FeedTab, HomeTab, SettingsTab } from "./tabBarItems";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -32,6 +32,7 @@ import {
   wwrosw,
 } from "../constants/Layout";
 import { totalOpenTabBarHeight } from "./constants";
+
 interface TabBarProps {
   state: TabNavigationState<ParamListBase>;
   descriptors: BottomTabDescriptorMap;
@@ -54,7 +55,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
       openTabProgress.value,
       [0, 1],
       [0, 180],
-      Extrapolation.CLAMP
+      Extrapolation.CLAMP,
     );
   });
 
@@ -75,7 +76,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
       [theme.tabBarHeight, barOpenHeight],
       {
         extrapolateRight: Extrapolation.CLAMP,
-      }
+      },
     );
     return {
       height,
@@ -96,7 +97,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
     const toHeight = interpolate(
       openTabProgress.value,
       [0, 1],
-      [theme.tabBarHeight, 0]
+      [theme.tabBarHeight, 0],
     );
     return {
       height: toHeight,
@@ -108,7 +109,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
     const toHeight = interpolate(
       openTabProgress.value,
       [0, 1],
-      [0, totalOpenTabBarHeight]
+      [0, totalOpenTabBarHeight],
     );
     return {
       opacity: toOpacity,
@@ -117,6 +118,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
   });
 
   const upButtonPercentage = 0.15;
+
   return (
     <Animated.View
       style={[
@@ -141,6 +143,7 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
         onPress={() => {
           openTabProgress.value < 1 ? openTab() : closTab();
         }}
+        activeOpacity={1}
         style={{
           justifyContent: "center",
           alignContent: "center",
@@ -218,7 +221,6 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
                 target: route.key,
               });
             };
-
             return (
               <TouchableOpacity
                 accessibilityRole="button"
@@ -249,14 +251,8 @@ const MyTabBar = ({ state, descriptors, navigation }: TabBarProps) => {
             );
           })}
         </Animated.View>
-        <Animated.View
-          style={[
-            {
-              marginTop: hwrosh(10),
-            },
-            drawerContainerRStyle,
-          ]}
-        >
+
+        <Animated.View style={[drawerContainerRStyle]}>
           <DrawerComponent />
           <MyLine lineStyle={{ marginTop: 0 }} />
           <TabBarFooter />

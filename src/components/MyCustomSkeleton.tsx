@@ -1,7 +1,7 @@
 import { ColorValue } from "react-native";
 import React from "react";
 import SkeletonLoader from "expo-skeleton-loader";
-import { theme } from "../constants/myColors";
+import { theme } from "../constants/theme";
 import { LoaderItemStyle } from "expo-skeleton-loader/lib/Constants";
 
 type Props = {

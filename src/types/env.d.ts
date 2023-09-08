@@ -1,5 +1,6 @@
 declare module "@env" {
-  export const baseUrl: string;
+  export const GITHUB_CLIENT_ID: string;
+  export const NODE_ENV: string;
 }
 
 declare module "*.svg" {

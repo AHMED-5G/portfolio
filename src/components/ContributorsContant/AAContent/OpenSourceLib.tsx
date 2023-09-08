@@ -32,7 +32,7 @@ const OpenSourceLib = () => {
   }, []);
   const Content = () => {
     return (
-      <View>
+      <View style={{ width: width * 0.9 }}>
         <TouchableOpacity
           onPress={() => Linking.openURL(osRepoUrl)}
           style={{ marginTop: hwrosh(5) }}
@@ -43,7 +43,7 @@ const OpenSourceLib = () => {
               source={{
                 uri: repoImage,
               }}
-              style={styles.repoImageStyle}
+              style={[styles.repoImageStyle, { height: hwrosh(200) }]}
             />
           ) : (
             <MyCustomSkeleton
@@ -81,12 +81,11 @@ const OpenSourceLib = () => {
 export default OpenSourceLib;
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: hwrosh(20),
-    width: width * 0.9,
-  },
+  // sectionContainer: {
+  //   marginTop: hwrosh(20),
+  //   width: width * 0.9,
+  // },
   repoImageStyle: {
-    height: hwrosh(200),
     borderRadius: 5,
     width: "100%",
   },

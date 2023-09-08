@@ -18,7 +18,7 @@ import {
   width,
   wwrosw,
 } from "../constants/Layout";
-import { myColors, theme } from "../constants/myColors";
+import { myColors, theme } from "../constants";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { StackScreenProps } from "@react-navigation/stack";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -27,7 +27,7 @@ import MedButton from "../components/mini/MedButton";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
 import Stars from "react-native-stars";
-import { showToast } from "../utils/helperFunctions";
+import { showToastV3 } from "../utils/helperFunctions";
 import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import ImageSliderComponent from "../components/HotelDetailsComponents/ImageSliderComponent";
 // import DateTimePicker from "@react-native-community/datetimepicker";
@@ -54,13 +54,10 @@ function HotelDetails({ route }: Props) {
     function sendFakeRequest() {
       setTimeout(() => {
         setLoading(false);
-        showToast(
+        showToastV3(
           requestResult
             ? i18n.t("requestSentSuccessfully")
             : i18n.t("requestFailedToSend"),
-          requestResult
-            ? (theme.alertSuccessColor as string)
-            : (theme.alertFailColor as string)
         );
         setRequestResult(!requestResult);
       }, 3000);
@@ -73,6 +70,12 @@ function HotelDetails({ route }: Props) {
         <View
           style={[
             styles.meddleCard,
+            {
+              width: wwrosw(316),
+              height: hwrosh(300),
+              left: (width - wwrosw(316)) / 2,
+              borderRadius: averageRatio(20),
+            },
             { backgroundColor: theme.cardBackground() },
           ]}
         >
@@ -91,7 +94,12 @@ function HotelDetails({ route }: Props) {
                   <TouchableOpacity
                     style={[
                       styles.miniImageContainerStyle,
-                      { margin: averageRatio(5) },
+                      {
+                        width: wwrosw(90),
+                        height: hwrosh(90),
+                        borderRadius: averageRatio(10),
+                        margin: averageRatio(5),
+                      },
                     ]}
                     disabled={index == currentImageIndex}
                     onPress={() => {
@@ -102,7 +110,11 @@ function HotelDetails({ route }: Props) {
                     <Image
                       source={{ uri: item as string }}
                       style={[
-                        styles.miniImageStyle,
+                        {
+                          width: wwrosw(90),
+                          height: hwrosh(90),
+                          borderRadius: averageRatio(10),
+                        },
                         {
                           borderWidth:
                             index == currentImageIndex ? averageRatio(1) : 0,
@@ -150,7 +162,14 @@ function HotelDetails({ route }: Props) {
                 }}
               >
                 <Text
-                  style={[styles.smallText, { color: theme.baseTextColor() }]}
+                  style={[
+                    styles.smallText,
+                    {
+                      fontSize: fontRatio(14),
+                      lineHeight: fontRatio(17),
+                      color: theme.baseTextColor(),
+                    },
+                  ]}
                 >
                   {hotel.address}
                 </Text>
@@ -224,7 +243,16 @@ function HotelDetails({ route }: Props) {
           }}
         >
           <View style={{ margin: averageRatio(20) }}>
-            <Text style={[styles.title, { color: theme.baseTextColor() }]}>
+            <Text
+              style={[
+                styles.title,
+                {
+                  lineHeight: fontRatio(36),
+                  fontSize: fontRatio(28),
+                  color: theme.baseTextColor(),
+                },
+              ]}
+            >
               {hotel.name}
             </Text>
           </View>
@@ -267,7 +295,7 @@ function HotelDetails({ route }: Props) {
         <Text
           key={hotel.name}
           style={{
-            fontSize: fontRatio(22),
+            fontSize: theme.fontSize.s22,
             fontWeight: "700",
             color: theme.baseTextColor(),
           }}
@@ -283,25 +311,15 @@ export default HotelDetails;
 
 const styles = StyleSheet.create({
   miniImageContainerStyle: {
-    width: wwrosw(90),
-    height: hwrosh(90),
-    borderRadius: averageRatio(10),
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
   },
-  miniImageStyle: {
-    width: wwrosw(90),
-    height: hwrosh(90),
-    borderRadius: averageRatio(10),
-  },
   title: {
-    fontSize: fontRatio(28),
     fontWeight: "700",
-    lineHeight: fontRatio(36),
   },
   secondlyTitle: {
-    fontSize: fontRatio(22),
+    fontSize: theme.fontSize.s22,
     color: myColors.black,
     fontWeight: "bold",
   },
@@ -311,25 +329,19 @@ const styles = StyleSheet.create({
     textShadowColor: "black",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
-    fontSize: fontRatio(22),
+    fontSize: theme.fontSize.s22,
   },
   myEmptyStarStyle: {
     color: "white",
-    fontSize: fontRatio(22),
+    fontSize: theme.fontSize.s22,
   },
   smallText: {
-    fontSize: fontRatio(14),
-    lineHeight: fontRatio(17),
     fontWeight: "700",
     color: "#505050",
   },
   meddleCard: {
     position: "absolute",
     top: height / 2 - 40,
-    width: wwrosw(316),
-    height: hwrosh(300),
-    left: (width - wwrosw(316)) / 2,
-    borderRadius: averageRatio(20),
     backgroundColor: "#FAFAFA",
     zIndex: 999,
     overflow: "hidden",
