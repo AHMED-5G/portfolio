@@ -60,7 +60,7 @@ const en = {
     "An email has been sent to your email address with a verification code.",
   welcomeBack: "Welcome back",
   email: "Email",
-  password: "password",
+  password: "Password",
   signup: "Signup",
   passwordTooShort: "Password too short",
   invalidEmail: "Invalid email",

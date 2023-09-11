@@ -13,8 +13,8 @@ export default {
   isSmallDevice: width < 375,
 };
 
-export const figmaScreenHeight = 850;
-export const figmaScreenWidth = 392;
+const figmaScreenHeight = 850;
+const figmaScreenWidth = 392;
 
 const heightWithRatioOfWindowHeight = (givenHeight: number): number => {
   return (givenHeight / figmaScreenHeight) * windowHeight;

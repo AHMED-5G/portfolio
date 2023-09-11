@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { theme } from "../../constants/theme";
 import { Audio } from "expo-av";
-import { showToast } from "../../utils/helperFunctions";
 import { noSound } from "../../../assets/sounds";
 import { i18n } from "../../translation/i18n";
 import {
@@ -12,6 +11,7 @@ import {
   hwrosh,
   wwrosw,
 } from "../../constants/Layout";
+import { showToastV3 } from "../../utils";
 
 type Props = {
   shareCounter: number;
@@ -52,10 +52,7 @@ const ShareComponent = ({ shareCounter }: Props) => {
         accessibilityHint="Share"
         onPress={() => {
           playSound();
-          showToast(
-            i18n.t("thisFeatureIsCurrentlyUnavailable"),
-            theme.alertWarningColor as string,
-          );
+          showToastV3(i18n.t("thisFeatureIsCurrentlyUnavailable"));
         }}
       >
         <SimpleLineIcons

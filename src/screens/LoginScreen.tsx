@@ -23,7 +23,6 @@ import { i18n } from "../translation/i18n";
 import PasswordInputIconsComponent from "../components/loginComponents/PasswordInputIconsComponent";
 import LoginBackUpComponent from "../components/loginComponents/LoginBackUpComponent";
 import LoginTitle from "../components/AuthComponents/LoginTitle";
-
 import {
   LOGIN_PATH,
   REGISTER_PATH,
@@ -40,6 +39,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { InitialStateInterface } from "../types";
 import { postRequest, showToastV3 } from "../utils";
+import { Feather } from "@expo/vector-icons";
 
 const LoginScreen = () => {
   const state: InitialStateInterface = useAppSelector(
@@ -136,6 +136,8 @@ const LoginScreen = () => {
       () => validateEmail(email, i18n.t("invalidEmail")),
     ];
     const formWidth = 0.8 * width;
+
+    const buttonWidth = formWidth / 2 - wwrosw(5);
     if (state.jwt)
       return (
         <View>
@@ -176,6 +178,17 @@ const LoginScreen = () => {
               label={i18n.t("email")}
               CustomTextInput={
                 <CustomTextInput
+                  keepExample={true}
+                  icon={
+                    <Feather
+                      name="mail"
+                      size={24}
+                      color={theme.iconColor()}
+                      style={{
+                        opacity: 0.7,
+                      }}
+                    />
+                  }
                   placeholder={"name@example.com"}
                   onChangeText={(text) => setEmail(text)}
                   keyboardType="email-address"
@@ -205,6 +218,16 @@ const LoginScreen = () => {
                   containerStyle={{
                     width: formWidth / 2,
                   }}
+                  icon={
+                    <Feather
+                      name="lock"
+                      size={24}
+                      color={theme.iconColor()}
+                      style={{
+                        opacity: 0.7,
+                      }}
+                    />
+                  }
                   validationFunctions={passwordValidationFunctions}
                   autoCapitalize="none"
                   onChangeText={(text) => setPassword(text)}
@@ -222,7 +245,10 @@ const LoginScreen = () => {
             <View>
               {!password && (
                 <TouchableOpacity
-                  style={{ marginTop: hwrosh(10) }}
+                  style={{
+                    marginTop: hwrosh(10),
+                    alignSelf: "flex-start",
+                  }}
                   onPress={async () => {
                     if (validateEmail(email)) {
                       return showToastV3(i18n.t("emailNotValid"));
@@ -254,7 +280,7 @@ const LoginScreen = () => {
               >
                 <MedButton
                   disabled={disableAction}
-                  style={[styles.btnStyle, { width: wwrosw(120) }]}
+                  style={[styles.btnStyle, { width: buttonWidth }]}
                   title={i18n.t("login")}
                   onPress={() => {
                     loginInWithEmail(), sharedActions();
@@ -266,7 +292,7 @@ const LoginScreen = () => {
                   style={[
                     styles.btnStyle,
                     {
-                      width: wwrosw(120),
+                      width: buttonWidth,
                       backgroundColor: theme.baseBackground(),
                       borderColor: theme.borderColor,
                       borderWidth: 0.5,

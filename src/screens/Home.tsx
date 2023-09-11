@@ -29,6 +29,7 @@ function Home({ navigation }: Props) {
           alignContent: "center",
         }}
       >
+       
         <MarketSection navigation={navigation} />
         <ContributesSection />
         <YachtSection navigation={navigation} />
@@ -40,7 +41,7 @@ function Home({ navigation }: Props) {
                 { fontSize: theme.fontSize.s18, fontWeight: "400" },
                 { color: theme.baseTextColor() },
               ]}
-              text={i18n.t("version") + " " + "0.9"}
+              text={i18n.t("version") + " " + "1.0"}
             />
           }
           line={false}

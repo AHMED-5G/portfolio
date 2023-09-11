@@ -17,6 +17,7 @@ import {
   SET_USER_JWT,
 } from "../../redux/reducers/dataSlice";
 import {
+  averageRatio,
   circularRatio,
   fontRatio,
   hwrosh,
@@ -75,7 +76,7 @@ const TabBarFooter = () => {
           isOn={state.settings.userConfiguration?.darkTheme ? false : true}
           onColor={"black"}
           offColor={myColors.sky}
-          label={!theme.darkTheme?  i18n.t("darkTheme"): i18n.t("lightTheme")}
+          label={!theme.darkTheme ? i18n.t("darkTheme") : i18n.t("lightTheme")}
           icon={<Entypo name="moon" size={circularRatio(24)} color="black" />}
           labelStyle={[
             styles.text,
@@ -105,7 +106,8 @@ const TabBarFooter = () => {
           flexDirection: "row",
           borderWidth: 0.4,
           borderColor: theme.borderColor,
-          width: wwrosw(100),
+          // width: wwrosw(100),
+          padding: averageRatio(5),
           height: hwrosh(60),
           borderRadius: theme.borderRadius,
         }}
