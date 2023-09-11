@@ -18,7 +18,6 @@ interface CustomTextInputInterface extends TextInputProps {
 const CustomTextInput = ({
   validationFunctions,
   containerStyle,
-
   ...props
 }: CustomTextInputInterface) => {
   const [validationErrors, setValidationsError] = useState<string[]>([]);
@@ -35,6 +34,7 @@ const CustomTextInput = ({
 
   useEffect(() => {
     if (props.value?.length) handleBlur();
+    else setValidationsError([]);
   }, [props.value]);
 
   return (
@@ -63,7 +63,9 @@ const CustomTextInput = ({
             },
             props.style,
           ]}
-          placeholderTextColor={theme.baseTextColor(0.7)}
+          placeholderTextColor={
+            props.placeholderTextColor ?? theme.baseTextColor(0.7)
+          }
         />
       </KeyboardAvoidingView>
       <View style={{ flexDirection: "row" }}>

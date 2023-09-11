@@ -1,6 +1,7 @@
 import { Text, View } from "react-native";
 import React from "react";
 import { theme } from "../../constants";
+import { i18n } from "../../translation/i18n";
 
 const LoginTitle = () => {
   return (
@@ -12,7 +13,7 @@ const LoginTitle = () => {
           color: theme.baseTextColor(),
         }}
       >
-        Login
+        {i18n.t("login")}
       </Text>
     </View>
   );

@@ -12,6 +12,7 @@ import { height, hwrosh, width, wwrosw } from "../constants/Layout";
 import { theme } from "../constants/theme";
 import CustomTextInput from "../components/mini/CustomTextInput";
 import {
+  isEnglishWithSpecialChars,
   validateEmail,
   validateShortTextLength,
 } from "../components/mini/validations";
@@ -118,8 +119,21 @@ const LoginScreen = () => {
         setDisableAction(false);
       } else setDisableAction(true);
     }, [email, password]);
+
+    const sharedValidationFunctions = (text: string): (() => string)[] => {
+      return [
+        () => isEnglishWithSpecialChars(text, i18n.t("EnglishLettersOnly")),
+      ];
+    };
+
     const passwordValidationFunctions = [
-      () => validateShortTextLength(password, 6),
+      ...sharedValidationFunctions(password),
+      () => validateShortTextLength(password, 6, i18n.t("passwordTooShort")),
+    ];
+
+    const emailValidationFunctions = [
+      ...sharedValidationFunctions(email),
+      () => validateEmail(email, i18n.t("invalidEmail")),
     ];
     const formWidth = 0.8 * width;
     if (state.jwt)
@@ -147,7 +161,7 @@ const LoginScreen = () => {
               fontWeight: "700",
             }}
           >
-            Welcome back
+            {i18n.t("welcomeBack")}
           </Text>
         </View>
         <View style={{ width: formWidth }}>
@@ -159,16 +173,17 @@ const LoginScreen = () => {
             }}
           >
             <FormComponentWithLabel
-              label="Email"
+              label={i18n.t("email")}
               CustomTextInput={
                 <CustomTextInput
-                  placeholder="Email"
+                  placeholder={"name@example.com"}
                   onChangeText={(text) => setEmail(text)}
                   keyboardType="email-address"
-                  validationFunctions={[() => validateEmail(email)]}
+                  validationFunctions={emailValidationFunctions}
                   autoCapitalize="none"
                   value={email}
                   style={{ color: theme.baseTextColor() }}
+                  placeholderTextColor={theme.baseTextColor(0.5)}
                 />
               }
             />
@@ -179,7 +194,7 @@ const LoginScreen = () => {
             }}
           >
             <FormComponentWithLabel
-              label="Password"
+              label={i18n.t("password")}
               iconsView={
                 <PasswordInputIconsComponent
                   {...{ showPassword, setShowPassword, password, setPassword }}
@@ -190,13 +205,13 @@ const LoginScreen = () => {
                   containerStyle={{
                     width: formWidth / 2,
                   }}
-                  placeholder="Password"
                   validationFunctions={passwordValidationFunctions}
                   autoCapitalize="none"
                   onChangeText={(text) => setPassword(text)}
                   secureTextEntry={showPassword}
                   value={password}
                   style={{ width: formWidth / 2, color: theme.baseTextColor() }}
+                  placeholderTextColor={theme.baseTextColor(0.5)}
                 />
               }
             />
@@ -225,7 +240,7 @@ const LoginScreen = () => {
                       textDecorationColor: theme.actionButtonBackground(),
                     }}
                   >
-                    Reset password
+                    {i18n.t("resetPassword")}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -240,7 +255,7 @@ const LoginScreen = () => {
                 <MedButton
                   disabled={disableAction}
                   style={[styles.btnStyle, { width: wwrosw(120) }]}
-                  title="Login"
+                  title={i18n.t("login")}
                   onPress={() => {
                     loginInWithEmail(), sharedActions();
                   }}
@@ -248,12 +263,25 @@ const LoginScreen = () => {
                 />
                 <MedButton
                   disabled={disableAction}
-                  style={[styles.btnStyle, { width: wwrosw(120) }]}
-                  title="Sign Up"
+                  style={[
+                    styles.btnStyle,
+                    {
+                      width: wwrosw(120),
+                      backgroundColor: theme.baseBackground(),
+                      borderColor: theme.borderColor,
+                      borderWidth: 0.5,
+                    },
+                  ]}
+                  title={i18n.t("newAccount")}
                   onPress={() => {
                     signUpWithEmail(), sharedActions();
                   }}
-                  textStyle={{ fontSize: theme.fontSize.s18 }}
+                  textStyle={{
+                    fontSize: theme.fontSize.s18,
+                    color: disableAction
+                      ? theme.disableColor
+                      : theme.actionButtonBackground(),
+                  }}
                 />
               </View>
             </View>

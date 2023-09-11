@@ -4,6 +4,7 @@ import { Entypo, Feather, Ionicons } from "@expo/vector-icons";
 import { averageRatio, hwrosh, theme, circularRatio } from "../../constants";
 import * as Clipboard from "expo-clipboard";
 import { showToastV3 } from "../../utils/helperFunctions";
+import { i18n } from "../../translation/i18n";
 
 type Props = {
   showPassword: boolean;
@@ -43,7 +44,7 @@ const PasswordInputIconsComponent = ({
   //copy to clipboard
   const copyToClipboard = async () => {
     await Clipboard.setStringAsync(password);
-    showToastV3("Password copied to clipboard");
+    showToastV3(i18n.t("PasswordCopiedAlert"));
   };
 
   const handlePassword = () => {

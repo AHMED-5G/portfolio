@@ -1,6 +1,5 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-
 import { RootSiblingParent } from "react-native-root-siblings";
 import Navigation from "./src/navigation";
 import { Provider } from "react-redux";

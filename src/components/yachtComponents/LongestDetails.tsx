@@ -11,32 +11,45 @@ import {
 const LongestDetails = () => {
   const FirstCard = (): ReactNode => {
     return (
-      <View
-        style={{
-          flexDirection: "row",
-        }}
-      >
-        <Text
+      <>
+        <View
           style={{
-            color: theme.cardText(),
-            fontSize: theme.fontSize.s22,
-            fontWeight: "bold",
+            flexDirection: "row",
           }}
         >
-          32
-        </Text>
-        <Text
-          style={{
-            marginLeft: 4,
-            color: theme.cardText(),
-            fontSize: theme.fontSize.s18,
-            fontWeight: "500",
-            lineHeight: fontRatio(32),
-          }}
-        >
-          m
-        </Text>
-      </View>
+          <Text
+            style={{
+              color: theme.cardText(),
+              fontSize: theme.fontSize.s22,
+              fontWeight: "bold",
+            }}
+          >
+            32
+          </Text>
+          <Text
+            style={{
+              marginLeft: 4,
+              color: theme.cardText(),
+              fontSize: theme.fontSize.s18,
+              fontWeight: "500",
+              lineHeight: fontRatio(32),
+            }}
+          >
+            m
+          </Text>
+        </View>
+        <View>
+          <Text
+            style={{
+              color: theme.cardText(),
+              fontSize: theme.fontSize.s18,
+              fontWeight: "500",
+            }}
+          >
+            Length
+          </Text>
+        </View>
+      </>
     );
   };
 

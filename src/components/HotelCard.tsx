@@ -9,6 +9,7 @@ import { hwrosh, wwrosw } from "../constants/Layout";
 type Props = {
   hotel: Hotel;
 };
+
 const imageHeight = hwrosh(200);
 const HotelCard = ({ hotel }: Props) => {
   const navigation = useNavigation();
@@ -60,7 +61,6 @@ const HotelCard = ({ hotel }: Props) => {
         style={{
           marginLeft: wwrosw(5),
           marginBottom: hwrosh(10),
-          // flexDirection: theme.freezeInLeftWhenIsRTLTrue(),
         }}
       >
         <View

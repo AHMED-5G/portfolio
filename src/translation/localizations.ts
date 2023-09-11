@@ -58,6 +58,16 @@ const en = {
   lightTheme: "Light theme",
   resetPasswordEmailSentSuccessfully:
     "An email has been sent to your email address with a verification code.",
+  welcomeBack: "Welcome back",
+  email: "Email",
+  password: "password",
+  signup: "Signup",
+  passwordTooShort: "Password too short",
+  invalidEmail: "Invalid email",
+  EnglishLettersOnly: "English letters only",
+  newAccount: "New account",
+  resetPassword: "Reset Password",
+  PasswordCopiedAlert: 'Password copied to clipboard'
 };
 
 const ar = {
@@ -121,6 +131,16 @@ const ar = {
   lightTheme: "فاتح",
   resetPasswordEmailSentSuccessfully:
     "تم ارسال كود التحقق الى بريدك الالكتروني",
+  welcomeBack: "مرحبًا بعودتك",
+  email: "البريد الإلكتروني",
+  password: "كلمة المرور",
+  signUp: "تسجيل",
+  passwordTooShort: "كلمة المرور قصيرة جدا",
+  invalidEmail: "البريد الإلكتروني غير صالح",
+  EnglishLettersOnly: "حروف اللغة الإنجليزية فقط",
+  newAccount: "حساب جديد",
+  resetPassword: "إعادة تعيين كلمة المرور",
+  PasswordCopiedAlert: 'تم نسخ كلمة المرور'
 };
 
 export { en, ar };

@@ -26,15 +26,22 @@ export function validateLongTextLength(text: string, length: number) {
   }
 }
 
-export function validateShortTextLength(text: string, length: number) {
+export function validateShortTextLength(
+  text: string,
+  length: number,
+  message = "Too short",
+) {
   if (text.length < length) {
-    return "Too short";
+    return message;
   } else {
     return "";
   }
 }
 
-export const validateEmail = (email: string): string => {
+export const validateEmail = (
+  email: string,
+  message = "Invalid email",
+): string => {
   if (
     !String(email)
       .toLowerCase()
@@ -42,7 +49,20 @@ export const validateEmail = (email: string): string => {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       )
   ) {
-    return "Invalid Email";
+    return message;
+  } else {
+    return "";
+  }
+};
+
+export const isEnglishWithSpecialChars = (
+  text: string,
+  message = "English letters only",
+): string => {
+  if (
+    !text.match(/^[A-Za-z\s\d~`!@#$%^&*()\-_=+[\]{}|\\;:'",<.>/?]+$/)
+  ) {
+    return message;
   } else {
     return "";
   }
