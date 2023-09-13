@@ -40,6 +40,7 @@ import { useNavigation } from "@react-navigation/native";
 import { InitialStateInterface } from "../types";
 import { postRequest, showToastV3 } from "../utils";
 import { Feather } from "@expo/vector-icons";
+import EmailInputIconsComponent from "../components/loginComponents/EmailInputIconsComponent";
 
 const LoginScreen = () => {
   const state: InitialStateInterface = useAppSelector(
@@ -51,6 +52,7 @@ const LoginScreen = () => {
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(true);
     const [disableAction, setDisableAction] = useState(true);
+    const [readyToLogin, setReadyToLogin] = useState(false);
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
     async function loginInWithEmail() {
@@ -67,9 +69,15 @@ const LoginScreen = () => {
           navigation.navigate("Home");
         },
         onStart: () => setLoading(true),
-        onFinish: () => setLoading(false),
+        onFinish: () => {
+          setLoading(false);
+        },
         onElse: (response) => {
           showToastV3(response.codeMessage);
+        },
+
+        onError: () => {
+          showToastV3(i18n.t("unknownError"));
         },
       });
     }
@@ -82,9 +90,13 @@ const LoginScreen = () => {
         onFinish: () => setLoading(false),
         onSuccess: () => {
           showToastV3(i18n.t("signUpSuccessfully"));
+          setReadyToLogin(true);
         },
         onElse: (response) => {
           showToastV3(response.codeMessage);
+        },
+        onError: () => {
+          showToastV3(i18n.t("unknownError"));
         },
       });
     }
@@ -169,16 +181,27 @@ const LoginScreen = () => {
         <View style={{ width: formWidth }}>
           <View
             style={{
-              justifyContent: "center",
+              justifyContent: "space-between",
               alignItems: "center",
               alignContent: "center",
+              overflow: "hidden",
+              flexDirection: "row",
             }}
           >
             <FormComponentWithLabel
               label={i18n.t("email")}
               CustomTextInput={
                 <CustomTextInput
-                  keepExample={true}
+                  iconsView={
+                    <EmailInputIconsComponent
+                      email={email}
+                      setEmail={setEmail}
+                    />
+                  }
+                  textInputContainerStyle={{
+                    width: formWidth * 0.8,
+                  }}
+                  showExample={true}
                   icon={
                     <Feather
                       name="mail"
@@ -208,14 +231,19 @@ const LoginScreen = () => {
           >
             <FormComponentWithLabel
               label={i18n.t("password")}
-              iconsView={
-                <PasswordInputIconsComponent
-                  {...{ showPassword, setShowPassword, password, setPassword }}
-                />
-              }
               CustomTextInput={
                 <CustomTextInput
-                  containerStyle={{
+                  iconsView={
+                    <PasswordInputIconsComponent
+                      {...{
+                        showPassword,
+                        setShowPassword,
+                        password,
+                        setPassword,
+                      }}
+                    />
+                  }
+                  textInputContainerStyle={{
                     width: formWidth / 2,
                   }}
                   icon={
@@ -243,33 +271,35 @@ const LoginScreen = () => {
         <View style={{ marginTop: hwrosh(20), width: 0.8 * width }}>
           {!loading ? (
             <View>
-              {!password && (
-                <TouchableOpacity
-                  style={{
-                    marginTop: hwrosh(10),
-                    alignSelf: "flex-start",
-                  }}
-                  onPress={async () => {
-                    if (validateEmail(email)) {
-                      return showToastV3(i18n.t("emailNotValid"));
-                    }
-                    requestResetPassword();
-                    sharedActions();
-                  }}
-                >
-                  <Text
+              <View style={{ minHeight: hwrosh(50) }}>
+                {!password && (
+                  <TouchableOpacity
                     style={{
-                      fontSize: theme.fontSize.medium,
-                      fontWeight: "500",
-                      color: theme.actionButtonBackground(),
-                      textDecorationLine: "underline",
-                      textDecorationColor: theme.actionButtonBackground(),
+                      marginTop: hwrosh(10),
+                      alignSelf: "flex-start",
+                    }}
+                    onPress={async () => {
+                      if (validateEmail(email)) {
+                        return showToastV3(i18n.t("emailNotValid"));
+                      }
+                      requestResetPassword();
+                      sharedActions();
                     }}
                   >
-                    {i18n.t("resetPassword")}
-                  </Text>
-                </TouchableOpacity>
-              )}
+                    <Text
+                      style={{
+                        fontSize: theme.fontSize.medium,
+                        fontWeight: "500",
+                        color: theme.actionButtonBackground(),
+                        textDecorationLine: "underline",
+                        textDecorationColor: theme.actionButtonBackground(),
+                      }}
+                    >
+                      {i18n.t("resetPassword")}
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              </View>
               <View
                 style={{
                   flexDirection: "row",
@@ -280,35 +310,40 @@ const LoginScreen = () => {
               >
                 <MedButton
                   disabled={disableAction}
-                  style={[styles.btnStyle, { width: buttonWidth }]}
+                  style={[
+                    styles.btnStyle,
+                    { width: readyToLogin ? formWidth : buttonWidth },
+                  ]}
                   title={i18n.t("login")}
                   onPress={() => {
                     loginInWithEmail(), sharedActions();
                   }}
                   textStyle={{ fontSize: theme.fontSize.s18 }}
                 />
-                <MedButton
-                  disabled={disableAction}
-                  style={[
-                    styles.btnStyle,
-                    {
-                      width: buttonWidth,
-                      backgroundColor: theme.baseBackground(),
-                      borderColor: theme.borderColor,
-                      borderWidth: 0.5,
-                    },
-                  ]}
-                  title={i18n.t("newAccount")}
-                  onPress={() => {
-                    signUpWithEmail(), sharedActions();
-                  }}
-                  textStyle={{
-                    fontSize: theme.fontSize.s18,
-                    color: disableAction
-                      ? theme.disableColor
-                      : theme.actionButtonBackground(),
-                  }}
-                />
+                {!readyToLogin && (
+                  <MedButton
+                    disabled={disableAction}
+                    style={[
+                      styles.btnStyle,
+                      {
+                        width: buttonWidth,
+                        backgroundColor: theme.baseBackground(),
+                        borderColor: theme.borderColor,
+                        borderWidth: 0.5,
+                      },
+                    ]}
+                    title={i18n.t("newAccount")}
+                    onPress={() => {
+                      signUpWithEmail(), sharedActions();
+                    }}
+                    textStyle={{
+                      fontSize: theme.fontSize.s18,
+                      color: disableAction
+                        ? theme.disableColor
+                        : theme.actionButtonBackground(),
+                    }}
+                  />
+                )}
               </View>
             </View>
           ) : (

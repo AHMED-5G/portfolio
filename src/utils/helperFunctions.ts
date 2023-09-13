@@ -245,9 +245,9 @@ export async function postRequest<RequiredT, SuccessT>({
     const responseData = await response.json();
 
     if (responseData.status) {
-      onSuccess?.(responseData.data);
+      if (onSuccess) return onSuccess(responseData.data);
     } else {
-      onElse?.(responseData.error);
+      if (onElse) return onElse(responseData.error);
     }
   } catch (error) {
     onError?.(error);

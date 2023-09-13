@@ -66,8 +66,9 @@ const en = {
   invalidEmail: "Invalid email",
   EnglishLettersOnly: "English letters only",
   newAccount: "New account",
-  resetPassword: "Reset Password",
-  PasswordCopiedAlert: 'Password copied to clipboard'
+  resetPassword: "Reset password",
+  PasswordCopiedAlert: "Password copied to clipboard",
+  unknownError: "Unknown error",
 };
 
 const ar = {
@@ -140,7 +141,8 @@ const ar = {
   EnglishLettersOnly: "حروف اللغة الإنجليزية فقط",
   newAccount: "حساب جديد",
   resetPassword: "إعادة تعيين كلمة المرور",
-  PasswordCopiedAlert: 'تم نسخ كلمة المرور'
+  PasswordCopiedAlert: "تم نسخ كلمة المرور",
+  unknownError: "خطأ غير معروف",
 };
 
 export { en, ar };
