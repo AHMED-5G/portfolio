@@ -1,19 +1,50 @@
-type Validator<T> = (value: T) => string;
+/**
+ * Validator function type that accepts an input value and optional arguments.
+ * The return value can be a string indicating an error message, or null if validation succeeds.
+ *
+ * @typeparam InputT - The type of the input value to be validated.
+ * @typeparam Args - (Optional) The type of the additional arguments to be passed to the validator function.
+ *                   Defaults to an array containing a single string argument if not provided.
+ *
+ * @explanation
+ * The default value of [string] for Args simplifies the usage of the Validator type.
+ * It allows most validator functions to work with just the value and message parameters without explicitly providing the type argument for Args.
+ * This default value is beneficial when defining validators that commonly require only the value and message parameters.
+ */
+export type Validator<InputT, Args extends unknown[] = [string?]> = (
+  value: InputT,
+  ...args: Args
+) => string | null;
 
-interface Validation<T> {
-  value: T;
+interface Validation<InputT> {
+  value: InputT;
   errors: string[];
-  validate(validator: Validator<T>, message?: string): Validation<T>;
+
+  validate<Args extends unknown[]>(
+    validator: Validator<InputT, Args>,
+    ...args: Args
+  ): Validation<InputT>;
+
   getErrors(): string[];
 }
 
-export function createValidation<T>(value: T): Validation<T> {
+/**
+ * Creates a validation object for the specified input value.
+ *
+ * @typeparam InputT - The type of the input value to be validated.
+ * @param value - The input value to be validated.
+ * @returns A validation object.
+ */
+export function createValidation<InputT>(value: InputT): Validation<InputT> {
   const errors: string[] = [];
 
-  function validate(validator: Validator<T>, message?: string): Validation<T> {
-    const error = validator(value);
+  function validate<Args extends unknown[]>(
+    validator: Validator<InputT, Args>,
+    ...args: Args
+  ): Validation<InputT> {
+    const error = validator(value, ...args);
     if (error) {
-      errors.push(message || error);
+      errors.push(error);
     }
     return validation;
   }
@@ -22,7 +53,7 @@ export function createValidation<T>(value: T): Validation<T> {
     return errors;
   }
 
-  const validation: Validation<T> = {
+  const validation: Validation<InputT> = {
     value,
     errors,
     validate,

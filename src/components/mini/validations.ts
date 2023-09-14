@@ -1,4 +1,6 @@
-export const validateSpecialCharacters = (text: string) => {
+import { Validator } from "../../utils";
+
+export const validateHasSpecialCharacters = (text: string) => {
   const format = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/;
 
   if (format.test(text)) {
@@ -6,27 +8,32 @@ export const validateSpecialCharacters = (text: string) => {
   }
 };
 
-export function validateIntNumber(
+export const validateIntNumber: Validator<string> = (
   text: string,
   message = "Enter numeric characters only (Allowed input: 0-9)",
-): string {
+) => {
   const isNumeric = /^[0-9]+$/.test(text);
-  return isNumeric ? "" : message;
-}
+  return isNumeric ? null : message;
+};
 
-export function validateHasWhiteSpace(text: string) {
+export const validateHasWhiteSpace: Validator<string> = (
+  text: string,
+  message = "White space not allowed",
+) => {
   if (/\s/g.test(text)) {
-    return "White space not allowed";
+    return message;
   } else {
-    return "";
+    return null;
   }
-}
+};
 
-export function validateLongTextLength(text: string, length: number) {
-  if (text.length > length) {
-    return "Too long";
-  }
-}
+export const validateLongTextLength: Validator<string, [number, string?]> = (
+  text: string,
+  length: number,
+  message = "Too long",
+) => {
+  return text.length > length ? message : null;
+};
 
 export function validateShortTextLength(
   text: string,
@@ -35,9 +42,8 @@ export function validateShortTextLength(
 ) {
   if (text.length < length) {
     return message;
-  } else {
-    return "";
   }
+  return null;
 }
 
 export const validateEmail = (
