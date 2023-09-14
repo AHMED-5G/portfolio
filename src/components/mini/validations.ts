@@ -6,10 +6,12 @@ export const validateSpecialCharacters = (text: string) => {
   }
 };
 
-export function validateIntNumber(text: string) {
-  if (!/^[0-9]+$/.test(text)) {
-    return "Enter numeric characters only (Allowed input:0-9)";
-  }
+export function validateIntNumber(
+  text: string,
+  message = "Enter numeric characters only (Allowed input: 0-9)",
+): string {
+  const isNumeric = /^[0-9]+$/.test(text);
+  return isNumeric ? "" : message;
 }
 
 export function validateHasWhiteSpace(text: string) {
@@ -59,9 +61,7 @@ export const isEnglishWithSpecialChars = (
   text: string,
   message = "English letters only",
 ): string => {
-  if (
-    !text.match(/^[A-Za-z\s\d~`!@#$%^&*()\-_=+[\]{}|\\;:'",<.>/?]+$/)
-  ) {
+  if (!text.match(/^[A-Za-z\s\d~`!@#$%^&*()\-_=+[\]{}|\\;:'",<.>/?]+$/)) {
     return message;
   } else {
     return "";
