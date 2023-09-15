@@ -1,2 +1,2 @@
 export * from "./helperFunctions";
-export * from "./validationFunction";
+export * from './validations';

@@ -1,5 +1,7 @@
 import { Validator } from "../../utils";
-
+/**
+ * @deprecated
+ */
 export const validateHasSpecialCharacters = (text: string) => {
   const format = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/;
 
@@ -7,7 +9,9 @@ export const validateHasSpecialCharacters = (text: string) => {
     return "special characters not allowed";
   }
 };
-
+/**
+ * @deprecated
+ */
 export const validateIntNumber: Validator<string> = (
   text: string,
   message = "Enter numeric characters only (Allowed input: 0-9)",
@@ -15,7 +19,9 @@ export const validateIntNumber: Validator<string> = (
   const isNumeric = /^[0-9]+$/.test(text);
   return isNumeric ? null : message;
 };
-
+/**
+ * @deprecated
+ */
 export const validateHasWhiteSpace: Validator<string> = (
   text: string,
   message = "White space not allowed",
@@ -26,7 +32,9 @@ export const validateHasWhiteSpace: Validator<string> = (
     return null;
   }
 };
-
+/**
+ * @deprecated
+ */
 export const validateLongTextLength: Validator<string, [number, string?]> = (
   text: string,
   length: number,
@@ -34,7 +42,9 @@ export const validateLongTextLength: Validator<string, [number, string?]> = (
 ) => {
   return text.length > length ? message : null;
 };
-
+/**
+ * @deprecated
+ */
 export function validateShortTextLength(
   text: string,
   length: number,
@@ -45,7 +55,9 @@ export function validateShortTextLength(
   }
   return null;
 }
-
+/**
+ * @deprecated
+ */
 export const validateEmail = (
   email: string,
   message = "Invalid email",
@@ -62,7 +74,9 @@ export const validateEmail = (
     return "";
   }
 };
-
+/**
+ * @deprecated
+ */
 export const isEnglishWithSpecialChars = (
   text: string,
   message = "English letters only",
@@ -73,7 +87,9 @@ export const isEnglishWithSpecialChars = (
     return "";
   }
 };
-
+/**
+ * @deprecated
+ */
 export const validateTextMatch = (
   text1: string,
   text2: string,
