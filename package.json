@@ -67,6 +67,7 @@
     "react-native-anchor-point": "^1.0.6",
     "react-native-datepicker": "^1.7.2",
     "react-native-dotenv": "^3.4.9",
+    "react-native-element-dropdown": "^2.10.0",
     "react-native-flatlist-withindicator": "^0.1.9",
     "react-native-gesture-handler": "~2.12.0",
     "react-native-image-slider-banner": "^1.0.3",

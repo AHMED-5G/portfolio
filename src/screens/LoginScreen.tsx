@@ -11,11 +11,6 @@ import ScreenWithCustomBottomTab from "../components/ScreenWithCustomBottomTab";
 import { height, hwrosh, width, wwrosw } from "../constants/Layout";
 import { theme } from "../constants/theme";
 import CustomTextInput from "../components/mini/CustomTextInput";
-import {
-  isEnglishWithSpecialChars,
-  validateEmail,
-  validateShortTextLength,
-} from "../components/mini/validations";
 import MedButton from "../components/mini/MedButton";
 import LoadingIndicator from "../components/mini/LoadingIndicator";
 import FormComponentWithLabel from "../components/FormComponentWithLabel";
@@ -38,7 +33,14 @@ import {
 } from "shared-data/constants/requestsData";
 import { useNavigation } from "@react-navigation/native";
 import { InitialStateInterface } from "../types";
-import { postRequest, showToastV3 } from "../utils";
+import {
+  Validation,
+  createValidation,
+  postRequest,
+  showToastV3,
+  validateEmail,
+  validateShortTextLength,
+} from "../utils";
 import { Feather } from "@expo/vector-icons";
 import EmailInputIconsComponent from "../components/loginComponents/EmailInputIconsComponent";
 
@@ -121,32 +123,43 @@ const LoginScreen = () => {
       Keyboard.dismiss();
     };
 
+    const [passwordValidationErrors, setPasswordValidationErrors] = useState<
+      Validation<string>["errors"]
+    >([]);
+    const [emailValidationErrors, setEmailValidationErrors] = useState<
+      Validation<string>["errors"]
+    >([]);
+
     useEffect(() => {
-      const emailValidationResult = validateEmail(email);
-      const passwordValidationResult = validateShortTextLength(password, 6);
-      const disableAction =
-        emailValidationResult == "" && passwordValidationResult == "";
+      if (password) {
+        const validation = createValidation(password).validate(
+          validateShortTextLength,
+          6,
+        );
+        setPasswordValidationErrors(validation.getErrors());
+      } else {
+        setPasswordValidationErrors([]);
+      }
+    }, [password]);
 
-      if (disableAction) {
+    useEffect(() => {
+      if (email) {
+        const emailValidation = createValidation(email).validate(validateEmail);
+        setEmailValidationErrors(emailValidation.getErrors());
+      } else setEmailValidationErrors([]);
+    }, [email]);
+
+    useEffect(() => {
+      const hasValidationErrors =
+        emailValidationErrors.length > 0 || passwordValidationErrors.length > 0;
+
+      if (hasValidationErrors || !password || !email) {
+        setDisableAction(true);
+      } else {
         setDisableAction(false);
-      } else setDisableAction(true);
-    }, [email, password]);
+      }
+    }, [email, password, emailValidationErrors, passwordValidationErrors]);
 
-    const sharedValidationFunctions = (text: string): (() => string)[] => {
-      return [
-        () => isEnglishWithSpecialChars(text, i18n.t("EnglishLettersOnly")),
-      ];
-    };
-
-    const passwordValidationFunctions = [
-      ...sharedValidationFunctions(password),
-      () => validateShortTextLength(password, 6, i18n.t("passwordTooShort")),
-    ];
-
-    const emailValidationFunctions = [
-      ...sharedValidationFunctions(email),
-      () => validateEmail(email, i18n.t("invalidEmail")),
-    ];
     const formWidth = 0.8 * width;
 
     const buttonWidth = formWidth / 2 - wwrosw(5);
@@ -215,7 +228,7 @@ const LoginScreen = () => {
                   placeholder={"name@example.com"}
                   onChangeText={(text) => setEmail(text)}
                   keyboardType="email-address"
-                  validationFunctions={emailValidationFunctions}
+                  validationErrors={emailValidationErrors}
                   autoCapitalize="none"
                   value={email}
                   style={{ color: theme.baseTextColor() }}
@@ -256,7 +269,7 @@ const LoginScreen = () => {
                       }}
                     />
                   }
-                  validationFunctions={passwordValidationFunctions}
+                  validationErrors={passwordValidationErrors}
                   autoCapitalize="none"
                   onChangeText={(text) => setPassword(text)}
                   secureTextEntry={showPassword}

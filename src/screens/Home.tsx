@@ -17,8 +17,16 @@ type Props = StackScreenProps<RootStackParamList, "Home">;
 
 function Home({ navigation }: Props) {
   return (
-    <View style={{ flex: 1, backgroundColor: theme.baseBackground() }}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: theme.baseBackground(),
+        alignContent: "center",
+        alignItems: "center",
+      }}
+    >
       <SimpleHeader title={i18n.t("home")} />
+
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{
@@ -29,7 +37,6 @@ function Home({ navigation }: Props) {
           alignContent: "center",
         }}
       >
-       
         <MarketSection navigation={navigation} />
         <ContributesSection />
         <YachtSection navigation={navigation} />

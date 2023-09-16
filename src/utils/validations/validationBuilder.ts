@@ -11,7 +11,7 @@ export type Validator<InputT, Args extends unknown[] = [string?]> = (
     ...args: Args
   ) => string | null;
   
-  interface Validation<InputT> {
+  export interface Validation<InputT> {
     value: InputT;
     errors: string[];
   

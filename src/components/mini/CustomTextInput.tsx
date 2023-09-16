@@ -11,31 +11,30 @@ import { averageRatio, hwrosh, width } from "../../constants/Layout";
 import { theme } from "../../constants/theme";
 
 interface CustomTextInputInterface extends TextInputProps {
-  validationFunctions?: (() => string)[];
   containerStyle?: ViewStyle;
   textInputContainerStyle?: ViewStyle;
   icon?: ReactElement;
   showExample?: boolean;
   iconsView?: ReactNode;
+  validationErrors?: string[];
 }
 
 const CustomTextInput = ({
-  validationFunctions,
   containerStyle,
   textInputContainerStyle,
   icon,
   showExample,
   iconsView,
+  validationErrors,
   ...props
 }: CustomTextInputInterface) => {
-  const [validationErrors, setValidationsError] = useState<string[]>([]);
   const [displayExample, setDisplayExample] = useState(false);
 
   const handleBlur = () => {
-    if (validationFunctions) {
-      const errors = validationFunctions.map((fun) => fun()).filter(Boolean);
-      setValidationsError(errors);
-    }
+    // if (validationFunctions) {
+    // const errors = validationFunctions.map((fun) => fun()).filter(Boolean);
+    // setValidationsError(errors);
+    // }
   };
 
   const textInputHeight = hwrosh(55);
@@ -51,7 +50,7 @@ const CustomTextInput = ({
         setDisplayExample(false);
       }
     } else {
-      setValidationsError([]);
+      // setValidationsError([]);
       setDisplayExample(false);
     }
   }, [props.value, onFocusStatus]);
@@ -126,7 +125,10 @@ const CustomTextInput = ({
             </KeyboardAvoidingView>
           </View>
           <View style={{ flexDirection: "row" }}>
-            {validationErrors.length > 0 &&
+            {validationErrors &&
+              validationErrors.length > 0 &&
+              props.value &&
+              props.value?.length > 0 &&
               validationErrors.map((error, index) => {
                 return (
                   <View key={index} style={{ flexDirection: "row" }}>
