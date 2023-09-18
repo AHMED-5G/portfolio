@@ -1,4 +1,4 @@
-import { Validator } from "./validationBuilder";
+import { Validator } from "input-validation-builder";
 
 export const validateHasSpecialCharacters: Validator<string> = (
   text: string,

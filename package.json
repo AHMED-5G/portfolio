@@ -58,6 +58,7 @@
     "expo-updates": "~0.18.12",
     "expo-web-browser": "~12.3.2",
     "i18n-js": "^4.3.2",
+    "input-validation-builder": "^1.1.0",
     "install": "^0.13.0",
     "make-plural": "^7.3.0",
     "npm": "^9.6.7",
